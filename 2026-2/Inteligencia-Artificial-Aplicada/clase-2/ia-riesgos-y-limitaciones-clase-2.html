@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infografía Clase 2 — Riesgos y limitaciones de la IA · Inteligencia Artificial Aplicada</title>
+<meta name="description" content="Infografía de estudio de la Clase 2 de Inteligencia Artificial Aplicada (ISIL, 2026-2): alucinaciones, sesgos, dependencia, privacidad, red neuronal e Invierno de la IA.">
+<style>
+  :root{
+    --bg:#0d1526;
+    --panel-head:#0a1120;
+    --card:#152238;
+    --card-2:#182742;
+    --ink:#e9eff8;
+    --ink-soft:#a9bad2;
+    --line:#27395a;
+    --blue:#6aa7ff;
+    --blue-bg:#16294a;
+    --teal:#3ed2b2;
+    --teal-bg:#113a36;
+    --purple:#b39af7;
+    --purple-bg:#241d47;
+    --amber:#f7b955;
+    --amber-bg:#3a2c12;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5;
+  }
+  .hoja{max-width:1180px;margin:0 auto;padding:22px 18px 34px;}
+
+  /* ---------- Franja superior ---------- */
+  .franja{
+    background:var(--panel-head);
+    border:1px solid var(--line);
+    color:#fff;
+    border-radius:16px;
+    padding:22px 26px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:12px;
+    position:relative;
+    overflow:hidden;
+  }
+  .franja::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:0;
+    height:4px;
+    background:linear-gradient(90deg,var(--blue) 0 25%,var(--teal) 25% 50%,var(--purple) 50% 75%,var(--amber) 75% 100%);
+    opacity:.9;
+  }
+  .franja h1{margin:0;font-size:1.72rem;letter-spacing:-.01em;}
+  .franja .sub{
+    margin:6px 0 0;
+    font-size:.82rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#9db8dc;
+  }
+  .franja .meta{
+    font-size:.8rem;
+    color:#c3d4ea;
+    text-align:right;
+    max-width:340px;
+  }
+
+  /* ---------- Secciones y títulos (siempre fuera del bloque) ---------- */
+  section{margin-top:24px;}
+  .rotulo{
+    display:flex;align-items:center;gap:10px;
+    margin:0 0 12px;
+    font-size:.82rem;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+  .rotulo .num{
+    width:26px;height:26px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:#0d1526;font-size:.82rem;flex:none;font-weight:800;
+  }
+  .n-blue{background:var(--blue);}
+  .n-teal{background:var(--teal);}
+  .n-purple{background:var(--purple);}
+  .n-amber{background:var(--amber);}
+
+  /* ---------- Fila superior ---------- */
+  .fila{display:grid;grid-template-columns:minmax(240px,1fr) 2.1fr;gap:16px;align-items:start;}
+  .tarjeta{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+  }
+  .idea p.texto{margin:0;font-size:1.04rem;font-weight:700;}
+
+  .conceptos .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:12px;
+  }
+  .chip{
+    border:1px solid;
+    border-radius:12px;
+    padding:12px 14px;
+    background:var(--card-2);
+  }
+  .chip .top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+  .chip .dot{
+    width:22px;height:22px;border-radius:50%;
+    color:#0d1526;font-size:.72rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .chip h3{margin:0;font-size:.98rem;}
+  .chip p{margin:0;font-size:.86rem;color:var(--ink-soft);}
+  .c-blue{border-color:#31548c;} .c-blue h3{color:var(--blue);} .c-blue .dot{background:var(--blue);}
+  .c-teal{border-color:#1f6b5e;} .c-teal h3{color:var(--teal);} .c-teal .dot{background:var(--teal);}
+  .c-purple{border-color:#4d3f86;} .c-purple h3{color:var(--purple);} .c-purple .dot{background:var(--purple);}
+  .c-amber{border-color:#8a6a2a;} .c-amber h3{color:var(--amber);} .c-amber .dot{background:var(--amber);}
+
+  /* ---------- Relación dominante ---------- */
+  .panel{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px 20px 18px;
+  }
+  .flujo{
+    display:flex;
+    align-items:stretch;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .paso{
+    flex:1 1 180px;
+    border:1px solid;
+    border-radius:12px;
+    padding:14px 16px;
+    min-height:104px;
+    background:var(--card-2);
+  }
+  .paso .cab{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .paso .cab .dot{
+    width:24px;height:24px;border-radius:50%;color:#0d1526;
+    font-size:.75rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .paso h3{margin:0;font-size:1rem;}
+  .paso p{margin:0;font-size:.88rem;color:var(--ink-soft);}
+  .flecha{
+    align-self:center;
+    flex:0 0 auto;
+    color:#6f85a3;
+    font-size:1.3rem;
+    line-height:1;
+  }
+  .nota-relacion{
+    margin:16px auto 0;
+    text-align:center;
+    font-size:.88rem;
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Diagrama de flujo SVG ---------- */
+  .svg-flujo{display:block;width:100%;height:auto;}
+  .svg-flujo .nodo{fill:var(--card-2);stroke-width:2;}
+  .svg-flujo .nodo-titulo{fill:var(--ink);font-size:17px;font-weight:700;font-family:inherit;}
+  .svg-flujo .nodo-texto{fill:var(--ink-soft);font-size:13.5px;font-family:inherit;}
+  .svg-flujo .flecha-linea{stroke:#54688a;stroke-width:2.5;fill:none;}
+  .svg-flujo .pie-diagrama{fill:var(--ink-soft);font-size:14px;font-weight:600;font-family:inherit;}
+
+  /* ---------- Contenido ampliado ---------- */
+  .ampliado .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    gap:14px;
+  }
+  .bloque{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:5px solid var(--blue);
+    border-radius:12px;
+    padding:14px 16px;
+  }
+  .bloque.b-teal{border-left-color:var(--teal);}
+  .bloque.b-purple{border-left-color:var(--purple);}
+  .bloque.b-amber{border-left-color:var(--amber);}
+  .bloque h3{margin:0 0 8px;font-size:.95rem;color:var(--ink);}
+  .bloque ul{margin:0;padding-left:18px;}
+  .bloque li{font-size:.87rem;color:var(--ink-soft);margin-bottom:5px;}
+  .bloque li strong{color:var(--ink);}
+  .bloque p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);}
+  .mini-tabla{width:100%;border-collapse:collapse;font-size:.83rem;}
+  .mini-tabla th,.mini-tabla td{
+    text-align:left;padding:5px 6px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .mini-tabla th{color:var(--ink);font-weight:700;}
+  .mini-tabla tr:last-child th,.mini-tabla tr:last-child td{border-bottom:none;}
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:12px;
+  }
+  .stat{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px 14px;
+    text-align:center;
+  }
+  .stat .valor{font-size:1.5rem;font-weight:800;color:var(--blue);}
+  .stat .etiqueta{font-size:.8rem;color:var(--ink-soft);}
+
+  /* ---------- Ejemplo ---------- */
+  .ejemplo{
+    background:var(--amber-bg);
+    border:1px solid #6d5426;
+    border-radius:14px;
+    padding:16px 20px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .ejemplo .marca{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--amber);color:#0d1526;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .ejemplo h3{margin:2px 0 6px;font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);}
+  .ejemplo p{margin:0;font-size:.95rem;color:var(--ink);}
+
+  /* ---------- Qué recordar ---------- */
+  .recuerda{
+    background:var(--panel-head);
+    border:1px solid var(--line);
+    border-top:4px solid var(--teal);
+    color:var(--ink);
+    border-radius:16px;
+    padding:20px 24px;
+  }
+  .recuerda .cab{
+    display:flex;align-items:center;gap:10px;
+    font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;
+    font-weight:700;color:var(--teal);margin-bottom:14px;
+  }
+  .recuerda .cab .tick{
+    width:26px;height:26px;border-radius:50%;
+    background:var(--teal);color:#0d1526;
+    display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;
+  }
+  .recuerda ul{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px 26px;
+  }
+  .recuerda li{
+    font-size:.93rem;font-weight:600;
+    padding-left:18px;position:relative;color:var(--ink);
+  }
+  .recuerda li::before{
+    content:"";position:absolute;left:0;top:.5em;
+    width:7px;height:7px;border-radius:50%;background:var(--teal);
+  }
+  .frase{
+    margin:16px 0 0;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+    font-size:.9rem;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .frase strong{color:var(--ink);font-style:normal;}
+
+  /* ---------- Pie ---------- */
+  .pie{
+    margin-top:18px;
+    font-size:.78rem;
+    color:#7f93b0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    justify-content:space-between;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:820px){
+    .fila{grid-template-columns:1fr;}
+    .franja h1{font-size:1.4rem;}
+    .franja .meta{text-align:left;}
+    .flecha{transform:rotate(90deg);}
+  }
+
+  /* ---------- Impresión ---------- */
+  @media print{
+    body{background:#fff;}
+    .hoja{max-width:none;padding:0;}
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+      break-inside:avoid;page-break-inside:avoid;
+    }
+    section{margin-top:14px;}
+    @page{margin:10mm;}
+  }
+</style>
+</head>
+<body>
+<div class="hoja">
+
+  <header class="franja">
+    <div>
+      <h1>Riesgos y limitaciones de la IA</h1>
+      <p class="sub">Clase 2 · Inteligencia Artificial Aplicada</p>
+    </div>
+    <p class="meta">ISIL · 2026-2 · 08/09/2026<br>Mg. Christian Cancharez Aguirre</p>
+  </header>
+
+  <section class="fila">
+    <div>
+      <p class="rotulo"><span class="num n-blue">1</span> Idea central</p>
+      <article class="tarjeta idea">
+        <p class="texto">La IA produce respuestas plausibles pero falsas: alucina, sesga y depende de sus datos. Conocer sus límites orienta la verificación y el uso responsable.</p>
+      </article>
+    </div>
+    <div>
+      <p class="rotulo"><span class="num n-teal">2</span> 4 conceptos clave</p>
+      <article class="tarjeta conceptos">
+        <div class="grid">
+          <div class="chip c-blue">
+            <div class="top"><span class="dot">1</span><h3>Alucinación</h3></div>
+            <p>Dato inventado presentado con total confianza.</p>
+          </div>
+          <div class="chip c-teal">
+            <div class="top"><span class="dot">2</span><h3>Sesgo</h3></div>
+            <p>Distorsión sistemática que refleja prejuicios.</p>
+          </div>
+          <div class="chip c-purple">
+            <div class="top"><span class="dot">3</span><h3>Dependencia</h3></div>
+            <p>Menos práctica crítica al delegar todo a la IA.</p>
+          </div>
+          <div class="chip c-amber">
+            <div class="top"><span class="dot">4</span><h3>Privacidad</h3></div>
+            <p>Exposición de datos personales y sensibles.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">3</span> Relación: de la causa a la respuesta</p>
+    <div class="panel">
+      <div class="flujo" role="img" aria-label="Flujo desde el prompt del usuario, pasando por las capas de la red neuronal, hasta el riesgo de error convincente y la respuesta verificada por el humano.">
+        <div class="paso c-blue">
+          <div class="cab"><span class="dot">1</span><h3>Input</h3></div>
+          <p>El usuario escribe el prompt: tema, contexto y formato (X1, X2, X3).</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-teal">
+          <div class="cab"><span class="dot">2</span><h3>Modelo</h3></div>
+          <p>Red neuronal: capa de entrada → capas ocultas con nodos y vectores → capa de salida.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-purple">
+          <div class="cab"><span class="dot">3</span><h3>Riesgo</h3></div>
+          <p>El recorrido probabilístico puede producir un error convincente: alucinación o sesgo.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-amber">
+          <div class="cab"><span class="dot">4</span><h3>Respuesta verificada</h3></div>
+          <p>El humano contrasta con fuentes oficiales antes de usar el dato.</p>
+        </div>
+      </div>
+      <p class="nota-relacion">Prompt → patrones aprendidos → riesgo → verificación humana</p>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">4</span> Lo esencial de la clase</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Arquitectura: red neuronal</h3>
+        <ul>
+          <li><strong>Entrada:</strong> recibe el prompt del usuario.</li>
+          <li><strong>Oculta:</strong> millones de nodos y vectores transforman los datos con parámetros aprendidos.</li>
+          <li><strong>Salida:</strong> emite texto, imagen o informe.</li>
+          <li>La IA no guarda archivos: los <strong>reconstruye</strong> navegando la capa oculta.</li>
+          <li>Mismo prompt, respuestas distintas: el recorrido probabilístico varía.</li>
+        </ul>
+      </article>
+
+      <article class="bloque b-teal">
+        <h3>Alucinaciones: qué son y cuánto</h3>
+        <ul>
+          <li>Información <strong>falsa presentada como certeza</strong>; ninguna IA sabe el 100%.</li>
+          <li>Invita citas falsas y combina datos reales con inventados.</li>
+        </ul>
+        <table class="mini-tabla">
+          <tr><th>Copilot</th><td>94% al citar fuentes</td></tr>
+          <tr><th>ChatGPT</th><td>67%</td></tr>
+          <tr><th>Gemini</th><td>45% → 9-10.4% en 2026</td></tr>
+          <tr><th>Grok-3</th><td>37% (mínimo del estudio)</td></tr>
+        </table>
+        <p>Las versiones gratuitas alucinan más que las de pago.</p>
+      </article>
+
+      <article class="bloque b-purple">
+        <h3>Invierno de la IA y Deep Blue</h3>
+        <ul>
+          <li><strong>Invierno:</strong> la investigación se detiene por retirada de fondos (Guerra Fría).</li>
+          <li><strong>Deep Blue (IBM)</strong> venció a Kasparov en 1997 calculando probabilidades de cada jugada.</li>
+          <li>Sin inversión no hay avance; el hito relanzó el interés global.</li>
+          <li>Conocimiento en IA <strong>temporal</strong>: obsoleto en 3 a 10 años.</li>
+        </ul>
+      </article>
+
+      <article class="bloque b-amber">
+        <h3>Sesgos, dependencia y privacidad</h3>
+        <ul>
+          <li><strong>Sesgo:</strong> los datos amplifican estereotipos (caso BCP: favorecía universidades de Lima).</li>
+          <li><strong>Dependencia:</strong> delegar todo erosiona argumentación y pensamiento crítico.</li>
+          <li><strong>Privacidad:</strong> la IA no entiende "confidencial" y sufre prompt injection.</li>
+          <li><strong>Mitigar:</strong> auditoría de equidad, revisión humana, datos anonimizados.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: del prompt a la respuesta verificada</p>
+    <div class="panel">
+      <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo: el prompt del usuario entra a la red neuronal (capas de entrada, oculta y salida), el recorrido probabilístico puede producir una alucinación y el humano verifica la respuesta contrastando fuentes oficiales antes de usarla.">
+        <defs>
+          <marker id="punta1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#54688a"></path>
+          </marker>
+        </defs>
+
+        <rect class="nodo" x="6" y="34" width="220" height="88" rx="12" stroke="#6aa7ff"></rect>
+        <text class="nodo-titulo" x="116" y="72" text-anchor="middle" style="fill:#6aa7ff">Prompt</text>
+        <text class="nodo-texto" x="116" y="98" text-anchor="middle">Usuario escribe X1, X2, X3</text>
+
+        <line class="flecha-linea" x1="232" y1="78" x2="282" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="288" y="34" width="220" height="88" rx="12" stroke="#3ed2b2"></rect>
+        <text class="nodo-titulo" x="398" y="72" text-anchor="middle" style="fill:#3ed2b2">Red neuronal</text>
+        <text class="nodo-texto" x="398" y="98" text-anchor="middle">Entrada → oculta → salida</text>
+
+        <line class="flecha-linea" x1="514" y1="78" x2="564" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="570" y="34" width="220" height="88" rx="12" stroke="#b39af7"></rect>
+        <text class="nodo-titulo" x="680" y="72" text-anchor="middle" style="fill:#b39af7">Alucinación</text>
+        <text class="nodo-texto" x="680" y="98" text-anchor="middle">Info falsa con confianza</text>
+
+        <line class="flecha-linea" x1="796" y1="78" x2="846" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="852" y="34" width="220" height="88" rx="12" stroke="#f7b955"></rect>
+        <text class="nodo-titulo" x="962" y="72" text-anchor="middle" style="fill:#f7b955">Verificación</text>
+        <text class="nodo-texto" x="962" y="98" text-anchor="middle">Contrasta fuentes oficiales</text>
+
+        <path class="flecha-linea" d="M962 126 L962 160 L116 160 L116 130" marker-end="url(#punta1)"></path>
+        <text class="pie-diagrama" x="540" y="186" text-anchor="middle">Si no coincide con la fuente oficial, el dato no se presenta como validado</text>
+      </svg>
+      <p class="nota-relacion">Prompt → red neuronal → riesgo → verificación: la IA calcula probabilidades, no comprende.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">6</span> Cifras clave de la clase</p>
+    <div class="stats">
+      <div class="stat"><div class="valor">37-94%</div><div class="etiqueta">respuestas incorrectas al citar fuentes (CJR, 2025)</div></div>
+      <div class="stat"><div class="valor">9-10.4%</div><div class="etiqueta">tasa de alucinación de modelos avanzados en 2026</div></div>
+      <div class="stat"><div class="valor">1997</div><div class="etiqueta">Deep Blue vence a Kasparov y relanza la IA</div></div>
+      <div class="stat"><div class="valor">3-10 años</div><div class="etiqueta">de vigencia del conocimiento en IA</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="ejemplo">
+      <span class="marca" aria-hidden="true">E</span>
+      <div>
+        <h3>Ejemplo de la clase</h3>
+        <p><strong>Consultoría en Lima:</strong> una consultora pidió a la IA datos de flujo turístico en Cusco. La herramienta inventó "4.5 millones de turistas" con fuente atribuida a Mincetur; el cliente invirtió y sufrió pérdidas. La verificación obligatoria: contrastar con MINCETUR o BCRP y documentar enlace, período, definición y unidad antes de presentar el dato.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="recuerda">
+      <p class="cab"><span class="tick" aria-hidden="true">✓</span> Qué recordar</p>
+      <ul>
+        <li>La alucinación es técnica: info falsa con confianza, no "olvido".</li>
+        <li>La misma pregunta puede dar respuestas distintas.</li>
+        <li>Sesgos, dependencia y privacidad exigen criterio humano.</li>
+        <li>Regla de oro: la IA es tu asistente, no tu sustituto.</li>
+      </ul>
+      <p class="frase"><strong>Uso responsable:</strong> verifica cada dato antes de presentarlo. — "La tecnología es un sirviente útil, pero un amo peligroso" (Christian Lous Lange).</p>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <span>Fuente: apuntes de la Clase 2 — Inteligencia Artificial Aplicada (ISIL, 2026-2).</span>
+    <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
+  </footer>
+
+</div>
+</body>
+</html>

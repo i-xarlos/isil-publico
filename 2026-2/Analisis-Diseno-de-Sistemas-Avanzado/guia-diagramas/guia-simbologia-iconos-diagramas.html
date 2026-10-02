@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía visual de simbología e iconos | Sistemas Avanzado</title>
+<meta name="description" content="Guía visual de iconos SVG para diagramas BPMN, UML, modelos de datos, componentes y despliegue.">
+<style>
+  :root{--bg:#0d1526;--panel:#101c31;--card:#152238;--card2:#182742;--ink:#e9eff8;--muted:#a9bad2;--line:#293c5d;--blue:#6aa7ff;--teal:#3ed2b2;--purple:#b39af7;--amber:#f7b955;--red:#f28b92}
+  *{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.55}
+  a{color:var(--blue)}code{color:#d7e5ff;background:rgba(106,167,255,.12);border-radius:4px;padding:.08em .3em;font-family:"SFMono-Regular",Consolas,monospace}
+  .page{max-width:1240px;margin:auto;padding:24px 18px 48px}.hero{position:relative;overflow:hidden;padding:34px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,#0a1221,#132440 68%,#1c2546);box-shadow:0 18px 40px rgba(0,0,0,.2)}
+  .hero:after{content:"";position:absolute;right:-80px;bottom:-120px;width:300px;height:300px;border:1px solid rgba(106,167,255,.3);border-radius:50%;box-shadow:0 0 0 22px rgba(62,210,178,.05),0 0 0 44px rgba(179,154,247,.04)}
+  .eyebrow,.label{margin:0 0 9px;color:var(--teal);font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.hero h1{position:relative;z-index:1;max-width:850px;margin:0;font-size:clamp(2rem,4vw,3.5rem);line-height:1.15}.hero p{max-width:860px;color:var(--muted)}.idea{position:relative;z-index:1;margin-top:22px;padding:15px 18px;border-left:4px solid var(--amber);background:rgba(247,185,85,.1);color:var(--ink)}
+  .toolbar{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 28px;padding:10px;border:1px solid var(--line);border-radius:12px;background:rgba(13,21,38,.94);backdrop-filter:blur(12px)}.toolbar a{padding:7px 10px;border:1px solid transparent;border-radius:7px;color:var(--muted);font-size:.82rem;text-decoration:none}.toolbar a:hover,.toolbar a:focus-visible{border-color:var(--line);background:var(--card);color:var(--ink)}
+  section{scroll-margin-top:75px;margin-top:30px}h2{margin:0 0 13px;font-size:1.45rem;line-height:1.2}h3{line-height:1.2}.number{display:inline-grid;place-items:center;width:28px;height:28px;margin-right:7px;border-radius:50%;color:#091321;font-size:.82rem;vertical-align:2px}.blue{background:var(--blue)}.teal{background:var(--teal)}.purple{background:var(--purple)}.amber{background:var(--amber)}.red{background:var(--red)}
+  .card,.table-wrap,.callout,.legend{border:1px solid var(--line);border-radius:13px;background:var(--card)}.card{padding:17px 19px}.card p{color:var(--muted)}.card p:last-child{margin-bottom:0}.card li{margin:5px 0;color:var(--muted)}.card li strong{color:var(--ink)}.grid{display:grid;gap:14px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .table-wrap{overflow-x:auto}.table-wrap+ .table-wrap{margin-top:14px}table{width:100%;min-width:650px;border-collapse:collapse;font-size:.9rem}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--ink);background:rgba(24,39,66,.75);font-size:.82rem}td{color:var(--muted)}tr:last-child td{border-bottom:0}td:first-child{color:var(--ink);font-weight:650}.compact th,.compact td{padding:8px 10px}
+  .callout{margin-top:14px;padding:15px 18px;color:var(--ink)}.callout strong{color:var(--amber)}.blue-callout{border-left:4px solid var(--blue)}.teal-callout{border-left:4px solid var(--teal)}.amber-callout{border-left:4px solid var(--amber);background:rgba(247,185,85,.08)}
+  .legend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.legend{min-height:165px;padding:14px}.legend h3{margin:0 0 6px;font-size:1rem}.legend p{margin:0;color:var(--muted);font-size:.88rem}.icon-box{display:grid;place-items:center;min-height:70px;margin-bottom:10px;border:1px solid var(--line);border-radius:9px;background:var(--card2)}.icon{width:58px;height:58px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.icon.blue-icon{color:var(--blue)}.icon.teal-icon{color:var(--teal)}.icon.purple-icon{color:var(--purple)}.icon.amber-icon{color:var(--amber)}.icon.red-icon{color:var(--red)}
+  .uml-example{display:grid;max-width:190px;margin:8px auto;border:2px solid var(--blue);font-family:monospace;font-size:.78rem;text-align:left}.uml-example span{padding:4px 7px;border-bottom:1px solid var(--blue)}.uml-example span:last-child{border-bottom:0}.syntax{margin:12px 0 0;padding:13px 15px;overflow:auto;border:1px solid var(--line);border-radius:9px;background:#0a1221;color:#d8e6fc;font-family:"SFMono-Regular",Consolas,monospace;font-size:.86rem;white-space:pre}
+  .checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 20px}.checklist label{display:flex;gap:9px;align-items:flex-start;color:var(--muted)}.checklist input{margin-top:4px;accent-color:var(--teal)}.steps{counter-reset:step;list-style:none;padding:0}.steps li{counter-increment:step;position:relative;padding-left:42px;min-height:30px}.steps li:before{content:counter(step);position:absolute;left:0;top:0;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--blue);color:#091321;font-weight:800}.footer{margin-top:28px;padding-top:15px;border-top:1px solid var(--line);color:#7f93b0;font-size:.82rem}
+  @media(max-width:800px){.hero{padding:26px 21px}.two,.three,.checklist{grid-template-columns:1fr}.toolbar{position:static}.toolbar a{flex:1 1 auto;text-align:center}}
+  @media print{body{background:#fff;color:#111}.page{max-width:none;padding:0}.hero,.card,.table-wrap,.callout,.legend{box-shadow:none;break-inside:avoid;page-break-inside:avoid}.hero{background:#eef4fb;border-color:#b8c7d9}.hero p,.card p,.legend p,td,.card li{color:#333}.toolbar{display:none}section{margin-top:18px}@page{margin:12mm}}
+</style>
+</head>
+<body>
+<svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>
+  <symbol id="s-start" viewBox="0 0 64 64"><circle cx="32" cy="32" r="21"/></symbol>
+  <symbol id="s-intermediate" viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><circle cx="32" cy="32" r="16"/></symbol>
+  <symbol id="s-end" viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><circle cx="32" cy="32" r="13" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="s-task" viewBox="0 0 100 64"><rect x="10" y="13" width="80" height="38" rx="9"/></symbol>
+  <symbol id="s-gateway" viewBox="0 0 64 64"><path d="M32 7 57 32 32 57 7 32Z"/><path d="M22 22 42 42M42 22 22 42"/></symbol>
+  <symbol id="s-parallel" viewBox="0 0 64 64"><path d="M32 7 57 32 32 57 7 32Z"/><path d="M32 20v24M20 32h24"/></symbol>
+  <symbol id="s-actor" viewBox="0 0 64 72"><circle cx="32" cy="12" r="8"/><path d="M32 20v25M17 31l15 9 15-9M23 62l9-17 9 17"/></symbol>
+  <symbol id="s-usecase" viewBox="0 0 110 64"><ellipse cx="55" cy="32" rx="44" ry="22"/></symbol>
+  <symbol id="s-note" viewBox="0 0 80 64"><path d="M10 8h44l16 16v32H10Z"/><path d="M54 8v16h16M22 35h36M22 45h25"/></symbol>
+  <symbol id="s-class" viewBox="0 0 100 84"><rect x="9" y="7" width="82" height="70"/><path d="M9 27h82M9 53h82"/><path d="M20 18h28M20 42h45M20 65h42"/></symbol>
+  <symbol id="s-aggregation" viewBox="0 0 100 64"><path d="M12 32h76"/><path d="m22 32 10-10 10 10-10 10Z"/></symbol>
+  <symbol id="s-composition" viewBox="0 0 100 64"><path d="M12 32h76"/><path d="m22 32 10-10 10 10-10 10Z" fill="currentColor"/></symbol>
+  <symbol id="s-sequence" viewBox="0 0 100 72"><path d="M20 8v56M50 8v56M80 8v56" stroke-dasharray="4 4"/><path d="M20 27h28M50 45h28"/><path d="m42 23 7 4-7 4M72 41l7 4-7 4"/></symbol>
+  <symbol id="s-activity" viewBox="0 0 64 64"><circle cx="32" cy="12" r="6" fill="currentColor" stroke="none"/><path d="M32 18v14M32 32l-14 12M32 32l14 12M32 32v20"/><path d="M32 22h20"/></symbol>
+  <symbol id="s-state" viewBox="0 0 100 64"><rect x="10" y="13" width="80" height="38" rx="17"/><path d="M-1 32h11M90 32h11"/></symbol>
+  <symbol id="s-data" viewBox="0 0 78 70"><path d="M12 14c0-6 54-6 54 0v42c0 6-54 6-54 0Z"/><path d="M12 14c0 6 54 6 54 0M12 35c0 6 54 6 54 0"/></symbol>
+  <symbol id="s-component" viewBox="0 0 82 70"><rect x="15" y="14" width="55" height="42"/><path d="M8 22h14v12H8zM8 42h14v12H8z"/></symbol>
+  <symbol id="s-node" viewBox="0 0 90 76"><path d="m12 22 22-12 44 12-22 12Z"/><path d="M12 22v36l44 12V34M78 22v36L56 70"/><rect x="31" y="35" width="28" height="20"/></symbol>
+  <symbol id="s-key" viewBox="0 0 72 64"><circle cx="24" cy="24" r="12"/><path d="m33 33 28 28M48 48l8-8M55 55l7-7"/></symbol>
+  <symbol id="s-entity" viewBox="0 0 100 72"><rect x="10" y="8" width="80" height="56"/><path d="M10 26h80M10 45h80M22 17h28M22 36h48M22 55h38"/></symbol>
+  <symbol id="s-associative" viewBox="0 0 100 72"><rect x="12" y="12" width="76" height="48"/><path d="M12 28h76M12 44h76M29 20h25M29 36h35M29 52h30"/><path d="M75 9v15M67.5 16.5h15"/></symbol>
+  <symbol id="s-crowfoot" viewBox="0 0 100 64"><path d="M8 32h58M66 32 91 14M66 32l25 18M66 32h28"/></symbol>
+  <symbol id="s-object" viewBox="0 0 100 72"><rect x="10" y="10" width="80" height="52"/><path d="M18 28h64M18 48h52M27 20h38"/></symbol>
+  <symbol id="s-interface" viewBox="0 0 82 64"><circle cx="30" cy="32" r="17"/><path d="M47 32h27M20 32h20M25 27h10M25 37h10"/></symbol>
+  <symbol id="s-package" viewBox="0 0 90 72"><path d="M10 20h28l8 9h34v33H10Z"/><path d="M10 20V10h28l8 10"/></symbol>
+  <symbol id="s-artifact" viewBox="0 0 72 82"><path d="M13 8h32l14 14v52H13Z"/><path d="M45 8v14h14M23 42h26M23 54h20M23 66h26"/></symbol>
+  <symbol id="s-boundary" viewBox="0 0 100 70"><rect x="8" y="8" width="84" height="54" rx="4" stroke-dasharray="5 4"/><path d="M18 20h21M18 32h30M18 44h15"/></symbol>
+  <symbol id="s-include" viewBox="0 0 100 64"><path d="M8 32h76" stroke-dasharray="5 4"/><path d="m76 24 12 8-12 8"/><path d="M39 22h22"/><path d="M40 42h20"/></symbol>
+  <symbol id="s-extend" viewBox="0 0 100 64"><path d="M8 32h76" stroke-dasharray="5 4"/><path d="m76 24 12 8-12 8"/><path d="M34 22h32M39 42h22"/></symbol>
+  <symbol id="s-generalization" viewBox="0 0 100 64"><path d="M8 48 50 16l42 32"/><path d="M50 16v40"/></symbol>
+  <symbol id="s-message" viewBox="0 0 78 64"><circle cx="39" cy="32" r="24"/><path d="m22 24 17 14 17-14M22 24v17h34V24"/></symbol>
+  <symbol id="s-timer" viewBox="0 0 70 70"><circle cx="35" cy="38" r="23"/><path d="M27 8h16M35 15v23M35 38l12 7"/></symbol>
+</defs></svg>
+<main class="page">
+  <header class="hero" id="inicio">
+    <p class="eyebrow">ISIL · 2026-2 · Análisis y Diseño de Sistemas Avanzado</p>
+    <h1>Guía visual de simbología e iconos para diagramas</h1>
+    <p>Referencia rápida para UML, BPMN, modelos de datos, componentes y despliegue.</p>
+    <div class="idea"><strong>Idea clave:</strong> un icono no se interpreta solo por su apariencia. Su significado depende de la notación. Un rombo puede representar una decisión en UML o un gateway en BPMN, pero sus reglas de uso no son idénticas.</div>
+  </header>
+
+  <nav class="toolbar" aria-label="Navegación de la guía">
+    <a href="#elegir">Elegir diagrama</a><a href="#reglas">Reglas</a><a href="#bpmn">BPMN</a><a href="#casos">Casos de uso</a><a href="#clases">Clases</a><a href="#comportamiento">Comportamiento</a><a href="#datos">Datos</a><a href="#arquitectura">Arquitectura</a><a href="#extras">Clases 3-6</a><a href="#checklist">Checklist</a>
+  </nav>
+
+  <section id="elegir"><p class="label">Mapa de decisión</p><h2><span class="number blue">1</span>¿Qué diagrama debo usar?</h2>
+    <div class="table-wrap"><table><thead><tr><th>Necesito responder...</th><th>Diagrama recomendado</th><th>Ejemplo del curso</th></tr></thead><tbody>
+      <tr><td>¿Qué necesita hacer cada usuario?</td><td>Casos de uso UML</td><td>Cliente realiza una compra</td></tr><tr><td>¿Qué entidades y datos existen?</td><td>Modelo conceptual o entidad-relación</td><td>Cliente, Venta y Producto</td></tr><tr><td>¿Cómo se convierten las entidades en tablas?</td><td>Modelo lógico</td><td>PK, FK y <code>DETALLE_VENTA</code></td></tr><tr><td>¿Cómo se implementan las tablas?</td><td>Modelo físico</td><td>Oracle: <code>NUMBER</code>, <code>VARCHAR2</code>, índices</td></tr><tr><td>¿Cómo fluye un proceso del negocio?</td><td>BPMN 2.0</td><td>Registrar una venta o abastecer el almacén</td></tr><tr><td>¿Cómo colaboran los objetos en el tiempo?</td><td>Secuencia UML</td><td>Cliente, API, pago y BD</td></tr><tr><td>¿Qué clases tiene el sistema?</td><td>Clases UML</td><td><code>Pedido</code>, <code>Producto</code>, <code>Pago</code></td></tr><tr><td>¿Cómo cambia un objeto de estado?</td><td>Estados UML</td><td><code>Recepcionada</code> → <code>Entregada</code></td></tr><tr><td>¿Qué módulos de software existen?</td><td>Componentes UML</td><td>Frontend, API, pagos y BD</td></tr><tr><td>¿Dónde se ejecuta cada componente?</td><td>Despliegue UML</td><td>Navegador, servidor de aplicaciones y BD</td></tr>
+    </tbody></table></div>
+    <div class="callout blue-callout"><strong>Regla práctica:</strong> cada diagrama debe responder una pregunta principal. Si necesita demasiadas leyendas, probablemente mezcla niveles o diagramas.</div>
+  </section>
+
+  <section id="reglas"><p class="label">Lectura visual</p><h2><span class="number teal">2</span>Reglas generales de lectura</h2>
+    <div class="legend-grid">
+      <article class="legend"><div class="icon-box"><svg class="icon blue-icon"><use href="#s-task"/></svg></div><h3>Rectángulos</h3><p>Representan actividades, clases, componentes, tablas o participantes según la notación.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon teal-icon"><use href="#s-aggregation"/></svg></div><h3>Líneas</h3><p>Representan relaciones o flujos. Observa continuidad, flecha, rombo y multiplicidad.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon blue-icon"><use href="#s-sequence"/></svg></div><h3>Flechas</h3><p>Indican dirección, dependencia, herencia, mensaje o flujo. No son decoración.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon amber-icon"><use href="#s-gateway"/></svg></div><h3>Rombos</h3><p>Pueden ser decisiones, gateways, uniones o relaciones todo-parte.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon purple-icon"><use href="#s-intermediate"/></svg></div><h3>Círculos</h3><p>Pueden indicar eventos, estados iniciales/finales o interfaces.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon teal-icon"><use href="#s-note"/></svg></div><h3>Etiquetas y notas</h3><p>Usa verbos en flujos y asociaciones. Añade leyenda para colores o abreviaturas.</p></article>
+    </div>
+  </section>
+
+  <section id="bpmn"><p class="label">Procesos de negocio</p><h2><span class="number purple">3</span>BPMN 2.0</h2>
+    <div class="callout purple-callout"><strong>BPMN responde:</strong> qué ocurre en un proceso, quién lo realiza y qué decisiones o mensajes intervienen. Usa las figuras BPMN 2.0 en Draw.io, Bizagi o Camunda.</div>
+    <h3>Eventos y actividades</h3>
+    <div class="legend-grid">
+      <article class="legend"><div class="icon-box"><svg class="icon teal-icon"><use href="#s-start"/></svg></div><h3>Evento de inicio</h3><p>Marca cómo comienza el proceso. Ejemplo: cliente solicita una reparación.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon teal-icon"><use href="#s-intermediate"/></svg></div><h3>Evento intermedio</h3><p>Algo ocurre durante el proceso. Ejemplo: llega la respuesta del banco.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon red-icon"><use href="#s-end"/></svg></div><h3>Evento de fin</h3><p>Marca el cierre de un flujo. Ejemplo: venta confirmada.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon teal-icon"><use href="#s-task"/></svg></div><h3>Tarea</h3><p>Trabajo realizado por una persona o sistema. Ejemplo: registrar venta.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon purple-icon"><use href="#s-task"/></svg></div><h3>Subproceso</h3><p>Agrupa varias tareas relacionadas. Ejemplo: procesar pago.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon blue-icon"><use href="#s-actor"/></svg></div><h3>Participante</h3><p>Entidad externa: cliente, proveedor o banco.</p></article>
+    </div>
+    <h3>Gateways y conexiones</h3>
+    <div class="table-wrap"><table class="compact"><thead><tr><th>Icono SVG</th><th>Nombre</th><th>Para qué sirve</th><th>Ejemplo</th></tr></thead><tbody>
+      <tr><td><svg class="icon amber-icon" aria-label="Gateway exclusivo"><use href="#s-gateway"/></svg></td><td>Gateway exclusivo (XOR)</td><td>Elige una sola ruta.</td><td>¿Hay stock? Sí / No</td></tr><tr><td><svg class="icon amber-icon" aria-label="Gateway paralelo"><use href="#s-parallel"/></svg></td><td>Gateway paralelo (AND)</td><td>Abre o reúne rutas simultáneas.</td><td>Descontar stock y generar comprobante</td></tr><tr><td>—→</td><td>Flujo de secuencia</td><td>Conecta elementos dentro del mismo proceso.</td><td>Validar pago → registrar venta</td></tr><tr><td>- - →</td><td>Flujo de mensaje</td><td>Comunica participantes o pools diferentes.</td><td>Sistema → banco externo</td></tr><tr><td>Carril / <em>lane</em></td><td>Responsabilidad</td><td>Muestra quién ejecuta cada tarea.</td><td>Cliente, Cajero, Sistema, Almacén</td></tr><tr><td>Piscina / <em>pool</em></td><td>Participante independiente</td><td>Separa procesos organizacionales.</td><td>Tienda y proveedor</td></tr>
+    </tbody></table></div>
+    <h3>Datos y anotaciones</h3>
+    <div class="table-wrap"><table class="compact"><thead><tr><th>Icono SVG</th><th>Nombre</th><th>Uso</th><th>Ejemplo</th></tr></thead><tbody>
+      <tr><td><svg class="icon blue-icon" aria-label="Almacén de datos"><use href="#s-data"/></svg></td><td>Objeto o almacén de datos</td><td>Información que una tarea usa o produce.</td><td><code>Comprobante_Pago</code> o BD de ventas</td></tr><tr><td><svg class="icon amber-icon" aria-label="Anotación"><use href="#s-note"/></svg></td><td>Anotación de texto</td><td>Aclara una regla sin cambiar el flujo.</td><td>Solo si stock ≤ stock mínimo</td></tr>
+    </tbody></table></div>
+    <div class="callout amber-callout"><strong>No confundir:</strong> el flujo de secuencia se usa dentro del mismo proceso o pool. El flujo de mensaje se usa entre participantes separados.</div>
+  </section>
+
+  <section id="casos"><p class="label">Requisitos funcionales</p><h2><span class="number amber">4</span>UML: casos de uso</h2>
+    <p class="card">Muestra el sistema desde afuera: <strong>quién interactúa y qué funcionalidad necesita</strong>. No describe tablas, clases internas ni pasos detallados.</p>
+    <div class="table-wrap" style="margin-top:14px"><table class="compact"><thead><tr><th>Icono SVG</th><th>Nombre</th><th>Uso correcto</th><th>Ejemplo</th></tr></thead><tbody>
+      <tr><td><svg class="icon teal-icon" aria-label="Actor"><use href="#s-actor"/></svg></td><td>Actor</td><td>Persona, sistema o dispositivo externo.</td><td>Cliente, Administrador, Sistema de Pago</td></tr><tr><td><svg class="icon purple-icon" aria-label="Caso de uso"><use href="#s-usecase"/></svg></td><td>Caso de uso</td><td>Funcionalidad expresada como verbo + sustantivo.</td><td><code>Realizar pago</code></td></tr><tr><td>Rectángulo grande</td><td>Límite del sistema</td><td>Delimita lo que pertenece al sistema.</td><td>Comercio electrónico</td></tr><tr><td>Línea continua</td><td>Asociación</td><td>Indica que un actor participa en un caso de uso.</td><td>Cliente — Realizar pago</td></tr><tr><td>Línea punteada + <code>«include»</code></td><td>Inclusión</td><td>El caso incluido ocurre siempre.</td><td>Comprar incluye Validar stock</td></tr><tr><td>Línea punteada + <code>«extend»</code></td><td>Extensión</td><td>Ocurre bajo una condición.</td><td>Comprar + Aplicar cupón</td></tr><tr><td>Triángulo hueco</td><td>Generalización</td><td>El elemento especializado hereda del general.</td><td><code>Administrador</code> → <code>Usuario</code></td></tr><tr><td><svg class="icon amber-icon" aria-label="Nota"><use href="#s-note"/></svg></td><td>Nota</td><td>Agrega una aclaración o restricción.</td><td>Requiere sesión iniciada</td></tr>
+    </tbody></table></div>
+    <div class="grid two" style="margin-top:14px"><article class="card"><h3>Dirección</h3><ul><li><code>«include»</code>: apunta al caso que siempre se reutiliza.</li><li><code>«extend»</code>: apunta al caso base que puede ampliarse.</li><li>Generalización: apunta al elemento más general.</li><li>Asociación actor-caso: normalmente basta una línea.</li></ul></article><article class="card"><h3>Truco</h3><p>Si quitarlo rompe el flujo principal, probablemente es <code>«include»</code>. Si aparece solo bajo una condición, probablemente es <code>«extend»</code>.</p></article></div>
+  </section>
+
+  <section id="clases"><p class="label">Estructura del sistema</p><h2><span class="number blue">5</span>UML: clases y objetos</h2>
+    <div class="grid two"><article class="card"><h3>Clase UML</h3><div class="icon-box"><svg class="icon blue-icon" style="width:100px;height:85px"><use href="#s-class"/></svg></div><p>El rectángulo se divide en nombre, atributos y operaciones.</p><pre class="syntax">+----------------------------------+
+| Pedido                           |
++----------------------------------+
+| - numero: String                 |
+| - total: Decimal                 |
++----------------------------------+
+| + calcularTotal(): Decimal       |
+| + confirmar(): void              |
++----------------------------------+</pre></article><article class="card"><h3>Visibilidad y contratos</h3><div class="table-wrap"><table class="compact"><tbody><tr><td><code>+</code></td><td>Público</td><td><code>+ confirmar()</code></td></tr><tr><td><code>-</code></td><td>Privado</td><td><code>- total: Decimal</code></td></tr><tr><td><code>#</code></td><td>Protegido</td><td><code># validarPago()</code></td></tr><tr><td><code>~</code></td><td>Paquete</td><td><code>~ calcularImpuesto()</code></td></tr><tr><td><code>«interface»</code></td><td>Contrato</td><td><code>IPago</code></td></tr></tbody></table></div></article></div>
+    <h3>Relaciones entre clases</h3><div class="table-wrap"><table class="compact"><thead><tr><th>Icono SVG</th><th>Nombre</th><th>Significado</th><th>Ejemplo</th></tr></thead><tbody>
+      <tr><td>Línea continua</td><td>Asociación</td><td>Las instancias se conocen o colaboran.</td><td>Cliente — Pedido</td></tr><tr><td><svg class="icon teal-icon" aria-label="Agregación"><use href="#s-aggregation"/></svg></td><td>Agregación</td><td>Todo-parte débil; la parte puede vivir sola.</td><td>Equipo ◇— Accesorio</td></tr><tr><td><svg class="icon purple-icon" aria-label="Composición"><use href="#s-composition"/></svg></td><td>Composición</td><td>Todo-parte fuerte; la parte depende del todo.</td><td>Pedido ◆— DetallePedido</td></tr><tr><td>Triángulo hueco</td><td>Generalización</td><td>La clase hija es del tipo padre.</td><td><code>Cliente</code> → <code>Persona</code></td></tr><tr><td>Línea punteada + flecha</td><td>Dependencia</td><td>Un elemento usa temporalmente a otro.</td><td>Controlador - - &gt; Servicio</td></tr><tr><td>Punteada + triángulo hueco</td><td>Realización</td><td>Una clase implementa una interfaz.</td><td><code>PagoTarjeta</code> - - &gt; <code>IPago</code></td></tr><tr><td><code>1</code>, <code>0..1</code>, <code>0..*</code>, <code>1..*</code></td><td>Multiplicidad</td><td>Cuántas instancias participan.</td><td>Un pedido tiene <code>1..*</code> detalles</td></tr>
+    </tbody></table></div><div class="callout amber-callout"><strong>Diferencia crítica:</strong> la agregación permite que la parte exista sin el todo; la composición liga su ciclo de vida. <code>DetallePedido</code> normalmente se modela como composición.</div>
+  </section>
+
+  <section id="comportamiento"><p class="label">Dinámica del sistema</p><h2><span class="number teal">6</span>UML: secuencia, actividades y estados</h2>
+    <div class="grid three"><article class="card"><div class="icon-box"><svg class="icon blue-icon"><use href="#s-sequence"/></svg></div><h3>Secuencia</h3><p>Mensajes ordenados en el tiempo; el tiempo avanza de arriba hacia abajo.</p><ul><li>Línea vertical discontinua: línea de vida.</li><li>Rectángulo delgado: activación.</li><li>Flecha continua: síncrono; abierta: asíncrono.</li><li><code>alt</code>, <code>opt</code>, <code>loop</code>: alternativas, opción y repetición.</li></ul><p><code>Cliente → Pantalla → API → ServicioPago → Banco</code></p></article><article class="card"><div class="icon-box"><svg class="icon teal-icon"><use href="#s-activity"/></svg></div><h3>Actividades</h3><p>Flujo de trabajo con acciones, decisiones y paralelismo.</p><ul><li>Círculo negro: inicio.</li><li>Rectángulo redondeado: acción.</li><li>Rombo: decisión o combinación.</li><li>Barra gruesa: bifurcación o unión.</li><li>Flecha continua: control; discontinua: objeto.</li></ul></article><article class="card"><div class="icon-box"><svg class="icon purple-icon"><use href="#s-state"/></svg></div><h3>Estados</h3><p>Ciclo de vida de un objeto, no el proceso completo de la organización.</p><ul><li>Círculo negro: estado inicial.</li><li>Rectángulo redondeado: estado.</li><li>Flecha etiquetada: transición.</li><li>Círculo doble: estado final.</li><li><code>evento [guardia] / acción</code>.</li></ul></article></div>
+    <div class="callout teal-callout"><strong>No mezclar:</strong> en BPMN el rombo es un gateway y los círculos son eventos. En actividades UML el rombo es una decisión y el círculo negro es un nodo de control.</div>
+  </section>
+
+  <section id="datos"><p class="label">Información persistente</p><h2><span class="number purple">7</span>Modelos de datos: conceptual, lógico y físico</h2>
+    <p class="card">Los tres modelos describen datos con distinto nivel de detalle. No deben confundirse con el diagrama de clases, aunque pueden parecerse visualmente.</p>
+    <div class="table-wrap" style="margin-top:14px"><table class="compact"><thead><tr><th>Icono SVG</th><th>Marca</th><th>Nombre</th><th>Uso</th></tr></thead><tbody>
+      <tr><td><svg class="icon blue-icon" aria-label="Tabla o datos"><use href="#s-data"/></svg></td><td>PK/FK</td><td>Entidad o tabla</td><td>Objeto de negocio, estructura persistente y relaciones.</td></tr><tr><td><svg class="icon amber-icon" aria-label="Llave primaria"><use href="#s-key"/></svg></td><td><code>PK</code></td><td>Clave primaria</td><td>Identifica una fila de forma única.</td></tr><tr><td><svg class="icon teal-icon" aria-label="Llave foránea"><use href="#s-key"/></svg></td><td><code>FK</code></td><td>Clave foránea</td><td>Referencia la PK de otra tabla.</td></tr><tr><td>Pata de cuervo</td><td><code>1</code>, <code>0..*</code></td><td>Cardinalidad</td><td>Indica mínimo y máximo de ocurrencias.</td></tr>
+    </tbody></table></div>
+    <div class="table-wrap" style="margin-top:14px"><table class="compact"><thead><tr><th>Nivel</th><th>Se muestra</th><th>No debería incluir</th></tr></thead><tbody><tr><td>Conceptual</td><td>Entidades, atributos esenciales y relaciones de negocio.</td><td>Tipos de Oracle, índices o detalles de implementación.</td></tr><tr><td>Lógico</td><td>Entidades/tablas, PK, FK, cardinalidades y resolución N:M.</td><td>Sintaxis específica de un SGBD.</td></tr><tr><td>Físico</td><td>Tablas reales, tipos, <code>NOT NULL</code>, <code>CHECK</code>, índices y restricciones.</td><td>Ambigüedad sobre el SGBD objetivo.</td></tr></tbody></table></div>
+    <div class="callout blue-callout"><strong>Regla de N:M:</strong> <code>VENTA N:M PRODUCTO</code> se convierte en <code>VENTA 1:N DETALLE_VENTA</code> y <code>PRODUCTO 1:N DETALLE_VENTA</code>.</div>
+  </section>
+
+  <section id="arquitectura"><p class="label">Arquitectura técnica</p><h2><span class="number amber">8</span>UML: componentes y despliegue</h2>
+    <div class="grid two"><article class="card"><div class="icon-box"><svg class="icon teal-icon"><use href="#s-component"/></svg></div><h3>Componentes</h3><p>Piezas reemplazables del software y sus contratos.</p><ul><li>Rectángulo con marcador: componente.</li><li>Círculo tipo paleta: interfaz proporcionada.</li><li>Semicírculo tipo enchufe: interfaz requerida.</li><li>Línea punteada + flecha: dependencia.</li><li>Paquete: agrupación de componentes.</li></ul></article><article class="card"><div class="icon-box"><svg class="icon purple-icon"><use href="#s-node"/></svg></div><h3>Despliegue</h3><p>Infraestructura y ubicación de los artefactos.</p><ul><li>Cubo: nodo o dispositivo.</li><li>Nodo con subcaja: entorno de ejecución.</li><li>Documento: artefacto desplegado.</li><li>Línea continua: ruta de comunicación.</li><li><code>«device»</code> y <code>«database»</code>: estereotipos.</li></ul></article></div>
+  </section>
+
+  <section id="extras"><p class="label">Clases 3 a 6</p><h2><span class="number red">9</span>Iconos adicionales para armar tus gráficos</h2>
+    <p class="card">Estos símbolos completan los diagramas trabajados en las clases 3 a 6. Úsalos cuando necesites pasar de un esquema básico a un modelo trazable y listo para explicar.</p>
+    <div class="legend-grid" style="margin-top:14px">
+      <article class="legend"><div class="icon-box"><svg class="icon blue-icon"><use href="#s-entity"/></svg></div><h3>Entidad o tabla</h3><p>Clase 3: representa un objeto del negocio o una estructura persistente.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon purple-icon"><use href="#s-associative"/></svg></div><h3>Entidad asociativa</h3><p>Clase 3: resuelve una relación N:M, como <code>DETALLE_VENTA</code>.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon amber-icon"><use href="#s-key"/></svg></div><h3>PK y FK</h3><p>Clase 3: la llave identifica; la FK enlaza con otra entidad.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon teal-icon"><use href="#s-crowfoot"/></svg></div><h3>Cardinalidad muchos</h3><p>Clase 3: la pata de cuervo representa el lado “muchos” de una relación.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon blue-icon"><use href="#s-object"/></svg></div><h3>Objeto UML</h3><p>Clase 5: instancia concreta, como <code>pedido102:Pedido</code>, con valores.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon teal-icon"><use href="#s-interface"/></svg></div><h3>Interfaz</h3><p>Clase 5: contrato que una clase o componente debe implementar.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon purple-icon"><use href="#s-package"/></svg></div><h3>Paquete</h3><p>Clase 5: agrupa clases, casos de uso o componentes relacionados.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon amber-icon"><use href="#s-artifact"/></svg></div><h3>Artefacto</h3><p>Clase 5: archivo o pieza desplegable, como un <code>.jar</code> o script.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon blue-icon"><use href="#s-boundary"/></svg></div><h3>Límite del sistema</h3><p>Clase 6: encierra los casos de uso que pertenecen al sistema.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon teal-icon"><use href="#s-include"/></svg></div><h3><code>«include»</code></h3><p>Clase 6: relación obligatoria; apunta al caso incluido.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon purple-icon"><use href="#s-extend"/></svg></div><h3><code>«extend»</code></h3><p>Clase 6: relación opcional; apunta al caso base extendido.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon red-icon"><use href="#s-generalization"/></svg></div><h3>Generalización</h3><p>Clases 5 y 6: el elemento especializado apunta al más general.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon blue-icon"><use href="#s-message"/></svg></div><h3>Mensaje BPMN</h3><p>Clase 4: comunica participantes o pools distintos.</p></article>
+      <article class="legend"><div class="icon-box"><svg class="icon amber-icon"><use href="#s-timer"/></svg></div><h3>Evento temporal</h3><p>Clase 4: inicia o interrumpe un proceso por tiempo o plazo.</p></article>
+    </div>
+    <div class="callout teal-callout"><strong>Orden recomendado:</strong> en datos empieza por entidad y cardinalidad; en UML por clase y relación; en BPMN por evento, tarea y gateway; en casos de uso por actor, límite y funcionalidad.</div>
+  </section>
+
+  <section id="confusiones"><p class="label">Puntos de examen</p><h2><span class="number red">10</span>Símbolos que suelen confundirse</h2><div class="table-wrap"><table class="compact"><thead><tr><th>Confusión</th><th>Diferencia rápida</th></tr></thead><tbody>
+    <tr><td>Flujo BPMN vs. flecha UML</td><td>BPMN conecta actividades y eventos; UML puede indicar herencia, dependencia, asociación o mensajes.</td></tr><tr><td>Asociación UML vs. FK</td><td>La asociación es conceptual; la FK implementa la relación en una tabla.</td></tr><tr><td><code>«include»</code> vs. <code>«extend»</code></td><td><code>include</code> siempre ocurre; <code>extend</code> ocurre bajo una condición.</td></tr><tr><td>Agregación vs. composición</td><td><code>◇</code> permite vida independiente; <code>◆</code> liga el ciclo de vida.</td></tr><tr><td>Gateway BPMN vs. decisión UML</td><td>Ambos pueden verse como rombos, pero BPMN controla el proceso y UML una actividad.</td></tr><tr><td>Evento BPMN vs. estado UML</td><td>El evento ocurre; el estado representa una condición que permanece.</td></tr><tr><td>PK vs. FK</td><td>La PK identifica la fila; la FK conecta con otra entidad.</td></tr>
+  </tbody></table></div></section>
+
+  <section id="checklist"><p class="label">Antes de entregar</p><h2><span class="number teal">11</span>Checklist de calidad</h2><div class="card"><div class="checklist">
+    <label><input type="checkbox"> El título indica tipo y alcance.</label><label><input type="checkbox"> Responde una sola pregunta principal.</label><label><input type="checkbox"> Usa una biblioteca coherente: UML, BPMN o datos.</label><label><input type="checkbox"> Las flechas tienen significado y dirección justificada.</label><label><input type="checkbox"> Las relaciones incluyen etiquetas o cardinalidades necesarias.</label><label><input type="checkbox"> Los nombres son consistentes con otros diagramas.</label><label><input type="checkbox"> Los actores y sistemas externos están fuera del límite.</label><label><input type="checkbox"> Pools y lanes BPMN muestran responsabilidades claras.</label><label><input type="checkbox"> Las tablas identifican PK y FK.</label><label><input type="checkbox"> Las relaciones N:M están resueltas.</label><label><input type="checkbox"> Existe leyenda para colores o convenciones.</label><label><input type="checkbox"> No hay líneas cruzadas ni texto superpuesto.</label>
+  </div></div></section>
+
+  <section id="drawio"><p class="label">Aplicación práctica</p><h2><span class="number blue">12</span>Uso rápido en Draw.io</h2><article class="card"><ol class="steps"><li>Activa solo las bibliotecas necesarias: <strong>UML</strong>, <strong>BPMN</strong> y <strong>Entity Relation</strong>.</li><li>Nombra las páginas: <code>01-Conceptual</code>, <code>02-Lógico</code>, <code>03-BPMN</code>.</li><li>Usa el mismo caso, nombres y colores con moderación.</li><li>Agrega una leyenda si el docente solicita colores.</li><li>Comprueba origen, destino, dirección, etiqueta y cardinalidad.</li><li>Exporta a imagen o PDF y revisa la legibilidad.</li></ol></article><div class="callout amber-callout"><strong>Idea para recordar:</strong> UML describe el sistema; BPMN describe el proceso; el modelo de datos describe la información; el despliegue describe la infraestructura.</div></section>
+
+  <footer class="footer"><p><strong>Recursos:</strong> <a href="clase-5/modelamiento-sistema-uml-clase-5.md">UML (Clase 5)</a> · <a href="clase-6/diagrama-casos-uso-clase-6.md">Casos de uso (Clase 6)</a> · <a href="clase-4/modelamiento-procesos-negocio-bpm-bpmn-clase-4.md">BPMN (Clase 4)</a> · <a href="clase-3/modelamiento-datos-conceptual-logico-fisico-clase-3.md">Datos (Clase 3)</a></p><p>Guía visual de estudio · Análisis y Diseño de Sistemas Avanzado (ISIL, 2026-2).</p></footer>
+</main>
+</body>
+</html>

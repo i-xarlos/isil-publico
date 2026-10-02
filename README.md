@@ -2,6 +2,8 @@
 
 Contenido público (solo HTML).
 
+**Home de navegación:** [i-xarlos.github.io/isil-publico](https://i-xarlos.github.io/isil-publico/) — página inicial con buscador para abrir cualquier infografía.
+
 ## Índice
 
 | # | Documento | Código | Preview |

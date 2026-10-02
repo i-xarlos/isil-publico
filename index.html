@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISIL — Infografías de clase (2026-2)</title>
+<style>
+  :root{
+    --bg:#0d1526; --panel-head:#0a1120; --card:#152238; --card-2:#182742;
+    --ink:#e9eff8; --ink-soft:#a9bad2; --line:#27395a;
+    --blue:#6aa7ff; --teal:#3ed2b2; --purple:#b39af7; --amber:#f7b955;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.5;}
+  .hoja{max-width:1180px;margin:0 auto;padding:22px 18px 40px;}
+  .franja{background:var(--panel-head);border:1px solid var(--line);color:#fff;border-radius:16px;
+    padding:24px 26px;position:relative;overflow:hidden;}
+  .franja::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
+    background:linear-gradient(90deg,var(--blue) 0 25%,var(--teal) 25% 50%,var(--purple) 50% 75%,var(--amber) 75% 100%);opacity:.9;}
+  .franja h1{margin:0;font-size:1.7rem;letter-spacing:-.01em;}
+  .franja .sub{margin:6px 0 0;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#9db8dc;}
+  .franja .meta{margin:8px 0 0;font-size:.86rem;color:#c3d4ea;}
+  .buscador{margin:18px 0 4px;}
+  .buscador input{width:100%;max-width:520px;padding:11px 14px;border-radius:10px;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);font-size:.95rem;outline:none;}
+  .buscador input:focus{border-color:var(--blue);}
+  .contador{margin:8px 0 0;font-size:.8rem;color:var(--ink-soft);}
+  section.curso{margin-top:26px;}
+  .rotulo{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:.82rem;letter-spacing:.13em;
+    text-transform:uppercase;font-weight:700;color:var(--ink-soft);}
+  .rotulo .num{width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+    color:#0d1526;font-size:.7rem;flex:none;}
+  .n-blue{background:var(--blue);} .n-teal{background:var(--teal);}
+  .n-purple{background:var(--purple);} .n-amber{background:var(--amber);}
+  .cuenta{color:var(--ink-soft);font-weight:400;letter-spacing:0;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px;}
+  .tarjeta{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:14px 16px;text-decoration:none;color:inherit;border-left:5px solid var(--line);transition:transform .12s ease,border-color .12s ease;}
+  .tarjeta:hover{transform:translateY(-3px);}
+  .c-blue{border-left-color:var(--blue);} .c-blue:hover{border-color:var(--blue);}
+  .c-teal{border-left-color:var(--teal);} .c-teal:hover{border-color:var(--teal);}
+  .c-purple{border-left-color:var(--purple);} .c-purple:hover{border-color:var(--purple);}
+  .c-amber{border-left-color:var(--amber);} .c-amber:hover{border-color:var(--amber);}
+  .badge{display:inline-block;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;
+    background:var(--card-2);border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--ink-soft);}
+  .tarjeta h3{margin:9px 0 4px;font-size:.98rem;line-height:1.35;color:var(--ink);}
+  .tarjeta .doc{margin:0;font-size:.74rem;color:var(--ink-soft);}
+  .pie{margin-top:32px;padding-top:14px;border-top:1px solid var(--line);font-size:.78rem;color:var(--ink-soft);}
+  .pie a{color:var(--blue);text-decoration:none;}
+  .pie a:hover{text-decoration:underline;}
+  .vacio{display:none;margin-top:26px;color:var(--ink-soft);font-size:.9rem;}
+  @media print{body{background:#fff;color:#000;}.buscador{display:none;}}
+</style>
+</head>
+<body>
+<div class="hoja">
+  <header class="franja">
+    <h1>Infografías de clase</h1>
+    <p class="sub">ISIL · Ingeniería de Sistemas · Cohorte 2026-2</p>
+    <p class="meta">33 documentos de 5 cursos · lectura en página oscura · cada infografía es un HTML autocontenido</p>
+  </header>
+
+  <div class="buscador">
+    <input type="search" id="q" placeholder="Buscar por tema, clase o curso…" aria-label="Buscar infografía">
+    <p class="contador" id="contador">Mostrando 33 de 33 documentos</p>
+  </div>
+
+  <section class="curso" data-curso="Análisis y Diseño de Sistemas Avanzado">
+    <h2 class="rotulo"><span class="num n-blue">&#9679;</span>Análisis y Diseño de Sistemas Avanzado <span class="cuenta">(7)</span></h2>
+    <div class="grid">
+    <a class="tarjeta c-blue" href="./2026-2/Analisis-Diseno-de-Sistemas-Avanzado/clase-1/introduccion-diseno-sistemas-clase-1.html">
+      <span class="badge">Clase 1</span>
+      <h3>¿Cómo convertimos requerimientos en una especificación clara y segura?</h3><p class="doc">CESAR AGUSTO RUIZ VERGARA
+  
+
+  
+    
+      1 Idea central
+      
+        El diseño convierte necesidades en &quot;planos&quot; verificables (diagramas UML y arquitectura) antes de codificar. Detectar un error en el plano cuesta centavos; corregirlo en código ya desplegado cuesta miles.</p>
+    </a>
+    <a class="tarjeta c-blue" href="./2026-2/Analisis-Diseno-de-Sistemas-Avanzado/clase-2/requisitos-sistema-clase-2.html">
+      <span class="badge">Clase 2</span>
+      <h3>Requisitos del Sistema</h3><p class="doc">CESAR AGUSTO RUIZ VERGARA
+  
+
+  
+    
+      1 Idea central
+      
+        El Documento de Visión convierte necesidades de negocio en requisitos verificables: objetivos, alcance, restricciones y criterios de éxito. Un requisito ambiguo hoy es un retrabajo costoso mañana.</p>
+    </a>
+    <a class="tarjeta c-blue" href="./2026-2/Analisis-Diseno-de-Sistemas-Avanzado/clase-3/modelamiento-datos-conceptual-logico-fisico-clase-3.html">
+      <span class="badge">Clase 3</span>
+      <h3>Modelamiento de Datos: Conceptual, Lógico y Físico</h3><p class="doc">CESAR AGUSTO RUIZ VERGARA
+  
+
+  
+    
+      1 Idea central
+      
+        El modelamiento traduce los conceptos del negocio en estructuras lógicas y luego en tablas reales. Cada nivel responde una pregunta: qué existe, cómo se estructura y cómo se almacena.</p>
+    </a>
+    <a class="tarjeta c-blue" href="./2026-2/Analisis-Diseno-de-Sistemas-Avanzado/clase-4/modelamiento-procesos-negocio-bpm-bpmn-clase-4.html">
+      <span class="badge">Clase 4</span>
+      <h3>Modelamiento de Procesos de Negocio — BPM y BPMN</h3><p class="doc">CESAR AGUSTO RUIZ VERGARA
+  
+
+  
+    
+      1 Idea central
+      
+        Un proceso coordina personas, tecnología y recursos para lograr un objetivo. BPM lo mejora en ciclos continuos; BPMN lo dibuja con notación común para que negocio, analistas y developers hablen el mismo idioma.</p>
+    </a>
+    <a class="tarjeta c-blue" href="./2026-2/Analisis-Diseno-de-Sistemas-Avanzado/clase-5/modelamiento-sistema-uml-clase-5.html">
+      <span class="badge">Clase 5</span>
+      <h3>Modelamiento del Sistema — UML</h3><p class="doc">CESAR AGUSTO RUIZ VERGARA
+  
+
+  
+    
+      1 Idea central
+      
+        UML es un lenguaje gráfico estandarizado para representar un sistema completo —estructura, comportamiento y decisiones— antes de escribir una sola línea de código. Sirve para pensar y acordar antes de construir.</p>
+    </a>
+    <a class="tarjeta c-blue" href="./2026-2/Analisis-Diseno-de-Sistemas-Avanzado/clase-6/diagrama-casos-uso-clase-6.html">
+      <span class="badge">Clase 6</span>
+      <h3>Diagrama de Casos de Uso</h3><p class="doc">CESAR AGUSTO RUIZ VERGARA
+  
+
+  
+    
+      1 Idea central
+      
+        El caso de uso cuenta el sistema desde afuera, en el idioma del usuario. Captura los requisitos funcionales que entienden el gerente y también el desarrollador.</p>
+    </a>
+    <a class="tarjeta c-blue" href="./2026-2/Analisis-Diseno-de-Sistemas-Avanzado/guia-diagramas/guia-simbologia-iconos-diagramas.html">
+      <span class="badge">Guía</span>
+      <h3>Guía visual de simbología e iconos para diagramas</h3>
+    </a>
+    </div>
+  </section>
+
+  <section class="curso" data-curso="Cultura de Innovación">
+    <h2 class="rotulo"><span class="num n-teal">&#9679;</span>Cultura de Innovación <span class="cuenta">(6)</span></h2>
+    <div class="grid">
+    <a class="tarjeta c-teal" href="./2026-2/Cultura-de-innovacion/clase-1/mundo-vuca-impacto-organizaciones-clase-1.html">
+      <span class="badge">Clase 1</span>
+      <h3>Mundo VUCA y su impacto en las organizaciones</h3><p class="doc">Ing. Sigfrido Erwin Alva Peralta
+  
+
+  
+    
+      1 Idea central
+      
+        El entorno VUCA cambia más rápido que la organización. Para navegarlo, VUCA Prime vincula cada reto con una respuesta de liderazgo: visión, entendimiento, claridad y agilidad.</p>
+    </a>
+    <a class="tarjeta c-teal" href="./2026-2/Cultura-de-innovacion/clase-2/industria-4-0-transformacion-digital-clase-2.html">
+      <span class="badge">Clase 2</span>
+      <h3>Industria 4.0 y transformación digital</h3><p class="doc">Sigfrido Erwin Alva Peralta
+  
+
+  
+    
+      1 Idea central
+      
+        La industria pasa de mecanizar tareas a conectar sistemas físicos y digitales. La transformación digital integra la tecnología en todas las áreas del negocio, pero sin cambio cultural la tecnología fracasa.</p>
+    </a>
+    <a class="tarjeta c-teal" href="./2026-2/Cultura-de-innovacion/clase-3/nuevos-modelos-negocio-startups-clase-3.html">
+      <span class="badge">Clase 3</span>
+      <h3>Nuevos modelos de negocio y startups</h3><p class="doc">Ing. Sigfrido Erwin Alva Peralta — Sigfrido Erwin Alba
+  
+
+  
+    
+      1 Idea central
+      
+        Un modelo de negocio explica cómo una empresa crea, entrega y captura valor. Una startup busca uno sostenible y escalable en un ambiente de alta incertidumbre.</p>
+    </a>
+    <a class="tarjeta c-teal" href="./2026-2/Cultura-de-innovacion/clase-4/cultura-organizacional-innovacion-clase-4.html">
+      <span class="badge">Clase 4</span>
+      <h3>Cultura organizacional e innovación</h3><p class="doc">Ing. Sigfrido Erwin Alva Peralta
+  
+
+  
+    
+      1 Idea central
+      
+        La innovación se sostiene solo si la cultura organizacional la apoya y la vuelve parte del comportamiento diario. Sin espacio para probar, aprender y corregir, queda en discurso.</p>
+    </a>
+    <a class="tarjeta c-teal" href="./2026-2/Cultura-de-innovacion/clase-5/liderazgo-innovacion-clase-5.html">
+      <span class="badge">Clase 5</span>
+      <h3>Innovación y Liderazgo</h3><p class="doc">Ing. Sigfrido Erwin Alva Peralta
+  
+
+  
+    
+      1 Idea central
+      
+        La innovación es una capacidad organizacional, no una idea genial aislada. Necesita liderazgo que cree condiciones, una cultura que permita probar y una gestión del cambio que sostenga la transformación.</p>
+    </a>
+    <a class="tarjeta c-teal" href="./2026-2/Cultura-de-innovacion/clase-6/estructuras-organizacionales-procesos-innovacion-clase-6.html">
+      <span class="badge">Clase 6</span>
+      <h3>Estructuras organizacionales y procesos de innovación</h3><p class="doc">Ing. Sigfrido Erwin Alva Peralta
+  
+
+  
+    
+      1 Idea central
+      
+        La estructura organizacional decide qué tan rápido innova una empresa: reparte autoridad y coordinación, y sostiene el proceso que convierte una idea en valor real.</p>
+    </a>
+    </div>
+  </section>
+
+  <section class="curso" data-curso="Habilidades de Presentación y Persuación">
+    <h2 class="rotulo"><span class="num n-purple">&#9679;</span>Habilidades de Presentación y Persuación <span class="cuenta">(6)</span></h2>
+    <div class="grid">
+    <a class="tarjeta c-purple" href="./2026-2/Habilidades-de-Presentacion-y-Persuacion/clase-1/definicion-habilidades-persuasion-clase-1.html">
+      <span class="badge">Clase 1</span>
+      <h3>Definición de Habilidades de Persuación</h3><p class="doc">Macarena Soto
+  
+
+  
+    
+      1 Idea central
+      
+        Una buena idea no basta: si no se comunica con claridad y persuasión, se pierde su valor. La presentación no empieza en PowerPoint, sino al decidir qué comunicar, qué sentir y qué recordar.</p>
+    </a>
+    <a class="tarjeta c-purple" href="./2026-2/Habilidades-de-Presentacion-y-Persuacion/clase-2/tipos-audiencia-estilos-comunicacion-clase-2.html">
+      <span class="badge">Clase 2</span>
+      <h3>Tipos de Audiencia según su Estilo de Comunicación</h3><p class="doc">Macarena Soto
+  
+
+  
+    
+      1 Idea central
+      
+        El modelo DISC muestra 4 estilos de comportamiento (D, I, S, C). Adaptar tu comunicación al estilo del oyente transforma la efectividad de tus presentaciones.</p>
+    </a>
+    <a class="tarjeta c-purple" href="./2026-2/Habilidades-de-Presentacion-y-Persuacion/clase-3/sistema-representacional-vak-honey-alonso-clase-3.html">
+      <span class="badge">Clase 3</span>
+      <h3>Sistema Representacional VAK y Estilos Honey-Alonso</h3><p class="doc">Macarena Soto
+  
+
+  
+    
+      1 Idea central
+      
+        VAK explica por qué canal entra y se recuerda mejor la información; Honey-Alonso explica cómo prefiere aprender cada persona. Todos usamos los tres canales, pero uno predomina.</p>
+    </a>
+    <a class="tarjeta c-purple" href="./2026-2/Habilidades-de-Presentacion-y-Persuacion/clase-4/pasion-rapport-conexion-audiencia-clase-4.html">
+      <span class="badge">Clase 4</span>
+      <h3>La Pasión en las Presentaciones y el Rapport</h3><p class="doc">Macarena Soto
+  
+
+  
+    
+      1 Idea central
+      
+        La pasión es tu energía interna; el rapport es el puente hacia el otro. Juntas convierten una exposición correcta en memorable.</p>
+    </a>
+    <a class="tarjeta c-purple" href="./2026-2/Habilidades-de-Presentacion-y-Persuacion/clase-5/el-arte-de-narrar-historias-clase-5.html">
+      <span class="badge">Clase 5</span>
+      <h3>El arte de narrar historias</h3><p class="doc">Macarena Soto
+  
+
+  
+    
+      1 Idea central
+      
+        El storytelling es contar historias de forma consciente para que la audiencia no solo escuche, sino que se apropie del mensaje. Una historia no es solo un relato: es una forma de darle sentido a la información.</p>
+    </a>
+    <a class="tarjeta c-purple" href="./2026-2/Habilidades-de-Presentacion-y-Persuacion/clase-6/las-historias-como-pieza-clave-de-una-presentacion-clase-6.html">
+      <span class="badge">Clase 6</span>
+      <h3>Las historias como pieza clave de una presentación</h3><p class="doc">Macarena Soto
+  
+
+  
+    
+      1 Idea central
+      
+        La historia es el hilo que organiza la información, la emoción y la intención del mensaje. No reemplaza los datos: les da sentido y hace que la audiencia los sienta y los recuerde.</p>
+    </a>
+    </div>
+  </section>
+
+  <section class="curso" data-curso="Inteligencia Artificial Aplicada">
+    <h2 class="rotulo"><span class="num n-amber">&#9679;</span>Inteligencia Artificial Aplicada <span class="cuenta">(7)</span></h2>
+    <div class="grid">
+    <a class="tarjeta c-amber" href="./2026-2/Inteligencia-Artificial-Aplicada/clase-1/que-es-ia-y-por-que-importa-clase-1.html">
+      <span class="badge">Clase 1</span>
+      <h3>¿Qué es la IA y por qué importa?</h3><p class="doc">Mg. Christian Cancharez Aguirre
+  
+
+  
+    
+      1 Idea central
+      
+        La IA realiza tareas que suelen requerir inteligencia humana. Evoluciona de reglas explícitas a modelos que aprenden patrones y generan contenido.</p>
+    </a>
+    <a class="tarjeta c-amber" href="./2026-2/Inteligencia-Artificial-Aplicada/clase-1/actividad-1/codigo-enigma-inteligencia-artificial-actividad-1.html">
+      <span class="badge">Clase 1</span>
+      <h3>Código Enigmae Inteligencia Artificial</h3>
+    </a>
+    <a class="tarjeta c-amber" href="./2026-2/Inteligencia-Artificial-Aplicada/clase-2/ia-riesgos-y-limitaciones-clase-2.html">
+      <span class="badge">Clase 2</span>
+      <h3>Riesgos y limitaciones de la IA</h3><p class="doc">Mg. Christian Cancharez Aguirre
+  
+
+  
+    
+      1 Idea central
+      
+        La IA produce respuestas plausibles pero falsas: alucina, sesga y depende de sus datos. Conocer sus límites orienta la verificación y el uso responsable.</p>
+    </a>
+    <a class="tarjeta c-amber" href="./2026-2/Inteligencia-Artificial-Aplicada/clase-3/ia-curaduria-validacion-clase-3.html">
+      <span class="badge">Clase 3</span>
+      <h3>Curaduría y validación de información</h3><p class="doc">Mg. Christian Cancharez Aguirre
+  
+
+  
+    
+      1 Idea central
+      
+        Curar es seleccionar y contextualizar información fiable; no es acumular resultados de búsqueda.</p>
+    </a>
+    <a class="tarjeta c-amber" href="./2026-2/Inteligencia-Artificial-Aplicada/clase-4/ley-31814-regulacion-ia-clase-4.html">
+      <span class="badge">Clase 4</span>
+      <h3>Ley N.° 31814: regulación de la IA en el Perú</h3><p class="doc">Mg. Christian Cancharez Aguirre
+  
+
+  
+    
+      1 Idea central
+      
+        La Ley N.° 31814 promueve la IA en el Perú con controles proporcionales al riesgo y respeto a los derechos. La IA está al servicio de las personas, no al revés.</p>
+    </a>
+    <a class="tarjeta c-amber" href="./2026-2/Inteligencia-Artificial-Aplicada/clase-5/organizacion-conocimiento-ia-clase-5.html">
+      <span class="badge">Clase 5</span>
+      <h3>¿Cómo organizar mi conocimiento con IA?</h3><p class="doc">Mg. Christian Cancharez Aguirre
+  
+
+  
+    
+      1 Idea central
+      
+        La IA ordena y conecta información; tú validas y decides qué se convierte en conocimiento. Te ahorra el trabajo mecánico de ordenar.</p>
+    </a>
+    <a class="tarjeta c-amber" href="./2026-2/Inteligencia-Artificial-Aplicada/clase-6/prompt-engineering-clase-6.html">
+      <span class="badge">Clase 6</span>
+      <h3>Prompt Engineering: pedirle bien a la IA</h3><p class="doc">Mg. Christian Cancharez Aguirre
+  
+
+  
+    
+      1 Idea central
+      
+        Un prompt estructurado orienta al modelo hacia una respuesta útil para una audiencia y un propósito concretos. Pedirle bien no es truco: es una competencia que se entrena.</p>
+    </a>
+    </div>
+  </section>
+
+  <section class="curso" data-curso="Planeamiento Estratégico de Sistemas de Información">
+    <h2 class="rotulo"><span class="num n-blue">&#9679;</span>Planeamiento Estratégico de Sistemas de Información <span class="cuenta">(6)</span></h2>
+    <div class="grid">
+    <a class="tarjeta c-blue" href="./2026-2/Planeamiento-Estrategico-de-Sis-de-Inf-srm/clase-1/modelos-negocio-evolucion-rol-tic-clase-1.html">
+      <span class="badge">Clase 1</span>
+      <h3>Modelos de Negocio y Evolución del Rol de las TIC</h3><p class="doc">Marco Antonio Méndez Bendezú
+  
+
+  
+    
+      1 Idea central
+      
+        La estrategia de TI no se decide sola: nace del modelo de negocio. Las TIC dejaron de ser soporte operacional para volverse fuente de ventaja competitiva.</p>
+    </a>
+    <a class="tarjeta c-blue" href="./2026-2/Planeamiento-Estrategico-de-Sis-de-Inf-srm/clase-2/fundamentos-estrategia-planificacion-estrategica-clase-2.html">
+      <span class="badge">Clase 2</span>
+      <h3>Fundamentos de Estrategia y Planificación Estratégica</h3><p class="doc">Marco Antonio Méndez Bendezú
+  
+
+  
+    
+      1 Idea central
+      
+        La estrategia es la mejor forma de lograr un objetivo partiendo de la situación actual. La planificación estratégica la convierte en acciones con plazos, recursos y métricas.</p>
+    </a>
+    <a class="tarjeta c-blue" href="./2026-2/Planeamiento-Estrategico-de-Sis-de-Inf-srm/clase-3/planificacion-estrategica-pesi-peti-clase-3.html">
+      <span class="badge">Clase 3</span>
+      <h3>Planificación Estratégica de SI/TI: PESI y PETI</h3><p class="doc">Marco Antonio Méndez Bendezú
+  
+
+  
+    
+      1 Idea central
+      
+        El PESI define qué aplicaciones necesita el negocio; el PETI define con qué infraestructura se sostienen. Sin alineamiento con la estrategia, la tecnología es gasto; con alineamiento, es inversión.</p>
+    </a>
+    <a class="tarjeta c-blue" href="./2026-2/Planeamiento-Estrategico-de-Sis-de-Inf-srm/clase-4/modelo-negocio-cadena-valor-estrategia-clase-4.html">
+      <span class="badge">Clase 4</span>
+      <h3>Fase 1: Estrategia y Contexto del Negocio — Modelo, Canvas y Competencia</h3><p class="doc">Marco Antonio Méndez Bendezú
+  
+
+  
+    
+      1 Idea central
+      
+        El plan estratégico de SI se construye sobre el negocio: primero se entiende el modelo de negocio, la cadena de valor y el contexto competitivo; recién ahí se decide qué sistemas construir.</p>
+    </a>
+    <a class="tarjeta c-blue" href="./2026-2/Planeamiento-Estrategico-de-Sis-de-Inf-srm/clase-5/objetivos-acciones-estrategicas-clase-5.html">
+      <span class="badge">Clase 5</span>
+      <h3>Fase 2: Requisitos del negocio para los sistemas de información</h3><p class="doc">Marco Antonio Méndez Bendezú
+  
+
+  
+    
+      1 Idea central
+      
+        La empresa decide cómo competir; los objetivos empresariales fijan la dirección y la estrategia de SI/TI la convierte en requisitos, proyectos y tecnología.</p>
+    </a>
+    <a class="tarjeta c-blue" href="./2026-2/Planeamiento-Estrategico-de-Sis-de-Inf-srm/clase-6/analisis-situacion-actual-infraestructura-sistemas-clase-6.html">
+      <span class="badge">Clase 6</span>
+      <h3>Análisis de la situación actual de SI/TI</h3><p class="doc">Marco Antonio Méndez Bendezú
+  
+
+  
+    
+      1 Idea central
+      
+        La fase 3 describe el punto de partida: compara lo que la empresa necesita con lo que ya tiene para detectar la brecha y alinear TI con la estrategia del negocio.</p>
+    </a>
+    </div>
+  </section>
+
+  <section class="curso" data-curso="Proyecto">
+    <h2 class="rotulo"><span class="num n-teal">&#9679;</span>Proyecto <span class="cuenta">(1)</span></h2>
+    <div class="grid">
+    <a class="tarjeta c-teal" href="./proyecto/puredose/infografia-plan-negocio.html">
+      <span class="badge">Guía</span>
+      <h3>Detergente Eco Canadá</h3>
+    </a>
+    </div>
+  </section>
+
+  <p class="vacio" id="vacio">Ningún documento coincide con la búsqueda.</p>
+
+  <footer class="pie">
+    <p>Índice en texto: <a href="./README.md">README del repositorio</a> ·
+       Código fuente: <a href="https://github.com/i-xarlos/isil-publico">github.com/i-xarlos/isil-publico</a></p>
+    <p>Home generado automáticamente desde los HTML del repositorio.</p>
+  </footer>
+</div>
+<script>
+(function(){
+  var q=document.getElementById('q'),c=document.getElementById('contador'),
+      vacio=document.getElementById('vacio'),total=33;
+  var tarjetas=[].slice.call(document.querySelectorAll('.tarjeta'));
+  var secciones=[].slice.call(document.querySelectorAll('section.curso'));
+  q.addEventListener('input',function(){
+    var t=q.value.toLowerCase().trim(),vis=0;
+    tarjetas.forEach(function(a){
+      var ok=!t||a.textContent.toLowerCase().indexOf(t)>-1;
+      a.style.display=ok?'':'none'; if(ok)vis++;
+    });
+    secciones.forEach(function(s){
+      var alguna=[].slice.call(s.querySelectorAll('.tarjeta')).some(function(a){return a.style.display!=='none';});
+      s.style.display=alguna?'':'none';
+    });
+    c.textContent='Mostrando '+vis+' de '+total+' documentos';
+    vacio.style.display=vis?'none':'block';
+  });
+})();
+</script>
+</body>
+</html>

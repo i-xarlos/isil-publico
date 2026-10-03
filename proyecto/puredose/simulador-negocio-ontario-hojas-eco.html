@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Negocio FMCG Ontario | MVP Hojas Ecológicas Lavavajillas</title>
+    
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- SheetJS (xlsx.full.min.js) for Excel Export -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+    <!-- Custom Executive Dashboard CSS Styles -->
+    <style>
+        :root {
+            --primary-emerald: #059669;
+            --primary-emerald-dark: #047857;
+            --emerald-light: #ecfdf5;
+            --navy-header: #0f172a;
+            --navy-card: #1e293b;
+            --accent-blue: #0284c7;
+            --slate-bg: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--slate-bg);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Executive Header Styling */
+        .exec-header {
+            background: linear-gradient(135deg, var(--navy-header) 0%, #1e293b 100%);
+            color: #ffffff;
+            border-bottom: 3px solid var(--primary-emerald);
+            padding: 1.25rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .exec-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 50rem;
+        }
+
+        .region-badge {
+            background: rgba(2, 132, 199, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 50rem;
+        }
+
+        /* Navigation Tabs Styling */
+        .nav-tabs-custom {
+            border-bottom: 2px solid var(--border-color);
+            background-color: #ffffff;
+            padding: 0.5rem 1rem 0 1rem;
+            border-radius: 0.75rem 0.75rem 0 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .nav-tabs-custom .nav-link {
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.92rem;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 0.75rem 1.25rem;
+            transition: all 0.25s ease;
+            margin-bottom: -2px;
+        }
+
+        .nav-tabs-custom .nav-link:hover {
+            color: var(--primary-emerald);
+            border-color: rgba(5, 150, 105, 0.3);
+        }
+
+        .nav-tabs-custom .nav-link.active {
+            color: var(--primary-emerald);
+            border-bottom: 3px solid var(--primary-emerald);
+            background: transparent;
+        }
+
+        .card-custom {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 0.85rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-custom:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-header-custom {
+            background-color: transparent;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 1.25rem;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--navy-header);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* KPI Cards Styling */
+        .kpi-card {
+            border-radius: 0.85rem;
+            padding: 1.15rem;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--primary-emerald);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card.warning {
+            border-left-color: #f59e0b;
+        }
+
+        .kpi-card.danger {
+            border-left-color: #ef4444;
+        }
+
+        .kpi-card.info {
+            border-left-color: var(--accent-blue);
+        }
+
+        .kpi-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+        }
+
+        .kpi-value {
+            font-size: 1.65rem;
+            font-weight: 800;
+            color: var(--navy-header);
+            line-height: 1.2;
+        }
+
+        .kpi-subtext {
+            font-size: 0.8rem;
+            margin-top: 0.35rem;
+            font-weight: 500;
+        }
+
+        /* Custom Switches and Sliders */
+        .form-check-input:checked {
+            background-color: var(--primary-emerald);
+            border-color: var(--primary-emerald);
+        }
+
+        .form-range::-webkit-slider-thumb {
+            background: var(--primary-emerald);
+        }
+
+        .form-range::-moz-range-thumb {
+            background: var(--primary-emerald);
+        }
+
+        .slider-val-badge {
+            background-color: var(--emerald-light);
+            color: var(--primary-emerald-dark);
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.35rem;
+            font-size: 0.88rem;
+        }
+
+        /* Custom Tables Styling */
+        .table-custom {
+            font-size: 0.88rem;
+            vertical-align: middle;
+        }
+
+        .table-custom th {
+            background-color: #f1f5f9;
+            color: var(--navy-header);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--border-color);
+            padding: 0.85rem;
+        }
+
+        .table-custom td {
+            padding: 0.85rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .highlight-mvp-row {
+            background-color: #ecfdf5 !important;
+            font-weight: 700;
+            border-left: 4px solid var(--primary-emerald);
+        }
+
+        /* Sensitivity Cell Matrix */
+        .sens-cell {
+            text-align: center;
+            font-weight: 700;
+            padding: 0.75rem 0.5rem;
+            border-radius: 0.4rem;
+            font-size: 0.85rem;
+        }
+
+        /* Export Button Gradient */
+        .btn-excel {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            font-weight: 700;
+            border: none;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            transition: all 0.25s ease;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+        }
+
+        .btn-excel:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Responsive chart wrappers */
+        .chart-container-custom {
+            position: relative;
+            height: 320px;
+            width: 100%;
+        }
+
+        .chart-container-lg {
+            position: relative;
+            height: 380px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="exec-header">
+        <div class="container-fluid px-lg-5">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-7 col-md-12">
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <div class="bg-emerald p-2 rounded-3 text-white d-flex align-items-center justify-content-center" style="width: 46px; height: 46px; background-color: var(--primary-emerald);">
+                            <i class="fa-solid fa-soap fa-xl"></i>
+                        </div>
+                        <div>
+                            <h1 class="h4 mb-1 fw-bold tracking-tight text-white">Simulador de Negocio e Inteligencia FMCG — Ontario</h1>
+                            <p class="mb-0 text-slate-300 small">
+                                Estrategia de lanzamiento MVP: hojas ecológicas (sheets) sin plástico para lavavajillas
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-12 text-lg-end text-md-start">
+                    <div class="d-flex align-items-center justify-content-lg-end gap-2 flex-wrap">
+                        <span class="exec-badge"><i class="fa-solid fa-code-branch me-1"></i> v2.5 · Datos alineados al plan MVP</span>
+                        <span class="region-badge"><i class="fa-solid fa-location-dot me-1"></i> GTA & Southern Ontario</span>
+                        <button class="btn btn-excel text-nowrap ms-lg-2" onclick="exportToExcel()">
+                            <i class="fa-solid fa-file-excel me-2"></i> Exportar Data a Excel (.xlsx)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container-fluid px-lg-5 my-4 flex-grow-1">
+        
+        <!-- Tab Navigation Bar -->
+        <ul class="nav nav-tabs nav-tabs-custom mb-4" id="simulatorTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="tab-sim-tab" data-bs-toggle="tab" data-bs-target="#tab-sim" type="button" role="tab">
+                    <i class="fa-solid fa-sliders me-2"></i> 1. Control Central & KPIs
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-bench-tab" data-bs-toggle="tab" data-bs-target="#tab-bench" type="button" role="tab">
+                    <i class="fa-solid fa-chart-simple me-2"></i> 2. Benchmarking Ontario
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-costs-tab" data-bs-toggle="tab" data-bs-target="#tab-costs" type="button" role="tab">
+                    <i class="fa-solid fa-boxes-packing me-2"></i> 3. Costos & Unit Economics
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-proj-tab" data-bs-toggle="tab" data-bs-target="#tab-proj" type="button" role="tab">
+                    <i class="fa-solid fa-chart-line me-2"></i> 4. Proyección 12 Meses
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-risk-tab" data-bs-toggle="tab" data-bs-target="#tab-risk" type="button" role="tab">
+                    <i class="fa-solid fa-shield-halved me-2"></i> 5. Riesgos & Sensibilidad
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content Containers -->
+        <div class="tab-content" id="simulatorTabsContent">
+
+            <!-- TAB 1: SIMULATION CONTROLS & KPIS -->
+            <div class="tab-pane fade show active" id="tab-sim" role="tabpanel">
+                <div class="row g-4">
+                    
+                    <!-- Left Control Panel -->
+                    <div class="col-lg-4 col-md-12">
+                        <div class="card-custom">
+                            <div class="card-header-custom">
+                                <span><i class="fa-solid fa-gears text-emerald me-2"></i> Parámetros de Simulación</span>
+                                <span class="badge bg-secondary">Ajuste Dinámico</span>
+                            </div>
+                            <div class="card-body p-4">
+                                
+                                <!-- Toggle 1: Product Type -->
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold d-block mb-2">
+                                        <i class="fa-solid fa-leaf text-success me-1"></i> Tipo de Producto
+                                    </label>
+                                    <div class="btn-group w-full w-100" role="group">
+                                        <input type="radio" class="btn-check" name="toggleProduct" id="prodEco" autocomplete="off" checked onchange="updateSimulation()">
+                                        <label class="btn btn-outline-success fw-semibold" for="prodEco">🌱 Ecológico (Tiras / Sheets)</label>
+                                        
+                                        <input type="radio" class="btn-check" name="toggleProduct" id="prodConv" autocomplete="off" onchange="updateSimulation()">
+                                        <label class="btn btn-outline-secondary fw-semibold" for="prodConv">⚡ Convencional (Pods)</label>
+                                    </div>
+                                    <div class="form-text small mt-1">
+                                        Formato hojas sin PVA ni plástico: empaque de cartón, compatible con <em>Canada Post Lettermail</em>. Es el formato definido en el plan MVP.
+                                    </div>
+                                </div>
+
+                                <!-- Toggle 2: Business Model -->
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold d-block mb-2">
+                                        <i class="fa-solid fa-repeat text-primary me-1"></i> Modelo de Negocio
+                                    </label>
+                                    <div class="btn-group w-100" role="group">
+                                        <input type="radio" class="btn-check" name="toggleModel" id="modelSub" autocomplete="off" checked onchange="updateSimulation()">
+                                        <label class="btn btn-outline-primary fw-semibold" for="modelSub">🔄 Suscripción D2C</label>
+                                        
+                                        <input type="radio" class="btn-check" name="toggleModel" id="modelRetail" autocomplete="off" onchange="updateSimulation()">
+                                        <label class="btn btn-outline-dark fw-semibold" for="modelRetail">🛒 Venta Única Retail</label>
+                                    </div>
+                                </div>
+
+                                <hr class="my-3">
+
+                                <!-- Slider 1: Price -->
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <label for="sliderPrice" class="form-label fw-semibold mb-0">Precio por Caja (60 Cargas)</label>
+                                        <span class="slider-val-badge" id="valPrice">$16.99 CAD</span>
+                                    </div>
+                                    <input type="range" class="form-range" id="sliderPrice" min="13.49" max="25.49" step="0.50" value="16.99" oninput="updateSimulation()">
+                                    <div class="d-flex justify-content-between text-muted extra-small" style="font-size:0.75rem;">
+                                        <span>$13.49 CAD (1er ciclo −20%)</span>
+                                        <span>$25.49 CAD</span>
+                                    </div>
+                                </div>
+
+                                <!-- Slider 2: Fulfillment (3PL) -->
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <label for="sliderFulfillment" class="form-label fw-semibold mb-0">Fulfillment 3PL (pick &amp; pack)</label>
+                                        <span class="slider-val-badge" id="valFulfillment">$2.50 CAD</span>
+                                    </div>
+                                    <input type="range" class="form-range" id="sliderFulfillment" min="0.00" max="5.00" step="0.10" value="2.50" oninput="updateSimulation()">
+                                    <div class="d-flex justify-content-between text-muted extra-small" style="font-size:0.75rem;">
+                                        <span>$0.00 (despacho propio)</span>
+                                        <span>$2.50 (3PL GTA · plan)</span>
+                                    </div>
+                                </div>
+
+                                <!-- Slider 3: Shipping -->
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <label for="sliderShipping" class="form-label fw-semibold mb-0">Costo de Envío Postal</label>
+                                        <span class="slider-val-badge" id="valShipping">$3.50 CAD</span>
+                                    </div>
+                                    <input type="range" class="form-range" id="sliderShipping" min="3.20" max="7.50" step="0.10" value="3.50" oninput="updateSimulation()">
+                                    <div class="d-flex justify-content-between text-muted extra-small" style="font-size:0.75rem;">
+                                        <span>$3.20 (Lettermail)</span>
+                                        <span>$7.50 (Expedited)</span>
+                                    </div>
+                                </div>
+
+                                <!-- Slider 4: CAC -->
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <label for="sliderCAC" class="form-label fw-semibold mb-0">Adquisición Cliente (CAC)</label>
+                                        <span class="slider-val-badge" id="valCAC">$24.00 CAD</span>
+                                    </div>
+                                    <input type="range" class="form-range" id="sliderCAC" min="12.00" max="45.00" step="1.00" value="24.00" oninput="updateSimulation()">
+                                    <div class="d-flex justify-content-between text-muted extra-small" style="font-size:0.75rem;">
+                                        <span>$12.00 (base sachets)</span>
+                                        <span>$45.00 (mercado tensionado)</span>
+                                    </div>
+                                </div>
+
+                                <!-- Slider 5: Churn -->
+                                <div class="mb-3" id="churnContainer">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <label for="sliderChurn" class="form-label fw-semibold mb-0">Churn Mensual (%)</label>
+                                        <span class="slider-val-badge" id="valChurn">7.5%</span>
+                                    </div>
+                                    <input type="range" class="form-range" id="sliderChurn" min="2.0" max="10.0" step="0.5" value="7.5" oninput="updateSimulation()">
+                                    <div class="d-flex justify-content-between text-muted extra-small" style="font-size:0.75rem;">
+                                        <span>2.0% (retención 98%)</span>
+                                        <span>10.0% (retención 90%)</span>
+                                    </div>
+                                </div>
+
+                                <hr class="my-3">
+
+                                <!-- Toggle 3: Escenario 12 meses -->
+                                <div class="mb-2">
+                                    <label class="form-label fw-bold d-block mb-2">
+                                        <i class="fa-solid fa-flag-checkered text-success me-1"></i> Escenario 12 Meses (plan)
+                                    </label>
+                                    <div class="btn-group w-100" role="group">
+                                        <input type="radio" class="btn-check" name="toggleScenario" id="escCons" autocomplete="off" checked onchange="updateSimulation()">
+                                        <label class="btn btn-outline-success fw-semibold" for="escCons">Conservador (1,200)</label>
+
+                                        <input type="radio" class="btn-check" name="toggleScenario" id="escOpt" autocomplete="off" onchange="updateSimulation()">
+                                        <label class="btn btn-outline-primary fw-semibold" for="escOpt">Optimista (3,500)</label>
+                                    </div>
+                                    <div class="form-text small mt-1">
+                                        Ajusta altas y gastos fijos al escenario del plan. Con churn 7.5% alcanza ~1,200 o ~3,500 suscriptores activos en el mes 12.
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right KPIs and Main Sensitivity Chart -->
+                    <div class="col-lg-8 col-md-12">
+                        
+                        <!-- Top Real-time KPI Cards Row -->
+                        <div class="row g-3 mb-4">
+                            
+                            <!-- KPI 1: Gross Margin -->
+                            <div class="col-xl-4 col-md-6">
+                                <div class="kpi-card" id="kpiCardGross">
+                                    <div class="kpi-label">Margen Bruto %</div>
+                                    <div class="kpi-value" id="kpiGrossMargin">0.0%</div>
+                                    <div class="kpi-subtext text-success" id="kpiGrossMarginSub">COGS: $0.00 CAD</div>
+                                </div>
+                            </div>
+
+                            <!-- KPI 2: CM1 Margin -->
+                            <div class="col-xl-4 col-md-6">
+                                <div class="kpi-card info" id="kpiCardCM1">
+                                    <div class="kpi-label">Margen Contribución CM1</div>
+                                    <div class="kpi-value" id="kpiCM1">$0.00 CAD</div>
+                                    <div class="kpi-subtext text-muted" id="kpiCM1Sub">0.0% por caja</div>
+                                </div>
+                            </div>
+
+                            <!-- KPI 3: LTV / CAC Ratio -->
+                            <div class="col-xl-4 col-md-6">
+                                <div class="kpi-card" id="kpiCardLTV">
+                                    <div class="kpi-label">Ratio LTV / CAC</div>
+                                    <div class="kpi-value" id="kpiLTVCAC">0.0x</div>
+                                    <div class="kpi-subtext text-muted" id="kpiLTVSub">LTV: $0.00 CAD · 6.5 cajas/año</div>
+                                </div>
+                            </div>
+
+                            <!-- KPI 4: Break-Even Units -->
+                            <div class="col-xl-6 col-md-6">
+                                    <div class="kpi-card warning">
+                                    <div class="kpi-label">Punto de Equilibrio (Break-Even)</div>
+                                    <div class="kpi-value" id="kpiBreakEven">0 un/mes</div>
+                                    <div class="kpi-subtext text-muted" id="kpiBreakEvenSub">Para cubrir $1,500 CAD fijos/mes</div>
+                                </div>
+                            </div>
+
+                            <!-- KPI 5: Payback Period -->
+                            <div class="col-xl-6 col-md-6">
+                                <div class="kpi-card">
+                                    <div class="kpi-label">Payback Period (Retorno CAC)</div>
+                                    <div class="kpi-value" id="kpiPayback">0.0 meses</div>
+                                    <div class="kpi-subtext text-muted" id="kpiPaybackSub">Meses para recuperar CAC</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Sensitivity Chart Panel -->
+                        <div class="card-custom mb-4">
+                            <div class="card-header-custom">
+                                <span><i class="fa-solid fa-chart-line text-emerald me-2"></i> Sensibilidad de CM1 y Margen % ante Variación de Precio</span>
+                                <span class="badge bg-light text-dark border">Simulación Dinámica</span>
+                            </div>
+                            <div class="card-body p-3">
+                                <div class="chart-container-custom">
+                                    <canvas id="simSensitivityChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Executive Insights Banner -->
+                        <div class="p-3 bg-light rounded-3 border d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-lightbulb fa-2x text-warning"></i>
+                            <div>
+                                <h6 class="mb-1 fw-bold text-dark">Estrategia Prometedora para Ontario D2C:</h6>
+                                <p class="mb-0 text-muted small" id="insightExecutive">
+                                    Cargando análisis estratégico de viabilidad para el mercado de la GTA...
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: ONTARIO COMPETITOR BENCHMARKING -->
+            <div class="tab-pane fade" id="tab-bench" role="tabpanel">
+                <div class="row g-4">
+                    
+                    <!-- Competitor Comparison Table -->
+                    <div class="col-12">
+                        <div class="card-custom">
+                            <div class="card-header-custom">
+                                <span><i class="fa-solid fa-table-list me-2 text-emerald"></i> Matriz de Benchmarking en Mercado Minorista & D2C (Ontario)</span>
+                                <span class="badge bg-primary">Precios de Mercado Ontario 2024-2026</span>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-custom table-hover mb-0" id="competitorsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Marca / Competidor</th>
+                                                <th>Formato</th>
+                                                <th>Empaque</th>
+                                                <th>Precio Retail ($ CAD)</th>
+                                                <th>Cargas</th>
+                                                <th>Precio / Carga ($ CAD)</th>
+                                                <th>Certificación Eco</th>
+                                                <th>Canal Principal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="competitorsTbody">
+                                            <!-- Dynamically populated via JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Competitor Interactive Bar Chart -->
+                    <div class="col-12">
+                        <div class="card-custom">
+                            <div class="card-header-custom">
+                                <span><i class="fa-solid fa-chart-column text-emerald me-2"></i> Comparativa de Costo por Carga ($ CAD / Carga)</span>
+                                <span class="badge bg-success">Posicionamiento MVP ($0.28/load)</span>
+                            </div>
+                            <div class="card-body p-3">
+                                <div class="chart-container-lg">
+                                    <canvas id="competitorChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TAB 3: COSTS & UNIT ECONOMICS -->
+            <div class="tab-pane fade" id="tab-costs" role="tabpanel">
+                <div class="row g-4">
+                    
+                    <!-- COGS Breakdown -->
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card-custom h-100">
+                            <div class="card-header-custom">
+                                <span><i class="fa-solid fa-box-open text-emerald me-2"></i> Desglose de COGS por Caja (60 Cargas)</span>
+                                <span class="badge bg-dark" id="cogsHeaderBadge">Hojas Eco (sin PVA)</span>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-custom mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Componente de Costo</th>
+                                                <th>Proveedor / Especificación GTA</th>
+                                                <th>Costo ($ CAD)</th>
+                                                <th>% COGS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="cogsTableBody">
+                                            <!-- Populated dynamically -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ontario Fulfillment & Logistics Options -->
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card-custom h-100">
+                            <div class="card-header-custom">
+                                <span><i class="fa-solid fa-truck-fast text-emerald me-2"></i> Proveedores de Fulfillment & Envío en Ontario</span>
+                                <span class="badge bg-info text-dark">Logística Regional</span>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-custom mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Operador Logístico</th>
+                                                <th>Costo Prom. GTA</th>
+                                                <th>Tiempo Entrega</th>
+                                                <th>Recomendación Estratégica</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="fw-bold">Canada Post <em>Oversized Lettermail</em></td>
+                                                <td>$3.20 - $3.80 CAD</td>
+                                                <td>2 - 5 Días</td>
+                                                <td><span class="badge bg-success">Óptimo D2C (plan MVP)</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">Fulfillment 3PL GTA (pick &amp; pack)</td>
+                                                <td>$2.10 - $2.50 CAD</td>
+                                                <td>Mismo día</td>
+                                                <td><span class="badge bg-primary">Base de costos del plan</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">Chit Chats Select GTA</td>
+                                                <td>$6.00 - $7.00 CAD</td>
+                                                <td>1 - 2 Días</td>
+                                                <td><span class="badge bg-secondary">Paquetes con tracking</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">Canada Post Expedited</td>
+                                                <td>$5.80 - $7.20 CAD</td>
+                                                <td>2 - 3 Días</td>
+                                                <td><span class="badge bg-secondary">Cobertura rural</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">Purolator Ground</td>
+                                                <td>$6.10 - $7.80 CAD</td>
+                                                <td>1 Día (GTA)</td>
+                                                <td><span class="badge bg-secondary">Envíos exprés</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Waterfall Visual -->
+                    <div class="col-12">
+                        <div class="card-custom">
+                            <div class="card-header-custom">
+                                <span><i class="fa-solid fa-filter-circle-dollar text-emerald me-2"></i> Cascada Financiera de Unit Economics (Financial Waterfall)</span>
+                                <span class="badge bg-emerald text-white">Ingreso Neto a Margen CM2</span>
+                            </div>
+                            <div class="card-body p-3">
+                                <div class="chart-container-custom">
+                                    <canvas id="waterfallChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TAB 4: 12-MONTH FINANCIAL PROJECTION -->
+            <div class="tab-pane fade" id="tab-proj" role="tabpanel">
+                <div class="row g-4">
+                    
+                    <!-- Projections Chart -->
+                    <div class="col-12">
+                        <div class="card-custom">
+                            <div class="card-header-custom">
+                                <span><i class="fa-solid fa-chart-area text-emerald me-2"></i> Evolución de MRR vs. Flujo de Caja Acumulado (12 Meses)</span>
+                                <span class="badge bg-success">Punto de Retorno de Inversión</span>
+                            </div>
+                            <div class="card-body p-3">
+                                <div class="chart-container-lg">
+                                    <canvas id="projectionChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projections Detailed Table -->
+                    <div class="col-12">
+                        <div class="card-custom">
+                            <div class="card-header-custom">
+                                <span><i class="fa-solid fa-table text-emerald me-2"></i> Estado de Resultados Simulados Mes a Mes (CAD)</span>
+                                <span class="badge bg-secondary" id="projFijosBadge">Gastos fijos: $1,500 CAD/mes ($18,000/año)</span>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-custom table-striped table-hover mb-0" id="projectionTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Mes</th>
+                                                <th>Nuevos</th>
+                                                <th>Churn</th>
+                                                <th>Activos</th>
+                                                <th>Ventas (MRR)</th>
+                                                <th>COGS</th>
+                                                <th>Fulfillment</th>
+                                                <th>Envío</th>
+                                                <th>Pasarela</th>
+                                                <th>CAC / Mktg</th>
+                                                <th>Fijos OPEX</th>
+                                                <th>Utilidad Neta</th>
+                                                <th>Caja Acumulada</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="projectionTbody">
+                                            <!-- Dynamically generated -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TAB 5: RISKS & SENSITIVITY MATRIX -->
+            <div class="tab-pane fade" id="tab-risk" role="tabpanel">
+                <div class="row g-4">
+                    
+                    <!-- Sensitivity Bivariable Matrix -->
+                    <div class="col-12">
+                        <div class="card-custom">
+                            <div class="card-header-custom">
+                                <span><i class="fa-solid fa-table-cells text-emerald me-2"></i> Matriz de Sensibilidad Bivariable: Precio vs. Costo de Envío (Margen CM1 $)</span>
+                                <span class="badge bg-dark">Análisis de Robustez</span>
+                            </div>
+                            <div class="card-body p-4">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered align-middle text-center mb-2" id="sensTable">
+                                        <!-- Dynamically generated sensitivity grid -->
+                                    </table>
+                                </div>
+                                <div class="d-flex justify-content-center gap-3 mt-3 extra-small">
+                                    <span><i class="fa-solid fa-square text-success"></i> Excelente (&gt; $10.00)</span>
+                                    <span><i class="fa-solid fa-square" style="color:#22c55e;"></i> Saludable ($7.00 - $10.00)</span>
+                                    <span><i class="fa-solid fa-square text-warning"></i> Ajustado ($5.00 - $7.00)</span>
+                                    <span><i class="fa-solid fa-square text-danger"></i> Crítico (&lt; $5.00)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ontario FMCG Risk Matrix Table -->
+                    <div class="col-12">
+                        <div class="card-custom">
+                            <div class="card-header-custom">
+                                <span><i class="fa-solid fa-triangle-exclamation text-emerald me-2"></i> Matriz de Riesgos Específicos del Mercado de Ontario & Plan de Mitigación</span>
+                                <span class="badge bg-warning text-dark">Estrategia Preventiva</span>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-custom mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 25%;">Riesgo Identificado</th>
+                                                <th style="width: 10%;">Impacto</th>
+                                                <th style="width: 10%;">Probabilidad</th>
+                                                <th style="width: 55%;">Estrategia Específica de Mitigación en Ontario</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="fw-bold">
+                                                    <i class="fa-solid fa-droplet text-primary me-2"></i>
+                                                    Dureza del Agua en Ontario (Waterloo, York Region, GTA)
+                                                </td>
+                                                <td><span class="badge bg-danger">Alto</span></td>
+                                                <td><span class="badge bg-warning text-dark">Media</span></td>
+                                                <td>
+                                                    Las hojas ecológicas pueden disolverse de forma incompleta y perder poder de limpieza en aguas ricas en minerales del Sur de Ontario.
+                                                    <strong>Mitigación:</strong> Formulación enriquecida con citratos biodestilados y quelantes naturales optimizados para la dureza del agua del Sur de Ontario (12-20 grains/galón), con pruebas de laboratorio antes del lanzamiento.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">
+                                                    <i class="fa-solid fa-truck-ramp-box text-secondary me-2"></i>
+                                                    Aumento de Tarifas Postales & Recargos por Combustible
+                                                </td>
+                                                <td><span class="badge bg-warning text-dark">Medio</span></td>
+                                                <td><span class="badge bg-danger">Alta</span></td>
+                                                <td>
+                                                    Canada Post y Purolator aplican frecuentemente ajustes trimestrales por combustible que erosionan el margen D2C.
+                                                    <strong>Mitigación:</strong> Priorizar <em>Canada Post Oversized Lettermail</em> ($3.20–$3.80, fuera del esquema de recargos por paquete) y consolidar pedidos a través de un 3PL en la GTA con tarifas volumétricas negociadas.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">
+                                                    <i class="fa-solid fa-rectangle-ad text-danger me-2"></i>
+                                                    Elevado CAC en Meta/Google por Marcas Globales
+                                                </td>
+                                                <td><span class="badge bg-danger">Alto</span></td>
+                                                <td><span class="badge bg-danger">Alta</span></td>
+                                                <td>
+                                                    Presión publicitaria agresiva de multinacionales (P&G, Reckitt) y competidores D2C consolidados (Blueland, Tru Earth).
+                                                    <strong>Mitigación:</strong> Alianzas estratégicas B2B2C con administradores de condominios en Toronto/Mississauga (Property Managers) y programa de referidos ofreciendo caja gratis por 3 suscripciones activas.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">
+                                                    <i class="fa-solid fa-cart-arrow-down text-warning me-2"></i>
+                                                    Sensibilidad al Precio por Inflación en Retail
+                                                </td>
+                                                <td><span class="badge bg-warning text-dark">Medio</span></td>
+                                                <td><span class="badge bg-warning text-dark">Media</span></td>
+                                                <td>
+                                                    El consumidor de Ontario está comparando estrictamente el costo por carga frente a marcas masivas de supermercado (Loblaws/Walmart).
+                                                    <strong>Mitigación:</strong> Comunicar el costo por lavada de la suscripción (<strong>$0.283 CAD</strong>), ~32% por debajo de Attitude y Seventh Generation ($0.42 por lavado).
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fw-bold">
+                                                    <i class="fa-solid fa-rotate-left text-info me-2"></i>
+                                                    Cancelación (churn) e inventario acumulado
+                                                </td>
+                                                <td><span class="badge bg-warning text-dark">Medio</span></td>
+                                                <td><span class="badge bg-warning text-dark">Media</span></td>
+                                                <td>
+                                                    Con <em>churn</em> del 7.5% mensual, un suscriptor cancela en promedio antes de agotar su caja y el inventario se acumula.
+                                                    <strong>Mitigación:</strong> Portal de suscripción (Recharge/Skio) para pausar, adelantar o ajustar la frecuencia (4, 6, 8 o 12 semanas) en un clic, y compras mínimas escalonadas por lote (MOQ 5,000).</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 mt-auto">
+        <div class="container-fluid px-lg-5 text-center extra-small text-slate-400" style="font-size: 0.8rem;">
+            <span>Simulador de Negocio FMCG Ontario &copy; 2026 | Datos alineados al plan MVP de hojas ecológicas · Diseñado para evaluar proyectos D2C / Retail en el Gran Toronto Area</span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Application Script Logic -->
+    <script>
+        
+        // Simulation Global State — valores por defecto = plan MVP hojas eco (Ontario)
+        const state = {
+            isEco: true,
+            isD2C: true,
+            scenario: 'conservador',
+            price: 16.99,          // suscripción 60 cargas (plan)
+            fulfillment: 2.50,     // 3PL GTA pick & pack (plan)
+            shipping: 3.50,        // Canada Post Oversized Lettermail (plan)
+            cac: 24.00,            // CAC objetivo (plan)
+            churn: 7.5,            // retención 92.5% mensual (plan)
+            fixedCosts: 1500.00,   // OpEx fijo $18,000/año (plan, escenario conservador)
+            loadsPerBox: 60
+        };
+
+        // Escenarios del plan a 12 meses: suscriptores activos ~1,200 (conservador) / ~3,500 (optimista)
+        function getScenarioParams() {
+            if (state.scenario === 'optimista') {
+                return { newSubsBase: 182, growth: 1.13, opex: 2000.00, label: 'Optimista' };
+            }
+            return { newSubsBase: 126, growth: 1.025, opex: 1500.00, label: 'Conservador' };
+        }
+
+        // Chart instances storage to avoid reuse memory issues
+        let simSensitivityChart = null;
+        let competitorChart = null;
+        let waterfallChart = null;
+        let projectionChart = null;
+
+        // Benchmark dataset — tabla de competidores del plan MVP (§2), Ontario
+        const competitorDataset = [
+            { name: "Cascade Platinum Plus (P&G)", format: "Pods / ActionPacs", packaging: "Tina plástica rígida", price: 28.99, loads: 62, eco: "No", channel: "Walmart, Loblaws, Metro, Amazon.ca" },
+            { name: "Finish Quantum Ultimate (Reckitt)", format: "Pods / taquetes", packaging: "Bolsa plástica", price: 24.99, loads: 64, eco: "No", channel: "Sobeys, Costco, Canadian Tire, Amazon.ca" },
+            { name: "Seventh Generation Free & Clear", format: "Pods vegetales", packaging: "Bolsa plástica flexible", price: 18.99, loads: 45, eco: "Sí (USDA Biobased)", channel: "Loblaws, Whole Foods, Well.ca, Amazon.ca" },
+            { name: "Attitude Nature+", format: "Pods / líquido", packaging: "Cartón reciclable", price: 16.99, loads: 40, eco: "Sí (EWG Verified)", channel: "Metro, Well.ca, tiendas eco de Ontario" },
+            { name: "Blueland Dishwasher Tablets", format: "Tabletas prensadas", packaging: "Lata rellenable / refill", price: 22.00, loads: 60, eco: "Sí (libre de plástico)", channel: "D2C (envío a Canadá), specialty" },
+            { name: "Tru Earth Eco-Strips", format: "Tiras / sheets", packaging: "Sobres de cartón", price: 19.95, loads: 30, eco: "Sí", channel: "D2C, Amazon.ca, tiendas eco" }
+        ];
+
+
+        // COGS por caja — plan MVP: $2.70 (producto $2.10 + empaque $0.60), sin PVA
+        function getCOGSDetails() {
+            if (state.isEco) {
+                return {
+                    ingredients: 2.10,   // detergente y formulantes (60 cargas)
+                    pvaFilm: 0.00,       // formato hojas: sin película PVA
+                    packaging: 0.60,     // cartón sin plástico
+                    copacking: 0.00,
+                    qcWaterHardness: 0.00,
+                    total: 2.70,
+                    label: "🌱 Hojas Eco (sin PVA · $2.70)"
+                };
+            } else {
+                return {
+                    ingredients: 2.10,
+                    pvaFilm: 0.90,
+                    packaging: 0.50, // caja plástica estándar
+                    copacking: 1.25,
+                    qcWaterHardness: 0.35,
+                    total: 5.10,
+                    label: "⚡ Convencional (pods · estimado mercado)"
+                };
+            }
+        }
+
+        // Calculate Payment Processing Fee (Stripe/Shopify Pay: 2.9% + $0.30 CAD)
+        function getPaymentFee(price) {
+            return (price * 0.029) + 0.30;
+        }
+
+        // Calculate all financial KPIs for current state
+        function calculateMetrics() {
+            const cogsObj = getCOGSDetails();
+            const cogs = cogsObj.total;
+            const price = state.price;
+            const shipping = state.shipping;
+            const fulfillment = state.fulfillment;
+            const paymentFee = getPaymentFee(price);
+
+            // Margins
+            const grossMargin = price - cogs;
+            const grossMarginPct = (grossMargin / price) * 100;
+
+            const cm1 = price - cogs - fulfillment - shipping - paymentFee;
+            const cm1Pct = (cm1 / price) * 100;
+
+            // LTV & Payback — plan: empaque dura ~55-60 días (6.5 cajas/año), horizonte 12 meses
+            const boxesPerCycle = 12 / 6.5;
+            let lifespanMonths = 1;
+            let purchases = 1;
+            let ltvCM1 = cm1;
+            let ltvRevenue = price;
+            let ltvCacRatio = 0;
+            let paybackMonths = 0;
+
+            if (state.isD2C) {
+                const churnRate = Math.max(state.churn, 0.5) / 100;
+                lifespanMonths = 1 / churnRate;
+                purchases = Math.min(lifespanMonths, 12) / boxesPerCycle;
+                ltvCM1 = cm1 * purchases;
+                ltvRevenue = price * purchases;
+                ltvCacRatio = state.cac > 0 ? (ltvCM1 / state.cac) : 0;
+                paybackMonths = cm1 > 0 ? (state.cac / cm1) : 99;
+            } else {
+                // Single purchase model
+                ltvCM1 = cm1;
+                ltvCacRatio = state.cac > 0 ? (cm1 / state.cac) : 0;
+                paybackMonths = cm1 > 0 ? (state.cac / cm1) : 99; // Orders needed
+            }
+
+            // Break-Even Units
+            const breakEvenUnits = cm1 > 0 ? Math.ceil(state.fixedCosts / cm1) : 'N/A';
+
+            return {
+                cogs,
+                cogsObj,
+                grossMargin,
+                grossMarginPct,
+                shipping,
+                fulfillment,
+                paymentFee,
+                cm1,
+                cm1Pct,
+                lifespanMonths,
+                purchases,
+                ltvCM1,
+                ltvRevenue,
+                ltvCacRatio,
+                paybackMonths,
+                breakEvenUnits,
+                costPerLoad: price / state.loadsPerBox
+            };
+        }
+
+        function updateSimulation() {
+            // Read values from inputs
+            state.isEco = document.getElementById('prodEco').checked;
+            state.isD2C = document.getElementById('modelSub').checked;
+            state.scenario = document.getElementById('escCons').checked ? 'conservador' : 'optimista';
+            state.price = parseFloat(document.getElementById('sliderPrice').value);
+            state.fulfillment = parseFloat(document.getElementById('sliderFulfillment').value);
+            state.shipping = parseFloat(document.getElementById('sliderShipping').value);
+            state.cac = parseFloat(document.getElementById('sliderCAC').value);
+            state.churn = parseFloat(document.getElementById('sliderChurn').value);
+            state.fixedCosts = getScenarioParams().opex;
+
+            // Toggle UI visibility for Churn if D2C vs Retail
+            const churnContainer = document.getElementById('churnContainer');
+            if (state.isD2C) {
+                churnContainer.style.opacity = '1';
+                churnContainer.querySelectorAll('input').forEach(i => i.disabled = false);
+            } else {
+                churnContainer.style.opacity = '0.4';
+                churnContainer.querySelectorAll('input').forEach(i => i.disabled = true);
+            }
+
+            // Update DOM badges
+            document.getElementById('valPrice').innerText = `$${state.price.toFixed(2)} CAD`;
+            document.getElementById('valFulfillment').innerText = `$${state.fulfillment.toFixed(2)} CAD`;
+            document.getElementById('valShipping').innerText = `$${state.shipping.toFixed(2)} CAD`;
+            document.getElementById('valCAC').innerText = `$${state.cac.toFixed(2)} CAD`;
+            document.getElementById('valChurn').innerText = `${state.churn.toFixed(1)}%`;
+
+            // Calculate Metrics
+            const m = calculateMetrics();
+
+            // Update KPI Cards
+            const kpiGross = document.getElementById('kpiGrossMargin');
+            kpiGross.innerText = `${m.grossMarginPct.toFixed(1)}%`;
+            document.getElementById('kpiGrossMarginSub').innerText = `COGS: $${m.cogs.toFixed(2)} CAD`;
+            
+            const cardGross = document.getElementById('kpiCardGross');
+            cardGross.className = "kpi-card " + (m.grossMarginPct >= 60 ? "" : (m.grossMarginPct >= 45 ? "warning" : "danger"));
+
+            document.getElementById('kpiCM1').innerText = `$${m.cm1.toFixed(2)} CAD`;
+            document.getElementById('kpiCM1Sub').innerText = `${m.cm1Pct.toFixed(1)}% por caja`;
+
+            document.getElementById('kpiLTVCAC').innerText = `${m.ltvCacRatio.toFixed(2)}x`;
+            document.getElementById('kpiLTVSub').innerText = state.isD2C
+                ? `LTV: $${m.ltvCM1.toFixed(2)} CAD · ${m.purchases.toFixed(1)} cajas/año`
+                : 'Modelo Venta Única Retail';
+
+            document.getElementById('kpiBreakEven').innerText = typeof m.breakEvenUnits === 'number' ? `${m.breakEvenUnits.toLocaleString()} un/mes` : 'N/A';
+            document.getElementById('kpiBreakEvenSub').innerText = `Para cubrir $${state.fixedCosts.toLocaleString('en-US', { minimumFractionDigits: 0 })} CAD fijos/mes (plan: $${(state.fixedCosts * 12).toLocaleString('en-US', { minimumFractionDigits: 0 })}/año)`;
+            
+            document.getElementById('kpiPayback').innerText = `${m.paybackMonths.toFixed(1)} ${state.isD2C ? 'meses' : 'pedidos'}`;
+            document.getElementById('kpiPaybackSub').innerText = state.isD2C ? 'Meses para recuperar CAC' : 'Ventas para cubrir CAC';
+
+            // Executive Insight Update
+            const insight = document.getElementById('insightExecutive');
+            if (m.cm1 <= 0) {
+                insight.innerHTML = `<span class="text-danger fw-bold">Atención: Margen CM1 negativo (-$${Math.abs(m.cm1).toFixed(2)} CAD).</span> El precio actual no cubre producto, fulfillment, envío postal y pasarela. Sube el precio o reduce fulfillment y envío hacia <em>Lettermail</em> ($3.50).`;
+            } else if (m.ltvCacRatio < 1.5) {
+                insight.innerHTML = `<span class="text-danger fw-bold">Unidad económica inviable (LTV/CAC: ${m.ltvCacRatio.toFixed(2)}x).</span> Con un CAC de $${state.cac.toFixed(2)} el plan no recupera la inversión dentro de 12 meses. Baja el CAC por debajo de $24 o recorta el <em>churn</em>.`;
+            } else if (m.ltvCacRatio < 3.0) {
+                insight.innerHTML = `<span class="text-warning fw-bold">Unidad económica ajustada (LTV/CAC: ${m.ltvCacRatio.toFixed(2)}x | CM1: $${m.cm1.toFixed(2)} CAD).</span> El estudio marca este punto como riesgo alto: el ratio queda por debajo del KPI de viabilidad (&gt;3.0x). En el plan MVP el ratio es 2.03x con CAC $24 y churn 7.5%.`;
+            } else {
+                insight.innerHTML = `<span class="text-success fw-bold">Modelo rentable (LTV/CAC: ${m.ltvCacRatio.toFixed(2)}x | CM1: $${m.cm1.toFixed(2)} CAD).</span> Supera el KPI de viabilidad (&gt;3.0x): la estructura de costos permite acelerar la inversión en Meta Ads y Google Search en la GTA.`;
+            }
+
+            // Badge de gastos fijos de la proyección
+            document.getElementById('projFijosBadge').innerText =
+                `Escenario ${getScenarioParams().label} · fijos $${state.fixedCosts.toLocaleString('en-US', { minimumFractionDigits: 0 })} CAD/mes · equilibrio total plan: 1,080 subs`;
+
+            // Render/Update all dependent modules & charts
+            renderSimSensitivityChart();
+            renderCompetitorTableAndChart();
+            renderCOGSTableAndWaterfall();
+            renderProjectionTableAndChart();
+            renderSensitivityMatrix();
+        }
+
+        function renderSimSensitivityChart() {
+            const ctx = document.getElementById('simSensitivityChart').getContext('2d');
+            
+            const pricePoints = [];
+            const cm1Values = [];
+            const marginPctValues = [];
+
+            const cogs = getCOGSDetails().total;
+            const shipping = state.shipping;
+            const fulfillment = state.fulfillment;
+
+            for (let p = 14.0; p <= 25.0; p += 1.0) {
+                pricePoints.push(`$${p.toFixed(2)}`);
+                const fee = getPaymentFee(p);
+                const cm = p - cogs - fulfillment - shipping - fee;
+                const gmPct = ((p - cogs) / p) * 100;
+                cm1Values.push(cm.toFixed(2));
+                marginPctValues.push(gmPct.toFixed(1));
+            }
+
+            if (simSensitivityChart) {
+                simSensitivityChart.destroy();
+            }
+
+            simSensitivityChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: pricePoints,
+                    datasets: [
+                        {
+                            label: 'Margen CM1 ($ CAD)',
+                            data: cm1Values,
+                            borderColor: '#059669',
+                            backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                            fill: true,
+                            yAxisID: 'y1',
+                            tension: 0.3,
+                            borderWidth: 3
+                        },
+                        {
+                            label: 'Margen Bruto (%)',
+                            data: marginPctValues,
+                            borderColor: '#0284c7',
+                            backgroundColor: 'transparent',
+                            borderDash: [5, 5],
+                            yAxisID: 'y2',
+                            tension: 0.3,
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    scales: {
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: { display: true, text: 'Margen CM1 ($ CAD)' }
+                        },
+                        y2: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: { display: true, text: 'Margen Bruto (%)' },
+                            grid: { drawOnChartArea: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderCompetitorTableAndChart() {
+            const tbody = document.getElementById('competitorsTbody');
+            tbody.innerHTML = '';
+
+            const m = calculateMetrics();
+            const mvpRow = {
+                name: "NUESTRO MVP (HOJAS ECO ONTARIO)",
+                format: state.isEco ? "Tiras / sheets" : "Pods sintéticos",
+                packaging: state.isEco ? "Cartón sin plástico" : "Caja plástica estándar",
+                price: state.price,
+                loads: state.loadsPerBox,
+                eco: state.isEco ? "Sí (EcoLogo en trámite)" : "No",
+                channel: state.isD2C ? "D2C Suscripción Recurrente" : "Venta Única Retail"
+            };
+
+            const fullDataset = [...competitorDataset, mvpRow];
+
+            fullDataset.forEach(c => {
+                const costPerLoad = (c.price / c.loads).toFixed(2);
+                const isMVP = c.name.includes("NUESTRO MVP");
+                const tr = document.createElement('tr');
+                if (isMVP) tr.className = 'highlight-mvp-row';
+
+                tr.innerHTML = `
+                    <td class="fw-bold">${isMVP ? `<i class="fa-solid fa-star text-warning me-1"></i> ${c.name}` : c.name}</td>
+                    <td>${c.format}</td>
+                    <td>${c.packaging}</td>
+                    <td>$${c.price.toFixed(2)} CAD</td>
+                    <td>${c.loads}</td>
+                    <td class="fw-bold text-emerald">$${costPerLoad} CAD</td>
+                    <td>${c.eco.includes('Sí') ? `<span class="badge bg-success-subtle text-success border border-success">${c.eco}</span>` : `<span class="badge bg-light text-dark">${c.eco}</span>`}</td>
+                    <td><small>${c.channel}</small></td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Render Chart.js Bar Comparison
+            const ctx = document.getElementById('competitorChart').getContext('2d');
+            
+            const labels = fullDataset.map(c => c.name.replace(' (P&G)', '').replace(' (Reckitt)', ''));
+            const dataValues = fullDataset.map(c => (c.price / c.loads).toFixed(2));
+            const bgColors = fullDataset.map(c => c.name.includes("NUESTRO MVP") ? '#059669' : '#cbd5e1');
+            const borderColors = fullDataset.map(c => c.name.includes("NUESTRO MVP") ? '#047857' : '#94a3b8');
+
+            if (competitorChart) {
+                competitorChart.destroy();
+            }
+
+            competitorChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Precio por Carga ($ CAD / Lavada)',
+                        data: dataValues,
+                        backgroundColor: bgColors,
+                        borderColor: borderColors,
+                        borderWidth: 2,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` Costo por carga: $${context.raw} CAD`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Precio por Carga ($ CAD)' }
+                        },
+                        x: {
+                            ticks: { maxRotation: 45, minRotation: 25 }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderCOGSTableAndWaterfall() {
+            const cogsObj = getCOGSDetails();
+            const tbody = document.getElementById('cogsTableBody');
+            document.getElementById('cogsHeaderBadge').innerText = cogsObj.label;
+
+            const items = state.isEco ? [
+                { name: "Detergente y formulantes biodegradables (60 cargas)", provider: "Fabricación en la GTA", cost: cogsObj.ingredients },
+                { name: "Empaque de cartón sin plástico (primario + secundario)", provider: "Empaque reciclado Ontario", cost: cogsObj.packaging }
+            ] : [
+                { name: "Ingredientes Activos / Enzimas Biodegradables", provider: "Químicos estándar", cost: cogsObj.ingredients },
+                { name: "Película PVA Hidrosoluble", provider: "Encapsulado soluble", cost: cogsObj.pvaFilm },
+                { name: "Empaque Secundario Cartón/Caja", provider: "Plástico convencional", cost: cogsObj.packaging },
+                { name: "Mano de Obra & Co-packing", provider: "Planta Mississauga / Brampton", cost: cogsObj.copacking },
+                { name: "Control Calidad & Prueba Dureza Agua", provider: "Lab Regional GTA", cost: cogsObj.qcWaterHardness }
+            ];
+
+            tbody.innerHTML = '';
+            items.forEach(i => {
+                const pct = ((i.cost / cogsObj.total) * 100).toFixed(1);
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${i.name}</td>
+                    <td><small class="text-muted">${i.provider}</small></td>
+                    <td class="fw-bold">$${i.cost.toFixed(2)} CAD</td>
+                    <td>${pct}%</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Total row
+            const totalTr = document.createElement('tr');
+            totalTr.className = 'fw-bold table-light';
+            totalTr.innerHTML = `
+                <td>TOTAL COGS POR CAJA</td>
+                <td>-</td>
+                <td class="text-emerald">$${cogsObj.total.toFixed(2)} CAD</td>
+                <td>100.0%</td>
+            `;
+            tbody.appendChild(totalTr);
+
+            // Waterfall Chart Rendering
+            const ctx = document.getElementById('waterfallChart').getContext('2d');
+            const price = state.price;
+            const paymentFee = getPaymentFee(price);
+            const cm1 = price - cogsObj.total - state.fulfillment - state.shipping - paymentFee;
+            const cac = state.cac;
+            const cm2 = cm1 - cac;
+
+            if (waterfallChart) {
+                waterfallChart.destroy();
+            }
+
+            waterfallChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Precio Venta', '(-) COGS', '(-) Fulfillment 3PL', '(-) Envío Postal', '(-) Pasarela Pago', '(=) Margen CM1', '(-) CAC Mktg', '(=) Margen CM2'],
+                    datasets: [{
+                        label: 'Estructura por Unidad ($ CAD)',
+                        data: [
+                            price,
+                            -cogsObj.total,
+                            -state.fulfillment,
+                            -state.shipping,
+                            -paymentFee,
+                            cm1,
+                            -cac,
+                            cm2
+                        ],
+                        backgroundColor: [
+                            '#0284c7',
+                            '#ef4444',
+                            '#f59e0b',
+                            '#f59e0b',
+                            '#64748b',
+                            '#059669',
+                            '#ec4899',
+                            cm2 >= 0 ? '#10b981' : '#dc2626'
+                        ],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            title: { display: true, text: 'Monto ($ CAD)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderProjectionTableAndChart() {
+            const tbody = document.getElementById('projectionTbody');
+            tbody.innerHTML = '';
+
+            const m = calculateMetrics();
+            const cogs = m.cogs;
+            const shipping = state.shipping;
+            const fulfillment = state.fulfillment;
+            const paymentFee = m.paymentFee;
+            const price = state.price;
+            const cac = state.cac;
+            const opex = state.fixedCosts;
+            const sc = getScenarioParams();
+
+            const months = [];
+            const mrrValues = [];
+            const netProfits = [];
+            const cumCashFlows = [];
+
+            let activeSubs = 0;
+            let cumCash = 0;
+
+            for (let month = 1; month <= 12; month++) {
+                // Altas calibradas al escenario del plan (churn mensual según slider)
+                const newSubs = Math.round(sc.newSubsBase * Math.pow(sc.growth, month - 1));
+                const churned = month === 1 ? 0 : Math.round(activeSubs * (state.churn / 100));
+                
+                if (state.isD2C) {
+                    activeSubs = month === 1 ? newSubs : (activeSubs - churned + newSubs);
+                } else {
+                    activeSubs = newSubs; // Non-recurring retail orders
+                }
+
+                const mrr = activeSubs * price;
+                const totalCogs = activeSubs * cogs;
+                const totalFulfillment = activeSubs * fulfillment;
+                const totalShipping = activeSubs * shipping;
+                const totalFees = activeSubs * paymentFee;
+                const totalCAC = newSubs * cac;
+                const netProfit = mrr - totalCogs - totalFulfillment - totalShipping - totalFees - totalCAC - opex;
+
+                cumCash += netProfit;
+
+                months.push(`Mes ${month}`);
+                mrrValues.push(mrr);
+                netProfits.push(netProfit);
+                cumCashFlows.push(cumCash);
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="fw-bold">Mes ${month}</td>
+                    <td class="text-success">+${newSubs}</td>
+                    <td class="text-danger">${state.isD2C ? `-${churned}` : 'N/A'}</td>
+                    <td class="fw-bold">${activeSubs.toLocaleString()}</td>
+                    <td class="fw-bold text-dark">$${mrr.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td>$${totalCogs.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                    <td>$${totalFulfillment.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                    <td>$${totalShipping.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                    <td>$${totalFees.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                    <td>$${totalCAC.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                    <td>$${opex.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                    <td class="fw-bold ${netProfit >= 0 ? 'text-success' : 'text-danger'}">$${netProfit.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                    <td class="fw-bold ${cumCash >= 0 ? 'text-emerald' : 'text-danger'}">$${cumCash.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+
+            // Render Projection Chart
+            const ctx = document.getElementById('projectionChart').getContext('2d');
+
+            if (projectionChart) {
+                projectionChart.destroy();
+            }
+
+            projectionChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: months,
+                    datasets: [
+                        {
+                            type: 'line',
+                            label: 'Flujo de Caja Acumulado ($ CAD)',
+                            data: cumCashFlows,
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            fill: true,
+                            borderWidth: 3,
+                            yAxisID: 'y1'
+                        },
+                        {
+                            type: 'bar',
+                            label: 'Ingreso Mensual / MRR ($ CAD)',
+                            data: mrrValues,
+                            backgroundColor: '#0284c7',
+                            borderRadius: 4,
+                            yAxisID: 'y2'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y1: {
+                            type: 'linear',
+                            position: 'left',
+                            title: { display: true, text: 'Flujo Acumulado ($ CAD)' }
+                        },
+                        y2: {
+                            type: 'linear',
+                            position: 'right',
+                            title: { display: true, text: 'Ventas Mensuales ($ CAD)' },
+                            grid: { drawOnChartArea: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderSensitivityMatrix() {
+            const table = document.getElementById('sensTable');
+            table.innerHTML = '';
+
+            const prices = [13.59, 16.99, 19.99, 22.49, 24.99];
+            const shippings = [3.20, 3.50, 4.50, 6.50, 7.50];
+            const cogs = getCOGSDetails().total;
+            const fulfillment = state.fulfillment;
+
+            // Header row
+            const thead = document.createElement('thead');
+            let headerHTML = '<tr><th>Precio \\ Envío</th>';
+            shippings.forEach(s => {
+                headerHTML += `<th>Envío $${s.toFixed(2)}</th>`;
+            });
+            headerHTML += '</tr>';
+            thead.innerHTML = headerHTML;
+            table.appendChild(thead);
+
+            // Body rows
+            const tbody = document.createElement('tbody');
+
+            prices.forEach(p => {
+                const tr = document.createElement('tr');
+                let rowHTML = `<td class="fw-bold bg-light">Precio $${p.toFixed(2)}</td>`;
+
+                shippings.forEach(s => {
+                    const fee = getPaymentFee(p);
+                    const cm1 = p - cogs - fulfillment - s - fee;
+
+                    let bgClass = '';
+                    let textColor = '#ffffff';
+
+                    if (cm1 >= 10.0) {
+                        bgClass = 'background-color: #15803d;'; // Dark green
+                    } else if (cm1 >= 7.0) {
+                        bgClass = 'background-color: #22c55e; color: #000;'; // Light green
+                        textColor = '#000000';
+                    } else if (cm1 >= 5.0) {
+                        bgClass = 'background-color: #eab308; color: #000;'; // Yellow
+                        textColor = '#000000';
+                    } else {
+                        bgClass = 'background-color: #ef4444;'; // Red
+                    }
+
+                    rowHTML += `<td style="${bgClass} color: ${textColor};" class="sens-cell">$${cm1.toFixed(2)}</td>`;
+                });
+
+                rowHTML += '</tr>';
+                tbody.innerHTML += rowHTML;
+            });
+
+            table.appendChild(tbody);
+        }
+
+        function exportToExcel() {
+            const wb = XLSX.utils.book_new();
+            const m = calculateMetrics();
+
+            // SHEET 1: Resumen KPIs
+            const kpiData = [
+                ["SIMULADOR DE NEGOCIO FMCG ONTARIO - RESUMEN EJECUTIVO (PLAN MVP HOJAS ECO)"],
+                ["Fecha de Exportación", new Date().toLocaleString()],
+                [],
+                ["PARÁMETRO", "VALOR CONFIGURADO"],
+                ["Tipo de Producto", state.isEco ? "Ecológico (tiras / sheets, sin PVA)" : "Convencional (pods)"],
+                ["Modelo de Negocio", state.isD2C ? "Suscripción D2C Recurrente" : "Venta Única Retail"],
+                ["Escenario 12 Meses", getScenarioParams().label],
+                ["Precio por Caja (CAD)", state.price.toFixed(2)],
+                ["Fulfillment 3PL (CAD)", state.fulfillment.toFixed(2)],
+                ["Costo de Envío Postal (CAD)", state.shipping.toFixed(2)],
+                ["Costo Adquisición Cliente - CAC (CAD)", state.cac.toFixed(2)],
+                ["Tasa de Churn Mensual (%)", state.churn.toFixed(1) + "%"],
+                ["Gastos Fijos Mensuales (CAD)", state.fixedCosts.toFixed(2)],
+                [],
+                ["INDICADOR DE RENDIMIENTO (KPI)", "VALOR", "UNIDAD"],
+                ["COGS Unitario", m.cogs.toFixed(2), "CAD"],
+                ["Margen Bruto %", m.grossMarginPct.toFixed(1), "%"],
+                ["Margen Contribución CM1", m.cm1.toFixed(2), "CAD"],
+                ["Margen CM1 %", m.cm1Pct.toFixed(1), "%"],
+                ["LTV Margen de Contribución (12m)", m.ltvCM1.toFixed(2), "CAD"],
+                ["Ratio LTV / CAC", m.ltvCacRatio.toFixed(2), "x"],
+                ["Punto de Equilibrio (Break-Even)", m.breakEvenUnits, "Unidades/Mes"],
+                ["Periodo de Payback CAC", m.paybackMonths.toFixed(1), state.isD2C ? "Meses" : "Pedidos"]
+            ];
+            const ws1 = XLSX.utils.aoa_to_sheet(kpiData);
+            XLSX.utils.book_append_sheet(wb, ws1, "Resumen_KPIs");
+
+            // SHEET 2: Benchmarking Ontario
+            const fullDataset = [...competitorDataset, {
+                name: "NUESTRO MVP (HOJAS ECO ONTARIO)",
+                format: state.isEco ? "Tiras / sheets" : "Pods sintéticos",
+                packaging: state.isEco ? "Cartón sin plástico" : "Caja plástica",
+                price: state.price,
+                loads: state.loadsPerBox,
+                eco: state.isEco ? "Sí (EcoLogo en trámite)" : "No",
+                channel: state.isD2C ? "D2C Suscripción" : "Retail"
+            }];
+            const benchData = [
+                ["Marca / Competidor", "Formato", "Empaque", "Precio Retail ($ CAD)", "Cargas", "Precio / Carga ($ CAD)", "Certificación Eco", "Canal Principal"]
+            ];
+            fullDataset.forEach(c => {
+                benchData.push([
+                    c.name, c.format, c.packaging, c.price, c.loads, (c.price / c.loads).toFixed(2), c.eco, c.channel
+                ]);
+            });
+            const ws2 = XLSX.utils.aoa_to_sheet(benchData);
+            XLSX.utils.book_append_sheet(wb, ws2, "Benchmarking_Ontario");
+
+            // SHEET 3: Unit Economics & COGS
+            const cogsObj = getCOGSDetails();
+            const unitComponents = state.isEco ? [
+                ["Detergente y formulantes (60 cargas)", "Fabricación en la GTA", cogsObj.ingredients],
+                ["Empaque de cartón sin plástico", "Empaque reciclado Ontario", cogsObj.packaging]
+            ] : [
+                ["Ingredientes Activos", "Sintéticos Estándar", cogsObj.ingredients],
+                ["Película PVA", "Hidrosoluble Soluble", cogsObj.pvaFilm],
+                ["Empaque Secundario", "Caja Plástica Estándar", cogsObj.packaging],
+                ["Mano de Obra & Co-packing", "Planta Mississauga", cogsObj.copacking],
+                ["QC & Dureza Agua", "Lab GTA Regional", cogsObj.qcWaterHardness]
+            ];
+            const unitData = [
+                ["ESTRUCTURA DE COGS Y UNIT ECONOMICS (GTA / ONTARIO)"],
+                ["Componente", "Proveedor / Especificación", "Costo ($ CAD)"],
+                ...unitComponents,
+                ["TOTAL COGS", "-", cogsObj.total],
+                [],
+                ["CASCADA DE MARGEN CM1 & CM2"],
+                ["Precio Venta", state.price.toFixed(2)],
+                ["(-) COGS", cogsObj.total.toFixed(2)],
+                ["(-) Fulfillment 3PL", state.fulfillment.toFixed(2)],
+                ["(-) Envío Postal (Lettermail)", state.shipping.toFixed(2)],
+                ["(-) Pasarela Pago", getPaymentFee(state.price).toFixed(2)],
+                ["(=) Margen CM1", m.cm1.toFixed(2)],
+                ["(-) CAC Marketing", state.cac.toFixed(2)],
+                ["(=) Margen CM2 Net", (m.cm1 - state.cac).toFixed(2)]
+            ];
+            const ws3 = XLSX.utils.aoa_to_sheet(unitData);
+            XLSX.utils.book_append_sheet(wb, ws3, "Unit_Economics_GTA");
+
+            // SHEET 4: Proyección 12 Meses
+            const sc = getScenarioParams();
+            const projData = [
+                ["Escenario", sc.label],
+                ["Churn mensual (%)", state.churn.toFixed(1) + "%"],
+                ["Gastos fijos mensuales ($)", state.fixedCosts.toFixed(2)],
+                [],
+                ["Mes", "Nuevos Clientes", "Churn", "Activos", "MRR / Ventas ($)", "COGS ($)", "Fulfillment ($)", "Envío ($)", "Pasarela ($)", "CAC Total ($)", "OPEX Fijos ($)", "Utilidad Neta ($)", "Caja Acumulada ($)"]
+            ];
+            let activeSubs = 0;
+            let cumCash = 0;
+            for (let month = 1; month <= 12; month++) {
+                const newSubs = Math.round(sc.newSubsBase * Math.pow(sc.growth, month - 1));
+                const churned = month === 1 ? 0 : Math.round(activeSubs * (state.churn / 100));
+                activeSubs = state.isD2C ? (month === 1 ? newSubs : activeSubs - churned + newSubs) : newSubs;
+                const mrr = activeSubs * state.price;
+                const totalCogs = activeSubs * cogsObj.total;
+                const totalFulfillment = activeSubs * state.fulfillment;
+                const totalShipping = activeSubs * state.shipping;
+                const totalFees = activeSubs * getPaymentFee(state.price);
+                const totalCAC = newSubs * state.cac;
+                const netProfit = mrr - totalCogs - totalFulfillment - totalShipping - totalFees - totalCAC - state.fixedCosts;
+                cumCash += netProfit;
+
+                projData.push([
+                    `Mes ${month}`, newSubs, state.isD2C ? churned : 0, activeSubs, mrr.toFixed(2), totalCogs.toFixed(2),
+                    totalFulfillment.toFixed(2), totalShipping.toFixed(2), totalFees.toFixed(2), totalCAC.toFixed(2), state.fixedCosts.toFixed(2),
+                    netProfit.toFixed(2), cumCash.toFixed(2)
+                ]);
+            }
+            const ws4 = XLSX.utils.aoa_to_sheet(projData);
+            XLSX.utils.book_append_sheet(wb, ws4, "Proyeccion_12M");
+
+            // SHEET 5: Sensibilidad & Riesgos
+            const sensPrices = [13.59, 16.99, 19.99, 22.49, 24.99];
+            const sensShippings = [3.20, 3.50, 4.50, 6.50, 7.50];
+            const sensData = [
+                ["MATRIZ DE SENSIBILIDAD - MARGEN CM1 ($ CAD, incluye fulfillment $" + state.fulfillment.toFixed(2) + ")"],
+                ["Precio \\ Envío", ...sensShippings.map(s => `Envío $${s.toFixed(2)}`)]
+            ];
+            sensPrices.forEach(p => {
+                const row = [`Precio $${p.toFixed(2)}`];
+                sensShippings.forEach(s => {
+                    const fee = getPaymentFee(p);
+                    const cm1 = p - cogsObj.total - state.fulfillment - s - fee;
+                    row.push(cm1.toFixed(2));
+                });
+                sensData.push(row);
+            });
+
+            const ws5 = XLSX.utils.aoa_to_sheet(sensData);
+            XLSX.utils.book_append_sheet(wb, ws5, "Matriz_Riesgo_Sensibilidad");
+
+            // Export workbook file
+            XLSX.writeFile(wb, "simulador-negocio-ontario-hojas-eco.xlsx");
+        }
+
+        window.onload = function() {
+            updateSimulation();
+        };
+    </script>
+</body>
+</html>

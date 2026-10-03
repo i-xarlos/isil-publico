@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Infografía Clase 5 — ¿Cómo organizar mi conocimiento con IA? · Inteligencia Artificial Aplicada</title>
-<meta name="description" content="Infografía de estudio de la Clase 5 de Inteligencia Artificial Aplicada (ISIL, 2026-2): categorización automática, mapas mentales, herramientas y visualización de relaciones.">
+<meta name="description" content="Infografía de estudio de la Clase 5 de Inteligencia Artificial Aplicada (ISIL, 2026-2): categorización automática, mapas mentales, herramientas, visualización de relaciones, estructura del prompt (5 partes, ejemplos) y su diferencia con el super prompt en Gemini.">
 <style>
   :root{
     --bg:#0d1526;
@@ -311,6 +311,21 @@
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Bloque ancho (fuera del grid) ---------- */
+  .ampliado > .grid ~ *{margin-top:14px;}
+  .bloque p strong{color:var(--ink);}
+
+  /* ---------- Tabla de comparación con cabecera ---------- */
+  .mini-tabla.cabecera tr:first-child th{
+    background:var(--card-2);
+    color:var(--ink);
+    border-bottom:1px solid #35496e;
+    font-size:.8rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+  .mini-tabla em{color:var(--blue);font-style:normal;}
 </style>
 </head>
 <body>
@@ -483,6 +498,116 @@
     </div>
   </section>
 
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">7</span> El prompt: estructura, partes y ejemplo</p>
+    <div class="grid">
+      <article class="bloque b-teal">
+        <h3>Estructura del prompt: 5 partes</h3>
+        <table class="mini-tabla">
+          <tr><th>1. Rol</th><td>Quién habla y con qué nivel. <em>Ej.: "actúa como consultor de desarrollo organizacional".</em></td></tr>
+          <tr><th>2. Contexto</th><td>Antecedentes, para que no adivine. <em>Ej.: "empresa tecnológica que no logra lanzar productos nuevos".</em></td></tr>
+          <tr><th>3. Tarea</th><td>El verbo de acción, claro y directo. <em>Ej.: "crea cinco dinámicas de Design Thinking".</em></td></tr>
+          <tr><th>4. Restricción y formato</th><td>Qué evitar y cómo entregar. <em>Ej.: "lista numerada, sesiones de 1 hora, sin tecnicismos".</em></td></tr>
+          <tr><th>5. Objetivo</th><td>El resultado que esperas. <em>Ej.: "que el equipo aplique resiliencia en la práctica".</em></td></tr>
+        </table>
+        <p>Las 5 partes caben en una sola instrucción. Un buen prompt es un brief de consultoría.</p>
+      </article>
+
+      <article class="bloque b-amber">
+        <h3>Ejemplo: de un prompt pobre a uno armado</h3>
+        <p><strong>Pobre:</strong> "Dime cómo mejorar la innovación en una empresa." La IA adivina y devuelve texto genérico.</p>
+        <p><strong>Armado:</strong> "Actúa como consultor de desarrollo organizacional (rol). Trabajo en una empresa tecnológica que no logra lanzar productos nuevos (contexto). Crea cinco dinámicas de Design Thinking (tarea) aplicables en sesiones de una hora (restricción), en lista numerada con nombre y beneficio principal (formato)."</p>
+        <p>Misma petición, otro nivel de respuesta: el armado entrega un borrador que ya puedes usar.</p>
+      </article>
+    </div>
+
+    <article class="bloque b-purple">
+      <h3>Diferencia: prompt estructurado vs super prompt</h3>
+      <table class="mini-tabla cabecera">
+        <tr><th>Criterio</th><th>Prompt estructurado</th><th>Super prompt</th></tr>
+        <tr><th>Qué es</th><td>Los 5 componentes bien definidos en una sola instrucción.</td><td>Prompt completo, con recomendaciones y conocimiento externo cargado.</td></tr>
+        <tr><th>Qué carga</th><td>Rol, contexto, tarea, restricción y formato.</td><td>Lo anterior + datos reales, archivos, fuentes y criterios de la empresa.</td></tr>
+        <tr><th>Cómo se arma</th><td>Tú lo escribes.</td><td>Le pides a Gemini que lo elabore a partir de tu pre-prompt y pegas sus indicaciones.</td></tr>
+        <tr><th>Resultado</th><td>Buen borrador, rápido.</td><td>Mejor resultado y menos alucinación.</td></tr>
+        <tr><th>Cuándo usarlo</th><td>Encargos claros y chicos.</td><td>Informes, dashboards y entregables para directorio o cliente.</td></tr>
+      </table>
+      <p>Caso de clase: informe ejecutivo de Alicorp 2024 con PESTEL, Porter, FODA y KPIs, listo para directorio.</p>
+    </article>
+
+    <div class="panel">
+      <div class="flujo" role="img" aria-label="Del pre-prompt al super prompt en cuatro pasos: escribes tu petición en lenguaje cotidiano, le pides a Gemini que elabore el super prompt, cargas datos y fuentes reales, y ejecutas el resultado que revisas como consultor.">
+        <div class="paso c-blue">
+          <div class="cab"><span class="dot" style="background:var(--blue)">1</span><h3>Pre-prompt</h3></div>
+          <p>Escribes tu petición cotidiana: "informe completo de la empresa".</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-teal">
+          <div class="cab"><span class="dot" style="background:var(--teal)">2</span><h3>Pide el super prompt</h3></div>
+          <p>Le pides a Gemini que lo elabore con recomendaciones e indicaciones.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-purple">
+          <div class="cab"><span class="dot" style="background:var(--purple)">3</span><h3>Carga conocimiento</h3></div>
+          <p>Pegas sus indicaciones y añades datos, archivos y fuentes reales.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-amber">
+          <div class="cab"><span class="dot" style="background:var(--amber)">4</span><h3>Ejecuta y valida</h3></div>
+          <p>Recibes el informe y lo revisas como consultor, no como espectador.</p>
+        </div>
+      </div>
+      <p class="nota-relacion">Pre-prompt → super prompt → conocimiento externo → revisión humana</p>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-amber">8</span> Material complementario: Gemini en la práctica (PDF)</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Ficha técnica de Gemini</h3>
+        <table class="mini-tabla">
+          <tr><th>Nombre</th><td>Gemini (antes Bard) · gemini.google.com</td></tr>
+          <tr><th>Empresa</th><td>Google (Alphabet Inc.)</td></tr>
+          <tr><th>Origen</th><td>Bard en marzo 2023 → Gemini en febrero 2024</td></tr>
+          <tr><th>Fuerte</th><td>Multimodal nativo (texto, código, imagen, audio, video) y contexto de hasta 2 millones de tokens</td></tr>
+          <tr><th>Precio</th><td>Gratuita + Advanced ~US$ 19.99/mes; API por tokens con nivel gratuito</td></tr>
+          <tr><th>Se integra con</th><td>Docs, Gmail, Drive, Maps y Android</td></tr>
+        </table>
+      </article>
+
+      <article class="bloque b-amber">
+        <h3>Caso: dashboard de transporte</h3>
+        <table class="mini-tabla">
+          <tr><th>OTIF</th><td>83.0% — regular (17 de cada 100 con retraso o novedad)</td></tr>
+          <tr><th>Costo por tonelada</th><td>S/ 115.11 — óptimo, varía por ruta</td></tr>
+          <tr><th>Utilización</th><td>81.4% — bueno, con margen</td></tr>
+          <tr><th>Lead time</th><td>1.72 días — despacho a entrega</td></tr>
+        </table>
+        <p>Wireframe en 3 niveles: scorecard ejecutivo, Pareto de rutas y rendimiento por placa. Cifras de ejemplo generadas por la IA.</p>
+      </article>
+
+      <article class="bloque">
+        <h3>Canvas y conectores</h3>
+        <ul>
+          <li><strong>Canvas:</strong> el texto queda fijo en un panel para editar, resumir o cambiar el tono sin copiar y pegar.</li>
+          <li><strong>Código:</strong> vista previa de la app y consola de errores en vivo.</li>
+          <li><strong>Multimedia:</strong> infografías, cuestionarios y resumen en audio.</li>
+          <li><strong>Conectores con @:</strong> Drive, Gmail, Maps y YouTube se activan en Ajustes → Extensiones.</li>
+        </ul>
+      </article>
+
+      <article class="bloque b-teal">
+        <h3>Retos y verificación</h3>
+        <ul>
+          <li><strong>Reto 1:</strong> prompt estructurado para una consultoría (evidencia, enlace, Google Doc, correo).</li>
+          <li><strong>Reto 2:</strong> super prompt para un informe de investigación de empresa.</li>
+          <li><strong>Reto 3:</strong> super prompt para un dashboard con datos reales y su libro de cálculo.</li>
+          <li><strong>Vigila:</strong> la IA avisa de alucinaciones; todo número o cita es un borrador por verificar.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
   <section>
     <div class="ejemplo">
       <span class="marca" aria-hidden="true">E</span>
@@ -500,6 +625,8 @@
         <li>Define bien los criterios: la IA ordena, tú validas el 10%.</li>
         <li>Elige la herramienta por su fuerte, no por moda.</li>
         <li>Primero el mensaje, después el gráfico.</li>
+        <li>Un buen prompt es un brief de consultoría: rol, contexto, tarea, restricción y formato.</li>
+        <li>El super prompt es ese prompt + conocimiento externo cargado: mejor resultado, menos alucinación.</li>
         <li>La habilidad top es orquestar: IA + datos + método + criterio humano.</li>
       </ul>
       <p class="frase"><strong>Frase clave:</strong> "La IA ordena la información. Tú la conviertes en conocimiento."</p>
@@ -507,7 +634,7 @@
   </section>
 
   <footer class="pie">
-    <span>Fuente: apuntes de la Clase 5 — Inteligencia Artificial Aplicada (ISIL, 2026-2).</span>
+    <span>Fuente: apuntes de la Clase 5 — Inteligencia Artificial Aplicada (ISIL, 2026-2) + material complementario <a href="./gemini-ai-complementario-clase-5.pdf" style="color:#6aa7ff;">gemini-ai-complementario-clase-5.pdf</a>.</span>
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 

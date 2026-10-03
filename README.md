@@ -48,7 +48,7 @@ Contenido público (solo HTML).
 
 | # | Documento | Código | Preview |
 |---|---|---|---|
-| 20 | Código Enigmae Inteligencia Artificial | [código](./2026-2/Inteligencia-Artificial-Aplicada/clase-1/actividad-1/codigo-enigma-inteligencia-artificial-actividad-1.html) | [preview](https://i-xarlos.github.io/isil-publico/2026-2/Inteligencia-Artificial-Aplicada/clase-1/actividad-1/codigo-enigma-inteligencia-artificial-actividad-1.html) |
+| 20 | Código Enigma e Inteligencia Artificial | [código](./2026-2/Inteligencia-Artificial-Aplicada/clase-1/actividad-1/codigo-enigma-inteligencia-artificial-actividad-1.html) | [preview](https://i-xarlos.github.io/isil-publico/2026-2/Inteligencia-Artificial-Aplicada/clase-1/actividad-1/codigo-enigma-inteligencia-artificial-actividad-1.html) |
 | 21 | ¿Qué es la IA y por qué importa? | [código](./2026-2/Inteligencia-Artificial-Aplicada/clase-1/que-es-ia-y-por-que-importa-clase-1.html) | [preview](https://i-xarlos.github.io/isil-publico/2026-2/Inteligencia-Artificial-Aplicada/clase-1/que-es-ia-y-por-que-importa-clase-1.html) |
 | 22 | Riesgos y limitaciones de la IA | [código](./2026-2/Inteligencia-Artificial-Aplicada/clase-2/ia-riesgos-y-limitaciones-clase-2.html) | [preview](https://i-xarlos.github.io/isil-publico/2026-2/Inteligencia-Artificial-Aplicada/clase-2/ia-riesgos-y-limitaciones-clase-2.html) |
 | 23 | Curaduría y validación de información | [código](./2026-2/Inteligencia-Artificial-Aplicada/clase-3/ia-curaduria-validacion-clase-3.html) | [preview](https://i-xarlos.github.io/isil-publico/2026-2/Inteligencia-Artificial-Aplicada/clase-3/ia-curaduria-validacion-clase-3.html) |
@@ -72,5 +72,6 @@ Contenido público (solo HTML).
 | # | Documento | Código | Preview |
 |---|---|---|---|
 | 33 | Detergente Eco Canadá | [código](./proyecto/puredose/infografia-plan-negocio.html) | [preview](https://i-xarlos.github.io/isil-publico/proyecto/puredose/infografia-plan-negocio.html) |
+| 34 | Simulador de Negocio e Inteligencia FMCG — Ontario | [código](./proyecto/puredose/simulador-negocio-ontario-hojas-eco.html) | [preview](https://i-xarlos.github.io/isil-publico/proyecto/puredose/simulador-negocio-ontario-hojas-eco.html) |
 
 > Nota: en GitHub los HTML se ven como código. Para verlos renderizados usa `https://i-xarlos.github.io/isil-publico/<ruta-del-html>`.

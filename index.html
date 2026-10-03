@@ -72,7 +72,7 @@
   <header class="franja">
     <h1>Infografías de clase</h1>
     <p class="sub">ISIL · Ingeniería de Sistemas · Cohorte 2026-2</p>
-    <p class="meta">33 documentos de 5 cursos · lectura en página oscura · cada infografía es un HTML autocontenido</p>
+    <p class="meta">34 documentos de 5 cursos y Proyecto · lectura en página oscura · cada infografía es un HTML autocontenido</p>
   </header>
 
   <nav class="pestanas" aria-label="Filtrar por curso">
@@ -87,7 +87,7 @@
 
   <div class="buscador">
     <input type="search" id="q" placeholder="Buscar por tema, clase o curso…" aria-label="Buscar infografía">
-    <p class="contador" id="contador">Mostrando 33 de 33 documentos</p>
+    <p class="contador" id="contador">Mostrando 34 de 34 documentos</p>
   </div>
 
   <section class="curso" data-curso="Análisis y Diseño de Sistemas Avanzado">
@@ -312,12 +312,17 @@
   </section>
 
   <section class="curso" data-curso="Proyecto">
-    <h2 class="rotulo"><span class="num n-teal">&#9679;</span>Proyecto <span class="cuenta">(1)</span></h2>
+    <h2 class="rotulo"><span class="num n-teal">&#9679;</span>Proyecto <span class="cuenta">(2)</span></h2>
     <div class="grid">
     <a class="tarjeta c-teal" href="./proyecto/puredose/infografia-plan-negocio.html">
       <span class="badge">Guía</span>
       <h3>Detergente Eco Canadá</h3>
       <p class="res">Detergente concentrado para lavaplatos en sachets individuales · E-commerce D2C · St. Thomas, Ontario</p>
+    </a>
+    <a class="tarjeta c-teal" href="./proyecto/puredose/simulador-negocio-ontario-hojas-eco.html">
+      <span class="badge">Simulador</span>
+      <h3>Simulador de Negocio e Inteligencia FMCG — Ontario</h3>
+      <p class="res">Simulador interactivo del MVP de hojas ecológicas para lavavajillas: control central y KPIs, benchmarking en Ontario, costos, proyección a 12 meses y análisis de riesgos.</p>
     </a>
     </div>
   </section>
@@ -333,7 +338,7 @@
 <script>
 (function(){
   var q=document.getElementById('q'),c=document.getElementById('contador'),
-      vacio=document.getElementById('vacio'),total=33;
+      vacio=document.getElementById('vacio'),total=34;
   var botones=[].slice.call(document.querySelectorAll('.pestanas button'));
   var secciones=[].slice.call(document.querySelectorAll('section.curso'));
   var actual='todos';

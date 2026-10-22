@@ -305,12 +305,27 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:16px 0 0;
+    overflow-x:auto;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+  .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
 </style>
 </head>
 <body>
@@ -430,6 +445,47 @@
         </table>
       </article>
     </div>
+    <article class="bloque b-teal">
+      <h3>Diagnóstico: los 3 frentes de la situación actual</h3>
+      <div class="mermaid">
+flowchart LR
+    A[Objetivos del negocio] --> B[Requisitos de SI/TI]
+    B --> C[Diagnóstico del estado actual]
+    C --> D[Infraestructura tecnológica]
+    D --> D1[Red y conectividad]
+    D --> D2[Almacenamiento]
+    D --> D3[Procesamiento]
+    D --> D4[Seguridad y continuidad]
+    C --> E[Sistemas de información]
+    E --> E1[Aplicaciones críticas]
+    E --> E2[Aplicaciones estratégicas]
+    E --> E3[Aplicaciones de apoyo]
+    C --> F[Organización del área de TI]
+    F --> F1[Recursos humanos]
+    F --> F2[Procesos y gobierno]
+    F --> F3[Calidad de servicio]
+    D1 --> G[Gap Analysis]
+    D2 --> G
+    D3 --> G
+    D4 --> G
+    E1 --> G
+    E2 --> G
+    E3 --> G
+    F1 --> G
+    F2 --> G
+    F3 --> G
+      </div>
+    </article>
+    <article class="bloque b-amber">
+      <h3>Del Gap Analysis a la estrategia futura de SI/TI</h3>
+      <div class="mermaid">
+flowchart LR
+    G[Gap Analysis] --> H[Brechas y riesgos]
+    H --> I[Prioridades de mejora]
+    I --> J[Plan de acción]
+    J --> K[Estrategia futura de SI/TI]
+      </div>
+    </article>
   </section>
 
   <section>
@@ -510,5 +566,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

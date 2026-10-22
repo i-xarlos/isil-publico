@@ -301,16 +301,45 @@
     .flecha{transform:rotate(90deg);}
   }
 
+  /* ---------- Espaciado simétrico entre bloques ---------- */
+  .par{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+
   /* ---------- Impresión ---------- */
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  @media (max-width:820px){
+    .fila{grid-template-columns:1fr;}
+    .par{grid-template-columns:1fr;}
+    .franja h1{font-size:1.4rem;}
+    .franja .meta{text-align:left;}
+    .flecha{transform:rotate(90deg);}
+  }
+
+  /* ---------- Gráficos Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:0;
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{max-width:100%;height:auto;display:block;margin:0 auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+  .mermaid svg g.bar-plot-0 rect:nth-of-type(1){fill:#6aa7ff;stroke:#6aa7ff;}
+  .mermaid svg g.bar-plot-0 rect:nth-of-type(2){fill:#3ed2b2;stroke:#3ed2b2;}
+  .mermaid svg g.bar-plot-0 rect:nth-of-type(3){fill:#b39af7;stroke:#b39af7;}
+  .mermaid svg g.bar-plot-0 rect:nth-of-type(4){fill:#f7b955;stroke:#f7b955;}
 </style>
 </head>
 <body>
@@ -384,8 +413,28 @@
     </div>
   </section>
 
+  <section>
+    <p class="rotulo"><span class="num n-amber">4</span> Modelo COFRE en una mirada</p>
+    <div class="panel">
+      <div class="mermaid">flowchart TD
+  C["C · Contexto&lt;br/&gt;¿Dónde se usará?"] --- O["O · Objetivo&lt;br/&gt;Verbo claro: analiza, crea"] --- F["F · Formato&lt;br/&gt;Tabla, lista, párrafo"] --- R["R · Restricción&lt;br/&gt;Límites y tono"] --- E["E · Ejemplo&lt;br/&gt;Referencia de estilo"] -.-> A["+A · Audiencia&lt;br/&gt;¿Para quién es?"]
+  classDef azul fill:#16294a,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8;
+  classDef ambar fill:#3a2c12,stroke:#f7b955,stroke-width:2px,color:#e9eff8;
+  classDef teal fill:#113a36,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8;
+  classDef morado fill:#241d47,stroke:#b39af7,stroke-width:2px,color:#e9eff8;
+  class C azul;
+  class O ambar;
+  class F teal;
+  class R morado;
+  class E ambar;
+  class A azul;
+      </div>
+      <p class="nota-relacion">COFRE: checklist antes de enviar cualquier prompt (+ Audiencia). Causa nº1 de mal output: saltarse Contexto, Restricciones o Ejemplo.</p>
+    </div>
+  </section>
+
   <section class="ampliado">
-    <p class="rotulo"><span class="num n-teal">4</span> Lo esencial de la clase</p>
+    <p class="rotulo"><span class="num n-teal">5</span> Lo esencial de la clase</p>
     <div class="grid">
       <article class="bloque">
         <h3>COFRE: checklist antes de enviar</h3>
@@ -444,7 +493,7 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: cómo el modelo procesa tu prompt</p>
+    <p class="rotulo"><span class="num n-purple">6</span> Flujo del concepto: cómo el modelo procesa tu prompt</p>
     <div class="panel">
       <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo: el prompt se divide en tokens, el modelo interpreta su significado, predice el siguiente token más probable y sintetiza el texto final; el primer output es un borrador que se ajusta iterando el prompt.">
         <defs>
@@ -482,13 +531,38 @@
     </div>
   </section>
 
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-blue">7</span> Límites del prompt: lo que la IA no resuelve sola</p>
+    <article class="bloque b-amber">
+      <ul>
+        <li><strong>Corte temporal:</strong> no sabe lo posterior a su entrenamiento.</li>
+        <li><strong>Modismos:</strong> sufre con jerga local sin contexto ("chévere", "bacán").</li>
+        <li><strong>Sesgo cultural:</strong> sin "contexto peruano" responde en clave foránea.</li>
+      </ul>
+      <p>El prompt orienta, no compensa datos desactualizados ni contexto ausente.</p>
+    </article>
+  </section>
+
   <section>
-    <p class="rotulo"><span class="num n-amber">6</span> Beneficios medidos del buen prompting</p>
+    <p class="rotulo"><span class="num n-amber">8</span> Beneficios medidos del buen prompting</p>
     <div class="stats">
       <div class="stat"><div class="valor">60-80%</div><div class="etiqueta">menos tiempo en el primer borrador</div></div>
       <div class="stat"><div class="valor">40-50%</div><div class="etiqueta">más de precisión y relevancia</div></div>
       <div class="stat"><div class="valor">70%</div><div class="etiqueta">menos iteraciones para un buen resultado</div></div>
       <div class="stat"><div class="valor">35%</div><div class="etiqueta">más de consistencia entre sesiones</div></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">9</span> Beneficios medidos en una gráfica</p>
+    <div class="panel">
+      <div class="mermaid">xychart-beta
+    title "Prompt bien hecho = menos tiempo, más precisión"
+    x-axis ["Ahorro tiempo", "Precisión", "Menos iteraciones", "Consistencia"]
+    y-axis "Mejora (%)" 0 --&gt; 100
+    bar [70, 45, 70, 35]
+      </div>
+      <p class="nota-relacion">Valores de clase: 60-80%, 40-50%, 70% y 35%; la altura de cada barra marca la media del rango.</p>
     </div>
   </section>
 
@@ -515,11 +589,99 @@
     </div>
   </section>
 
+  <section>
+    <p class="rotulo"><span class="num n-purple">10</span> Material complementario: Gemini — IA multimodal de Google</p>
+    <div class="par">
+      <article class="bloque b-purple">
+        <h3>Técnicas y flujos de trabajo</h3>
+      <ul>
+        <li><strong>T1 — Estructura de prompt en 5 componentes:</strong></li>
+        <ul>
+          <li>Rol (quién es la IA).</li>
+          <li>Contexto (antecedentes).</li>
+          <li>Tarea (verbo de acción).</li>
+          <li>Restricciones y Formato (límites y salida).</li>
+          <li>Objetivo (qué esperas lograr).</li>
+        </ul>
+        <li class="nota">Mientras más componentes incluyas, más precisa será la respuesta.</li>
+        <li><strong>T2 — Pre-prompt vs. Super-prompt:</strong> pre-prompt es lenguaje cotidiano no alineado a buenas prácticas ("Hazme un informe sobre la empresa xxx"). Super-prompt es estructurado con todos los elementos para generar los mejores resultados con bajo nivel de alucinación.</li>
+        <li><strong>T3 — Canvas en Gemini:</strong></li>
+        <ul>
+          <li>Edición en tiempo real (mejorar, resumir, cambiar tono de fragmentos).</li>
+          <li>Vibe-coding con vista previa de código.</li>
+          <li>Generación de infografías, cuestionarios y resúmenes de audio.</li>
+          <li>Presentaciones y dashboards exportables a Google Slides o PDF.</li>
+        </ul>
+        <li><strong>T4 — Conectar aplicaciones:</strong> activa extensiones de Google Drive, Gmail, Maps, Calendar, YouTube, Hoteles y Vuelos. Usa mención @: "@Google Drive busca mi archivo de presupuesto y resúmelo".</li>
+      </ul>
+      </article>
+      <article class="ejemplo">
+        <span class="marca" aria-hidden="true">E</span>
+        <div>
+          <h3>Ejemplos prácticos vistos en clase</h3>
+          <table class="mini-tabla">
+            <tr><th>Caso</th><th>Qué se pidió</th><th>Resultado obtenido</th></tr>
+            <tr><td>Super prompt ejecutivo (Alicorp)</td><td>"Super prompt para informe sobre Alicorp S.A.A. 2024 para el directorio"</td><td>Informe ejecutivo con resumen ejecutivo, portafolio y operaciones, PESTEL, 5 Fuerzas de Porter, desempeño financiero 2024, estrategia y transformación digital, FODA y recomendaciones estratégicas</td></tr>
+            <tr><td>Dashboard logístico</td><td>Dashboard ejecutivo de transporte de carga (100 despachos Lima a provincias, ene-mar 2026)</td><td>KPIs: OTIF 83.0%, costo por tonelada S/ 115.11, utilización de capacidad 81.4%, lead time promedio 1.72 días; mapa de calor, barras apiladas y tabla de rendimiento de flota</td></tr>
+          </table>
+          <p><a href="./Gemini_1_B.docx.pdf">Ver PDF complementario: Gemini →</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <footer class="pie">
     <span>Fuente: apuntes de la Clase 6 — Inteligencia Artificial Aplicada (ISIL, 2026-2).</span>
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px",
+      xyChart: {
+        backgroundColor: "#152238",
+        titleColor: "#e9eff8",
+        xAxisTitleColor: "#e9eff8",
+        xAxisLabelColor: "#a9bad2",
+        xAxisTickColor: "#54688a",
+        xAxisLineColor: "#54688a",
+        yAxisTitleColor: "#e9eff8",
+        yAxisLabelColor: "#a9bad2",
+        yAxisTickColor: "#54688a",
+        yAxisLineColor: "#54688a",
+        plotColorPalette: "#6aa7ff,#3ed2b2,#b39af7,#f7b955"
+      }
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

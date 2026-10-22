@@ -305,11 +305,74 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
+  }
+
+  /* ---------- Diagramas Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:0;
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+
+  /* ---------- Galería de diagramas UML ---------- */
+  .uml-galeria{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:14px;
+  }
+  .uml-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px 16px;
+  }
+  .uml-card h3{margin:0 0 8px;font-size:1rem;color:var(--ink);}
+  .uml-svg{display:block;width:100%;height:auto;}
+  .uml-svg text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;}
+  .uml-svg .uml-line{stroke:#8195b4;stroke-width:2;fill:none;}
+  .uml-svg .uml-line-teal{stroke:var(--teal);}
+  .uml-svg .uml-line-purple{stroke:var(--purple);}
+  .uml-svg .uml-dashed{stroke-dasharray:5 5;}
+  .uml-svg .uml-boundary{fill:#101b30;stroke:var(--purple);stroke-width:2;}
+  .uml-svg .uml-ellipse{fill:var(--card-2);stroke:var(--teal);stroke-width:2;}
+  .uml-svg .uml-action{fill:var(--card-2);stroke:var(--blue);stroke-width:2;}
+  .uml-svg .uml-decision{fill:var(--amber-bg);stroke:var(--amber);stroke-width:2;}
+  .uml-svg .uml-state{fill:var(--card-2);stroke:var(--teal);stroke-width:2;}
+  .uml-svg .uml-component{fill:var(--card-2);stroke:var(--blue);stroke-width:2;}
+  .uml-svg .uml-node{fill:#101b30;stroke:var(--purple);stroke-width:2;}
+  .uml-svg .uml-label{fill:var(--ink);font-size:13px;font-weight:600;}
+  .uml-svg .uml-small{fill:var(--ink-soft);font-size:11px;}
+  .uml-svg .uml-actor{fill:none;stroke:var(--blue);stroke-width:2.5;stroke-linecap:round;}
+  .uml-svg .uml-dot{fill:var(--teal);}
+  .uml-pregunta{margin:8px 0 4px;font-size:.84rem;color:var(--blue);font-weight:700;}
+  .uml-clave{margin:0;font-size:.84rem;color:var(--ink-soft);}
+  .uml-clave strong{color:var(--ink);}
+  .uml-puntos{
+    margin-top:14px;
+    padding:14px 18px;
+    background:var(--card-2);
+    border:1px solid var(--line);
+    border-left:5px solid var(--amber);
+    border-radius:12px;
+  }
+  .uml-puntos h3{margin:0 0 8px;font-size:.95rem;color:var(--amber);}
+  .uml-puntos ul{margin:0;padding-left:18px;columns:2;column-gap:28px;}
+  .uml-puntos li{margin:0 0 6px;font-size:.84rem;color:var(--ink-soft);break-inside:avoid;}
+  .uml-puntos strong{color:var(--ink);}
+  @media (max-width:600px){
+    .uml-puntos ul{columns:1;}
   }
 </style>
 </head>
@@ -487,6 +550,213 @@
   </section>
 
   <section>
+    <p class="rotulo"><span class="num n-teal">7</span> Diagramas de la clase: comercio electrónico</p>
+    <div class="mermaid">
+classDiagram
+    class Cliente {
+        +buscar()
+        +anadirCarrito()
+        +pagar()
+    }
+    class Vendedor {
+        +gestionarStock()
+        +gestionarPedidos()
+    }
+    class Producto {
+        +codigo
+        +nombre
+        +precio
+    }
+    class Pedido {
+        +numero
+        +total
+        +confirmar()
+    }
+    Cliente --> Pedido : realiza
+    Pedido --> Producto : contiene
+    Vendedor --> Producto : gestiona stock
+    Vendedor --> Pedido : procesa
+    </div>
+    <p class="nota-relacion">Clases del comercio: Cliente y Vendedor actúan; Pedido contiene Productos.</p>
+    <div class="mermaid">
+sequenceDiagram
+    participant C as Cliente
+    participant S as Sistema
+    participant A as Almacen
+    participant P as Pago
+    C->>S: Buscar producto
+    S->>A: Verificar stock
+    A-->>S: Stock OK
+    S-->>C: Mostrar resultados
+    C->>S: Anadir al carrito
+    C->>P: Pagar
+    P-->>S: Procesar transaccion
+    S-->>C: Confirmar pedido
+    </div>
+    <p class="nota-relacion">Secuencia: Buscar → verificar stock → mostrar → añadir → pagar → procesar → confirmar.</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">8</span> Diagramas UML: qué muestran y qué debes notar</p>
+    <div class="uml-galeria">
+      <article class="uml-card">
+        <h3>Casos de uso · necesidades del usuario</h3>
+        <svg class="uml-svg" viewBox="0 0 500 220" role="img" aria-label="Diagrama de casos de uso: el actor Cliente interactúa con Buscar producto, Añadir al carrito y Realizar pago dentro del límite del sistema Comercio electrónico.">
+          <rect class="uml-boundary" x="132" y="28" width="350" height="174" rx="8"></rect>
+          <text class="uml-small" x="146" y="48">Sistema: Comercio electrónico</text>
+          <circle class="uml-actor" cx="60" cy="88" r="11"></circle>
+          <path class="uml-actor" d="M60 99v36m-18-18h36m-18 18-16 20m16-20 16 20"></path>
+          <text class="uml-label" x="60" y="174" text-anchor="middle">Cliente</text>
+          <line class="uml-line" x1="78" y1="108" x2="182" y2="82"></line>
+          <line class="uml-line" x1="78" y1="116" x2="182" y2="128"></line>
+          <line class="uml-line" x1="78" y1="124" x2="182" y2="174"></line>
+          <ellipse class="uml-ellipse" cx="306" cy="82" rx="124" ry="19"></ellipse>
+          <ellipse class="uml-ellipse" cx="306" cy="128" rx="124" ry="19"></ellipse>
+          <ellipse class="uml-ellipse" cx="306" cy="174" rx="124" ry="19"></ellipse>
+          <text class="uml-label" x="306" y="87" text-anchor="middle">Buscar producto</text>
+          <text class="uml-label" x="306" y="133" text-anchor="middle">Añadir al carrito</text>
+          <text class="uml-label" x="306" y="179" text-anchor="middle">Realizar pago</text>
+        </svg>
+        <p class="uml-pregunta">Pregunta: ¿qué necesita hacer cada actor?</p>
+        <p class="uml-clave"><strong>Clave:</strong> actores fuera del límite; funcionalidades dentro. No describe clases ni pasos internos.</p>
+      </article>
+
+      <article class="uml-card">
+        <h3>Actividades · flujo y decisiones</h3>
+        <svg class="uml-svg" viewBox="0 0 500 245" role="img" aria-label="Actividad de compra: iniciar sesión, seleccionar producto, decidir si finalizar y continuar comprando o pagar.">
+          <defs>
+            <marker id="uml-arrow-activity" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+              <path d="M0 0 8 4 0 8z" fill="#8195b4"></path>
+            </marker>
+          </defs>
+          <circle class="uml-dot" cx="250" cy="17" r="7"></circle>
+          <line class="uml-line" x1="250" y1="24" x2="250" y2="34" marker-end="url(#uml-arrow-activity)"></line>
+          <rect class="uml-action" x="165" y="36" width="170" height="34" rx="12"></rect>
+          <text class="uml-label" x="250" y="58" text-anchor="middle">Iniciar sesión</text>
+          <line class="uml-line" x1="250" y1="70" x2="250" y2="82" marker-end="url(#uml-arrow-activity)"></line>
+          <rect class="uml-action" x="165" y="84" width="170" height="34" rx="12"></rect>
+          <text class="uml-label" x="250" y="106" text-anchor="middle">Seleccionar producto</text>
+          <line class="uml-line" x1="250" y1="118" x2="250" y2="131" marker-end="url(#uml-arrow-activity)"></line>
+          <path class="uml-decision" d="M250 132 280 155 250 178 220 155z"></path>
+          <text class="uml-small" x="250" y="159" text-anchor="middle">¿Finalizar?</text>
+          <path class="uml-line" d="M220 155H110V194" marker-end="url(#uml-arrow-activity)"></path>
+          <text class="uml-small" x="139" y="149" text-anchor="middle">No</text>
+          <rect class="uml-action" x="30" y="196" width="160" height="34" rx="12"></rect>
+          <text class="uml-label" x="110" y="218" text-anchor="middle">Seguir comprando</text>
+          <path class="uml-line" d="M190 213H210V236H15V101H165" marker-end="url(#uml-arrow-activity)"></path>
+          <path class="uml-line uml-line-teal" d="M280 155H390V194" marker-end="url(#uml-arrow-activity)"></path>
+          <text class="uml-small" x="342" y="149" text-anchor="middle">Sí</text>
+          <rect class="uml-action" x="335" y="196" width="110" height="34" rx="12"></rect>
+          <text class="uml-label" x="390" y="218" text-anchor="middle">Pagar</text>
+        </svg>
+        <p class="uml-pregunta">Pregunta: ¿cómo fluye el trabajo?</p>
+        <p class="uml-clave"><strong>Clave:</strong> acciones y decisiones (rombo). Es UML; no confundas su notación con BPMN.</p>
+      </article>
+
+      <article class="uml-card">
+        <h3>Estados · ciclo de vida de un objeto</h3>
+        <svg class="uml-svg" viewBox="0 0 540 180" role="img" aria-label="Ciclo de vida de un pedido: desde el estado Pendiente pasa a Enviado y termina en Entregado.">
+          <defs>
+            <marker id="uml-arrow-state" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+              <path d="M0 0 8 4 0 8z" fill="#8195b4"></path>
+            </marker>
+          </defs>
+          <circle class="uml-dot" cx="24" cy="82" r="7"></circle>
+          <line class="uml-line" x1="31" y1="82" x2="64" y2="82" marker-end="url(#uml-arrow-state)"></line>
+          <rect class="uml-state" x="68" y="60" width="112" height="44" rx="12"></rect>
+          <text class="uml-label" x="124" y="87" text-anchor="middle">Pendiente</text>
+          <line class="uml-line" x1="180" y1="82" x2="220" y2="82" marker-end="url(#uml-arrow-state)"></line>
+          <text class="uml-small" x="200" y="49" text-anchor="middle">despachar</text>
+          <rect class="uml-state" x="224" y="60" width="112" height="44" rx="12"></rect>
+          <text class="uml-label" x="280" y="87" text-anchor="middle">Enviado</text>
+          <line class="uml-line" x1="336" y1="82" x2="376" y2="82" marker-end="url(#uml-arrow-state)"></line>
+          <text class="uml-small" x="356" y="49" text-anchor="middle">entregar</text>
+          <rect class="uml-state" x="380" y="60" width="112" height="44" rx="12"></rect>
+          <text class="uml-label" x="436" y="87" text-anchor="middle">Entregado</text>
+          <line class="uml-line" x1="492" y1="82" x2="511" y2="82" marker-end="url(#uml-arrow-state)"></line>
+          <circle class="uml-line" cx="522" cy="82" r="10"></circle>
+          <circle class="uml-line" cx="522" cy="82" r="6"></circle>
+        </svg>
+        <p class="uml-pregunta">Pregunta: ¿cómo cambia un objeto?</p>
+        <p class="uml-clave"><strong>Clave:</strong> modela la condición del objeto y sus transiciones; no el proceso completo de la organización.</p>
+      </article>
+
+      <article class="uml-card">
+        <h3>Componentes · módulos del software</h3>
+        <svg class="uml-svg" viewBox="0 0 520 180" role="img" aria-label="Diagrama de componentes: la interfaz de usuario se conecta con la lógica de negocio, que coordina los módulos de productos, pedidos y pagos y consulta la base de datos.">
+          <defs>
+            <marker id="uml-arrow-component" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+              <path d="M0 0 8 4 0 8z" fill="#8195b4"></path>
+            </marker>
+          </defs>
+          <rect class="uml-component" x="8" y="54" width="100" height="76" rx="8"></rect>
+          <rect class="uml-component" x="17" y="45" width="22" height="14"></rect>
+          <text class="uml-small" x="58" y="78" text-anchor="middle">«component»</text>
+          <text class="uml-label" x="58" y="101" text-anchor="middle">Interfaz</text>
+          <text class="uml-label" x="58" y="119" text-anchor="middle">de usuario</text>
+          <line class="uml-line" x1="108" y1="92" x2="137" y2="92" marker-end="url(#uml-arrow-component)"></line>
+          <rect class="uml-component" x="141" y="54" width="112" height="76" rx="8"></rect>
+          <rect class="uml-component" x="150" y="45" width="22" height="14"></rect>
+          <text class="uml-small" x="197" y="78" text-anchor="middle">«component»</text>
+          <text class="uml-label" x="197" y="101" text-anchor="middle">Lógica de</text>
+          <text class="uml-label" x="197" y="119" text-anchor="middle">negocio</text>
+          <line class="uml-line" x1="253" y1="92" x2="277" y2="92" marker-end="url(#uml-arrow-component)"></line>
+          <rect class="uml-component" x="281" y="54" width="118" height="76" rx="8"></rect>
+          <rect class="uml-component" x="290" y="45" width="22" height="14"></rect>
+          <text class="uml-small" x="340" y="78" text-anchor="middle">Módulos</text>
+          <text class="uml-label" x="340" y="101" text-anchor="middle">Productos</text>
+          <text class="uml-label" x="340" y="119" text-anchor="middle">Pedidos · Pago</text>
+          <line class="uml-line" x1="399" y1="92" x2="423" y2="92" marker-end="url(#uml-arrow-component)"></line>
+          <rect class="uml-component" x="427" y="54" width="85" height="76" rx="8"></rect>
+          <rect class="uml-component" x="436" y="45" width="22" height="14"></rect>
+          <text class="uml-small" x="469" y="78" text-anchor="middle">«component»</text>
+          <text class="uml-label" x="469" y="102" text-anchor="middle">Base de</text>
+          <text class="uml-label" x="469" y="120" text-anchor="middle">datos</text>
+        </svg>
+        <p class="uml-pregunta">Pregunta: ¿qué piezas de software colaboran?</p>
+        <p class="uml-clave"><strong>Clave:</strong> muestra módulos y dependencias; describe arquitectura lógica, no su ubicación física.</p>
+      </article>
+
+      <article class="uml-card">
+        <h3>Despliegue · infraestructura de ejecución</h3>
+        <svg class="uml-svg" viewBox="0 0 520 180" role="img" aria-label="Diagrama de despliegue: un navegador cliente se comunica por HTTP o HTTPS a través de la red con un servidor que ejecuta la web, las aplicaciones y la base de datos.">
+          <defs>
+            <marker id="uml-arrow-deployment" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto">
+              <path d="M0 0 8 4 0 8z" fill="#8195b4"></path>
+            </marker>
+          </defs>
+          <rect class="uml-node" x="10" y="42" width="132" height="92" rx="10"></rect>
+          <text class="uml-small" x="76" y="64" text-anchor="middle">«device»</text>
+          <text class="uml-label" x="76" y="88" text-anchor="middle">Navegador</text>
+          <text class="uml-label" x="76" y="108" text-anchor="middle">del cliente</text>
+          <line class="uml-line uml-line-teal" x1="142" y1="88" x2="188" y2="88" marker-end="url(#uml-arrow-deployment)"></line>
+          <text class="uml-small" x="165" y="76" text-anchor="middle">HTTP/HTTPS</text>
+          <rect class="uml-node" x="192" y="42" width="132" height="92" rx="10"></rect>
+          <text class="uml-small" x="258" y="64" text-anchor="middle">«node»</text>
+          <text class="uml-label" x="258" y="88" text-anchor="middle">Red</text>
+          <text class="uml-small" x="258" y="109" text-anchor="middle">Firewall · balanceador</text>
+          <line class="uml-line" x1="324" y1="88" x2="370" y2="88" marker-end="url(#uml-arrow-deployment)"></line>
+          <rect class="uml-node" x="374" y="42" width="136" height="92" rx="10"></rect>
+          <text class="uml-small" x="442" y="64" text-anchor="middle">«device»</text>
+          <text class="uml-label" x="442" y="88" text-anchor="middle">Servidor</text>
+          <text class="uml-small" x="442" y="109" text-anchor="middle">Web · Apps · BD</text>
+        </svg>
+        <p class="uml-pregunta">Pregunta: ¿dónde se ejecuta cada parte?</p>
+        <p class="uml-clave"><strong>Clave:</strong> ubica nodos y rutas de comunicación; diferencia componentes de infraestructura.</p>
+      </article>
+    </div>
+    <aside class="uml-puntos">
+      <h3>Puntos más resaltantes para repasar</h3>
+      <ul>
+        <li><strong>Clases:</strong> estructura, atributos, operaciones y relaciones; una clase no es una instancia.</li>
+        <li><strong>Secuencia:</strong> ordena mensajes en el tiempo, de arriba hacia abajo; cada flecha debe expresar una interacción.</li>
+        <li><strong>Agregación ◇ vs. composición ◆:</strong> en la primera la parte puede vivir sola; en la segunda comparte el ciclo de vida del todo.</li>
+        <li><strong>Elección:</strong> cada diagrama responde una pregunta; selecciona los necesarios para la fase y manténlos consistentes.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section>
     <div class="ejemplo">
       <span class="marca" aria-hidden="true">E</span>
       <div>
@@ -517,5 +787,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

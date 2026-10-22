@@ -305,12 +305,27 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:16px 0 0;
+    overflow-x:auto;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+  .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
 </style>
 </head>
 <body>
@@ -429,6 +444,73 @@
         <p><strong>PA1:</strong> abarca semanas 1, 2 y 3 con tu perfil de estilos.</p>
       </article>
     </div>
+    <article class="bloque b-teal">
+      <h3>Cada canal VAK: qué busca y cómo responderle</h3>
+      <div class="mermaid">
+flowchart LR
+    V[Visual<br/>quiere VER] --> SV[Grafico + diagrama<br/>poco texto<br/>palabras: ver, mirar]
+    AU[Auditivo<br/>quiere OIR] --> SA[Historia + anécdota<br/>variacion de tono<br/>palabras: oir, resonar]
+    K[Kinestesico<br/>quiere HACER] --> SK[Demo + ejercicio<br/>pausas y movimiento<br/>palabras: sentir, probar]
+      </div>
+    </article>
+    <article class="bloque b-amber">
+      <h3>Un mismo mensaje en tres canales: ejemplo Obama</h3>
+      <div class="mermaid">
+flowchart LR
+    O[Obama<br/>mismo mensaje] --> VV[Frase visual<br/>veamos el horizonte]
+    O --> AA[Frase auditiva<br/>escuchen esta historia]
+    O --> KK[Frase kinestesica<br/>sintamos el cambio]
+    VV --> AUD[Audiencia mixta<br/>todos se sienten incluidos]
+    AA --> AUD
+    KK --> AUD
+      </div>
+    </article>
+    <article class="bloque b-purple">
+      <h3>Los 4 estilos de aprendizaje Honey-Alonso</h3>
+      <div class="mermaid">
+flowchart TD
+    H[Honey-Alonso<br/>4 estilos] --> A[Activo<br/>Que pasaria si?]
+    H --> R[Reflexivo<br/>Por que?]
+    H --> T[Teorico<br/>Que?]
+    H --> P[Pragmatico<br/>Como?]
+    A --> AC[Aprende probando]
+    R --> RC[Aprende observando]
+    T --> TC[Aprende modelando]
+    P --> PC[Aprende aplicando]
+      </div>
+    </article>
+    <article class="bloque b-teal">
+      <h3>Compatibilidad entre estilos: combinaciones frecuentes y de tensión</h3>
+      <div class="mermaid">
+flowchart TD
+    subgraph Compatibles
+        RT[Reflexivo + Teorico<br/>muy compatible]
+        TP[Teorico + Pragmatico]
+        RP[Reflexivo + Pragmatico]
+        AP[Activo + Pragmatico]
+    end
+    subgraph Tension
+        AR[Activo + Reflexivo<br/>tension]
+        AT[Activo + Teorico<br/>tension]
+    end
+    Compatibles --- INTEGRA[Perfiles frecuentes]
+    Tension --- RARO[Perfiles raros]
+      </div>
+    </article>
+    <article class="bloque b-amber">
+      <h3>Estructura de 15 minutos para una audiencia mixta</h3>
+      <div class="mermaid">
+gantt
+    title Estructura 15 min - Audiencia mixta
+    dateFormat X
+    axisFormat %M min
+    section Bloques
+    Visual-Teorico (grafico + modelo) :0, 180
+    Auditivo-Activo (historia + pregunta) :180, 420
+    Kinestesico-Pragmatico (demo + parejas) :420, 720
+    Cierre triple (imagen + frase + gesto) :720, 900
+      </div>
+    </article>
   </section>
 
   <section>
@@ -510,5 +592,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

@@ -305,12 +305,26 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Diagramas Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:0;
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -467,9 +481,9 @@
         <text class="nodo-titulo" x="962" y="72" text-anchor="middle" style="fill:#f7b955">Validación</text>
         <text class="nodo-texto" x="962" y="98" text-anchor="middle">Revisa errores comunes</text>
 
-        <text class="pie-diagrama" x="540" y="186" text-anchor="middle">Del actor a la elipse: requisitos funcionales en un diagrama que todos entienden</text>
+        <text class="pie-diagrama" x="540" y="186" text-anchor="middle">Síntesis editorial: del actor a la elipse, requisitos funcionales que todos entienden</text>
       </svg>
-      <p class="nota-relacion">Actores → ficha → relaciones → revisión: alto nivel, sin detalles de implementación.</p>
+      <p class="nota-relacion">Síntesis editorial: Actores → ficha → relaciones → revisión: alto nivel, sin detalles de implementación.</p>
     </div>
   </section>
 
@@ -481,6 +495,32 @@
       <div class="stat"><div class="valor">3</div><div class="etiqueta">casos de uso base: carrito, pago, inventario</div></div>
       <div class="stat"><div class="valor">5</div><div class="etiqueta">errores comunes al construir el DCU</div></div>
     </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">7</span> Diagrama de casos de uso: comercio electrónico</p>
+    <div class="mermaid">
+flowchart TD
+    CLI([Cliente]) --> RC([Realizar Compra])
+    RC -.->|include| SP([Seleccionar Productos])
+    RC -.->|include| RP([Realizar Pago])
+    AC([Aplicar Cupon]) -.->|extend| RC
+    CLI --> IS([Iniciar Sesion])
+    REC([Recuperar Contrasena]) -.->|extend| IS
+    CLI --> VH([Ver Historial])
+    VH -.->|include| VD([Ver Detalles])
+    ADM([Administrador]) --> GI([Gestionar Inventario])
+    ADM --> IS
+    RP --> SPago([Sistema de Pago])
+    AC --> SCup([Sistema de Cupones])
+    classDef actor fill:#16294a,stroke:#6aa7ff,color:#e9eff8,stroke-width:2px
+    classDef caso fill:#182742,stroke:#3ed2b2,color:#e9eff8,stroke-width:2px
+    classDef ext fill:#241d47,stroke:#b39af7,color:#e9eff8,stroke-width:2px
+    class CLI,ADM actor
+    class RC,SP,RP,AC,IS,REC,VH,VD,GI caso
+    class SPago,SCup ext
+    </div>
+    <p class="nota-relacion">Actores: Cliente, Administrador, Sistema de Pago y Sistema de Cupones · «include» siempre corre · «extend» solo bajo condición.</p>
   </section>
 
   <section>
@@ -514,5 +554,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

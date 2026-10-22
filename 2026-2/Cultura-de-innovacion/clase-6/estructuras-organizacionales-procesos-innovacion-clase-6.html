@@ -311,6 +311,21 @@
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:16px 0 0;
+    overflow-x:auto;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+  .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
 </style>
 </head>
 <body>
@@ -419,7 +434,7 @@
         <h3>Nuevas formas de organización</h3>
         <ul>
           <li><strong>Scrum:</strong> multidisciplinario y autónomo; iteraciones cortas, entregas frecuentes y feedback.</li>
-          <li><strong>Tribo:</strong> conjunto de equipos con objetivos compartidos, coordinación y conocimiento común.</li>
+          <li><strong>Tribu:</strong> conjunto de equipos con objetivos compartidos, coordinación y conocimiento común.</li>
           <li><strong>Partnership:</strong> alianza para compartir recursos y habilidades, con menos riesgo y costos.</li>
         </ul>
         <p>La innovación suele requerir colaboración entre varias áreas y también fuera de la empresa.</p>
@@ -436,6 +451,18 @@
         <p>No basta un sprint para llamarlo innovación: sin implementación y difusión, la idea queda solo en propuesta.</p>
       </article>
     </div>
+    <article class="bloque b-purple">
+      <h3>Proceso de innovación en 5 fases</h3>
+      <div class="mermaid">
+flowchart TD
+    A[Generación de ideas<br/>clientes y especialistas] --> B[Selección y priorización<br/>viabilidad e impacto]
+    B --> C[Experimentación<br/>prueba piloto]
+    C --> D[Comercialización<br/>salida al mercado]
+    D --> E[Difusión e implementación<br/>práctica sostenida]
+    E --> F[Mejora continua]
+    F --> A
+      </div>
+    </article>
   </section>
 
   <section>
@@ -516,5 +543,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

@@ -305,12 +305,26 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Diagramas Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:0;
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -352,6 +366,7 @@
             <p>Presentación, Lógica y Datos: responsabilidad única en cada capa.</p>
           </div>
         </div>
+        <p class="nota-relacion">Glosa: <strong>downtime</strong> = tiempo caído sin servicio · <strong>endpoint</strong> = URL de API que expone una operación · <strong>MVP</strong> = versión mínima viable · <strong>pool</strong> = reserva reutilizable de conexiones</p>
       </article>
     </div>
   </section>
@@ -487,6 +502,35 @@
   </section>
 
   <section>
+    <p class="rotulo"><span class="num n-blue">7</span> Diagramas de la clase: Singleton y arquitecturas</p>
+    <div class="mermaid">
+classDiagram
+    class ConexionBD {
+        -ConexionBD instancia
+        -ConexionBD()
+        +getInstance() ConexionBD
+        +query(sql)
+    }
+    note for ConexionBD "Pool unico de conexiones"
+    </div>
+    <p class="nota-relacion">Singleton: una única instancia global del pool de conexiones a BD.</p>
+    <div class="mermaid">
+flowchart TD
+    FE[Frontend] --> BE[Backend] --> DB[(BD Central)]
+    BE --> MONO[Monolito: un solo despliegue]
+    GW[API Gateway] --> S1[Usuarios: BD propia]
+    GW --> S2[Pagos: BD propia]
+    GW --> S3[Votaciones: BD propia]
+    S1 -.-> COG[(AWS Cognito)]
+    classDef mono fill:#16294a,stroke:#6aa7ff,color:#e9eff8,stroke-width:2px
+    classDef micro fill:#113a36,stroke:#3ed2b2,color:#e9eff8,stroke-width:2px
+    class FE,BE,DB,MONO mono
+    class GW,S1,S2,S3,COG micro
+    </div>
+    <p class="nota-relacion">Monolito = un solo despliegue con BD central · Microservicios = servicios por dominio con BD propia; si pagos falla, los demás siguen operando.</p>
+  </section>
+
+  <section>
     <div class="ejemplo">
       <span class="marca" aria-hidden="true">E</span>
       <div>
@@ -515,5 +559,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

@@ -301,16 +301,41 @@
     .flecha{transform:rotate(90deg);}
   }
 
+  /* ---------- Espaciado simétrico entre bloques ---------- */
+  .par{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+
   /* ---------- Impresión ---------- */
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  @media (max-width:820px){
+    .fila{grid-template-columns:1fr;}
+    .par{grid-template-columns:1fr;}
+    .franja h1{font-size:1.4rem;}
+    .franja .meta{text-align:left;}
+    .flecha{transform:rotate(90deg);}
+  }
+
+  /* ---------- Diagramas Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:0;
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -434,7 +459,80 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: curar y validar</p>
+    <p class="rotulo"><span class="num n-blue">5</span> Pipeline Perplexity + Zotero: 7 fases</p>
+    <div class="mermaid">
+flowchart TD
+  N1["1 · Definición y exploración&lt;br/&gt;Perplexity"] --> N2["2 · Búsqueda estructurada&lt;br/&gt;Perplexity"]
+  N2 --> N3["3 · Evaluación y selección&lt;br/&gt;Criterio humano"]
+  N3 --> N4["4 · Captura en Zotero&lt;br/&gt;Zotero"]
+  N4 --> N5["5 · Organización y anotación&lt;br/&gt;Zotero"]
+  N5 --> N6["6 · Lectura profunda&lt;br/&gt;Zotero + Notas"]
+  N6 --> N7["7 · Redacción y citación&lt;br/&gt;Zotero Plugin"]
+  classDef ppx fill:#1d3560,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8;
+  classDef hum fill:#4d3a17,stroke:#f7b955,stroke-width:2px,color:#e9eff8;
+  classDef zot fill:#17564e,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8;
+  classDef syn fill:#322a68,stroke:#b39af7,stroke-width:2px,color:#e9eff8;
+  class N1,N2 ppx;
+  class N3 hum;
+  class N4,N5 zot;
+  class N6,N7 syn;
+    </div>
+    <p class="nota-relacion">De pregunta inicial a ensayo citado en APA 7 · Ejemplo: IA en retail peruano (2.500 palabras, 3 semanas)</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">6</span> Alucinación vs contenido falso: origen del error</p>
+    <div class="mermaid">
+flowchart TD
+  TIT["Alucinación vs Contenido falso&lt;br/&gt;¿De dónde viene el error?"]
+  TIT --> ALU["ALUCINACIÓN&lt;br/&gt;IA genera sin intención"]
+  TIT --> FAL["CONTENIDO FALSO&lt;br/&gt;humano manipula con intención"]
+  ALU --> A1["Especificidad falsa (detalles inventados)"]
+  A1 --> A2["Mezcla realidad/ficción"]
+  A2 --> A3["Citas inexistentes"]
+  A3 --> A4["Confianza injustificada"]
+  A4 --> A5["Lógica consistente pero base falsa"]
+  FAL --> B1["Apelación emocional (miedo/indignación)"]
+  B1 --> B2["Titulares sensacionalistas"]
+  B2 --> B3["Sin fuentes verificables"]
+  B3 --> B4["Autoridad falsa ('expertos' sin credencial)"]
+  B4 --> B5["Diseñado para viralizar ¡comparte ya!"]
+  A5 --> DET["Ambos se detectan con:&lt;br/&gt;triangulación (3 fuentes) + fuente primaria&lt;br/&gt;+ señales de alarma (URL, fecha, autor)"]
+  B5 --> DET
+  classDef raiz fill:#1d3560,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8;
+  classDef alu fill:#322a68,stroke:#b39af7,stroke-width:2px,color:#e9eff8;
+  classDef fal fill:#4d3a17,stroke:#f7b955,stroke-width:2px,color:#e9eff8;
+  classDef det fill:#17564e,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8;
+  class TIT raiz;
+  class ALU,A1,A2,A3,A4,A5 alu;
+  class FAL,B1,B2,B3,B4,B5 fal;
+  class DET det;
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">7</span> Framework SIFT: verifica antes de compartir</p>
+    <div class="mermaid">
+flowchart LR
+  S["S · STOP&lt;br/&gt;Detente antes de compartir&lt;br/&gt;No reenvíes impulsivamente. Respira. ¿Vale la pena?"]
+  I["I · INVESTIGATE&lt;br/&gt;Investiga la fuente&lt;br/&gt;¿Quién publica? ¿Credenciales? ¿Historial confiable?"]
+  F["F · FIND&lt;br/&gt;Busca mejor cobertura&lt;br/&gt;¿Otras 3 fuentes independientes lo confirman?"]
+  T["T · TRACE&lt;br/&gt;Rastrea al origen&lt;br/&gt;¿Fuente primaria o cadena de reposts sin origen?"]
+  S --> I --> F --> T
+  classDef stop fill:#4d3a17,stroke:#f7b955,stroke-width:2px,color:#e9eff8;
+  classDef inv fill:#322a68,stroke:#b39af7,stroke-width:2px,color:#e9eff8;
+  classDef find fill:#1d3560,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8;
+  classDef trace fill:#17564e,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8;
+  class S stop;
+  class I inv;
+  class F find;
+  class T trace;
+    </div>
+    <p class="nota-relacion">Método SIFT · Defensa contra desinformación y alucinaciones de IA</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">8</span> Flujo del concepto: curar y validar</p>
     <div class="panel">
       <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo: se busca en Perplexity, se selecciona lo pertinente, se organiza en Zotero y se termina validando y citando; tú validas con triangulación y fuente primaria.">
         <defs>
@@ -494,11 +592,94 @@
     </div>
   </section>
 
+  <section>
+    <p class="rotulo"><span class="num n-teal">9</span> Material complementario: Perplexity — búsqueda con citas en tiempo real</p>
+    <div class="par">
+      <article class="bloque b-teal">
+        <h3>Técnicas y flujos de trabajo</h3>
+      <ul>
+        <li><strong>T1 — Investigación por etapas (7 etapas):</strong>
+          <ol>
+            <li>Delimitar el problema.</li>
+            <li>Buscar antecedentes.</li>
+            <li>Localizar estadísticas.</li>
+            <li>Identificar estudios académicos.</li>
+            <li>Comparar resultados.</li>
+            <li>Evaluar fuentes.</li>
+            <li>Elaborar conclusiones.</li>
+          </ol>
+        </li>
+        <li class="nota">No pidas una investigación completa de un solo golpe.</li>
+        <li><strong>T2 — Fórmula del prompt de investigación:</strong> ROL + OBJETIVO + TEMA + POBLACIÓN + LUGAR + PERÍODO + FUENTES + FORMATO.</li>
+        <li><strong>Ejemplo de prompt:</strong> "Actúa como asistente de investigación. Busca información sobre las bebidas gaseosas y refrescos preferidos por los jóvenes peruanos. Analiza jóvenes de 18 a 29 años en Perú, priorizando estudios 2020-2026. Para cada dato indica fuente, año, muestra y enlace. Presenta los resultados en una tabla."</li>
+        <li><strong>T3 — Consumo vs. preferencia:</strong> no confundas "el 60 % consumió Coca-Cola" con "el 60 % prefiere Coca-Cola". Son variables distintas: consumo, frecuencia, preferencia, intención de compra, fidelidad y percepción.</li>
+        <li><strong>T4 — Matriz de evidencia:</strong> tabla con fuente, año, población, tamaño de muestra, ciudad/región, marca analizada, resultado principal y limitación del estudio. Nunca inventes datos que no estén en las fuentes.</li>
+        <li><strong>T5 — Cinco preguntas para evaluar una fuente:</strong></li>
+        <ul>
+          <li>¿Quién publica?</li>
+          <li>¿Cuándo fue publicada?</li>
+          <li>¿Cómo se obtuvo el dato?</li>
+          <li>¿A quiénes estudiaron?</li>
+          <li>¿Podemos verificarlo?</li>
+        </ul>
+        <li><strong>T6 — Detectar alucinaciones:</strong> si la IA cita un porcentaje sin fuente verificable, no uses el dato. Pide título, autores, institución, fecha, muestra y enlace directo.</li>
+      </ul>
+      </article>
+      <article class="ejemplo">
+        <span class="marca" aria-hidden="true">E</span>
+        <div>
+          <h3>Ejemplo práctico visto en clase</h3>
+          <p><strong>Caso:</strong> "Bebidas gaseosas o refrescos preferidos por los jóvenes peruanos" (nivel básico-intermedio, Perplexity versión gratuita).</p>
+          <ul>
+            <li>Pregunta general: ¿Cuáles son las bebidas gaseosas y refrescos preferidos por los jóvenes peruanos?</li>
+            <li>Preguntas específicas derivadas: marcas más frecuentes, factores que influyen en la elección, diferencias por edad/sexo/región, importancia de precio/sabor/marca, diferencias entre gaseosas y refrescos.</li>
+            <li>Producto final: mini-investigación documentada con fuentes, citas, análisis y conclusiones.</li>
+          </ul>
+          <p><a href="./Perplexity.docx.pdf">Ver PDF complementario: Perplexity →</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <footer class="pie">
     <span>Fuente: apuntes de la Clase 3 — Inteligencia Artificial Aplicada (ISIL, 2026-2).</span>
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

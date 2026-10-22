@@ -305,7 +305,7 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
@@ -326,6 +326,20 @@
     text-transform:uppercase;
   }
   .mini-tabla em{color:var(--blue);font-style:normal;}
+
+  /* ---------- Gráficos Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:0;
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -420,6 +434,8 @@
           <tr><th>Perplexity</th><td>Manda en buscar con citas.</td></tr>
           <tr><th>Miro + IA</th><td>Manda en colaborar visualmente.</td></tr>
           <tr><th>Gemini</th><td>Manda en código dentro de Workspace.</td></tr>
+          <tr><th>Napkin AI</th><td>Convierte texto en visual listo para presentar.</td></tr>
+          <tr><th>MyLens AI</th><td>Explora un tema por ángulos: timeline, mapa, tabla.</td></tr>
         </table>
         <p>Úsalas por su fuerte, no por moda. Combínalas: Perplexity investiga → Notion centraliza → Miro mapea.</p>
       </article>
@@ -450,7 +466,59 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: de la información al conocimiento</p>
+    <p class="rotulo"><span class="num n-amber">5</span> Pipeline de categorización: de datos sueltos a conocimiento ordenado</p>
+    <div class="mermaid">
+flowchart LR
+  A["1. Entrada&lt;br/>PDFs, tickets, correos, fotos"] --> B["2. Detección&lt;br/>Patrones + contexto"]
+  B --> C["3. Clasificación&lt;br/>Categoría + etiqueta"]
+  C --> D["4. Aprende&lt;br/>Corrige y mejora"]
+  D -. "Tu corrección realimenta el ciclo" .-> A
+  classDef azul fill:#16294a,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8;
+  classDef teal fill:#113a36,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8;
+  classDef morado fill:#241d47,stroke:#b39af7,stroke-width:2px,color:#e9eff8;
+  classDef ambar fill:#3a2c12,stroke:#f7b955,stroke-width:2px,color:#e9eff8;
+  class A azul;
+  class B teal;
+  class C morado;
+  class D ambar;
+    </div>
+    <p class="nota-relacion">Tú defines criterios → La IA ordena → Tú validas el 10%. Sin tu validación, el ciclo se rompe.</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">6</span> Elige el gráfico según lo que quieres decir (no al revés)</p>
+    <div class="mermaid">
+  %%{init: {"flowchart": {"wrappingWidth": 150}}}%%
+flowchart LR
+  R["Primero define qué quieres decir"] --> A["Causa-efecto"]
+  R --> B["Jerarquía"]
+  R --> C["Secuencia"]
+  R --> D["Comparar"]
+  R --> E["Red"]
+  A --> A2["Ishikawa&lt;br/>Ej: ¿por qué caen las ventas?"]
+  B --> B2["Árbol / organigrama&lt;br/>Ej: vicerrectorado → facultades → escuelas"]
+  C --> C2["Flujo / Gantt / Timeline&lt;br/>Ej: matrícula → clases → parciales → finales"]
+  D --> D2["Tabla / matriz 2x2&lt;br/>Ej: costo vs. impacto de 3 proveedores"]
+  E --> E2["Grafo de nodos&lt;br/>Ej: quién se relaciona con quién en un proyecto"]
+  classDef raiz fill:#182742,stroke:#54688a,stroke-width:2px,color:#e9eff8;
+  classDef azul fill:#16294a,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8;
+  classDef teal fill:#113a36,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8;
+  classDef morado fill:#241d47,stroke:#b39af7,stroke-width:2px,color:#e9eff8;
+  classDef ambar fill:#3a2c12,stroke:#f7b955,stroke-width:2px,color:#e9eff8;
+  classDef detalle fill:#182742,stroke:#54688a,stroke-width:1.5px,color:#e9eff8;
+  class R raiz;
+  class A ambar;
+  class B azul;
+  class C teal;
+  class D morado;
+  class E ambar;
+  class A2,B2,C2,D2,E2 detalle;
+    </div>
+    <p class="nota-relacion">Causa → Ishikawa · Jerarquía → árbol · Tiempo → Gantt · Comparar → matriz · Red → grafo</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">7</span> Flujo del concepto: de la información al conocimiento</p>
     <div class="panel">
       <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo: la información desordenada entra como PDFs, tickets, correos y fotos; la IA la clasifica por patrones y contexto, la sintetiza en un mapa mental o esquema y la comunica en un visual claro; tú defines criterios y tú validas.">
         <defs>
@@ -489,17 +557,70 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-blue">6</span> Comparativa de herramientas (puntaje 0-10)</p>
+    <p class="rotulo"><span class="num n-blue">8</span> Comparativa de herramientas (puntaje 0-10)</p>
     <div class="stats">
       <div class="stat"><div class="valor">9</div><div class="etiqueta">Notion AI en organizar documentos</div></div>
       <div class="stat"><div class="valor">9.5</div><div class="etiqueta">Perplexity en buscar + citar</div></div>
       <div class="stat"><div class="valor">9.5</div><div class="etiqueta">Miro + IA en colaborar visualmente</div></div>
       <div class="stat"><div class="valor">9</div><div class="etiqueta">Gemini en código dentro de Workspace</div></div>
     </div>
+    <p class="nota-relacion">Puntajes según imagen comparativa de la clase.</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">9</span> ¿Qué herramienta para qué? Ninguna gana en todo</p>
+    <div class="mermaid">
+flowchart TB
+  subgraph SG1["Notion AI"]
+    a1["Organizar docs · 9"]
+    a2["Buscar + citar · 6"]
+    a3["Colaborar visual · 5"]
+    a4["Código / Workspace · 5"]
+  end
+  subgraph SG2["Gemini"]
+    b1["Organizar docs · 6"]
+    b2["Buscar + citar · 8"]
+    b3["Colaborar visual · 4"]
+    b4["Código / Workspace · 9"]
+  end
+  subgraph SG3["Perplexity"]
+    c1["Organizar docs · 5"]
+    c2["Buscar + citar · 9.5"]
+    c3["Colaborar visual · 3"]
+    c4["Código / Workspace · 4"]
+  end
+  subgraph SG4["Miro + IA"]
+    d1["Organizar docs · 6"]
+    d2["Buscar + citar · 4"]
+    d3["Colaborar visual · 9.5"]
+    d4["Código / Workspace · 5"]
+  end
+  a1 ~~~ b1
+  a2 ~~~ b2
+  a3 ~~~ b3
+  a4 ~~~ b4
+  b1 ~~~ c1
+  b2 ~~~ c2
+  b3 ~~~ c3
+  b4 ~~~ c4
+  c1 ~~~ d1
+  c2 ~~~ d2
+  c3 ~~~ d3
+  c4 ~~~ d4
+  classDef azul fill:#16294a,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8;
+  classDef teal fill:#113a36,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8;
+  classDef ambar fill:#3a2c12,stroke:#f7b955,stroke-width:2px,color:#e9eff8;
+  classDef morado fill:#241d47,stroke:#b39af7,stroke-width:2px,color:#e9eff8;
+  class a1,b1,c1,d1 azul;
+  class a2,b2,c2,d2 teal;
+  class a3,b3,c3,d3 ambar;
+  class a4,b4,c4,d4 morado;
+    </div>
+    <p class="nota-relacion">Puntaje (0-10) por dimensión: organizar docs, buscar + citar, colaborar visual y código / Workspace.</p>
   </section>
 
   <section class="ampliado">
-    <p class="rotulo"><span class="num n-teal">7</span> El prompt: estructura, partes y ejemplo</p>
+    <p class="rotulo"><span class="num n-teal">10</span> El prompt: estructura, partes y ejemplo</p>
     <div class="grid">
       <article class="bloque b-teal">
         <h3>Estructura del prompt: 5 partes</h3>
@@ -561,7 +682,7 @@
   </section>
 
   <section class="ampliado">
-    <p class="rotulo"><span class="num n-amber">8</span> Material complementario: Gemini en la práctica (PDF)</p>
+    <p class="rotulo"><span class="num n-amber">11</span> Material complementario: Gemini en la práctica (PDF)</p>
     <div class="grid">
       <article class="bloque">
         <h3>Ficha técnica de Gemini</h3>
@@ -639,5 +760,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

@@ -305,12 +305,27 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:16px 0 0;
+    overflow-x:auto;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+  .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
 </style>
 </head>
 <body>
@@ -429,6 +444,52 @@
         <p>Una empresa no puede invertir en todo al mismo tiempo.</p>
       </article>
     </div>
+    <article class="bloque b-amber">
+      <h3>De la visión a la ventaja competitiva: la cadena de la estrategia</h3>
+      <div class="mermaid">
+flowchart TB
+    A[Visión del negocio] --> B[Cultura de innovación]
+    B --> C[Liderazgo y apoyo]
+    C --> D[Experimentación]
+    D --> E[Aprendizaje continuo]
+    E --> F[Feedback del mercado]
+    F --> G[Objetivos empresariales]
+
+    G --> H[Análisis FODA]
+    H --> I[Estrategia del negocio]
+    I --> I1[Liderazgo en costos]
+    I --> I2[Diferenciación]
+    I --> I3[Enfoque]
+
+    I --> J[Objetivos de SI/TI]
+    J --> K[Requisitos de sistemas]
+    K --> L[Prioridad de proyectos]
+    L --> M[Tecnología e infraestructura]
+    M --> N[Procesos y capacidades]
+    N --> O[Ventaja competitiva]
+
+    N --> P[Validación de valor]
+    P -->|Sí| O
+    P -->|No| B
+      </div>
+    </article>
+    <article class="bloque b-teal">
+      <h3>Del problema de negocio a la mejora continua</h3>
+      <div class="mermaid">
+flowchart TD
+    A[Problema de negocio] --> B[Definir objetivo y dirección]
+    B --> C[Analizar FODA]
+    C --> D[Elegir estrategia competitiva]
+    D --> E[Definir objetivos de SI/TI]
+    E --> F[Identificar requisitos del sistema]
+    F --> G[Priorizar proyectos]
+    G --> H[Asignar tecnología e infraestructura]
+    H --> I[Validar valor para el negocio]
+    I -->|Sí| J[Implementación y mejora]
+    I -->|No| K[Revisión y reajuste]
+    K --> B
+      </div>
+    </article>
   </section>
 
   <section>
@@ -509,5 +570,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

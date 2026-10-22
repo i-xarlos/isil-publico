@@ -305,12 +305,27 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Diagramas Mermaid (gráficos de la clase) ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:0;
+    color:var(--ink);
+    text-align:center;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -357,7 +372,27 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">3</span> Relación: del proceso real al sistema</p>
+    <p class="rotulo"><span class="num n-amber">3</span> Mapa de procesos: core, soporte y gestión</p>
+    <div class="mermaid">
+%%{init: {"flowchart": {"wrappingWidth": 400}}}%%
+flowchart TD
+    G["GESTIÓN — el timón&lt;br/&gt;Qué y por qué a largo plazo · Alta dirección&lt;br/&gt;Ej.: Planificación estratégica · Gobernanza · Presupuesto · Diseño curricular"]
+    C["CORE (operativos) — el corazón&lt;br/&gt;Fábrica: Diseño → Ensamblaje → Control calidad → Distribución&lt;br/&gt;Hospital: Admisión → Diagnóstico → Cirugía → Alta · E-commerce: Selección → Inventario → Compra → Logística"]
+    S["SOPORTE — los engranajes&lt;br/&gt;No valor directo pero indispensables&lt;br/&gt;Ej.: RRHH · Compras · Mantenimiento · Limpieza · Compliance · Auditoría"]
+    G --> C
+    S --> C
+    classDef gestion fill:#241d47,stroke:#b39af7,stroke-width:2px,color:#e9eff8
+    classDef core fill:#113a36,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8
+    classDef soporte fill:#3a2c12,stroke:#f7b955,stroke-width:2px,color:#e9eff8
+    class G gestion
+    class C core
+    class S soporte
+    </div>
+    <p class="nota-relacion">Core = valor directo · Soporte = engranajes · Gestión = timón estratégico — Gestión dirige el qué, Core ejecuta el valor y Soporte hace que Core no falle · Reservas puede ser core o soporte según perspectiva</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">4</span> Relación: del proceso real al sistema</p>
     <div class="panel">
       <div class="flujo" role="img" aria-label="Relación: el proceso real se modela con BPM, se representa con la notación BPMN y termina en un sistema que guarda los datos.">
         <div class="paso c-blue">
@@ -385,7 +420,7 @@
   </section>
 
   <section class="ampliado">
-    <p class="rotulo"><span class="num n-teal">4</span> Lo esencial de la clase</p>
+    <p class="rotulo"><span class="num n-teal">5</span> Lo esencial de la clase</p>
     <div class="grid">
       <article class="bloque">
         <h3>Tres tipos de proceso</h3>
@@ -435,7 +470,30 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: ciclo BPM de mejora continua</p>
+    <p class="rotulo"><span class="num n-blue">6</span> BPMN — 4 categorías de elementos (OMG)</p>
+    <div class="mermaid">
+flowchart TB
+    R["BPMN — 4 categorías OMG&lt;br/&gt;lenguaje común negocio ↔ analista ↔ developer"]
+    R --> F["① Flujos de control&lt;br/&gt;→ Flujo de secuencia (orden)&lt;br/&gt;⇢ Mensaje (entre participantes)&lt;br/&gt;— Flecha conecta actividades"]
+    R --> E["② Eventos ○&lt;br/&gt;○ Inicio — círculo verde&lt;br/&gt;◎ Intermedio — doble círculo&lt;br/&gt;● Fin — círculo rojo"]
+    R --> A["③ Actividades ▭&lt;br/&gt;▭ Tarea — rectángulo redondeado&lt;br/&gt;▭ Subproceso — colapsable&lt;br/&gt;Cada tarea = valor"]
+    R --> G["④ Gateways ◇&lt;br/&gt;◇ Exclusiva — XOR (vacía)&lt;br/&gt;◇ Paralela — AND (+)&lt;br/&gt;◇ Evento — doble círculo"]
+    classDef root fill:#16294a,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8
+    classDef cat1 fill:#16294a,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8
+    classDef cat2 fill:#113a36,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8
+    classDef cat3 fill:#3a2c12,stroke:#f7b955,stroke-width:2px,color:#e9eff8
+    classDef cat4 fill:#241d47,stroke:#b39af7,stroke-width:2px,color:#e9eff8
+    class R root
+    class F cat1
+    class E cat2
+    class A cat3
+    class G cat4
+    </div>
+    <p class="nota-relacion">Beneficios: Estándar (todos entienden) · Escalable · Automatizable (→ reglas) · Evolutivo (fácil actualizar)</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">7</span> Flujo del concepto: ciclo BPM de mejora continua</p>
     <div class="panel">
       <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Vista resumida del ciclo BPM: identificar, diseñar y documentar; implementar; monitorear y controlar; luego volver al inicio en un ciclo de mejora continua.">
         <defs>
@@ -474,7 +532,31 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-blue">6</span> La clase en cifras</p>
+    <p class="rotulo"><span class="num n-teal">8</span> Ciclo BPM — procesos como activos</p>
+    <div class="mermaid">
+flowchart TD
+    A[Identificar] --> B[Diseñar]
+    B --> C[Documentar]
+    C --> D[Implementar]
+    D --> E[Monitorear]
+    E --> F[Controlar]
+    F -.->|mejora continua| A
+    classDef c1 fill:#16294a,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8
+    classDef c2 fill:#113a36,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8
+    classDef c3 fill:#3a2c12,stroke:#f7b955,stroke-width:2px,color:#e9eff8
+    classDef c4 fill:#241d47,stroke:#b39af7,stroke-width:2px,color:#e9eff8
+    class A c1
+    class B c2
+    class C c3
+    class D c4
+    class E c1
+    class F c4
+    </div>
+    <p class="nota-relacion">Procesos como activos · 8 principios: Enfoque cliente · Orientación procesos · Mejora continua · Colaboración · Automatización · Medición · Agilidad · Gestión del cambio</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">9</span> La clase en cifras</p>
     <div class="stats">
       <div class="stat"><div class="valor">3</div><div class="etiqueta">tipos de proceso: core, soporte y gestión</div></div>
       <div class="stat"><div class="valor">8</div><div class="etiqueta">principios del BPM</div></div>
@@ -491,6 +573,75 @@
         <p><strong>Comprar en la web (e-commerce):</strong> el proceso core va de inicio a fin — seleccionar productos, ver carrito, gateway exclusivo "¿stock?", pagar, otro gateway "¿pago OK?" y, si todo sale bien, una paralela que descuenta inventario y genera la guía logística para entregar. Roles: Cliente, Pasarela de pago, Almacén y Logística. Datos: carrito, orden y comprobante.</p>
       </div>
     </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">10</span> Caso BPMN: comprar en la web</p>
+    <div class="mermaid">
+%%{init: {"flowchart": {"nodeSpacing": 35, "rankSpacing": 40}}}%%
+flowchart TB
+    S([○ Inicio&lt;br/&gt;Cliente entra]) --> A1[Seleccionar productos]
+    A1 --> A2[Ver carrito]
+    A2 --> G1{◇ ¿Stock?}
+    G1 -- No --> E1([⬤ Fin&lt;br/&gt;Sin stock])
+    G1 -- Sí --> A3[Pagar]
+    A3 --> G2{◇ ¿Pago OK?}
+    G2 -- No --> A4[Notificar rechazo]
+    G2 -- Sí --> G3{+ Paralela}
+    G3 --> A5[Descontar inventario]
+    G3 --> A6[Generar guía logística]
+    A5 --> A7[Entregar]
+    A6 --> A7
+    A7 --> E2([⬤ Fin&lt;br/&gt;Pedido entregado])
+    classDef act fill:#3a2c12,stroke:#f7b955,stroke-width:2px,color:#e9eff8
+    classDef dec fill:#152238,stroke:#f7b955,stroke-width:2px,color:#e9eff8
+    classDef pago fill:#16294a,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8
+    classDef fin fill:#113a36,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8
+    classDef finNo fill:#3a1520,stroke:#ff7a7a,stroke-width:2px,color:#e9eff8
+    classDef par fill:#113a36,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8
+    class A1,A2,A4,A5,A6,A7 act
+    class G1,G2 dec
+    class A3 pago
+    class S,E2 fin
+    class E1 finNo
+    class G3 par
+    </div>
+    <p class="nota-relacion">Roles: Cliente · Pasarela de pago · Almacén · Logística — Datos: carrito, orden, comprobante · Eventos: Pedido recibido / Pago confirmado · Gateways: Exclusiva (¿Stock?, ¿Pago?) y Paralela (+)</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">11</span> Swimlane e-commerce: quién hace qué</p>
+    <div class="mermaid">
+flowchart LR
+    subgraph Cliente ["Cliente"]
+        direction TB
+        C1[Seleccionar productos] --> C2[Ver carrito] --> C3[Pagar]
+    end
+    subgraph Pasarela ["Pasarela de pago"]
+        direction TB
+        P1[Validar pago]
+    end
+    subgraph Almacen ["Almacen"]
+        direction TB
+        A1[Validar stock] --> A2[Descontar inventario]
+    end
+    subgraph Logistica ["Logistica"]
+        direction TB
+        L1[Generar guia] --> L2[Entregar]
+    end
+    C3 --> P1
+    P1 --> A1
+    A2 --> L1
+    classDef cli fill:#16294a,stroke:#6aa7ff,color:#e9eff8,stroke-width:2px
+    classDef pag fill:#113a36,stroke:#3ed2b2,color:#e9eff8,stroke-width:2px
+    classDef alm fill:#3a2c12,stroke:#f7b955,color:#e9eff8,stroke-width:2px
+    classDef log fill:#241d47,stroke:#b39af7,color:#e9eff8,stroke-width:2px
+    class C1,C2,C3 cli
+    class P1 pag
+    class A1,A2 alm
+    class L1,L2 log
+    </div>
+    <p class="nota-relacion">Carriles: Cliente · Pasarela de pago · Almacén · Logística — cada tarea tiene un responsable; el mensaje cruza carriles.</p>
   </section>
 
   <section>
@@ -512,5 +663,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

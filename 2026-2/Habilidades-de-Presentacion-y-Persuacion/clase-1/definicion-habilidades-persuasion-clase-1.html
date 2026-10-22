@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Infografía Clase 1 — Definición de Habilidades de Persuación · Habilidades de Presentación y Persuasión</title>
+<title>Infografía Clase 1 — Definición de Habilidades de Persuasión · Habilidades de Presentación y Persuasión</title>
 <meta name="description" content="Infografía de estudio de la Clase 1 de Habilidades de Presentación y Persuasión (ISIL, 2026-2): premisa central, audiencia, componentes emocional, innovador y memorable, y proceso de planificación.">
 <style>
   :root{
@@ -311,6 +311,21 @@
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:16px 0 0;
+    overflow-x:auto;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+  .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
 </style>
 </head>
 <body>
@@ -318,7 +333,7 @@
 
   <header class="franja">
     <div>
-      <h1>Definición de Habilidades de Persuación</h1>
+      <h1>Definición de Habilidades de Persuasión</h1>
       <p class="sub">Clase 1 · Habilidades de Presentación y Persuasión</p>
     </div>
     <p class="meta">ISIL · 2026-2 · 01/09/2026<br>Macarena Soto</p>
@@ -438,6 +453,16 @@
         <p>El error común: creer que el primer borrador es el definitivo.</p>
       </article>
     </div>
+    <article class="bloque b-purple">
+      <h3>Convencional vs alto impacto</h3>
+      <div class="mermaid">
+flowchart TD
+    CONV[Convencional] --> C1[Inicio: abre PowerPoint]
+    CONV --> C2[Plana y teórica]
+    ALTO[Alto impacto] --> A1[Inicio: define objetivo]
+    ALTO --> A2[Emoción + innovación + memorable]
+      </div>
+    </article>
   </section>
 
   <section>
@@ -483,7 +508,7 @@
     <div class="stats">
       <div class="stat"><div class="valor">3</div><div class="etiqueta">créditos: 2 h síncronas + 1 h asíncrona</div></div>
       <div class="stat"><div class="valor">4</div><div class="etiqueta">componentes: comunicacional, emocional, innovador, memorable</div></div>
-      <div class="stat"><div class="valor">4 + 1</div><div class="etiqueta">entregas en video y evaluación integral final</div></div>
+      <div class="stat"><div class="valor">4 + 1</div><div class="etiqueta">4 entregas en video (sem 4,7,10,13) + 1 evaluación final</div></div>
       <div class="stat"><div class="valor">5</div><div class="etiqueta">emociones básicas según Paul Ekman</div></div>
     </div>
   </section>
@@ -517,5 +542,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

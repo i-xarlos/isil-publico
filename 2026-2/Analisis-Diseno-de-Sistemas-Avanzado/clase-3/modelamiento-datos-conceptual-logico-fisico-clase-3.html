@@ -305,12 +305,46 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Callout de cobertura ---------- */
+  .callout{
+    margin-top:24px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:5px solid var(--blue);
+    border-radius:12px;
+    padding:14px 16px;
+    font-size:.9rem;
+    color:var(--ink-soft);
+  }
+  .callout strong{color:var(--ink);}
+  .amber-callout{
+    background:var(--amber-bg);
+    border-color:#6d5426;
+    border-left-color:var(--amber);
+    color:var(--ink);
+  }
+
+  /* ---------- Diagramas Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:0;
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+  .mermaid .row-rect-odd > path:first-child{fill:var(--card-2);}
 </style>
 </head>
 <body>
@@ -384,10 +418,29 @@
     </div>
   </section>
 
+  <section>
+    <p class="rotulo"><span class="num n-teal">4</span> Los tres modelos — de la idea a la tabla</p>
+    <div class="mermaid">
+flowchart LR
+  A[Idea de negocio&lt;br/&gt;Necesidad real] -->|reglas dominio| B[CONCEPTUAL&lt;br/&gt;qué existe · alta abstracción]
+  B -->|semántica| C[LÓGICO&lt;br/&gt;cómo se estructura · tipos]
+  C -->|tipos SGBD| D[FÍSICO&lt;br/&gt;cómo se guarda · SGBD]
+  classDef idea fill:#3a2c12,stroke:#f7b955,color:#e9eff8,stroke-width:2px
+  classDef con fill:#16294a,stroke:#6aa7ff,color:#e9eff8,stroke-width:2px
+  classDef log fill:#113a36,stroke:#3ed2b2,color:#e9eff8,stroke-width:2px
+  classDef fis fill:#241d47,stroke:#b39af7,color:#e9eff8,stroke-width:2px
+  class A idea
+  class B con
+  class C log
+  class D fis
+    </div>
+    <p class="nota-relacion">Idea clave: el modelo físico puede diferir mucho del lógico por índices, tipos y restricciones del SGBD.</p>
+  </section>
+
   <div class="callout amber-callout"><strong>Nota de cobertura:</strong> el audio disponible de la sesión está truncado. Esta infografía conserva el cierre de requisitos y presenta el bloque de modelamiento de datos con base en el material previsto para la Clase 3; no debe leerse como una transcripción completa.</div>
 
   <section class="ampliado">
-    <p class="rotulo"><span class="num n-amber">4</span> Lo esencial de la clase</p>
+    <p class="rotulo"><span class="num n-amber">5</span> Lo esencial de la clase</p>
     <div class="grid">
       <article class="bloque">
         <h3>Modelo conceptual: el mapa del dominio</h3>
@@ -443,7 +496,70 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-teal">5</span> Flujo del concepto: de la idea de negocio al modelo físico</p>
+    <p class="rotulo"><span class="num n-blue">6</span> Relaciones conceptuales: N:N, agregación y composición</p>
+    <div class="mermaid">
+classDiagram
+    class Jugador {
+        +codJugador: Integer
+    }
+    class JugadorEquipo {
+        +codJugador: FK
+        +codEquipo: FK
+        +fechaRegistro: Date
+    }
+    class Equipo {
+        +codEquipo: Integer
+    }
+    class PaqueteUML {
+        +nombre: String
+    }
+    class ElementoUML {
+        +tipo: String
+    }
+    class Departamento {
+        +codDepto: Integer
+    }
+    class Provincia {
+        +codProv: Integer
+    }
+    Jugador "1..*" -- "*" JugadorEquipo : "juega en →"
+    Equipo -- JugadorEquipo : "← está conformado por"
+    PaqueteUML o-- "0..*" ElementoUML : "◇ agregación débil"
+    Departamento *-- Provincia : "◆ composición"
+    note for JugadorEquipo "&lt;&lt;clase asociativa&gt;&gt;&lt;br/&gt;N:M con datos propios → se materializa como clase asociativa (luego tabla intermedia)"
+    note for PaqueteUML "Si borras Paquete, Elemento SOBREVIVE"
+    note for Departamento "Sin Departamento NO existe Provincia"
+    </div>
+    <p class="nota-relacion">Multiplicidad: * muchos · 1..* uno o muchos · 0..* cero o muchos · 0..1 cero o uno · 1..40 · 5 exacto.</p>
+    <p class="nota-relacion">Regla: atributo multivaluado → clase (ej. Teléfono) · atributo inherente, no derivado · Herencia en físico: usar estrategia 2 o 3 según consultas (juntos → 1 + tipo; nunca juntos → 2).</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">7</span> Generalización: extraer atributos comunes</p>
+    <div class="mermaid">
+classDiagram
+    class Persona &lt;&lt;superclase&gt;&gt; {
+        +codPerso: Integer
+        +nombres
+        +apePaterno
+        +apeMaterno
+    }
+    class Cliente {
+        +categoria: String
+        +tarjeta_credito
+    }
+    class Vendedor &lt;&lt;Empleado&gt;&gt; {
+        +fechaIngreso: Date
+        +cta_bancaria
+    }
+    Persona &lt;|-- Cliente
+    Persona &lt;|-- Vendedor
+    </div>
+    <p class="nota-relacion">▷ Generalización: Persona como superclase de Cliente y de Vendedor/Empleado.</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">8</span> Flujo del concepto: de la idea de negocio al modelo físico</p>
     <div class="panel">
       <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo: la idea de negocio se convierte en el modelo conceptual que describe qué existe, luego en el modelo lógico que define entidades y claves, y finalmente en el modelo físico que concreta tablas y tipos en la base de datos.">
         <defs>
@@ -481,7 +597,91 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-blue">6</span> Números de la clase</p>
+    <p class="rotulo"><span class="num n-amber">9</span> Modelo físico del hotel: tablas con PK / FK</p>
+    <div class="mermaid">
+erDiagram
+    CLIENTE {
+        INT CODCLIENTE PK
+        VARCHAR nombre
+        VARCHAR dirección
+        VARCHAR sexo
+        VARCHAR teléfono
+        VARCHAR email
+        DATE fechas
+    }
+    RESERVA {
+        CHAR(10) NRORESERVA PK
+        INT CODCLIENTE FK
+        DATE FECHALLEGADA
+        DATE FECHASALIDA
+        INT DIAS
+    }
+    HABITACION {
+        CHAR(4) NROHAB PK
+        INT CODICATE FK
+        VARCHAR TIPO
+        DOUBLE PRECIO
+        DATE FECHAREG "FECHAREG/ACT"
+    }
+    DETALLERESERVA {
+        CHAR(4) NROHAB PK, FK
+        CHAR(10) NRORESERVA PK, FK
+        VARCHAR HUESPEDHAB "resuelve N:M"
+    }
+    CATEGORIA {
+        INT CODICATE PK
+        VARCHAR NOMCATE
+        VARCHAR DESCATE
+    }
+    DISPONIBILIDADXHAB {
+        CHAR(4) NROHAB PK, FK
+        INT NROREG PK
+        DATE FECHAINI "FECHAINI/FIN"
+        VARCHAR ESTADO
+    }
+    CLIENTE ||--o{ RESERVA : "CODCLIENTE"
+    CATEGORIA ||--o{ HABITACION : "CODICATE"
+    RESERVA ||--o{ DETALLERESERVA : "NRORESERVA"
+    HABITACION ||--o{ DETALLERESERVA : "NROHAB"
+    HABITACION ||--o{ DISPONIBILIDADXHAB : "NROHAB"
+    </div>
+    <p class="nota-relacion">Derivado del conceptual · Tipos SGBD: Integer→INTEGER · String→VARCHAR · Date→DATE · Double→DOUBLE<br>DETALLERESERVA y DISPONIBILIDADXHAB muestran cómo N:M y cambio de estado se vuelven tablas · atributo multivaluado → clase → tabla (1FN)<br>El físico puede diferir mucho del lógico por índices, tipos y particiones del SGBD.</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">10</span> Herencia en el modelo físico: 3 estrategias</p>
+    <div class="mermaid">
+flowchart LR
+  subgraph S1["1) Una sola tabla (single table)"]
+    direction TB
+    T1["personas( codigo, nombre, apellidos,&lt;br/&gt;tipo, tarjeta_credito NULL,&lt;br/&gt;cta_bancaria NULL ) + tipo_persona"]
+    P1["✓ Simple · polimórfico&lt;br/&gt;✗ Muchos NULL"]
+    T1 ~~~ P1
+  end
+  subgraph S2["2) Tabla por clase concreta"]
+    direction TB
+    T2["empleados( codigo, nombre, apellidos, cta_bancaria )&lt;br/&gt;clientes( codigo, nombre, apellidos, tarjeta )"]
+    P2["✓ 1 tabla por insert&lt;br/&gt;✗ UNION si juntos"]
+    T2 ~~~ P2
+  end
+  subgraph S3["3) Por clase + tabla de tipos"]
+    direction TB
+    T3["personas + tipo_persona&lt;br/&gt;habitacion + tipo_habitacion&lt;br/&gt;FK tipo → integridad"]
+    P3["✓ FK tipo · SELECT simple&lt;br/&gt;✗ Cuidado NOT NULL"]
+    T3 ~~~ P3
+  end
+  S1 ~~~ S2
+  S2 ~~~ S3
+  classDef caja fill:#152238,stroke:#6aa7ff,color:#e9eff8,stroke-width:2px
+  classDef pros fill:#113a36,stroke:#3ed2b2,color:#e9eff8,stroke-width:2px
+  class T1,T2,T3 caja
+  class P1,P2,P3 pros
+    </div>
+    <p class="nota-relacion">Regla: si nunca juntos → 2. Si común juntos → 1. Evitar 1 sin tipo con muchas subclases (tabla ancha).</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">11</span> Números de la clase</p>
     <div class="stats">
       <div class="stat"><div class="valor">3</div><div class="etiqueta">niveles de modelado: conceptual, lógico y físico</div></div>
       <div class="stat"><div class="valor">6</div><div class="etiqueta">pasos para modelar desde cero</div></div>
@@ -521,5 +721,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

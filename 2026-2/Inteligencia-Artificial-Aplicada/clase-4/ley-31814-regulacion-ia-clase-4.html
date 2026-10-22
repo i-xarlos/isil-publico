@@ -305,12 +305,26 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Diagramas Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:0;
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -384,8 +398,29 @@
     </div>
   </section>
 
+  <section>
+    <p class="rotulo"><span class="num n-amber">4</span> Pirámide de riesgo — niveles de la Ley N.° 31814</p>
+    <div class="mermaid">
+flowchart TD
+  N1["RIESGO INACEPTABLE&lt;br/&gt;PROHIBIDO · Scoring social · Manipulación subliminal · Explotación de vulnerables · Facial en tiempo real"]
+  N2["RIESGO ALTO&lt;br/&gt;Regulación estricta (7 requisitos) · Biométrica · Educación · Empleo · Justicia · Servicios esenciales"]
+  N3["RIESGO LIMITADO&lt;br/&gt;Transparencia obligatoria · Chatbots · Recomendadores · Deepfakes → Avisar que es IA"]
+  N4["RIESGO MÍNIMO&lt;br/&gt;Operación libre · Filtro spam · IA en videojuegos · Recomendación películas/música"]
+  N1 --> N2 --> N3 --> N4
+  classDef ina fill:#4d3a17,stroke:#f7b955,stroke-width:2px,color:#e9eff8;
+  classDef alt fill:#322a68,stroke:#b39af7,stroke-width:2px,color:#e9eff8;
+  classDef lim fill:#17564e,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8;
+  classDef min fill:#1d3560,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8;
+  class N1 ina;
+  class N2 alt;
+  class N3 lim;
+  class N4 min;
+    </div>
+    <p class="nota-relacion">De mayor a menor riesgo (de arriba hacia abajo): a mayor riesgo, mayores requisitos de control · Enfoque proporcional y contextual.</p>
+  </section>
+
   <section class="ampliado">
-    <p class="rotulo"><span class="num n-teal">4</span> Lo esencial de la clase</p>
+    <p class="rotulo"><span class="num n-teal">5</span> Lo esencial de la clase</p>
     <div class="grid">
       <article class="bloque">
         <h3>Los 7 derechos del usuario</h3>
@@ -433,7 +468,65 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: del riesgo a los derechos</p>
+    <p class="rotulo"><span class="num n-blue">6</span> Rueda de los 7 derechos del usuario — Ley N.° 31814</p>
+    <div class="mermaid">
+flowchart LR
+  C(("Ley N.° 31814&lt;br/&gt;7 Derechos&lt;br/&gt;del Usuario"))
+  D1["1. Información&lt;br/&gt;y transparencia"]
+  D2["2. Explicación"]
+  D3["3. No discriminación"]
+  D4["4. Supervisión&lt;br/&gt;humana"]
+  D5["5. Protección&lt;br/&gt;de datos"]
+  D6["6. Oposición a&lt;br/&gt;decisión automatizada"]
+  D7["7. Seguridad&lt;br/&gt;digital"]
+  C --- D1
+  C --- D2
+  C --- D3
+  C --- D4
+  C --- D5
+  C --- D6
+  C --- D7
+  classDef ctr fill:#0a1120,stroke:#e9eff8,stroke-width:2px,color:#e9eff8;
+  classDef r1 fill:#1d3560,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8;
+  classDef r2 fill:#17564e,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8;
+  classDef r3 fill:#4d3a17,stroke:#f7b955,stroke-width:2px,color:#e9eff8;
+  classDef r4 fill:#322a68,stroke:#b39af7,stroke-width:2px,color:#e9eff8;
+  class C ctr;
+  class D1,D5 r1;
+  class D2,D6 r2;
+  class D3,D7 r3;
+  class D4 r4;
+    </div>
+    <p class="nota-relacion">Universalidad · Irrenunciabilidad · Exigibilidad · Protección reforzada: no puedes cederlos ni firmando términos y condiciones.</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">7</span> Supervisión y trazabilidad — componentes</p>
+    <div class="mermaid">
+flowchart LR
+  subgraph SUP["SUPERVISIÓN · ¿Quién vigila que la IA cumpla?"]
+    direction TB
+    S1["Institucional&lt;br/&gt;PCM + ministerios sectoriales&lt;br/&gt;Coordina políticas nacionales"]
+    S2["Técnica&lt;br/&gt;Auditorías periódicas&lt;br/&gt;Precisión, robustez, sesgos, seguridad"]
+    S3["Ética&lt;br/&gt;Comités de ética&lt;br/&gt;No discriminación, transparencia"]
+  end
+  subgraph TRA["TRAZABILIDAD · ¿Qué se registra para auditar?"]
+    direction TB
+    T1["Decisiones&lt;br/&gt;Log de cada decisión automatizada"]
+    T2["Datos&lt;br/&gt;Origen, transformaciones y uso"]
+    T3["Intervenciones humanas&lt;br/&gt;Cuándo y cómo interviene una persona"]
+    T4["Modelos&lt;br/&gt;Versiones, parámetros y ciclo de vida"]
+  end
+  classDef sup fill:#1d3560,stroke:#6aa7ff,stroke-width:2px,color:#e9eff8;
+  classDef tra fill:#17564e,stroke:#3ed2b2,stroke-width:2px,color:#e9eff8;
+  class S1,S2,S3 sup;
+  class T1,T2,T3,T4 tra;
+    </div>
+    <p class="nota-relacion">Analogía: supervisión = inspector en carretera · trazabilidad = caja negra del avión · sin ambas no hay rendición de cuentas.</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">8</span> Flujo del concepto: del riesgo a los derechos</p>
     <div class="panel">
       <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo de la Ley 31814: se evalúa el riesgo del uso de IA, se clasifica en nivel inaceptable, alto, limitado o mínimo, se aplica el control correspondiente y se garantizan los 7 derechos del usuario.">
         <defs>
@@ -499,5 +592,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis", wrappingWidth: 900 },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

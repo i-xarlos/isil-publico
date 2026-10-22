@@ -305,12 +305,27 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:16px 0 0;
+    overflow-x:auto;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+  .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
 </style>
 </head>
 <body>
@@ -432,6 +447,18 @@
         </ul>
       </article>
     </div>
+    <article class="bloque b-amber">
+      <h3>6 estímulos que enganchan a la audiencia</h3>
+      <div class="mermaid">
+flowchart LR
+    H[Historia con impacto] --> P[Proposito claro]
+    H --> A[Ajuste a la audiencia]
+    H --> E[Emocion]
+    H --> C[Conflicto comprensible]
+    H --> B[Pertenencia]
+    H --> F[Cierre con sentido]
+      </div>
+    </article>
   </section>
 
   <section>
@@ -487,7 +514,7 @@
       <span class="marca" aria-hidden="true">E</span>
       <div>
         <h3>Ejemplo de la clase</h3>
-        <p><strong>App de turnos médicos:</strong> el propósito es lograr aprobación para un piloto; la audiencia son pacientes y directivos; el conflicto es perder tiempo esperando; la emoción es la frustración; la pertenencia aparece en una situación que muchos han vivido; el cierre propone probar la app en una sede y revisar los resultados.</p>
+        <p><strong>App de turnos médicos:</strong> el propósito es lograr aprobación para un piloto; la audiencia son pacientes y directivos; el conflicto es perder tiempo esperando; la emoción es la frustración; la pertenencia aparece en una situación que muchos han vivido; el cierre propone probar la app en una sede y revisar los resultados. De las 2 historias comparadas en clase, conecta la que da claridad+tensión+significado, no la más intensa.</p>
       </div>
     </div>
   </section>
@@ -498,7 +525,7 @@
       <ul>
         <li>Las historias se recuerdan más que los hechos aislados.</li>
         <li>La audiencia debe verse reflejada en la narrativa.</li>
-        <li>El relato necesita propósito, conflicto y cierre con sentido.</li>
+        <li>El relato necesita propósito, conflicto y cierre con sentido: conecta la que da claridad+tensión+significado, no la más intensa.</li>
         <li>El mejor storytelling une claridad, emoción y relevancia.</li>
       </ul>
       <p class="frase"><strong>Frase clave:</strong> "La historia es de tu audiencia, ellos la interpretan."</p>
@@ -511,5 +538,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

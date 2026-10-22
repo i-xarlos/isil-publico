@@ -311,6 +311,21 @@
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:16px 0 0;
+    overflow-x:auto;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+  .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
 </style>
 </head>
 <body>
@@ -418,6 +433,34 @@
           <li><strong>SMART:</strong> específico, medible, alcanzable, realista y a tiempo.</li>
           <li><strong>KPI vs. meta:</strong> el KPI mide; la meta fija el nivel a alcanzar.</li>
         </ul>
+        <div class="mermaid">
+flowchart TD
+    F[Fortalezas: lo interno bueno]
+    O[Oportunidades: lo externo bueno]
+    D[Debilidades: lo interno malo]
+    A[Amenazas: lo externo malo]
+    F --> FO[Estrategia FO: usar fortalezas y aprovechar oportunidades]
+    O --> FO
+    F --> FA[Estrategia FA: usar fortalezas y frenar amenazas]
+    A --> FA
+    O --> DO[Estrategia DO: corregir debilidades con oportunidades]
+    D --> DO
+    D --> DA[Estrategia DA: resistir en nicho]
+    A --> DA
+        </div>
+        <div class="mermaid">
+flowchart LR
+    R[Rivalidad entre competidores]
+    C[Poder de clientes]
+    P[Poder de proveedores]
+    N[Nuevos competidores]
+    S[Sustitutos]
+    R --> X[Rentabilidad del sector]
+    C --> X
+    P --> X
+    N --> X
+    S --> X
+        </div>
       </article>
 
       <article class="bloque b-amber">
@@ -487,7 +530,7 @@
       <span class="marca" aria-hidden="true">E</span>
       <div>
         <h3>Ejemplo de la clase</h3>
-        <p><strong>Restaurante Central (Virgilio Martínez):</strong> ante una Lima conservadora, la estrategia fue eliminar la carta tradicional y ofrecer solo menú de alturas. Algunos clientes se retiraron. No bastó la idea: entrenaron a mozos y cocineros en el origen de los insumos y coordinaron proveedores únicos con trazabilidad. Lección: la estrategia nace de una idea y se construye con equipo y proveedores; es diferenciación difícil de imitar.</p>
+        <p><strong>Restaurante Central (Virgilio Martínez):</strong> ante una Lima conservadora, la estrategia fue eliminar la carta tradicional y ofrecer solo menú de alturas. Algunos clientes se retiraron. No bastó la idea: entrenaron a mozos y cocineros en el origen de los insumos y coordinaron proveedores únicos con trazabilidad. Lección: la estrategia nace de una idea y se construye con equipo y proveedores; es diferenciación difícil de imitar. <strong>En banca y retail peruano:</strong> BCP se diferencia con Yape y experiencia digital, Interbank combina lo digital con eficiencia en costos, Falabella apuesta por omnicanalidad y CMR, y Plaza Vea compite con costos bajos y alto volumen.</p>
       </div>
     </div>
   </section>
@@ -513,5 +556,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

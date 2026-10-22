@@ -305,12 +305,27 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:16px 0 0;
+    overflow-x:auto;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+  .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
 </style>
 </head>
 <body>
@@ -428,6 +443,80 @@
         </table>
       </article>
     </div>
+    <article class="bloque b-amber">
+      <h3>La pasión empieza por inspirarte a ti mismo</h3>
+      <div class="mermaid">
+flowchart TD
+    A[Que te mueve a ti?] --> B[Buscar dentro<br/>conexion contigo]
+    B --> C[Sentir la emocion<br/>antes de hablar]
+    C --> D{Inspirarte a ti mismo?}
+    D -->|si| E[Inspiras a otros<br/>pasion contagiosa]
+    D -->|no| F[Mensaje correcto<br/>pero olvidable]
+    E --> G[Conectas<br/>audiencia se siente parte]
+      </div>
+    </article>
+    <article class="bloque b-teal">
+      <h3>La sala en 4 zonas: reparte la mirada para conectar</h3>
+      <div class="mermaid">
+flowchart TD
+    SALA[Sala dividida en 4 zonas]
+    SALA --> IZQ[Izquierda<br/>3-5s]
+    SALA --> CEN[Centro<br/>3-5s]
+    SALA --> DER[Derecha<br/>3-5s]
+    SALA --> FON[Fondo<br/>3-5s]
+    IZQ --> ROT[Rotar mirada<br/>cada frase]
+    CEN --> ROT
+    DER --> ROT
+    FON --> ROT
+    ROT --> TODOS[Todos sienten<br/>que les hablas a ellos]
+      </div>
+    </article>
+    <article class="bloque b-purple">
+      <h3>Pasión (energía interna) + rapport (puente) = conexión</h3>
+      <div class="mermaid">
+flowchart TD
+    P[PASION<br/>energia interna] --> P1[Que me mueve?]
+    P1 --> P2[Buscar dentro de ti]
+    P2 --> P3[Sentir antes de hablar]
+    P3 --> P4[Inspirarte a ti mismo]
+    R[RAPPORT<br/>puente externo] --> R1[Que mueve a mi audiencia?]
+    R1 --> R2[Entrar desde su punto de vista]
+    R2 --> R3[Validar su tiempo]
+    R3 --> R4[Inspirar a otros]
+    P4 --> C[CONEXION]
+    R4 --> C
+    C --> AUD[Audiencia piensa:<br/>vale la pena escucharla]
+      </div>
+    </article>
+    <article class="bloque b-amber">
+      <h3>Matriz pasión × rapport: los 4 resultados</h3>
+      <div class="mermaid">
+quadrantChart
+    title Matriz Pasion vs Rapport
+    x-axis Bajo Rapport --> Alto Rapport
+    y-axis Baja Pasion --> Alta Pasion
+    quadrant-1 Potente
+    quadrant-2 Ruido
+    quadrant-3 Olvidable
+    quadrant-4 Correcto pero frio
+    Olvidable: [0.2, 0.2]
+    Ruido: [0.2, 0.8]
+    Correcto pero frio: [0.8, 0.2]
+    Potente: [0.8, 0.8]
+      </div>
+    </article>
+    <article class="bloque b-teal">
+      <h3>De la sala apagada a la conexión: sube la energía</h3>
+      <div class="mermaid">
+flowchart LR
+    S1[Sala apagada] --> A1[Empieza pausado<br/>voz baja]
+    A1 --> A2[Sube gradual<br/>energia y tono]
+    A2 --> S2[Sala activada]
+    S3[Sala energica] --> B1[Entra alto<br/>pero sin gritar]
+    B1 --> B2[Manten ritmo<br/>canaliza entusiasmo]
+    B2 --> S4[Conexion sostenida]
+      </div>
+    </article>
   </section>
 
   <section>
@@ -484,7 +573,7 @@
       <span class="marca" aria-hidden="true">E</span>
       <div>
         <h3>Ejemplo de la clase</h3>
-        <p><strong>Resultados trimestrales de un proyecto de IA:</strong> leyendo slides con voz plana y sin mirada, la audiencia revisa el celular: dato correcto, cero recuerdo. Con pasión y rapport empiezas con "¿cuántos han esperado 20 minutos en un call center?", usas mirada zonas y subes la voz gradualmente: la audiencia asiente, se siente aludida y recuerda la historia y el dato.</p>
+        <p><strong>Resultados trimestrales de un proyecto de IA:</strong> leyendo slides con voz plana y sin mirada, la audiencia revisa el celular: dato correcto, cero recuerdo. Con pasión y rapport empiezas con "¿cuántos han esperado 20 minutos en un call center?", usas mirada zonal y subes la voz gradualmente para mostrar cómo se bajó esa espera de 20 a 2 minutos (resultado solo si fue medido; si es meta, descríbelo como objetivo del piloto): la audiencia asiente, se siente aludida y recuerda la historia y el dato.</p>
       </div>
     </div>
   </section>
@@ -508,5 +597,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

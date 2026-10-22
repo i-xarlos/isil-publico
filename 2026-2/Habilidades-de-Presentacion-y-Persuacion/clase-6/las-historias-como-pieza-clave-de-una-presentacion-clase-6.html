@@ -305,12 +305,27 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:16px 0 0;
+    overflow-x:auto;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+  .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
 </style>
 </head>
 <body>
@@ -431,12 +446,35 @@
         <p>Las historias no reemplazan la información: le dan sentido.</p>
       </article>
     </div>
+    <article class="bloque b-teal">
+      <h3>Storytelling Canvas: de tu pasión y tu audiencia a la narrativa</h3>
+      <div class="mermaid">
+flowchart TD
+    P[Mi pasion<br/>Que me importa?] --> H[Historia posible]
+    A[Mi audiencia<br/>Que le importa?] --> R{Punto de relevancia}
+    P --> R
+    R --> H
+    H --> O[Proposito<br/>Que quiero que sienta o entienda?]
+    O --> N[Narrativa lista para contar]
+      </div>
+    </article>
+    <article class="bloque b-amber">
+      <h3>Ejemplo real: la sopa de frejoles</h3>
+      <div class="mermaid">
+flowchart TD
+    A[Domingos en casa<br/>de la abuela] --> B[La sopa y el abrazo<br/>crean pertenencia]
+    B --> C[La ausencia rompe<br/>la rutina]
+    C --> D[Un plato en Surquillo<br/>reactiva el recuerdo]
+    D --> E[La sopa representa<br/>amor y memoria]
+      </div>
+    </article>
   </section>
 
+  
   <section>
-    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: cómo integrar la historia en la presentación</p>
+    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: de la historia al sentido</p>
     <div class="panel">
-      <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo: la presentación comienza con el contexto que ubica a la audiencia, luego presenta el conflicto que genera tensión, muestra la emoción de la experiencia y cierra con la lección que queda en la audiencia.">
+      <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo: el contexto sitúa a la audiencia, el conflicto genera tensión, el propósito orienta la emoción y el sentido entrega la lección.">
         <defs>
           <marker id="punta1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
             <path d="M0,0 L8,4 L0,8 z" fill="#54688a"></path>
@@ -445,37 +483,36 @@
 
         <rect class="nodo" x="6" y="34" width="220" height="88" rx="12" stroke="#6aa7ff"></rect>
         <text class="nodo-titulo" x="116" y="72" text-anchor="middle" style="fill:#6aa7ff">Contexto</text>
-        <text class="nodo-texto" x="116" y="98" text-anchor="middle">Ubica en un escenario real</text>
+        <text class="nodo-texto" x="116" y="98" text-anchor="middle">Escenario y personajes</text>
 
         <line class="flecha-linea" x1="232" y1="78" x2="282" y2="78" marker-end="url(#punta1)"></line>
 
         <rect class="nodo" x="288" y="34" width="220" height="88" rx="12" stroke="#3ed2b2"></rect>
         <text class="nodo-titulo" x="398" y="72" text-anchor="middle" style="fill:#3ed2b2">Conflicto</text>
-        <text class="nodo-texto" x="398" y="98" text-anchor="middle">Muestra el desafío en juego</text>
+        <text class="nodo-texto" x="398" y="98" text-anchor="middle">Tensión y obstáculos</text>
 
         <line class="flecha-linea" x1="514" y1="78" x2="564" y2="78" marker-end="url(#punta1)"></line>
 
         <rect class="nodo" x="570" y="34" width="220" height="88" rx="12" stroke="#b39af7"></rect>
-        <text class="nodo-titulo" x="680" y="72" text-anchor="middle" style="fill:#b39af7">Emoción</text>
-        <text class="nodo-texto" x="680" y="94" text-anchor="middle">Detalles, contrastes y</text>
-        <text class="nodo-texto" x="680" y="112" text-anchor="middle">movimiento narrativo</text>
+        <text class="nodo-titulo" x="680" y="72" text-anchor="middle" style="fill:#b39af7">Propósito</text>
+        <text class="nodo-texto" x="680" y="98" text-anchor="middle">Qué siente y entiende</text>
 
         <line class="flecha-linea" x1="796" y1="78" x2="846" y2="78" marker-end="url(#punta1)"></line>
 
         <rect class="nodo" x="852" y="34" width="220" height="88" rx="12" stroke="#f7b955"></rect>
-        <text class="nodo-titulo" x="962" y="72" text-anchor="middle" style="fill:#f7b955">Lección</text>
-        <text class="nodo-texto" x="962" y="98" text-anchor="middle">Cierre con sentido</text>
+        <text class="nodo-titulo" x="962" y="72" text-anchor="middle" style="fill:#f7b955">Sentido</text>
+        <text class="nodo-texto" x="962" y="98" text-anchor="middle">Lección que queda</text>
 
-        <text class="pie-diagrama" x="540" y="186" text-anchor="middle">Cada paso deja una idea clara que la audiencia recuerda y siente</text>
+        <text class="pie-diagrama" x="540" y="186" text-anchor="middle">La historia organiza la idea y le da sentido para la audiencia</text>
       </svg>
-      <p class="nota-relacion">Contexto → tensión → emoción → lección: la historia hace que la audiencia recuerde la idea.</p>
+      <p class="nota-relacion">Contexto → conflicto → propósito → sentido: la historia deja la idea, no solo la frase.</p>
     </div>
   </section>
 
   <section>
     <p class="rotulo"><span class="num n-blue">6</span> Cifras de la clase</p>
     <div class="stats">
-      <div class="stat"><div class="valor">3</div><div class="etiqueta">momentos de la estructura narrativa</div></div>
+      <div class="stat"><div class="valor">4</div><div class="etiqueta">momentos de la estructura narrativa</div></div>
       <div class="stat"><div class="valor">4</div><div class="etiqueta">pilares de una historia efectiva</div></div>
       <div class="stat"><div class="valor">4</div><div class="etiqueta">elementos del Storytelling Canvas</div></div>
       <div class="stat"><div class="valor">4</div><div class="etiqueta">pasos para aplicarla en tu presentación</div></div>
@@ -511,5 +548,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

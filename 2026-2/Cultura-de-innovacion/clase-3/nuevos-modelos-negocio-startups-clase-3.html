@@ -305,12 +305,27 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.mermaid{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:16px 0 0;
+    overflow-x:auto;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+  .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
 </style>
 </head>
 <body>
@@ -431,6 +446,35 @@
         <p>No se devuelven: dan capital inicial sin historial ni activos.</p>
       </article>
     </div>
+    <article class="bloque">
+      <h3>Business Model Canvas aplicado: los 9 bloques y sus relaciones</h3>
+      <div class="mermaid">
+flowchart LR
+    subgraph CLIENTES["CLIENTES"]
+        SM["2. Segmento de mercado<br/>Deportistas 16-50 años<br/>+ venta mayorista a tiendas"]
+        RC["4. Relación con clientes<br/>Atención rápida y honesta<br/>Asesoría experta"]
+        CN["3. Canales<br/>Web · Redes sociales<br/>Teléfono · Email"]
+    end
+    subgraph OFERTA["OFERTA"]
+        PV["1. Propuesta de valor<br/>Comprar sin salir de casa<br/>Atención personalizada<br/>pre y postventa"]
+    end
+    subgraph INFRA["INFRAESTRUCTURA"]
+        AC["7. Actividades clave<br/>Intermediación mayorista<br/>Gestión plataforma web"]
+        RK["6. Recursos clave<br/>Dev web · Almacén<br/>Capital socios · Dominio/hosting"]
+        SK["8. Socios clave<br/>Proveedores directos<br/>Nike · Adidas · Puma · Reebok"]
+    end
+    subgraph FINANZAS["VIABILIDAD FINANCIERA"]
+        MI["5. Ingresos<br/>Venta minorista<br/>PayPal · Tarjeta · Transferencia"]
+        EC["9. Costes<br/>Dev/diseño · Hosting<br/>Pedidos mínimos · Gestoría · Impuestos"]
+    end
+    SM --- PV
+    RC --- PV
+    CN --- PV
+    AC --- PV
+    RK --- PV
+    SK --- PV
+    </div>
+    </article>
   </section>
 
   <section>
@@ -512,5 +556,39 @@
   </footer>
 
 </div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
 </body>
 </html>

@@ -22,6 +22,8 @@
   .franja .sub{margin:6px 0 0;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#9db8dc;}
   .franja .meta{margin:8px 0 0;font-size:.86rem;color:#c3d4ea;}
   .pestanas{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;}
+  .pestanas.subcategorias{margin-top:9px;}
+  .pestanas[hidden]{display:none;}
   .pestanas button{display:inline-flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--line);
     color:var(--ink-soft);border-radius:999px;padding:8px 15px;font-size:.82rem;font-weight:600;cursor:pointer;
     transition:border-color .12s ease,color .12s ease,transform .12s ease;font-family:inherit;}
@@ -75,26 +77,13 @@
     <p class="meta">116 documentos de 10 cursos y Proyecto · lectura en página oscura · cada infografía es un HTML autocontenido</p>
   </header>
 
-  <nav class="pestanas" aria-label="Filtrar por curso">
-<button class="activo t-todo" data-curso="todos" aria-pressed="true">Todos</button>
-    <!-- 2026-1-TABS-BEGIN -->
-    <button class="t-teal" data-curso="Análisis Estadístico y Data Mining" aria-pressed="false"><span class="punto n-teal"></span>Análisis Estadístico y Data Mining</button>
-    <button class="t-blue" data-curso="Arquitectura Empresarial" aria-pressed="false"><span class="punto n-blue"></span>Arquitectura Empresarial</button>
-    <button class="t-purple" data-curso="Customer Centricity y Agilidad en TI" aria-pressed="false"><span class="punto n-purple"></span>Customer Centricity y Agilidad en TI</button>
-    <button class="t-amber" data-curso="Dirección Estratégica de Datos" aria-pressed="false"><span class="punto n-amber"></span>Dirección Estratégica de Datos</button>
-    <button class="t-teal" data-curso="Diseño de Soluciones con IA" aria-pressed="false"><span class="punto n-teal"></span>Diseño de Soluciones con IA</button>
-    <!-- 2026-1-TABS-END -->
-    <button class="t-teal" data-curso="Análisis Estadístico y Data Mining" aria-pressed="false"><span class="punto n-teal"></span>Estadística y Data Mining</button>
-    <button class="t-blue" data-curso="Arquitectura Empresarial" aria-pressed="false"><span class="punto n-blue"></span>Arquitectura Empresarial</button>
-    <button class="t-purple" data-curso="Customer Centricity y Agilidad en TI" aria-pressed="false"><span class="punto n-purple"></span>Customer Centricity</button>
-    <button class="t-amber" data-curso="Dirección Estratégica de Datos" aria-pressed="false"><span class="punto n-amber"></span>Dirección de Datos</button>
-    <button class="t-teal" data-curso="Diseño de Soluciones con IA" aria-pressed="false"><span class="punto n-teal"></span>Diseño de Soluciones con IA</button>
-    <button class="t-blue" data-curso="Análisis y Diseño de Sistemas Avanzado" aria-pressed="false"><span class="punto n-blue"></span>Sistemas Avanzado</button>
-    <button class="t-teal" data-curso="Cultura de Innovación" aria-pressed="false"><span class="punto n-teal"></span>Cultura de Innovación</button>
-    <button class="t-purple" data-curso="Habilidades de Presentación y Persuación" aria-pressed="false"><span class="punto n-purple"></span>Habilidades</button>
-    <button class="t-amber" data-curso="Inteligencia Artificial Aplicada" aria-pressed="false"><span class="punto n-amber"></span>Inteligencia Artificial</button>
-    <button class="t-blue" data-curso="Planeamiento Estratégico de Sistemas de Información" aria-pressed="false"><span class="punto n-blue"></span>Planeamiento</button>
-    <button class="t-teal" data-curso="Proyecto" aria-pressed="false"><span class="punto n-teal"></span>Proyecto</button>
+  <nav class="pestanas" id="filtro-cohortes" aria-label="Filtrar por cohorte">
+    <button class="activo t-todo" data-cohorte="todos" aria-pressed="true">Todas</button>
+    <button class="t-blue" data-cohorte="2026-1" aria-pressed="false">2026-1</button>
+    <button class="t-teal" data-cohorte="2026-2" aria-pressed="false">2026-2</button>
+    <button class="t-purple" data-cohorte="proyecto" aria-pressed="false">Proyecto</button>
+  </nav>
+  <nav class="pestanas subcategorias" id="filtro-cursos" aria-label="Filtrar por curso" hidden>
   </nav>
 
   <div class="buscador">
@@ -870,38 +859,97 @@
 (function(){
   var q=document.getElementById('q'),c=document.getElementById('contador'),
       vacio=document.getElementById('vacio'),total=116;
-  var botones=[].slice.call(document.querySelectorAll('.pestanas button'));
+  var cohortes=document.getElementById('filtro-cohortes');
+  var cursos=document.getElementById('filtro-cursos');
+  var botonesCohorte=[].slice.call(cohortes.querySelectorAll('button'));
   var secciones=[].slice.call(document.querySelectorAll('section.curso'));
-  var actual='todos';
+  var cohorteActual='todos',cursoActual='todos';
+
+  secciones.forEach(function(s){
+    var tarjeta=s.querySelector('.tarjeta');
+    var ruta=tarjeta?tarjeta.getAttribute('href')||'':'';
+    s.dataset.cohorte=ruta.replace(/^\.\//,'').split('/')[0]||'';
+  });
+
+  function dibujarCursos(){
+    cursos.innerHTML='';
+    var disponibles=secciones.filter(function(s){
+      return cohorteActual==='todos'||s.dataset.cohorte===cohorteActual;
+    });
+    if(!disponibles.length){cursos.hidden=true;return;}
+    cursos.hidden=false;
+
+    function botonCurso(nombre,color,activo){
+      var b=document.createElement('button');
+      b.type='button';
+      b.className=activo?'activo t-todo':'t-'+color;
+      b.dataset.curso=nombre;
+      b.setAttribute('aria-pressed',activo?'true':'false');
+      if(!activo){
+        var punto=document.createElement('span');
+        punto.className='punto n-'+color;
+        b.appendChild(punto);
+      }
+      b.appendChild(document.createTextNode(nombre));
+      return b;
+    }
+
+    cursos.appendChild(botonCurso('Todos los cursos','todo',cursoActual==='todos'));
+    disponibles.forEach(function(s){
+      var tarjeta=s.querySelector('.tarjeta');
+      var clase=tarjeta?Array.prototype.find.call(tarjeta.classList,function(x){return /^c-(blue|teal|purple|amber)$/.test(x);}):null;
+      var color=clase?clase.slice(2):'blue';
+      cursos.appendChild(botonCurso(s.dataset.curso,color,cursoActual===s.dataset.curso));
+    });
+  }
+
   function aplicar(){
     var t=q.value.toLowerCase().trim(),vis=0;
     secciones.forEach(function(s){
       var curso=s.dataset.curso;
-      var enCurso=(actual==='todos')||(curso===actual);
+      var enCohorte=(cohorteActual==='todos')||(s.dataset.cohorte===cohorteActual);
+      var enCurso=(cursoActual==='todos')||(curso===cursoActual);
       var alg=0;
       [].slice.call(s.querySelectorAll('.tarjeta')).forEach(function(a){
-        var ok=enCurso&&(!t||(a.textContent+' '+curso).toLowerCase().indexOf(t)>-1);
+        var ok=enCohorte&&enCurso&&(!t||(a.textContent+' '+curso+' '+s.dataset.cohorte).toLowerCase().indexOf(t)>-1);
         a.style.display=ok?'':'none';
         if(ok){alg++;vis++;}
       });
       s.style.display=alg?'':'none';
     });
-    var extra=(actual==='todos')?'':' · '+actual;
+    var extra=(cohorteActual==='todos'?'':' · '+cohorteActual)+(cursoActual==='todos'?'':' · '+cursoActual);
     c.textContent='Mostrando '+vis+' de '+total+' documentos'+extra;
     vacio.style.display=vis?'none':'block';
   }
-  botones.forEach(function(b){
+
+  botonesCohorte.forEach(function(b){
     b.addEventListener('click',function(){
-      actual=b.dataset.curso;
-      botones.forEach(function(x){
+      cohorteActual=b.dataset.cohorte;
+      cursoActual='todos';
+      botonesCohorte.forEach(function(x){
         var on=(x===b);
         x.classList.toggle('activo',on);
         x.setAttribute('aria-pressed',on?'true':'false');
       });
+      dibujarCursos();
       aplicar();
     });
   });
+  cursos.addEventListener('click',function(event){
+    var b=event.target.closest('button[data-curso]');
+    if(!b)return;
+    cursoActual=b.dataset.curso;
+    [].slice.call(cursos.querySelectorAll('button')).forEach(function(x){
+      var on=x===b;
+      x.classList.toggle('activo',on);
+      x.classList.toggle('t-todo',on);
+      x.setAttribute('aria-pressed',on?'true':'false');
+    });
+    aplicar();
+  });
   q.addEventListener('input',aplicar);
+  dibujarCursos();
+  aplicar();
 })();
 </script>
 </body>

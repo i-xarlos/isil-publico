@@ -786,6 +786,51 @@ sequenceDiagram
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 9 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Evolución</h3>
+    <p>UML 1.x — se estandariza a finales de los 90 y se vuelve el referente de la industria. UML 2.0 — amplía la notación y también sirve para visualizar procesos, no solo objetos.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Tres componentes básicos</h3>
+    <p>Componente · Qué es · Ejemplo Elementos de modelado · Bloques de construcción · Clases, interfaces, colaboraciones y sus relaciones Diagramas · Representación gráfica de elementos y relaciones · Clases, secuencia, actividades, casos de uso Vistas · Agrupaciones de diagramas por aspecto del sistema · &quot;Vista de diseño&quot; = diagramas de la arquitectura</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Elementos estructurales (el &quot;esqueleto&quot;)</h3>
+    <p>Elemento · Qué representa · Ejemplo Clase · Tipo de objeto: sus atributos y métodos · Venta con atributo total y método calcularTotal() Interfaz · Contrato que las clases implementadas deben seguir · IPago define cobrar() Componente · Parte modular con interfaz bien definida · Módulo &quot;Gestión de Productos&quot; Objeto · Instancia de una clase · La venta #102 con total S/ 45.00</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Relaciones — la parte que más se olvida</h3>
+    <p>Relación · Significado · Notación Asociación · Hay relación, pero no se define cuál · Línea sólida —— Agregación · Todo–parte, la parte puede existir sin el todo · Rombó hueco ◇—— Composición · Todo–parte fuerte: si muere el todo, muere la parte · Rombó lleno ◆—— Herencia · Clase padre → clases hijas · Flecha triángulo hueco ▷——</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>6. Errores comunes</h3>
+    <p>Error · Consecuencia Dibujar los 14 diagramas &quot;por completar&quot; · Modelo gigante que nadie mantiene ni lee Tratar UML como metodología · UML es notación, no te dice cómo desarrollar Confundir agregación con composición · Mal diseño de estructuras y borrados en cascada Diagrama de clases sin relaciones · Clases sueltas: no se entiende el sistema</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Glosario</h3>
+    <p>Término · Definición · Ejemplo UML · Lenguaje gráfico estandarizado para modelar · Diagrama de clases de la biblioteca Modelo UML · Conjunto de diagramas del sistema · Modelo completo del comercio electrónico Clase · Tipo de objeto con atributos y métodos · Pedido con total y registrar() Objeto · Instancia de una clase · Pedido #102</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de reflexión</h3>
+    <p>En tu trabajo o universidad, ¿qué se dibuja hoy antes de programar? Si nada, ¿qué costos crees que genera eso? Para el caso Bodega El Vecino Fiel (clases 2–4), elige 3 diagramas UML: ¿cuáles usarías y en qué fase del proyecto? Un compañero dice &quot;con el diagrama de clases es suficiente para todo el proyecto&quot;. ¿Qué le respondes usando las buenas prácticas de esta clase?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Recursos</h3>
+    <p>PDF de la sesión: modelamiento-sistema-uml-clase-5.pdf</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Fuentes</h3>
+    <p>Material de la asignatura 30630, sesión 05 (2026-2). Visual Paradigm. UML Diagram Types (2022). UML.org (2021). What is UML? IBM Developer (2020). The Class Diagram. Dennis, A., Wixom, B. H., &amp; Tegarden, D. (2015). Systems Analysis and Design: An Object-Oriented Approach with UML. Wiley.</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";

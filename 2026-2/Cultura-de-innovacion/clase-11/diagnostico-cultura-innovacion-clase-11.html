@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infografía Clase 11 — Diagnóstico de la Cultura de Innovación · Cultura de Innovación</title>
+<meta name="description" content="Infografía de estudio de la Clase 11 de Cultura de Innovación (ISIL, 2026-2): los 7 puntos de Kaplan, entrevistas one to one y diseño de focus groups.">
+<style>
+  :root{
+    --bg:#0d1526;
+    --panel-head:#0a1120;
+    --card:#152238;
+    --card-2:#182742;
+    --ink:#e9eff8;
+    --ink-soft:#a9bad2;
+    --line:#27395a;
+    --blue:#6aa7ff;
+    --blue-bg:#16294a;
+    --teal:#3ed2b2;
+    --teal-bg:#113a36;
+    --purple:#b39af7;
+    --purple-bg:#241d47;
+    --amber:#f7b955;
+    --amber-bg:#3a2c12;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5;
+  }
+  .hoja{max-width:1180px;margin:0 auto;padding:22px 18px 34px;}
+
+  /* ---------- Franja superior ---------- */
+  .franja{
+    background:var(--panel-head);
+    border:1px solid var(--line);
+    color:#fff;
+    border-radius:16px;
+    padding:22px 26px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:12px;
+    position:relative;
+    overflow:hidden;
+  }
+  .franja::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:0;
+    height:4px;
+    background:linear-gradient(90deg,var(--blue) 0 25%,var(--teal) 25% 50%,var(--purple) 50% 75%,var(--amber) 75% 100%);
+    opacity:.9;
+  }
+  .franja h1{margin:0;font-size:1.72rem;letter-spacing:-.01em;}
+  .franja .sub{
+    margin:6px 0 0;
+    font-size:.82rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#9db8dc;
+  }
+  .franja .meta{
+    font-size:.8rem;
+    color:#c3d4ea;
+    text-align:right;
+    max-width:340px;
+  }
+
+  /* ---------- Secciones y títulos (siempre fuera del bloque) ---------- */
+  section{margin-top:24px;}
+  .rotulo{
+    display:flex;align-items:center;gap:10px;
+    margin:0 0 12px;
+    font-size:.82rem;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+  .rotulo .num{
+    width:26px;height:26px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:#0d1526;font-size:.82rem;flex:none;font-weight:800;
+  }
+  .n-blue{background:var(--blue);}
+  .n-teal{background:var(--teal);}
+  .n-purple{background:var(--purple);}
+  .n-amber{background:var(--amber);}
+
+  /* ---------- Fila superior ---------- */
+  .fila{display:grid;grid-template-columns:minmax(240px,1fr) 2.1fr;gap:16px;align-items:start;}
+  .tarjeta{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+  }
+  .idea p.texto{margin:0;font-size:1.04rem;font-weight:700;}
+
+  .conceptos .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:12px;
+  }
+  .chip{
+    border:1px solid;
+    border-radius:12px;
+    padding:12px 14px;
+    background:var(--card-2);
+  }
+  .chip .top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+  .chip .dot{
+    width:22px;height:22px;border-radius:50%;
+    color:#0d1526;font-size:.72rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .chip h3{margin:0;font-size:.98rem;}
+  .chip p{margin:0;font-size:.86rem;color:var(--ink-soft);}
+  .c-blue{border-color:#31548c;} .c-blue h3{color:var(--blue);} .c-blue .dot{background:var(--blue);}
+  .c-teal{border-color:#1f6b5e;} .c-teal h3{color:var(--teal);} .c-teal .dot{background:var(--teal);}
+  .c-purple{border-color:#4d3f86;} .c-purple h3{color:var(--purple);} .c-purple .dot{background:var(--purple);}
+  .c-amber{border-color:#8a6a2a;} .c-amber h3{color:var(--amber);} .c-amber .dot{background:var(--amber);}
+
+  /* ---------- Relación dominante ---------- */
+  .panel{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px 20px 18px;
+  }
+  .flujo{
+    display:flex;
+    align-items:stretch;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .paso{
+    flex:1 1 180px;
+    border:1px solid;
+    border-radius:12px;
+    padding:14px 16px;
+    min-height:104px;
+    background:var(--card-2);
+  }
+  .paso .cab{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .paso .cab .dot{
+    width:24px;height:24px;border-radius:50%;color:#0d1526;
+    font-size:.75rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .paso h3{margin:0;font-size:1rem;}
+  .paso p{margin:0;font-size:.88rem;color:var(--ink-soft);}
+  .flecha{
+    align-self:center;
+    flex:0 0 auto;
+    color:#6f85a3;
+    font-size:1.3rem;
+    line-height:1;
+  }
+  .nota-relacion{
+    margin:16px auto 0;
+    text-align:center;
+    font-size:.88rem;
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Diagrama de flujo SVG ---------- */
+  .svg-flujo{display:block;width:100%;height:auto;}
+  .svg-flujo .nodo{fill:var(--card-2);stroke-width:2;}
+  .svg-flujo .nodo-titulo{fill:var(--ink);font-size:17px;font-weight:700;font-family:inherit;}
+  .svg-flujo .nodo-texto{fill:var(--ink-soft);font-size:13.5px;font-family:inherit;}
+  .svg-flujo .flecha-linea{stroke:#54688a;stroke-width:2.5;fill:none;}
+  .svg-flujo .pie-diagrama{fill:var(--ink-soft);font-size:14px;font-weight:600;font-family:inherit;}
+
+  /* ---------- Contenido ampliado ---------- */
+  .ampliado .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    gap:14px;
+  }
+  .bloque{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:5px solid var(--blue);
+    border-radius:12px;
+    padding:14px 16px;
+  }
+  .bloque.b-teal{border-left-color:var(--teal);}
+  .bloque.b-purple{border-left-color:var(--purple);}
+  .bloque.b-amber{border-left-color:var(--amber);}
+  .bloque h3{margin:0 0 8px;font-size:.95rem;color:var(--ink);}
+  .bloque ul{margin:0;padding-left:18px;}
+  .bloque li{font-size:.87rem;color:var(--ink-soft);margin-bottom:5px;}
+  .bloque li strong{color:var(--ink);}
+  .bloque p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);}
+  .mini-tabla{width:100%;border-collapse:collapse;font-size:.83rem;}
+  .mini-tabla th,.mini-tabla td{
+    text-align:left;padding:5px 6px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .mini-tabla th{color:var(--ink);font-weight:700;}
+  .mini-tabla tr:last-child th,.mini-tabla tr:last-child td{border-bottom:none;}
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:12px;
+  }
+  .stat{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px 14px;
+    text-align:center;
+  }
+  .stat .valor{font-size:1.5rem;font-weight:800;color:var(--blue);}
+  .stat .etiqueta{font-size:.8rem;color:var(--ink-soft);}
+
+  /* ---------- Ejemplo ---------- */
+  .ejemplo{
+    background:var(--amber-bg);
+    border:1px solid #6d5426;
+    border-radius:14px;
+    padding:16px 20px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .ejemplo .marca{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--amber);color:#0d1526;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .ejemplo h3{margin:2px 0 6px;font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);}
+  .ejemplo p{margin:0;font-size:.95rem;color:var(--ink);}
+
+  /* ---------- Qué recordar ---------- */
+  .recuerda{
+    background:var(--panel-head);
+    border:1px solid var(--line);
+    border-top:4px solid var(--teal);
+    color:var(--ink);
+    border-radius:16px;
+    padding:20px 24px;
+  }
+  .recuerda .cab{
+    display:flex;align-items:center;gap:10px;
+    font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;
+    font-weight:700;color:var(--teal);margin-bottom:14px;
+  }
+  .recuerda .cab .tick{
+    width:26px;height:26px;border-radius:50%;
+    background:var(--teal);color:#0d1526;
+    display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;
+  }
+  .recuerda ul{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px 26px;
+  }
+  .recuerda li{
+    font-size:.93rem;font-weight:600;
+    padding-left:18px;position:relative;color:var(--ink);
+  }
+  .recuerda li::before{
+    content:"";position:absolute;left:0;top:.5em;
+    width:7px;height:7px;border-radius:50%;background:var(--teal);
+  }
+  .frase{
+    margin:16px 0 0;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+    font-size:.9rem;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .frase strong{color:var(--ink);font-style:normal;}
+
+  /* ---------- Pie ---------- */
+  .pie{
+    margin-top:18px;
+    font-size:.78rem;
+    color:#7f93b0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    justify-content:space-between;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:820px){
+    .fila{grid-template-columns:1fr;}
+    .franja h1{font-size:1.4rem;}
+    .franja .meta{text-align:left;}
+    .flecha{transform:rotate(90deg);}
+  }
+
+  /* ---------- Impresión ---------- */
+  @media print{
+    .modal{display:none !important;}
+    body{background:#fff;}
+    .hoja{max-width:none;padding:0;}
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+      break-inside:avoid;page-break-inside:avoid;
+    }
+    section{margin-top:14px;}
+    @page{margin:10mm;}
+  }
+
+  /* ---------- Galería de gráficos de la clase ---------- */
+  .galeria{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:14px;
+  }
+  .figura{
+    margin:0;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:12px;
+  }
+  .figura img{
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:8px;
+    background:#f7f7f7;
+  }
+  .figura figcaption{
+    margin-top:8px;
+    font-size:.83rem;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+  @media print{
+    .figura{break-inside:avoid;page-break-inside:avoid;}
+  }
+
+  /* ---------- Modal de imágenes ---------- */
+  .modal{
+    position:fixed;inset:0;z-index:60;display:none;
+    background:rgba(8,13,24,.95);
+    padding:20px 18px;
+    flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  }
+  .modal.abierta{display:flex;}
+  .modal-barra{
+    width:min(1400px,100%);
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+  }
+  .modal-titulo{margin:0;font-size:.95rem;font-weight:700;color:var(--ink);}
+  .modal-cerrar{
+    background:var(--card);border:1px solid var(--line);color:var(--ink);
+    border-radius:999px;padding:8px 16px;font-size:.85rem;font-weight:600;cursor:pointer;
+    font-family:inherit;
+  }
+  .modal-cerrar:hover,.modal-cerrar:focus-visible{border-color:var(--blue);color:var(--blue);}
+  .modal-escena{
+    max-width:min(1400px,100%);max-height:76vh;
+    display:flex;align-items:center;justify-content:center;
+    overflow:auto;border-radius:12px;border:1px solid var(--line);background:var(--panel-head);
+  }
+  .modal-escena img{display:block;max-width:100%;max-height:76vh;width:auto;height:auto;border-radius:12px;}
+  .modal-pie{margin:0;font-size:.84rem;color:var(--ink-soft);text-align:center;}
+  .modal-lanzador{cursor:zoom-in;}
+  .modal-lanzador:focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+
+  /* ---------- Extensiones: cobertura completa de la clase ---------- */
+  .rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;}
+  .rejilla-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;}
+  .lista{margin:0;padding-left:18px;}
+  ol.lista{padding-left:24px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .destacado{
+    background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .destacado strong{color:var(--teal);}
+  .sub-titulo{margin:0 0 8px;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--amber);}
+  .preguntas details{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:460px;}
+  .tabla th,.tabla td{
+    text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .tabla thead th{
+    color:var(--ink);font-weight:700;background:var(--card-2);
+    letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;
+  }
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="hoja">
+
+  <header class="franja">
+    <div>
+      <h1>Diagnóstico de la Cultura de Innovación</h1>
+      <p class="sub">Clase 11 · Cultura de Innovación</p>
+    </div>
+    <p class="meta">ISIL · 2026-2 · 03/11/2026<br>Ing. Sigfrido Erwin Alva Peralta</p>
+  </header>
+
+  <section class="fila">
+    <div>
+      <p class="rotulo"><span class="num n-blue">1</span> Idea central</p>
+      <article class="tarjeta idea">
+        <p class="texto">La cultura es "la ventaja invisible" (Kaplan): la única ventaja competitiva sostenible. Un diagnóstico convierte la percepción en datos revisables.</p>
+      </article>
+    </div>
+    <div>
+      <p class="rotulo"><span class="num n-teal">2</span> 4 conceptos clave</p>
+      <article class="tarjeta conceptos">
+        <div class="grid">
+          <div class="chip c-blue">
+            <div class="top"><span class="dot">1</span><h3>Ventaja invisible</h3></div>
+            <p>Ventajas competitivas temporales; solo la cultura se sostiene.</p>
+          </div>
+          <div class="chip c-teal">
+            <div class="top"><span class="dot">2</span><h3>7 dimensiones</h3></div>
+            <p>Checklist que evalúa si la organización fomenta la innovación.</p>
+          </div>
+          <div class="chip c-purple">
+            <div class="top"><span class="dot">3</span><h3>One to one</h3></div>
+            <p>Entrevistas individuales: narrativas, no escalas.</p>
+          </div>
+          <div class="chip c-amber">
+            <div class="top"><span class="dot">4</span><h3>Focus group</h3></div>
+            <p>Una docena de personas bajo un moderador, en 5 pasos.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">3</span> Relación: las 3 fuentes del diagnóstico</p>
+    <div class="panel">
+      <div class="flujo" role="img" aria-label="Flujo del diagnóstico: primero el checklist de los 7 puntos de Kaplan, luego el cuestionario para el panorama, después las entrevistas one to one para la profundidad y por último los focus group para la dinámica de grupo.">
+        <div class="paso c-blue">
+          <div class="cab"><span class="dot">1</span><h3>7 puntos</h3></div>
+          <p>Checklist previo: revisar las dimensiones antes del cuestionario.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-teal">
+          <div class="cab"><span class="dot">2</span><h3>Cuestionario</h3></div>
+          <p>"La ventaja invisible": 7 apartados con 5 opciones de respuesta.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-purple">
+          <div class="cab"><span class="dot">3</span><h3>One to one</h3></div>
+          <p>Profundidad individual: historias de éxito y principal necesidad.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-amber">
+          <div class="cab"><span class="dot">4</span><h3>Focus group</h3></div>
+          <p>Dinámica de grupo: ~12 personas con moderador externo.</p>
+        </div>
+      </div>
+      <p class="nota-relacion">Checklist → panorama general → profundidad individual → dinámica de grupo.</p>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">4</span> Lo esencial de la clase</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Los 7 puntos de Kaplan</h3>
+        <ul>
+          <li><strong>01 Visión y liderazgo:</strong> visión inspiradora y retadora.</li>
+          <li><strong>02 Cuestionar el status quo:</strong> optimismo, sin rechazo.</li>
+          <li><strong>03 Entorno y recursos:</strong> tiempo y espacios para innovar.</li>
+          <li><strong>04 Talento y motivación:</strong> reconocer e incentivar.</li>
+          <li><strong>05 Experimentar y correr riesgos:</strong> no se castiga el error.</li>
+          <li><strong>06 Diversidad de pensamiento:</strong> equipos multidisciplinarios.</li>
+          <li><strong>07 Colaboración:</strong> confianza entre departamentos.</li>
+        </ul>
+      </article>
+
+      <article class="bloque b-teal">
+        <h3>One to one: preguntas clave</h3>
+        <ul>
+          <li><strong>Fortalezas:</strong> ¿cómo definirías la innovación para tu función?</li>
+          <li><strong>Historias de éxito:</strong> ¿qué factores impulsaron la innovación?</li>
+          <li><strong>Visión futura:</strong> ¿cómo operará la organización en 3 a 5 años?</li>
+          <li><strong>Necesidad principal:</strong> ¿líderazgo, estructura, métricas o tecnología?</li>
+        </ul>
+        <p>No miden con escalas: buscan narrativas.</p>
+      </article>
+
+      <article class="bloque b-purple">
+        <h3>Focus group: 5 pasos</h3>
+        <ul>
+          <li>Planificar objetivo y perfil (7 a 12 personas).</li>
+          <li>Reclutar: sin revelar el producto; técnica bola de nieve.</li>
+          <li>Escoger lugar cómodo con implementos.</li>
+          <li>Elegir moderador externo e imparcial.</li>
+          <li>Planificar la actividad por partes con tiempo.</li>
+        </ul>
+        <p>Materiales: cronómetro, papel, cámara, grabador y quien toma notas.</p>
+      </article>
+
+      <article class="bloque b-amber">
+        <h3>Errores comunes</h3>
+        <table class="mini-tabla">
+          <tr><th>Diagnóstico sin dimensiones</th><td>Percepción subjetiva, sin plan.</td></tr>
+          <tr><th>Cuestionario sin seguimiento</th><td>Se pierde la base para priorizar.</td></tr>
+          <tr><th>Preguntas sugestivas</th><td>Respuestas sesgadas por conveniencia.</td></tr>
+          <tr><th>Revelar el producto</th><td>Responden lo que creen que quieren oír.</td></tr>
+          <tr><th>Moderador interno</th><td>No se habla con confianza.</td></tr>
+        </table>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: las 3 fuentes combinadas</p>
+    <div class="panel">
+      <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo: el cuestionario da el panorama general, las entrevistas one to one aportan profundidad individual, los focus group la dinámica de grupo y todo se combina en un diagnóstico de cultura.">
+        <defs>
+          <marker id="punta1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#54688a"></path>
+          </marker>
+        </defs>
+
+        <rect class="nodo" x="6" y="34" width="220" height="88" rx="12" stroke="#6aa7ff"></rect>
+        <text class="nodo-titulo" x="116" y="72" text-anchor="middle" style="fill:#6aa7ff">Cuestionario</text>
+        <text class="nodo-texto" x="116" y="98" text-anchor="middle">Panorama general</text>
+
+        <line class="flecha-linea" x1="232" y1="78" x2="282" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="288" y="34" width="220" height="88" rx="12" stroke="#3ed2b2"></rect>
+        <text class="nodo-titulo" x="398" y="72" text-anchor="middle" style="fill:#3ed2b2">One to one</text>
+        <text class="nodo-texto" x="398" y="98" text-anchor="middle">Profundidad individual</text>
+
+        <line class="flecha-linea" x1="514" y1="78" x2="564" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="570" y="34" width="220" height="88" rx="12" stroke="#b39af7"></rect>
+        <text class="nodo-titulo" x="680" y="72" text-anchor="middle" style="fill:#b39af7">Focus group</text>
+        <text class="nodo-texto" x="680" y="98" text-anchor="middle">Dinámica de grupo</text>
+
+        <line class="flecha-linea" x1="796" y1="78" x2="846" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="852" y="34" width="220" height="88" rx="12" stroke="#f7b955"></rect>
+        <text class="nodo-titulo" x="962" y="72" text-anchor="middle" style="fill:#f7b955">Diagnóstico</text>
+        <text class="nodo-texto" x="962" y="98" text-anchor="middle">Percepción = datos</text>
+
+        <path class="flecha-linea" d="M962 126 L962 160 L116 160 L116 130" marker-end="url(#punta1)"></path>
+        <text class="pie-diagrama" x="540" y="186" text-anchor="middle">Las 3 fuentes se combinan: ninguna sola alcanza para diagnosticar la cultura</text>
+      </svg>
+      <p class="nota-relacion">Cuestionario → one to one → focus group: de la percepción a datos revisables.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">6</span> Gráficos de la clase</p>
+    <div class="galeria">
+      <figure class="figura">
+        <img src="imagenes/diagnostico-7-dimensiones-clase-11.png" alt="Lista numerada con las 7 dimensiones de la cultura de innovación">
+        <figcaption>Las 7 dimensiones del diagnóstico</figcaption>
+      </figure>
+      <figure class="figura">
+        <img src="imagenes/focus-group-5-pasos-clase-11.png" alt="Flujo de 5 pasos: planificar objetivo y perfil, reclutar, elegir lugar, elegir moderador y planificar la actividad">
+        <figcaption>Los 5 pasos para diseñar un focus group</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="ejemplo">
+      <span class="marca" aria-hidden="true">E</span>
+      <div>
+        <h3>Ejemplo de la clase</h3>
+        <p>Un focus group de 10 personas evalúa un servicio nuevo. El mensaje de reclutamiento <strong>no revela la empresa ni el producto</strong>, y el moderador es externo: así las respuestas reflejan la opinión real, no la conveniencia. La técnica "bola de nieve" invita a una persona y le pide traer dos más.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="recuerda">
+      <p class="cab"><span class="tick" aria-hidden="true">✓</span> Qué recordar</p>
+      <ul>
+        <li>Kaplan: la cultura es la única ventaja sostenible.</li>
+        <li>Los 7 puntos funcionan como checklist antes del cuestionario.</li>
+        <li>One to one busca narrativas; el cuestionario, panorama.</li>
+        <li>El focus group falla con reclutamiento sesgado o moderador interno.</li>
+      </ul>
+      <p class="frase"><strong>Idea clave:</strong> un diagnóstico convierte "creemos que innovamos bien" en datos que se pueden revisar y priorizar.</p>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <span>Fuente: apuntes de la Clase 11 — Cultura de Innovación (ISIL, 2026-2).</span>
+    <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
+  </footer>
+
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 5 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>¿Por qué crear y sostener una cultura de innovación?</h3>
+    <p>Qué es: el conjunto de creencias, prácticas y comportamientos que hacen que la innovación sea parte de la rutina y no un evento aislado. Para qué sirve: sostener el crecimiento cuando los productos y modelos de negocio se agotan. Según Soren Kaplan: Las ventajas competitivas son temporales. Productos, servicios y modelos de negocio deben reinventarse continuamente para no caer en la obsolescencia. La cultura es…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3. Diseño de focus groups</h3>
+    <p>¿Qué es un focus group? Qué es: un método de investigación cualitativa. Se agrupa a varias personas (usualmente una docena) para responder preguntas sobre un producto o servicio bajo las instrucciones de un moderador. Para qué sirve: hacer un estudio de mercado, generalmente antes de lanzar un producto, y en este contexto ahondar en la información del diagnóstico de cultura. Los cinco pasos para diseñarlo…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Los cinco pasos para diseñarlo</h3>
+    <p>Planificar objetivo y perfil ──→ 2. Reclutar integrantes Planificar el focus group ←── 4. Elegir moderador ↑ 3. Elegir lugar └────────────────────────────┘ Paso 1 — Planificar el objetivo y el perfil</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Glosario</h3>
+    <p>Término · Definición · Ejemplo Diagnóstico de cultura · Evaluación estructurada de si la organización fomenta o inhibe la innovación · Revisión de los 7 puntos de Kaplan Ventaja invisible · Nombre del modelo de cultura de innovación de Kaplan · Cuestionario de 7 apartados One to one · Entrevista individual en profundidad · Conversación con un líder de área Focus group · Grupo de 7-12 personas que discute un tema…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de Reflexión</h3>
+    <p>Pregunta aplicada — &quot;Si tuvieras que diagnosticar la cultura de innovación de tu equipo actual, ¿cuál de los 7 puntos empezarías a evaluar y por qué?&quot; Pregunta comparativa — &quot;¿En qué situaciones un focus group aporta más que una encuesta cerrada? ¿Y cuándo sería al revés?&quot; Pregunta crítica — &quot;¿Tu organización permite cuestionar el status quo sin represalias? ¿Qué indicador observarías para saberlo?&quot;</p>
+  </article>
+    </div>
+  </details>
+</section>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-titulo">
+  <div class="modal-barra">
+    <p class="modal-titulo" id="modal-titulo">Imagen de la clase</p>
+    <button class="modal-cerrar" type="button" id="modal-cerrar">Cerrar (Esc)</button>
+  </div>
+  <div class="modal-escena">
+    <img id="modal-img" alt="">
+  </div>
+  <p class="modal-pie" id="modal-pie">Pulsa Escape o haz clic fuera de la imagen para cerrar.</p>
+</div>
+
+<script>
+  /* ---------- Modal de imágenes: vista ampliada ---------- */
+  (function () {
+    var modal = document.getElementById("modal");
+    var modalImg = document.getElementById("modal-img");
+    var modalTitulo = document.getElementById("modal-titulo");
+    var modalPie = document.getElementById("modal-pie");
+    var modalCerrar = document.getElementById("modal-cerrar");
+    if (!modal || !modalImg) return;
+
+    var imagenes = Array.prototype.filter.call(
+      document.querySelectorAll("img"),
+      function (img) { return img.id !== "modal-img"; }
+    );
+    var focoPrevio = null;
+
+    function tituloDe(imagen) {
+      var contenedor = imagen.closest("figure, article, .figura, .bloque, .panel, .tarjeta");
+      if (!contenedor) return "Imagen de la clase";
+      var encabezado = contenedor.querySelector("h3, h4, figcaption");
+      return encabezado ? encabezado.textContent.trim() : "Imagen de la clase";
+    }
+
+    function abrirModal(imagen) {
+      var descripcion = imagen.getAttribute("alt") || "";
+      modalImg.setAttribute("src", imagen.getAttribute("src"));
+      modalImg.setAttribute("alt", descripcion);
+      modalTitulo.textContent = tituloDe(imagen);
+      modalPie.textContent = descripcion + " \u00b7 Pulsa Escape o haz clic fuera de la imagen para cerrar.";
+      modal.classList.add("abierta");
+      modal.setAttribute("aria-hidden", "false");
+      focoPrevio = document.activeElement;
+      modalCerrar.focus();
+    }
+
+    function cerrarModal() {
+      if (!modal.classList.contains("abierta")) return;
+      modal.classList.remove("abierta");
+      modal.setAttribute("aria-hidden", "true");
+      modalImg.removeAttribute("src");
+      if (focoPrevio && typeof focoPrevio.focus === "function") focoPrevio.focus();
+      focoPrevio = null;
+    }
+
+    imagenes.forEach(function (imagen) {
+      imagen.classList.add("modal-lanzador");
+      imagen.setAttribute("tabindex", "0");
+      imagen.setAttribute("role", "button");
+      imagen.addEventListener("click", function () { abrirModal(imagen); });
+      imagen.addEventListener("keydown", function (evento) {
+        if (evento.key === "Enter" || evento.key === " ") {
+          evento.preventDefault();
+          abrirModal(imagen);
+        }
+      });
+    });
+
+    modalCerrar.addEventListener("click", cerrarModal);
+    modal.addEventListener("click", function (evento) {
+      if (evento.target === modal || evento.target.classList.contains("modal-escena")) cerrarModal();
+    });
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrarModal();
+    });
+  })();
+</script>
+</body>
+</html>

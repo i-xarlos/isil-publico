@@ -720,6 +720,99 @@ flowchart LR
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 21 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Cómo construirlo</h3>
+    <p>Identificar clases de entidad con atributos. Identificar asociaciones y multiplicidades. Identificar agregaciones y multiplicidades. Definir jerarquías (generalización/especialización) si aplica.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Categorías de clases (con ejemplos)</h3>
+    <p>Categoría · Ejemplos Tangibles/físicos · Edificio, Producto Especificaciones · EspecificacionProducto, DescripcionVuelo Lugares · Tienda, Aula, Laboratorio Transacciones · Venta, Pago, Reserva</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Descomposición N:M — por qué y cómo (paso crítico conceptual → lógico)</h3>
+    <p>Las BD relacionales no implementan N:M directo (duplicidad e inconsistencia). Cuando la relación genera atributos propios (cantidad, precioUnitario, subtotal), se descompone en tabla intermedia. Patrón: Venta N ───── M Producto ↓ se resuelve Venta 1 ──── 1 Producto</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>6. Modelo lógico — puente hacia la BD</h3>
+    <p>Visualización de entidades de negocio sin detalles de implementación, separando semántica de tecnología. Es la fuente para el diseño físico y clave en mantenimiento. Aquí ya aparecen PK, FK, tipos lógicos y N:M resueltos, aún independiente del SGBD. Mapeo de tipos UML → lógico Tipo UML · Tipo lógico Boolean/boolean · BOOLEAN Byte/byte/char · CHAR</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Ejemplo del formulario de reserva (síntesis del curso)</h3>
+    <p>Tablas físicas derivadas: CLIENTE, RESERVA, HABITACION, DETALLERESERVA, CATEGORIA, DISPONIBILIDADXHAB. Tabla · Clave · FK · Notas CLIENTE · CODCLIENTE INT · — · Nombre, dirección, sexo, teléfono, email, fechas RESERVA · NRORESERVA CHAR(10) · CODCLIENTE → CLIENTE · FECHALLEGADA, FECHASALIDA, DIAS HABITACION · NROHAB CHAR(4) · CODICATE → CATEGORIA · TIPO, PRECIO, FECHAREG/ACT</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>9b. Errores comunes y advertencias (consolidado clase)</h3>
+    <p>Error · Consecuencia · Cómo evitarlo Falta de abstracción (ej. vestimenta en bodega) · Ruido, almacenamiento inútil · Primacía de la realidad: ¿aporta valor operativo? Flechas en el conceptual · Notación incorrecta · Usar líneas continuas sin flechas Leer cardinalidad solo en un sentido · FKs invertidas, reglas de negocio rotas · Preguntar directo + inverso N:M sin entidad intermedia · Redundancia, sin lugar para…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>10. Repaso PEA 1 y cierre del Documento de Visión — contenido del fragmento 0-20min</h3>
+    <p>Propósito de la sesión (según fragmento) Repasar y consolidar la elaboración del Documento de Visión (Sesión 2) e iniciar la Especificación de Requisitos de Software (SRS), incluyendo pautas y alcances de la PEA 1. Entregable PEA 1 · Contenido esperado Documento de Visión · Preparación inicial, objetivos/alcance, stakeholders/usuarios, necesidades de negocio, funcionalidades (con CRUD), características,…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Propósito de la sesión (según fragmento)</h3>
+    <p>Repasar y consolidar la elaboración del Documento de Visión (Sesión 2) e iniciar la Especificación de Requisitos de Software (SRS), incluyendo pautas y alcances de la PEA 1. Entregable PEA 1 · Contenido esperado Documento de Visión · Preparación inicial, objetivos/alcance, stakeholders/usuarios, necesidades de negocio, funcionalidades (con CRUD), características, restricciones, criterios de éxito, escenarios de…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Estructura completa del Documento de Visión</h3>
+    <p>Artefacto formal que define propósito global, objetivos, límites, stakeholders, necesidades y arquitectura inicial. Sirve para alinear equipo directivo y técnico antes de construir y es base para la proforma (cotización de tiempo y costos — solo puede definirse con precisión tras aprobar el Documento de Visión). Sección · Qué contiene · Ejemplo bodega (clase) 1. Necesidades del Negocio · Problema/meta del…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>El término &quot;Gestionar&quot; = CRUD (punto evaluable)</h3>
+    <p>Cada vez que se escribe &quot;gestionar&quot; se implican 4 operaciones. Usarlo evita redundancia (no listar &quot;crear/editar/eliminar/ver usuario&quot; por separado). Letra · Operación · Verbo común C · Create · Crear / Registrar R · Read · Leer / Listar / Consultar U · Update · Actualizar / Modificar / Editar</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Características, restricciones y criterios de éxito — detalle del fragmento</h3>
+    <p>Sección · Qué describe · Detalle del docente (fragmento) Características · Propiedades no operativas del sistema · Alojado en la nube, compatible con navegadores de escritorio, disponibilidad ajustada al horario de atención (ej. bodega no requiere 24/7) Restricciones · Límites contractuales/tecnológicos/legales · Una sola PC, Ley de Protección de Datos, SUNAT Criterios de éxito · Métricas cuantitativas…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Proceso de levantamiento y gestión de requisitos (según fragmento)</h3>
+    <p>Identificación de Actores/Usuarios: determinar quién es el usuario y su rol. Levantamiento de Requerimientos: capturar deseos/necesidades vía entrevistas o cuestionarios. Codificación: asignar identificador único (código) a cada requerimiento/requisito para trazabilidad. Transformación a Requisitos de Software: traducir cada necesidad en uno o más requisitos técnicos claros, completos e independientes.…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Trazabilidad</h3>
+    <p>Capacidad de rastrear cada requisito desde su origen (requerimiento) hasta su estado actual. La matriz de trazabilidad (requerimiento ↔ requisito ↔ estado: pendiente/en desarrollo/terminado) evita requisitos huérfanos y requisitos sin fundamento. Conexión del fragmento: Problema → Necesidad de negocio → Requerimiento de usuario → Requisito del sistema (CRUD acotado por restricciones/características). Luego siguen…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>11. Procedimiento PEA 1 (paso a paso)</h3>
+    <p>Configuración y descarga: PEA 1 disponible sábado tarde/noche. Documento de Visión: completar preparación, objetivos/alcance, stakeholders, necesidades (sin anticipar tecnología), funcionalidades CRUD, características, restricciones, criterios cuantitativos, escenarios, diagrama de arquitectura y revisión/aprobación con firmas Sponsor + Jefe de Proyecto. Especificación de Requisitos: documentar requerimientos…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Comparativa — los tres niveles en una vista (resumen de clase)</h3>
+    <p>Característica · Conceptual · Lógico · Físico Audiencia · Negocio, analistas · Arquitectos, analistas de sistemas · DBA, developers Detalle · Alto nivel, conceptos · Detallado, independiente del SGBD · Técnico, dependiente del motor Componentes · Entidades, atributos, relaciones · Tablas/entidades, PK, FK, N:M resuelto · Tablas, columnas, VARCHAR2/INT, índices, triggers Motor · Independiente · Independiente ·…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Conexión negocio → BD (cadena de la clase)</h3>
+    <p>Problema de negocio → Requisitos (Visión + Especificación) → Conceptual (abstracción, cardinalidad) → Lógico (PK/FK, N:M resuelto) → Físico (DDL con Data Modeler) → App en producción Cada eslabón depende del anterior. Un error en abstracción o en N:M se arrastra hasta producción.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Glosario</h3>
+    <p>Término · Definición · Ejemplo Modelo conceptual · Vista de alto nivel del dominio, sin BD · Diagrama con Cliente—Reserva—Habitación Modelo lógico · Organización lógica tipada, fuente del físico · Entidad CLIENTE con tipos INTEGER/DATE Modelo físico · Implementación real en SGBD · Tabla CLIENTE con PK/FK y tipos VARCHAR Asociación · Relación significativa entre clases · Cliente solicita Reserva</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de repaso (12) + respuestas</h3>
+    <p>¿Cuáles son los tres niveles de modelado? → Conceptual, Lógico y Físico. ¿Qué diferencia al conceptual del físico? → Conceptual = alto nivel, negocio, independiente; Físico = técnico, tablas/tipos nativos, dependiente del SGBD. ¿En qué consiste la técnica de la ficha/formulario? → Si un concepto agrupa datos en ficha rellenable repetidamente, es entidad; cada campo es atributo. ¿Por qué descartar &quot;vestimenta&quot; en…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de reflexión (para profundizar)</h3>
+    <p>En el sistema de reservas, ¿qué categoría es DisponibilidadHabitacion y por qué no es un simple atributo de Habitacion? Si tu app lista a la vez clientes y empleados para auditoría, ¿qué estrategia de herencia elegirías y por qué? Dibuja el conceptual de un e-commerce (Cliente, Pedido, LineaPedido, Producto) e indica multiplicidades y si LineaPedido es clase asociativa. ¿Cuál es la modalidad de PEA 1 y qué…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Recursos</h3>
+    <p>PDF de la sesión: modelamiento-datos-conceptual-logico-fisico-clase-3.pdf Diagramas: relaciones-clases-tablas-ejemplos-clase-3.dio — 3 págs: 1) relaciones conceptuales, 2) conceptual→lógico→físico (hotel), 3) herencia 3 estrategias tres-modelos-flujo-clase-3.png — flujo Idea→Conceptual→Lógico→Físico conceptual-asociaciones-clase-3.png — clase asociativa y ◇/◆</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Fuentes</h3>
+    <p>Bennett, McRobb y Farmer (2007). Análisis y Diseño de Sistemas orientado a objetos con UML. McGraw-Hill. Kendall &amp; Kendall (2011). Análisis y Diseño de Sistemas (8.ª ed.). Pearson. Sommerville, I. (2011). Ingeniería de Software (9.ª ed.). Prentice Hall. Última verificación: 24/09/2026 — añadidos 5 gráficos PNG + dio 3 págs y Mermaid (flujo, ER, generalización).</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";

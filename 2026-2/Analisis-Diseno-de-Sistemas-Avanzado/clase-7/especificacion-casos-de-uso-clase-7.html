@@ -303,6 +303,7 @@
 
   /* ---------- Impresión ---------- */
   @media print{
+    .modal{display:none !important;}
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
     .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
@@ -311,6 +312,35 @@
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Modal de imágenes ---------- */
+  .modal{
+    position:fixed;inset:0;z-index:60;display:none;
+    background:rgba(8,13,24,.95);
+    padding:20px 18px;
+    flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  }
+  .modal.abierta{display:flex;}
+  .modal-barra{
+    width:min(1400px,100%);
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+  }
+  .modal-titulo{margin:0;font-size:.95rem;font-weight:700;color:var(--ink);}
+  .modal-cerrar{
+    background:var(--card);border:1px solid var(--line);color:var(--ink);
+    border-radius:999px;padding:8px 16px;font-size:.85rem;font-weight:600;cursor:pointer;
+    font-family:inherit;
+  }
+  .modal-cerrar:hover,.modal-cerrar:focus-visible{border-color:var(--blue);color:var(--blue);}
+  .modal-escena{
+    max-width:min(1400px,100%);max-height:76vh;
+    display:flex;align-items:center;justify-content:center;
+    overflow:auto;border-radius:12px;border:1px solid var(--line);background:var(--panel-head);
+  }
+  .modal-escena img{display:block;max-width:100%;max-height:76vh;width:auto;height:auto;border-radius:12px;}
+  .modal-pie{margin:0;font-size:.84rem;color:var(--ink-soft);text-align:center;}
+  .modal-lanzador{cursor:zoom-in;}
+  .modal-lanzador:focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
 </style>
 </head>
 <body>
@@ -421,6 +451,21 @@
     </div>
   </section>
 
+  <section class="ampliado">
+    <h2 class="rotulo"><span class="num n-purple">+</span> Ejercicio aplicado: generalización e «include»</h2>
+    <article class="bloque b-purple">
+      <p>La captura de trabajo compara dos formas de reutilizar pasos. La generalización permite que un caso especializado herede el comportamiento común del caso general. «Include» incorpora un comportamiento obligatorio que el caso base siempre ejecuta.</p>
+      <table class="mini-tabla">
+        <tr><th>Relación</th><th>Pasos del ejemplo</th><th>Lectura</th></tr>
+        <tr><th>Generalización</th><td>CU1: 3; CU2 y CU3: 6 cada uno.</td><td>Cada caso especializado conserva los 3 pasos comunes y agrega sus 3 pasos propios.</td></tr>
+        <tr><th>«Include»</th><td>CU1: 10 combinados; CU2 y CU3: 3 cada uno.</td><td>CU1 incorpora los pasos reutilizables de CU2 y CU3, además de su propio flujo.</td></tr>
+      </table>
+      <p>El diagrama de bodega muestra actores y funciones como gestionar ventas, administrar usuarios y realizar pagos. El pago con tarjeta y en efectivo ilustra variantes que se documentan aclarando pasos comunes y específicos.</p>
+      <img src="./imagenes/generalizacion-include-casos-uso-clase-7.png" alt="Ejercicio de clase sobre generalización e include, junto a un diagrama de casos de uso de una bodega" style="display:block;width:100%;height:auto;border-radius:10px;margin-top:12px">
+      <p><strong>Criterio práctico:</strong> generaliza objetivos especializados que comparten comportamiento; usa «include» para un comportamiento obligatorio y reutilizable.</p>
+    </article>
+  </section>
+
   <section>
     <h2 class="rotulo"><span class="num n-blue">5</span> Flujo del concepto: del diagrama al documento</h2>
     <div class="panel">
@@ -487,6 +532,161 @@
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 17 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Matriz de trazabilidad — requerimiento → requisito funcional → caso de uso</h3>
+    <p>Matriz de trazabilidad entre requerimientos, requisitos funcionales y casos de uso con sus actores</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.1 En qué consiste</h3>
+    <p>La especificación de alto nivel responde al &quot;qué&quot; del sistema y deja fuera el &quot;cómo&quot;. Describe la interacción normal entre actor y sistema en pocas líneas. Su valor aparece en etapas tempranas, cuando el alcance aún se negocia. Analogía simple: es la sinopsis de una película. Indica de qué trata y cómo termina, sin contar escena por escena. Alcanza para decidir si el proyecto interesa. Característica ·…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.2 Componentes clave</h3>
+    <p>Cada ficha de alto nivel usa la misma plantilla de seis campos. La plantilla evita que cada analista invente su propio formato. La consistencia permite comparar casos de uso entre sí. Componente · Qué contiene · Ejemplo (&quot;Realizar compra en línea&quot;) Título · Nombre corto y único del caso de uso · Realizar compra en línea Actor principal · Quién interactúa con el sistema para lograr el objetivo · Cliente…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.4 Escenarios de uso del nivel alto</h3>
+    <p>La especificación de alto nivel rinde en contextos de cambio rápido o audiencia mixta. Permite iterar sin reescribir documentos largos. Ahorra tiempo al evitar malentendidos tardíos. Escenario · Por qué conviene el nivel alto · Ejemplo peruano Fase inicial del proyecto · Fija entendimiento común sobre requisitos y alcance · App de bodega: definir &quot;vender&quot;, &quot;cobrar&quot;, &quot;reponer&quot; antes de codificar Comunicación con…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2.1 En qué consiste</h3>
+    <p>La especificación detallada cubre el &quot;qué&quot; y el &quot;cómo&quot;. Incluye detalles técnicos, flujos alternativos, reglas de negocio y condiciones de error. Su costo es tiempo: crearla y mantenerla exige esfuerzo sostenido. Analogía simple: es el guion técnico de la película. Indica cada escena, cada diálogo y cada plano. El equipo de filmación trabaja sin improvisar. Característica · Descripción · Ejemplo real Enfoque en…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2.2 Componentes clave</h3>
+    <p>La ficha detallada extiende la de alto nivel con cuatro bloques nuevos. Actores secundarios, flujos alternativos, reglas de negocio y requisitos no funcionales aparecen aquí. El diagrama UML se adjunta como referencia visual. Componente · Qué contiene · Ejemplo Título · Nombre del caso de uso · Realizar Compra en Línea Actor principal y secundarios · Quién dispara + sistemas que participan · Cliente; Sistema de…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3. Comparación: alto nivel frente a detallado</h3>
+    <p>Qué es: contraste directo entre ambos niveles de especificación. Para qué sirve: elegir el nivel correcto según etapa, audiencia y riesgo, en lugar de documentar por defecto. 3.1 Tabla comparativa La diferencia central es una sola: el nivel alto describe el &quot;qué&quot;; el detallado añade el &quot;cómo&quot;. Todo lo demás (audiencia, costo, momento) deriva de esa diferencia. Criterio · Alto nivel · Detallado Pregunta que…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3.1 Tabla comparativa</h3>
+    <p>La diferencia central es una sola: el nivel alto describe el &quot;qué&quot;; el detallado añade el &quot;cómo&quot;. Todo lo demás (audiencia, costo, momento) deriva de esa diferencia. Criterio · Alto nivel · Detallado Pregunta que responde · ¿Qué hace el sistema? · ¿Qué hace y cómo se comporta en cada caso? Audiencia · Stakeholders no técnicos · Desarrolladores, testers, auditores Componentes · 6 campos generales · 9 bloques +…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3.2 Casos por industria (Perú)</h3>
+    <p>Cada sector combina ambos niveles según su riesgo. La tabla muestra qué documenta cada industria y qué beneficio obtiene. Los ejemplos usan operaciones peruanas reconocibles. Industria · Nivel usado · Aplicación · Beneficio Banca (BCP, Interbank, Yape) · Detallado · Transferencia con validación de fraude, límites y PCI · Operaciones seguras y auditables ante la SBS Retail (Tambo, Falabella, Mercado Libre) · Alto…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4.1 Estándares y normas técnicas</h3>
+    <p>Dos referencias sostienen el documento: ISO/IEC/IEEE 29148 para requisitos y UML como notación de modelado. Seguirlas facilita comunicación entre equipos y eleva la calidad del producto. Estándar · Qué aporta · Uso en el curso ISO/IEC/IEEE 29148:2018 (requisitos de sistemas y software: norma internacional que fija cómo documentar requisitos) · Directrices para documentar casos de uso y requisitos derivados ·…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4.2 Buenas prácticas</h3>
+    <p>Las buenas prácticas del curso son nueve reglas de redacción y gobierno. Todas apuntan a claridad, consistencia y revisión continua. Ninguna exige herramienta especial. Práctica · Qué exige en la práctica Lenguaje coherente · Misma terminología en todo el documento; glosario único Claridad sin ambigüedad · Cualquier miembro del equipo entiende cada caso sin preguntar Trazabilidad · Cada caso de uso enlaza a sus…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4.3 Directrices ISO/IEC/IEEE 29148 aplicadas a casos de uso</h3>
+    <p>La norma pide ocho conductas concretas al documentar casos de uso. Cada una reduce un riesgo típico: actores olvidados, flujos ambiguos o cambios sin control. Directriz · Qué pide Identificar actores y stakeholders · Quién interactúa y quién tiene interés, sin omisiones Describir el escenario · Precondiciones y postcondiciones explícitas Documentar el flujo de eventos · Principal, alternativos y excepciones con…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4.4 Estructura del documento y ejemplo: sistema de comercio electrónico</h3>
+    <p>El documento sigue una estructura fija de ocho secciones. El ejemplo del curso (comercio electrónico con Cliente, Vendedor y Administrador) muestra cada sección llena. La estructura se reutiliza en cualquier dominio. Estructura: Sección · Contenido 1. Introducción · Propósito del documento y guía de desarrollo y prueba 2. Objetivos y alcance · Qué cubre el sistema (compra y venta en línea; clientes, vendedores,…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5. Flujo de elaboración paso a paso</h3>
+    <p>Qué es: secuencia de trabajo desde el diagrama hasta el documento validado. Para qué sirve: ordenar la redacción para no escribir detalle antes de acordar alcance. Dibujar el diagrama de casos de uso (actores + elipses + relaciones) Redactar la ficha de ALTO NIVEL por caso (6 campos, lenguaje de negocio)</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de reflexión</h3>
+    <p>Aplicada — Una bodega de Miraflores digitaliza su venta por WhatsApp y Yape. ¿Qué casos de uso ameritan ficha detallada y cuáles bastan con alto nivel? Comparativa — Frente a un trámite de Reniec con miles de usuarios diarios, ¿qué aporta la ficha detallada que el diagrama por sí solo no entrega? Crítica — Si un caso de uso cambia tras cada sprint y nadie actualiza su ficha, ¿sigue válido el documento técnico o…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Recursos</h3>
+    <p>Presentación PDF: especificacion-casos-de-uso-clase-7.pdf Clase previa: Clase 6 — Diagrama de Casos de Uso Clase base UML: Clase 5 — Modelamiento del Sistema Ejercicio visual: generalización e «include» en casos de uso Bibliografía de la sesión</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Bibliografía de la sesión</h3>
+    <p># · Fuente · Tipo 1 · Jacobson, I., Christerson, M., Jonsson, P., &amp; Övergaard, G. (1992). Object-Oriented Software Engineering: A Use Case Driven Approach. Addison-Wesley · Libro 2 · Kulak, D., &amp; Guiney, D. (2000). Use Cases: Requirements in Context. ACM Press / McGraw-Hill · Libro 3 · Cockburn, A. (2000). Writing Effective Use Cases. Addison-Wesley Professional · Libro 4 · Regnell, B., Kimbler, K., &amp; Wesslén, A.…</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-titulo">
+  <div class="modal-barra">
+    <p class="modal-titulo" id="modal-titulo">Imagen de la clase</p>
+    <button class="modal-cerrar" type="button" id="modal-cerrar">Cerrar (Esc)</button>
+  </div>
+  <div class="modal-escena">
+    <img id="modal-img" alt="">
+  </div>
+  <p class="modal-pie" id="modal-pie">Pulsa Escape o haz clic fuera de la imagen para cerrar.</p>
+</div>
+
+<script>
+  /* ---------- Modal de imágenes: vista ampliada ---------- */
+  (function () {
+    var modal = document.getElementById("modal");
+    var modalImg = document.getElementById("modal-img");
+    var modalTitulo = document.getElementById("modal-titulo");
+    var modalPie = document.getElementById("modal-pie");
+    var modalCerrar = document.getElementById("modal-cerrar");
+    if (!modal || !modalImg) return;
+
+    var imagenes = Array.prototype.filter.call(
+      document.querySelectorAll("img"),
+      function (img) { return img.id !== "modal-img"; }
+    );
+    var focoPrevio = null;
+
+    function tituloDe(imagen) {
+      var contenedor = imagen.closest("figure, article, .figura, .bloque, .panel, .tarjeta");
+      if (!contenedor) return "Imagen de la clase";
+      var encabezado = contenedor.querySelector("h3, h4, figcaption");
+      return encabezado ? encabezado.textContent.trim() : "Imagen de la clase";
+    }
+
+    function abrirModal(imagen) {
+      var descripcion = imagen.getAttribute("alt") || "";
+      modalImg.setAttribute("src", imagen.getAttribute("src"));
+      modalImg.setAttribute("alt", descripcion);
+      modalTitulo.textContent = tituloDe(imagen);
+      modalPie.textContent = descripcion + " \u00b7 Pulsa Escape o haz clic fuera de la imagen para cerrar.";
+      modal.classList.add("abierta");
+      modal.setAttribute("aria-hidden", "false");
+      focoPrevio = document.activeElement;
+      modalCerrar.focus();
+    }
+
+    function cerrarModal() {
+      if (!modal.classList.contains("abierta")) return;
+      modal.classList.remove("abierta");
+      modal.setAttribute("aria-hidden", "true");
+      modalImg.removeAttribute("src");
+      if (focoPrevio && typeof focoPrevio.focus === "function") focoPrevio.focus();
+      focoPrevio = null;
+    }
+
+    imagenes.forEach(function (imagen) {
+      imagen.classList.add("modal-lanzador");
+      imagen.setAttribute("tabindex", "0");
+      imagen.setAttribute("role", "button");
+      imagen.addEventListener("click", function () { abrirModal(imagen); });
+      imagen.addEventListener("keydown", function (evento) {
+        if (evento.key === "Enter" || evento.key === " ") {
+          evento.preventDefault();
+          abrirModal(imagen);
+        }
+      });
+    });
+
+    modalCerrar.addEventListener("click", cerrarModal);
+    modal.addEventListener("click", function (evento) {
+      if (evento.target === modal || evento.target.classList.contains("modal-escena")) cerrarModal();
+    });
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape") cerrarModal();
+    });
+  })();
+</script>
 </body>
 </html>

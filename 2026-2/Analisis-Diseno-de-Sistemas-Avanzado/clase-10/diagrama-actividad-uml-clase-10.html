@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagrama de Actividad UML — Clase 10 · Análisis y Diseño de Sistemas Avanzado</title>
+<meta name="description" content="Infografía de estudio de la Clase 10 de Análisis y Diseño de Sistemas Avanzado (ISIL, 2026-2): elementos del diagrama de actividad UML, decisiones, bucles, merge, fork/join, particiones, método de 14 pasos y ejemplos de venta en bodega y pedido en línea.">
+<style>
+  :root{
+    --bg:#0d1526;
+    --panel-head:#0a1120;
+    --card:#152238;
+    --card-2:#182742;
+    --ink:#e9eff8;
+    --ink-soft:#a9bad2;
+    --line:#27395a;
+    --blue:#6aa7ff;
+    --blue-bg:#16294a;
+    --teal:#3ed2b2;
+    --teal-bg:#113a36;
+    --purple:#b39af7;
+    --purple-bg:#241d47;
+    --amber:#f7b955;
+    --amber-bg:#3a2c12;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5;
+  }
+  .hoja{max-width:1180px;margin:0 auto;padding:22px 18px 34px;}
+
+  /* ---------- Franja superior ---------- */
+  .franja{
+    background:var(--panel-head);
+    border:1px solid var(--line);
+    color:#fff;
+    border-radius:16px;
+    padding:22px 26px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:12px;
+    position:relative;
+    overflow:hidden;
+  }
+  .franja::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:0;
+    height:4px;
+    background:linear-gradient(90deg,var(--blue) 0 25%,var(--teal) 25% 50%,var(--purple) 50% 75%,var(--amber) 75% 100%);
+    opacity:.9;
+  }
+  .franja h1{margin:0;font-size:1.72rem;letter-spacing:-.01em;}
+  .franja .sub{
+    margin:6px 0 0;
+    font-size:.82rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#9db8dc;
+  }
+  .franja .meta{
+    font-size:.8rem;
+    color:#c3d4ea;
+    text-align:right;
+    max-width:340px;
+  }
+
+  /* ---------- Secciones y títulos (siempre fuera del bloque) ---------- */
+  section{margin-top:24px;}
+  .rotulo{
+    display:flex;align-items:center;gap:10px;
+    margin:0 0 12px;
+    font-size:.82rem;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+  .rotulo .num{
+    width:26px;height:26px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:#0d1526;font-size:.82rem;flex:none;font-weight:800;
+  }
+  .n-blue{background:var(--blue);}
+  .n-teal{background:var(--teal);}
+  .n-purple{background:var(--purple);}
+  .n-amber{background:var(--amber);}
+
+  /* ---------- Fila superior ---------- */
+  .fila{display:grid;grid-template-columns:minmax(240px,1fr) 2.1fr;gap:16px;align-items:start;}
+  .tarjeta{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+  }
+  .idea p.texto{margin:0;font-size:1.04rem;font-weight:700;}
+
+  .conceptos .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:12px;
+  }
+  .chip{
+    border:1px solid;
+    border-radius:12px;
+    padding:12px 14px;
+    background:var(--card-2);
+  }
+  .chip .top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+  .chip .dot{
+    width:22px;height:22px;border-radius:50%;
+    color:#0d1526;font-size:.72rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .chip h3{margin:0;font-size:.98rem;}
+  .chip p{margin:0;font-size:.86rem;color:var(--ink-soft);}
+  .c-blue{border-color:#31548c;} .c-blue h3{color:var(--blue);} .c-blue .dot{background:var(--blue);}
+  .c-teal{border-color:#1f6b5e;} .c-teal h3{color:var(--teal);} .c-teal .dot{background:var(--teal);}
+  .c-purple{border-color:#4d3f86;} .c-purple h3{color:var(--purple);} .c-purple .dot{background:var(--purple);}
+  .c-amber{border-color:#8a6a2a;} .c-amber h3{color:var(--amber);} .c-amber .dot{background:var(--amber);}
+
+  /* ---------- Relación dominante ---------- */
+  .panel{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px 20px 18px;
+  }
+  .flujo{
+    display:flex;
+    align-items:stretch;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .paso{
+    flex:1 1 180px;
+    border:1px solid;
+    border-radius:12px;
+    padding:14px 16px;
+    min-height:104px;
+    background:var(--card-2);
+  }
+  .paso .cab{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .paso .cab .dot{
+    width:24px;height:24px;border-radius:50%;color:#0d1526;
+    font-size:.75rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .paso h3{margin:0;font-size:1rem;}
+  .paso p{margin:0;font-size:.88rem;color:var(--ink-soft);}
+  .flecha{
+    align-self:center;
+    flex:0 0 auto;
+    color:#6f85a3;
+    font-size:1.3rem;
+    line-height:1;
+  }
+  .nota-relacion{
+    margin:16px auto 0;
+    text-align:center;
+    font-size:.88rem;
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Diagrama de flujo SVG ---------- */
+  .svg-flujo{display:block;width:100%;height:auto;}
+  .svg-flujo .nodo{fill:var(--card-2);stroke-width:2;}
+  .svg-flujo .nodo-titulo{fill:var(--ink);font-size:17px;font-weight:700;font-family:inherit;}
+  .svg-flujo .nodo-texto{fill:var(--ink-soft);font-size:13.5px;font-family:inherit;}
+  .svg-flujo .flecha-linea{stroke:#54688a;stroke-width:2.5;fill:none;}
+  .svg-flujo .pie-diagrama{fill:var(--ink-soft);font-size:14px;font-weight:600;font-family:inherit;}
+
+  /* ---------- Contenido ampliado ---------- */
+  .ampliado .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    gap:14px;
+  }
+  .bloque{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:5px solid var(--blue);
+    border-radius:12px;
+    padding:14px 16px;
+  }
+  .bloque.b-teal{border-left-color:var(--teal);}
+  .bloque.b-purple{border-left-color:var(--purple);}
+  .bloque.b-amber{border-left-color:var(--amber);}
+  .bloque h3{margin:0 0 8px;font-size:.95rem;color:var(--ink);}
+  .bloque ul{margin:0;padding-left:18px;}
+  .bloque li{font-size:.87rem;color:var(--ink-soft);margin-bottom:5px;}
+  .bloque li strong{color:var(--ink);}
+  .bloque p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);}
+  .bloque p:last-child{margin-bottom:0;}
+  .mini-tabla{width:100%;border-collapse:collapse;font-size:.83rem;}
+  .mini-tabla th,.mini-tabla td{
+    text-align:left;padding:5px 6px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .mini-tabla th{color:var(--ink);font-weight:700;}
+  .mini-tabla tr:last-child th,.mini-tabla tr:last-child td{border-bottom:none;}
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:12px;
+  }
+  .stat{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px 14px;
+    text-align:center;
+  }
+  .stat .valor{font-size:1.5rem;font-weight:800;color:var(--blue);}
+  .stat .etiqueta{font-size:.8rem;color:var(--ink-soft);}
+
+  /* ---------- Ejemplo ---------- */
+  .ejemplo{
+    background:var(--amber-bg);
+    border:1px solid #6d5426;
+    border-radius:14px;
+    padding:16px 20px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .ejemplo .marca{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--amber);color:#0d1526;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .ejemplo h3{margin:2px 0 6px;font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);}
+  .ejemplo p{margin:0;font-size:.95rem;color:var(--ink);}
+
+  /* ---------- Qué recordar ---------- */
+  .recuerda{
+    background:var(--panel-head);
+    border:1px solid var(--line);
+    border-top:4px solid var(--teal);
+    color:var(--ink);
+    border-radius:16px;
+    padding:20px 24px;
+  }
+  .recuerda .cab{
+    display:flex;align-items:center;gap:10px;
+    font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;
+    font-weight:700;color:var(--teal);margin-bottom:14px;
+  }
+  .recuerda .cab .tick{
+    width:26px;height:26px;border-radius:50%;
+    background:var(--teal);color:#0d1526;
+    display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;
+  }
+  .recuerda ul{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px 26px;
+  }
+  .recuerda li{
+    font-size:.93rem;font-weight:600;
+    padding-left:18px;position:relative;color:var(--ink);
+  }
+  .recuerda li::before{
+    content:"";position:absolute;left:0;top:.5em;
+    width:7px;height:7px;border-radius:50%;background:var(--teal);
+  }
+  .frase{
+    margin:16px 0 0;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+    font-size:.9rem;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .frase strong{color:var(--ink);font-style:normal;}
+
+  /* ---------- Pie ---------- */
+  .pie{
+    margin-top:18px;
+    font-size:.78rem;
+    color:#7f93b0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    justify-content:space-between;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:820px){
+    .fila{grid-template-columns:1fr;}
+    .franja h1{font-size:1.4rem;}
+    .franja .meta{text-align:left;}
+    .flecha{transform:rotate(90deg);}
+  }
+
+  /* ---------- Impresión ---------- */
+  @media print{
+    body{background:#fff;}
+    .hoja{max-width:none;padding:0;}
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+      break-inside:avoid;page-break-inside:avoid;
+    }
+    section{margin-top:14px;}
+    @page{margin:10mm;}
+  }
+
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:16px 0 0;
+    overflow-x:auto;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+
+  /* ---------- Extensiones para la clase 10 ---------- */
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:520px;}
+  .tabla th,.tabla td{
+    text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .tabla thead th{
+    color:var(--ink);font-weight:700;background:var(--card-2);
+    letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;
+  }
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
+  .lista{margin:0;padding-left:18px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .destacado{
+    background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .destacado strong{color:var(--teal);}
+  .aviso{
+    background:var(--amber-bg);border:1px solid #6d5426;border-left:5px solid var(--amber);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .aviso strong{color:var(--amber);}
+  .cronograma{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+  .hito{
+    background:var(--card);border:1px solid var(--line);
+    border-left:4px solid var(--amber);border-radius:12px;padding:12px 14px;
+  }
+  .hito .fecha{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);font-weight:700;}
+  .hito p{margin:6px 0 0;font-size:.86rem;color:var(--ink-soft);}
+  .preguntas details{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .glosario{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;}
+  .glosario .termino{background:var(--card-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;}
+  .glosario .termino strong{display:block;color:var(--blue);font-size:.88rem;margin-bottom:3px;}
+  .glosario .termino span{font-size:.84rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .fuentes a{color:var(--blue);}
+</style>
+</head>
+<body>
+<div class="hoja">
+
+  <header class="franja">
+    <div>
+      <h1>Diagrama de Actividad UML</h1>
+      <p class="sub">Clase 10 · Análisis y Diseño de Sistemas Avanzado</p>
+    </div>
+    <p class="meta">ISIL · 2026-2 · 12/11/2026<br>CESAR AGUSTO RUIZ VERGARA · Código 3702.202620</p>
+  </header>
+
+  <section class="fila">
+    <div>
+      <p class="rotulo"><span class="num n-blue">1</span>Idea central</p>
+      <article class="tarjeta idea">
+        <p class="texto">Un diagrama de actividad muestra qué acciones ocurren, quién las realiza y cómo el flujo responde a decisiones, bucles y tareas paralelas.</p>
+      </article>
+    </div>
+    <div>
+      <p class="rotulo"><span class="num n-teal">2</span>4 conceptos clave</p>
+      <article class="tarjeta conceptos">
+        <div class="grid">
+          <div class="chip c-blue">
+            <div class="top"><span class="dot">1</span><h3>Acción</h3></div>
+            <p>Paso concreto, nombrado con un verbo: “Validar stock”.</p>
+          </div>
+          <div class="chip c-teal">
+            <div class="top"><span class="dot">2</span><h3>Decisión</h3></div>
+            <p>Rombo vacío; la guarda se escribe en la flecha de salida.</p>
+          </div>
+          <div class="chip c-purple">
+            <div class="top"><span class="dot">3</span><h3>Merge</h3></div>
+            <p>Reúne caminos alternativos; se dibuja como rombo.</p>
+          </div>
+          <div class="chip c-amber">
+            <div class="top"><span class="dot">4</span><h3>Fork / Join</h3></div>
+            <p>Abre rutas paralelas y las sincroniza con barras.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">3</span>Objetivos de la sesión</p>
+    <div class="panel">
+      <ul class="lista">
+        <li>Reconocer <strong>requisitos, procesos, interesados, casos de uso, flujos de trabajo y modularidad</strong> como insumos del análisis.</li>
+        <li>Identificar los <strong>nodos y conectores</strong> de un diagrama de actividad UML.</li>
+        <li>Representar <strong>decisiones, bucles, caminos alternativos y tareas paralelas</strong>.</li>
+        <li>Organizar las acciones por responsable mediante <strong>carriles o particiones</strong>.</li>
+        <li>Elaborar el flujo <strong>en texto</strong> antes de modelarlo en una herramienta CASE.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-amber">4</span>Conceptos previos para modelar un flujo</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Concepto</th><th>Qué significa</th><th>Ejemplo aplicado</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Requisito funcional</strong></td><td>Describe qué debe hacer el sistema.</td><td>En el ejemplo de hotel de la presentación, permitir buscar habitaciones disponibles.</td></tr>
+            <tr><td><strong>Requisito no funcional</strong></td><td>Define una condición medible de calidad o funcionamiento.</td><td>En el mismo ejemplo, cargar los resultados en menos de 2 segundos.</td></tr>
+            <tr><td><strong>Proceso de negocio</strong></td><td>Conjunto de tareas coordinadas para alcanzar un resultado del negocio.</td><td>La presentación usa la aprobación de un préstamo: verificar el crédito, evaluar la solicitud y aprobarla o rechazarla.</td></tr>
+            <tr><td><strong>Stakeholder</strong></td><td>Persona o grupo con interés en el sistema; puede ser interno o externo.</td><td>Empleados, gerentes y directivos; también clientes, proveedores y reguladores.</td></tr>
+            <tr><td><strong>Caso de uso</strong></td><td>Describe cómo un actor usa el sistema para lograr un objetivo.</td><td>Renovar contratos: el gerente de personal evalúa al trabajador y se completa la firma.</td></tr>
+            <tr><td><strong>Flujo de trabajo</strong></td><td>Secuencia de acciones para completar una tarea.</td><td>Atención al cliente: recibir llamada, identificar el problema, resolver y cerrar el ticket.</td></tr>
+            <tr><td><strong>Modularidad</strong></td><td>División en componentes pequeños que se desarrollan y prueban por separado.</td><td>En un gestor de contenidos: usuarios, creación de contenido y analítica web.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota-relacion">Los requisitos funcionales precisan qué acciones aparecen; los no funcionales imponen restricciones medibles.</p>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-blue">5</span>Qué es y para qué sirve</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Definición</h3>
+        <p>Es un <strong>diagrama de comportamiento UML</strong> que muestra acciones y el flujo de control entre ellas. Describe procesos de negocio, flujos de trabajo, el comportamiento de un caso de uso o la lógica de un algoritmo.</p>
+        <p>Una <strong>actividad</strong> es un comportamiento amplio; una <strong>acción</strong>, un paso concreto dentro de él.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Usos</h3>
+        <ul>
+          <li>Explicar procesos a analistas, usuarios y desarrolladores.</li>
+          <li>Detallar el flujo principal, alternativas y excepciones.</li>
+          <li>Identificar cuellos de botella y redundancias.</li>
+          <li>Describir algoritmos y automatizaciones.</li>
+          <li>Entender la interacción del usuario con el sistema.</li>
+          <li>Planificar tareas y coordinación de proyectos.</li>
+          <li>Apoyar capacitación, documentación y análisis de riesgos.</li>
+        </ul>
+      </article>
+      <article class="bloque b-purple">
+        <h3>UML, BPMN y flujograma</h3>
+        <ul>
+          <li><strong>Uso:</strong> UML, software y algoritmos; BPMN, procesos de negocio.</li>
+          <li><strong>Decisión:</strong> en UML el rombo va vacío y las guardas van en las flechas; en BPMN es un gateway con su propia notación.</li>
+          <li><strong>Paralelismo:</strong> en UML, barras de fork y join; en BPMN, gateway paralelo con <strong>+</strong>.</li>
+          <li><strong>Alcance:</strong> UML modela una actividad o un comportamiento; BPMN, procesos de negocio.</li>
+        </ul>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Advertencia de notación</h3>
+        <p>No mezcles símbolos de BPMN con los de UML. La forma parecida de algunos nodos no significa que tengan la misma notación ni la misma semántica.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">6</span>Elementos básicos del diagrama</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Elemento</th><th>Representación</th><th>Uso</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Nodo inicial</strong></td><td>Círculo negro relleno.</td><td>Marca el inicio del flujo; UML permite modelar los inicios que requiera la actividad.</td></tr>
+            <tr><td><strong>Acción</strong></td><td>Rectángulo con esquinas redondeadas.</td><td>Paso concreto, expresado con un verbo.</td></tr>
+            <tr><td><strong>Flujo de control</strong></td><td>Línea continua con flecha.</td><td>Indica qué nodo puede ejecutarse a continuación.</td></tr>
+            <tr><td><strong>Nodo de actividad final</strong></td><td>Círculo negro con borde externo grueso.</td><td>Termina la actividad completa, incluidas las rutas que sigan activas.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota-relacion">El nodo de flujo final detiene solo la ruta que llega a él; el nodo de actividad final cierra toda la actividad.</p>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-purple">7</span>Decisiones, bucles y paralelismo</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Decisión y bucle</h3>
+        <p>El rombo queda <strong>vacío</strong>. Las guardas se escriben en las flechas de salida, por ejemplo <strong>[stock disponible]</strong> o <strong>[sin stock]</strong>.</p>
+        <p>Si una salida regresa a una acción previa, el flujo forma un <strong>bucle</strong>.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Fusión (merge)</h3>
+        <p>Reúne caminos <strong>alternativos</strong> y permite continuar cuando llega un flujo; no espera a que lleguen todos.</p>
+        <p>En UML se dibuja como <strong>rombo</strong>.</p>
+      </article>
+      <article class="bloque b-purple">
+        <h3>Fork y join</h3>
+        <ul>
+          <li><strong>Fork:</strong> divide un flujo en rutas que pueden ejecutarse en paralelo.</li>
+          <li><strong>Join:</strong> sincroniza las rutas paralelas y espera las entradas requeridas.</li>
+        </ul>
+        <p>Se representan con <strong>barras</strong> horizontales o verticales.</p>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Alternativa o paralelismo</h3>
+        <ul>
+          <li><strong>Envío por correo o recojo en tienda:</strong> decisión y, si las rutas vuelven a un paso común, <em>merge</em>.</li>
+          <li><strong>Actualizar inventario y generar comprobante:</strong> <em>fork/join</em> si ambas tareas son simultáneas.</li>
+        </ul>
+      </article>
+    </div>
+    <div class="destacado" style="margin-top:14px;">
+      <strong>Corrección de notación UML 2.5:</strong> el <em>merge</em> se dibuja como rombo; la barra gruesa corresponde al <em>fork</em> o al <em>join</em>. En clase se mostró una barra para unir rutas alternativas; al entregar el modelo conviene aplicar la notación estándar.
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-amber">8</span>Otros elementos</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Subactividad</h3>
+        <p>Acción que resume un flujo más complejo y detallado en otro diagrama. La diapositiva la muestra como rectángulo redondeado con un pequeño rectángulo anidado en la esquina.</p>
+        <p>Ejemplo: “Realizar pago” incluye ingresar datos, verificar la tarjeta y confirmar.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Particiones o carriles</h3>
+        <p>Organizan las acciones por responsable: <strong>Cliente, Operario y Sistema</strong>. <em>Swimlane</em> es el nombre común de esta organización visual.</p>
+        <p>En UML se habla de <strong>particiones de actividad</strong>; <em>pool</em> es terminología de BPMN.</p>
+      </article>
+      <article class="bloque b-purple">
+        <h3>Eventos y señales</h3>
+        <p>Son situaciones externas que afectan el flujo, como una señal o el paso del tiempo. La diapositiva los muestra como pentágono.</p>
+        <p>Ejemplo: si el pedido no se entrega en 30 minutos, emitir un reembolso. Ese límite es ilustrativo, no una regla general.</p>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Notas y comentarios</h3>
+        <p>Rectángulo con una esquina doblada, unido por línea discontinua para aclarar el modelo. No cambia la lógica del flujo.</p>
+        <p>Ejemplo: junto a “Empacar producto”, recordar verificar la fecha de vencimiento.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">9</span>Flujo del concepto: del análisis al modelo</p>
+    <div class="panel">
+      <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo: desde el análisis con requisitos e interesados se enumeran las acciones, se organiza el diagrama con nodos, guardas y particiones, y se valida con los participantes del proceso.">
+        <defs>
+          <marker id="punta1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#54688a"></path>
+          </marker>
+        </defs>
+
+        <rect class="nodo" x="6" y="34" width="220" height="88" rx="12" stroke="#6aa7ff"></rect>
+        <text class="nodo-titulo" x="116" y="72" text-anchor="middle" style="fill:#6aa7ff">Análisis</text>
+        <text class="nodo-texto" x="116" y="98" text-anchor="middle">Requisitos e interesados</text>
+
+        <line class="flecha-linea" x1="232" y1="78" x2="282" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="288" y="34" width="220" height="88" rx="12" stroke="#3ed2b2"></rect>
+        <text class="nodo-titulo" x="398" y="72" text-anchor="middle" style="fill:#3ed2b2">Enumerar</text>
+        <text class="nodo-texto" x="398" y="98" text-anchor="middle">Acciones y excepciones</text>
+
+        <line class="flecha-linea" x1="514" y1="78" x2="564" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="570" y="34" width="220" height="88" rx="12" stroke="#b39af7"></rect>
+        <text class="nodo-titulo" x="680" y="72" text-anchor="middle" style="fill:#b39af7">Diagrama</text>
+        <text class="nodo-texto" x="680" y="98" text-anchor="middle">Nodos, guardas y carriles</text>
+
+        <line class="flecha-linea" x1="796" y1="78" x2="846" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="852" y="34" width="220" height="88" rx="12" stroke="#f7b955"></rect>
+        <text class="nodo-titulo" x="962" y="72" text-anchor="middle" style="fill:#f7b955">Validación</text>
+        <text class="nodo-texto" x="962" y="98" text-anchor="middle">Revisión con los responsables</text>
+
+        <text class="pie-diagrama" x="540" y="186" text-anchor="middle">La presentación desarrolla este recorrido en 14 pasos: del alcance a documentar y archivar</text>
+      </svg>
+      <p class="nota-relacion">Definir → enumerar → organizar → validar</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">10</span>Caso práctico: venta en la bodega</p>
+    <div class="panel">
+      <ul class="lista">
+        <li>El cliente entrega los productos y el operario registra cada código.</li>
+        <li>El sistema <strong>valida existencia y stock</strong>: si no hay, muestra alerta; si hay, muestra los datos.</li>
+        <li>Se pregunta si quedan productos: el <strong>bucle</strong> regresa al registro.</li>
+        <li>Se comunica el total y el cliente <strong>elige medio de pago</strong>.</li>
+        <li>Efectivo: el operario registra el monto y el sistema calcula el vuelto. Tarjeta o QR: el sistema valida el pago con el proveedor.</li>
+        <li>Si el pago se <strong>rechaza</strong>, se elige otro medio; si se aprueba, se genera el comprobante.</li>
+        <li>El operario entrega productos y comprobante en paralelo y el cliente los recibe.</li>
+      </ul>
+      <div class="mermaid">
+flowchart TD
+    I((Inicio)) --&gt; A[Cliente entrega productos]
+    A --&gt; B[Operario registra producto]
+    B --&gt; C{¿Existe y tiene stock?}
+    C --&gt;|Sí| D[Sistema muestra producto]
+    C --&gt;|No| E[Sistema muestra alerta]
+    D --&gt; F{¿Hay más productos?}
+    E --&gt; F
+    F --&gt;|Sí| B
+    F --&gt;|No| G[Comunicar total]
+    G --&gt; H{Elegir medio de pago}
+    H --&gt;|Efectivo| J[Registrar efectivo y calcular vuelto]
+    H --&gt;|Tarjeta o QR| K[Validar pago con proveedor]
+    J --&gt; L{¿Pago aprobado?}
+    K --&gt; L
+    L --&gt;|No| H
+    L --&gt;|Sí| M[Generar comprobante]
+    M --&gt; FF[Fork: iniciar tareas paralelas]
+    FF --&gt; N[Operario entrega productos]
+    FF --&gt; O[Operario entrega comprobante]
+    N --&gt; JJ[Join: esperar ambas tareas]
+    O --&gt; JJ
+    JJ --&gt; P[Cliente recibe productos y comprobante]
+    P --&gt; Z(((Fin)))
+      </div>
+      <p class="nota-relacion">Las cajas rotuladas Fork y Join son etiquetas didácticas; en draw.io usa las barras de la biblioteca UML 2.5.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">11</span>Otros ejemplos de la sesión</p>
+    <div class="panel">
+      <div class="mermaid">
+flowchart TD
+    A[Seleccionar producto] --&gt; B[Agregar al carrito]
+    B --&gt; C{¿Agregar más productos?}
+    C --&gt;|Sí| A
+    C --&gt;|No| D[Realizar pago]
+    D --&gt; E[Fork: inventario y factura]
+    E --&gt; F[Actualizar inventario]
+    E --&gt; G[Generar factura]
+    F --&gt; H[Join: esperar ambas tareas]
+    G --&gt; H
+    H --&gt; I[Empacar producto]
+    I --&gt; J{Elegir entrega}
+    J --&gt;|Correo| K[Enviar pedido]
+    J --&gt;|Recojo| L[Preparar recojo en tienda]
+    K --&gt; M[Actualizar estado del pedido]
+    L --&gt; M
+    M --&gt; N(((Fin)))
+      </div>
+      <p class="nota-relacion">Pedido en línea (diapositiva 25): reconoce el ciclo de “agregar más productos” y la concurrencia entre facturación e inventario.</p>
+      <div class="destacado" style="margin-top:14px;">
+        <strong>Baja de productos vencidos (apuntes de clase):</strong> el sistema revisa fechas, detecta los productos vencidos, actualiza su disponibilidad y genera un reporte para el retiro físico. Muestra que una actividad UML también puede describir lógica interna de software.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">12</span>Método de elaboración en 14 pasos</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>#</th><th>Acción</th><th>Pregunta de revisión</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Definir el alcance y el objetivo.</td><td>¿Qué proceso o flujo se modelará y para qué?</td></tr>
+            <tr><td>2</td><td>Identificar stakeholders y actores.</td><td>¿Qué personas, sistemas o entidades participan?</td></tr>
+            <tr><td>3</td><td>Enumerar las actividades principales, sin ordenar todavía.</td><td>¿Están anotadas todas las acciones del inicio al final?</td></tr>
+            <tr><td>4</td><td>Establecer los nodos inicial y final.</td><td>¿Qué evento inicia el flujo y qué resultado lo cierra?</td></tr>
+            <tr><td>5</td><td>Organizar las actividades en el orden en que ocurren.</td><td>¿Se añadieron decisiones, bifurcaciones y uniones donde corresponde?</td></tr>
+            <tr><td>6</td><td>Añadir las transiciones.</td><td>¿Las flechas muestran el recorrido correcto?</td></tr>
+            <tr><td>7</td><td>Incorporar decisiones y fusiones.</td><td>¿Las guardas explican cada alternativa y el merge reúne rutas excluyentes?</td></tr>
+            <tr><td>8</td><td>Añadir paralelismo si es necesario.</td><td>¿Hay acciones que ocurren realmente a la vez y luego deben sincronizarse?</td></tr>
+            <tr><td>9</td><td>Incluir subactividades.</td><td>¿Alguna acción necesita su propio desglose?</td></tr>
+            <tr><td>10</td><td>Añadir eventos y anotaciones.</td><td>¿Hay sucesos externos, esperas o notas necesarias para interpretar el modelo?</td></tr>
+            <tr><td>11</td><td>Revisar el diagrama con los stakeholders.</td><td>¿Las personas responsables reconocen el proceso?</td></tr>
+            <tr><td>12</td><td>Ajustar y refinar según la revisión.</td><td>¿Se resolvieron las dudas o pasos faltantes?</td></tr>
+            <tr><td>13</td><td>Validar y confirmar el modelo.</td><td>¿Cumple el objetivo y puede usarse como documentación?</td></tr>
+            <tr><td>14</td><td>Documentar y archivar.</td><td>¿Quedaron registradas las aclaraciones para futuras consultas?</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota-relacion">En draw.io activa la biblioteca UML 2.5: Más formas → Software → UML 2.5.</p>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-blue">13</span>Errores comunes</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Error</th><th>Cómo corregirlo</th></tr></thead>
+          <tbody>
+            <tr><td>Escribir la condición dentro del rombo.</td><td>Deja el rombo vacío y coloca las guardas en las flechas de salida.</td></tr>
+            <tr><td>Usar <strong>X</strong> o <strong>+</strong> de BPMN dentro del rombo UML.</td><td>Utiliza la notación propia de UML; no mezcles bibliotecas.</td></tr>
+            <tr><td>Dibujar una barra para unir alternativas.</td><td>Usa el rombo de merge; reserva la barra para fork o join.</td></tr>
+            <tr><td>Confundir una decisión con el paralelismo.</td><td>Si se elige un camino, usa decisión; si se ejecutan varios, usa fork.</td></tr>
+            <tr><td>Mostrar solo el camino exitoso.</td><td>Incluye falta de stock, pagos rechazados, cancelaciones y otras excepciones.</td></tr>
+            <tr><td>Nombrar acciones con sustantivos vagos.</td><td>Usa verbos concretos como “Validar pago” o “Registrar producto”.</td></tr>
+            <tr><td>Usar fork/join para acciones simplemente consecutivas.</td><td>Modela en paralelo solo tareas que pueden ejecutarse concurrentemente.</td></tr>
+            <tr><td>Usar pool como término UML.</td><td>Habla de particiones o carriles; reserva pool para BPMN.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">14</span>Aplicaciones destacadas en la presentación</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Aplicación</th><th>Ejemplo señalado en la presentación</th><th>Aporte del diagrama</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Desarrollo de software</strong></td><td>Interacciones de usuarios y procesamiento de datos en una nueva aplicación.</td><td>Enseña el comportamiento antes de implementarlo.</td></tr>
+            <tr><td><strong>Optimización de procesos</strong></td><td>Cadena de suministro o servicio al cliente.</td><td>Localiza cuellos de botella y redundancias.</td></tr>
+            <tr><td><strong>Diseño UI/UX</strong></td><td>Flujo de interacción de una aplicación o sitio web.</td><td>Ordena pantallas y acciones de forma comprensible.</td></tr>
+            <tr><td><strong>Planificación de proyectos</strong></td><td>Coordinación de tareas en proyectos complejos.</td><td>Muestra dependencias, responsables y flujos.</td></tr>
+            <tr><td><strong>Formación y capacitación</strong></td><td>Enseñar un proceso o sistema complejo.</td><td>Convierte una explicación extensa en una secuencia visual.</td></tr>
+            <tr><td><strong>Documentación de sistemas</strong></td><td>Referencia interna o documentación para auditoría.</td><td>Registra cómo se ejecuta el proceso.</td></tr>
+            <tr><td><strong>Riesgos y contingencias</strong></td><td>Procesos críticos en salud o gestión de emergencias.</td><td>Revisa puntos críticos y respuestas alternativas.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-purple">15</span>Conexión con el curso y con BPMN</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Puente análisis → diseño</h3>
+        <ul>
+          <li>Los <strong>requisitos funcionales</strong> expresan capacidades esperadas.</li>
+          <li>Los <strong>procesos y casos de uso</strong> aportan contexto y objetivo.</li>
+          <li>Los <strong>stakeholders</strong> indican quién participa.</li>
+          <li>Las <strong>particiones</strong> hacen explícita la responsabilidad.</li>
+          <li>Decisiones, bucles y paralelismo describen reglas revisables.</li>
+        </ul>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Complementa otros modelos UML</h3>
+        <p>El <strong>caso de uso</strong> indica el objetivo del actor; el <strong>diagrama de actividad</strong> detalla el flujo; el <strong>diagrama de estado</strong> describe los cambios de estado de un objeto.</p>
+      </article>
+      <article class="bloque b-purple">
+        <h3>UML y BPMN: el límite de responsabilidad</h3>
+        <p>En clase el cliente apareció como un carril junto al operario y el sistema. Al especificar el sistema conviene acordar el límite: el cliente puede quedar como actor externo y las acciones internas organizarse en particiones.</p>
+        <p>En BPMN, <em>pools</em> y <em>lanes</em> tienen semántica propia para participantes y responsabilidades.</p>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Qué enseña la venta en la bodega</h3>
+        <ul>
+          <li>Las particiones muestran quién ejecuta cada paso.</li>
+          <li>Las guardas explican cada resultado de decisión.</li>
+          <li>El camino de falta de stock evita modelar solo el escenario ideal.</li>
+          <li>Los bucles cubren carga de productos y reintento de pago.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">16</span>Cierre del ciclo y evaluaciones</p>
+    <div class="cronograma">
+      <div class="hito"><div class="fecha">19/11</div><p>Sesiones 11 y 12 juntas (diagrama de clases y UML), presentación de la PA4 y de la Evaluación Integral.</p></div>
+      <div class="hito"><div class="fecha">26/11 y 03/12</div><p>Revisión de las sesiones restantes.</p></div>
+      <div class="hito"><div class="fecha">10/12</div><p>Sesión 13 —diagrama de secuencia— y sesión 14 —despliegue y prototipos—.</p></div>
+      <div class="hito"><div class="fecha">17/12</div><p>Entrega de la Evaluación Integral: grupal, de 4 a 5 integrantes, equivalente al 40 % del curso.</p></div>
+    </div>
+    <p class="nota-relacion">Indicación administrativa de la sesión del 12/11/2026; confirma cualquier ajuste con el docente.</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">17</span>Preguntas de repaso</p>
+    <div class="preguntas">
+      <details><summary>1. ¿Qué representa un diagrama de actividad y qué puede modelar además de procesos de negocio?</summary><p>Es un diagrama de comportamiento UML que organiza acciones y el flujo entre ellas. Puede modelar procesos, flujos de trabajo, casos de uso y algoritmos.</p></details>
+      <details><summary>2. ¿Qué diferencia hay entre un requisito funcional y uno no funcional? Da un ejemplo medible del segundo.</summary><p>El funcional indica qué hace el sistema; el no funcional establece cómo debe operar. Por ejemplo: responder una consulta en menos de 3 segundos.</p></details>
+      <details><summary>3. ¿Cuáles son los cuatro elementos gráficos básicos de un flujo de actividad?</summary><p>Nodo inicial, acción, flujo de control y nodo de actividad final.</p></details>
+      <details><summary>4. ¿Cómo se representa una decisión en UML y dónde se escriben sus condiciones?</summary><p>Con un rombo vacío. Las guardas se escriben sobre las flechas de salida, entre corchetes, como [Sí] o [sin stock].</p></details>
+      <details><summary>5. ¿Cómo se crea un bucle en un flujo? Menciona un ejemplo de la venta en la bodega.</summary><p>Una flecha regresa desde una decisión a una acción anterior. En la bodega, el [Sí] de “¿Hay más productos?” vuelve al registro del siguiente producto.</p></details>
+      <details><summary>6. ¿Qué diferencia funcional hay entre un merge y un join?</summary><p>El merge reúne rutas alternativas y no espera todas. El join sincroniza rutas paralelas y espera las entradas requeridas.</p></details>
+      <details><summary>7. ¿Qué diferencia hay entre una decisión y un fork?</summary><p>La decisión selecciona una alternativa; el fork habilita varias rutas concurrentes.</p></details>
+      <details><summary>8. ¿Para qué sirven las particiones o carriles? ¿Qué tres responsables aparecen en el ejemplo?</summary><p>Sirven para asignar acciones a responsables. El ejemplo usa Cliente, Operario y Sistema.</p></details>
+      <details><summary>9. ¿Qué función tiene una señal o espera de tiempo? Propón un ejemplo para un pedido.</summary><p>Modela una espera o suceso relacionado con el tiempo. Por ejemplo, activar una gestión si el pedido no se entrega dentro del plazo establecido.</p></details>
+      <details><summary>10. ¿Por qué se deben incluir caminos alternativos y excepciones?</summary><p>Para que el modelo represente también rechazos, errores, falta de stock o cancelaciones y no solo el camino exitoso.</p></details>
+      <details><summary>11. ¿Qué se debe hacer antes de dibujar el diagrama en draw.io?</summary><p>Definir el alcance, identificar responsables y redactar las acciones, condiciones, repeticiones y excepciones en orden.</p></details>
+      <details><summary>12. ¿Qué diferencia hay entre la notación de decisión de UML y la de BPMN?</summary><p>En UML el rombo de decisión queda vacío y las guardas van en sus flujos de salida. BPMN emplea gateways y símbolos propios de esa notación.</p></details>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">18</span>Conclusiones y glosario</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Conclusiones</h3>
+        <ul>
+          <li>El diagrama transforma una descripción textual en un flujo visual de acciones y decisiones.</li>
+          <li>Las acciones se nombran con verbos; las guardas dejan claro cómo continúa el proceso.</li>
+          <li>El rombo selecciona alternativas; el merge las reúne; el fork/join divide y sincroniza trabajo paralelo.</li>
+          <li>Las particiones asignan responsabilidades y las excepciones hacen útil el modelo.</li>
+          <li>Redactar primero el flujo y validarlo reduce ambigüedades antes de implementarlo.</li>
+        </ul>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Glosario</h3>
+        <div class="glosario">
+          <div class="termino"><strong>Acción</strong><span>Paso concreto dentro de una actividad.</span></div>
+          <div class="termino"><strong>Guarda</strong><span>Condición booleana que habilita un flujo de salida.</span></div>
+          <div class="termino"><strong>Merge</strong><span>Nodo que reúne flujos alternativos.</span></div>
+          <div class="termino"><strong>Fork</strong><span>Nodo que inicia flujos paralelos.</span></div>
+          <div class="termino"><strong>Join</strong><span>Nodo que sincroniza flujos paralelos.</span></div>
+          <div class="termino"><strong>Partición</strong><span>Región que agrupa acciones por responsable.</span></div>
+          <div class="termino"><strong>Stakeholder</strong><span>Interesado o grupo afectado por el sistema.</span></div>
+          <div class="termino"><strong>CASE</strong><span>Herramienta de apoyo al análisis y diseño de software.</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">19</span>Recursos y referencias</p>
+    <div class="panel">
+      <ul class="fuentes">
+        <li><strong>Fuente de clase:</strong> presentación de la sesión 10, “Diagrama de Actividad” (UA3), 36 diapositivas.</li>
+        <li><strong>Especificación oficial:</strong> <a href="https://www.omg.org/spec/UML/2.5.1">OMG Unified Modeling Language (UML), versión 2.5.1</a>.</li>
+        <li><strong>Herramienta:</strong> <a href="https://www.drawio.com/">draw.io / diagrams.net</a>, con la biblioteca UML 2.5.</li>
+        <li><strong>Bibliografía de la presentación:</strong> Dennis, A., Wixom, B. H., &amp; Tegarden, D. (2015). <em>Systems Analysis and Design: An Object-Oriented Approach with UML</em>. Wiley.</li>
+        <li><strong>Bibliografía de la presentación:</strong> Jacobson, I., Christerson, M., Jonsson, P., &amp; Övergaard, G. (1992). <em>Object-Oriented Software Engineering: A Use Case Driven Approach</em>. Addison-Wesley.</li>
+        <li><strong>Bibliografía de la presentación:</strong> Dumas, M., La Rosa, M., Mendling, J., &amp; Reijers, H. A. (2013). <em>Fundamentals of Business Process Management</em>. Springer.</li>
+        <li><strong>Clases relacionadas:</strong> casos de uso (Clase 6), especificación de casos de uso (Clase 7), BPM y BPMN (Clase 4) y diagrama de estado UML (Clase 9).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="recuerda">
+      <p class="cab"><span class="tick" aria-hidden="true">✓</span> Qué recordar</p>
+      <ul>
+        <li>Acciones con verbos concretos; rombo vacío y guardas en las flechas.</li>
+        <li>Rombo para decisiones y merge; barras para fork y join.</li>
+        <li>Particiones para asignar responsables; subactividades para el detalle.</li>
+        <li>Incluye rechazos, errores y excepciones, no solo el camino feliz.</li>
+        <li>La presentación propone 14 pasos, del alcance al archivado.</li>
+      </ul>
+      <p class="frase"><strong>Takeaway:</strong> dibuja lo que el proceso realmente hace: una alternativa no es paralelismo, y una excepción también forma parte del flujo.</p>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <span>Fuente: presentación y apuntes de la Clase 10 — Análisis y Diseño de Sistemas Avanzado (ISIL, 2026-2).</span>
+    <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
+  </footer>
+
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 6 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Relación con BPMN y los flujogramas</h3>
+    <p>UML y BPMN pueden describir procesos, pero tienen propósitos y notaciones diferentes. UML también se usa para representar el comportamiento del software y algoritmos. Un flujograma tradicional tiene convenciones más sencillas y no necesariamente sigue la semántica definida por UML. Aspecto · Diagrama de actividad UML · BPMN · Flujograma tradicional Uso frecuente · Comportamiento de software, casos de uso,…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Flujo narrado</h3>
+    <p>El cliente entrega los productos. El operario inicia la transacción y escanea o ingresa el código de un producto. El sistema verifica que el producto exista y tenga stock. Si no hay stock, muestra una alerta. Si hay stock, muestra los datos del producto. Se pregunta si quedan productos por registrar. Si quedan, el flujo vuelve al ingreso del producto; si no, se comunica el total.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>7. Errores comunes y buenas prácticas</h3>
+    <p>Error · Cómo corregirlo Escribir la condición dentro del rombo · Deja el rombo vacío y coloca las guardas en las flechas de salida. Usar X o + de BPMN dentro del rombo UML · Utiliza la notación propia de UML; no mezcles bibliotecas. Dibujar una barra para unir alternativas · Usa el rombo de merge. Reserva la barra para fork o join. Confundir una decisión con el paralelismo · Si se elige un camino, usa decisión;…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>9. UML y BPMN: precisión sobre los carriles</h3>
+    <p>En el ejemplo de clase se mostró al cliente como un carril junto al operario y al sistema. Es una forma práctica de leer el proceso. Al especificar formalmente un sistema, conviene acordar el límite de responsabilidad: el cliente puede quedar como actor externo y las acciones internas pueden organizarse en particiones de la actividad. En BPMN, en cambio, pools y lanes tienen una semántica propia para…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Glosario breve</h3>
+    <p>Término · Significado Acción · Paso concreto dentro de una actividad. Guarda · Condición booleana que habilita un flujo de salida. Merge · Nodo que reúne flujos alternativos. Fork · Nodo que inicia flujos paralelos.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de reflexión</h3>
+    <p>En un proceso de devolución de compras, ¿qué caminos alternativos y excepciones incluirías? ¿Qué acciones de una venta podrían ocurrir en paralelo de verdad, y cuáles solo parecen simultáneas? ¿Qué cambiaría en el diagrama si el cliente se modelara fuera de las particiones internas de la empresa?</p>
+  </article>
+    </div>
+  </details>
+</section>
+</div>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
+</body>
+</html>

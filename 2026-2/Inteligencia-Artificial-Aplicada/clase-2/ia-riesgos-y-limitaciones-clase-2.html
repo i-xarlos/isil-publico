@@ -562,6 +562,7 @@ xychart-beta
             <li>Edita nodos manualmente o pide a la IA que añada detalles.</li>
           </ol>
         </li>
+        <li><strong>T6 — Personalizar y compartir:</strong> activa opcionalmente la búsqueda web; cambia diseño, colores, vista, idioma o plantilla; genera una imagen y comparte el mapa mediante un enlace.</li>
       </ul>
       </article>
       <article class="ejemplo">
@@ -585,6 +586,151 @@ xychart-beta
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 34 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1. Evolución Histórica y Visión Prospectiva de la IA</h3>
+    <p>Concepto La IA no es estática; es disciplina en constante transformación impulsada por el deseo humano de superar límites naturales. Surgió en la ciencia ficción y la matemática formal antes del uso masivo. ¿Por qué es importante? Comprender el carácter temporal evita quedar desfasado. Lo que hoy es revolucionario, en 3 a 10 años será obsoleto. ¿Cómo avanza?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2. Arquitectura del Procesamiento en IA: Redes Neuronales</h3>
+    <p>Concepto Estructura matemática inspirada de forma general en redes neuronales biológicas. Está formada por capas conectadas que transforman datos de entrada para producir una salida. Geoffrey Hinton fue uno de los investigadores clave en el desarrollo del aprendizaje profundo. ¿Por qué es importante? Ayuda a entender que un modelo neuronal no consulta necesariamente una fila guardada en una base de datos. Aprende…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>¿Cómo funciona? — Las 3 capas</h3>
+    <p>Capa de Entrada (Input layer): Recibe instrucciones del usuario ($X1, X2, X3$, hoy prompts). Capas ocultas (Hidden layers): transforman la representación mediante parámetros aprendidos durante el entrenamiento. No son carpetas con temas ni nodos con datos literales. Capa de Salida (Output layer): Presenta la respuesta generada (texto, imagen, informe). flowchart LR I[Capa EntradaX1 X2 X3 prompt] --&gt; H[Capa…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Comparación: Base de Datos vs. IA</h3>
+    <p>Aspecto · Base de Datos Tradicional · Inteligencia Artificial (Red Neuronal) Almacenamiento · Guarda registros fijos (imágenes, textos) directamente · No almacena imágenes/textos directamente (costoso); almacena parámetros y patrones Generación de Respuestas · Devuelve exactamente el dato guardado (SQL/archivos) · Reconstruye respuestas navegando vectores y nodos de la capa oculta Repetibilidad · Misma consulta →…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>¿Cómo funcionó Deep Blue?</h3>
+    <p>Deep Blue evaluaba millones de posiciones con búsqueda minimax y función de evaluación. No usaba prompts: un operador ingresaba la jugada de Kasparov y la máquina devolvía la mejor jugada calculada. Relación: Deep Blue mostró que una máquina podía superar a un campeón en una tarea delimitada: el ajedrez. Los sistemas generativos actuales resuelven tareas distintas; no conviene interpretar el hito como una ruta…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4. Alucinaciones y Errores</h3>
+    <p>¿Qué son las alucinaciones? Fenómeno técnico donde la IA genera información falsa, inventada, desactualizada o sesgada presentándola como certeza. Ninguna IA tiene conocimiento del 100%. Analogía: Alguien que responde un examen con mucha seguridad inventando respuestas. La IA genera texto convincente pero potencialmente falso. Terminología: “alucinación” describe una respuesta inventada o no respaldada que el…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Características Principales</h3>
+    <p>Característica · Descripción Generación con confianza · Presenta info falsa con mismo tono seguro que datos correctos Coherencia superficial · Gramaticalmente correcta y plausible Invención de referencias · Citas bibliográficas falsas, estudios inexistentes Mezcla de información · Combina datos reales con falsos</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Estrategias de Mitigación</h3>
+    <p>Verificación cruzada obligatoria: Contrastar con fuentes oficiales Escepticismo informado: No aceptar todo como verdadero Conocimiento del dominio: Entender el tema para identificar errores Solicitar fuentes: Pedir citas y verificarlas Uso como borrador: Punto de partida, no respuesta final</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Ejemplo: Cómo Verificar Información de IA</h3>
+    <p>┌─────────────────────────────────────────────────────────┐ │ FLUJO DE VERIFICACIÓN OBLIGATORIO │ ├─────────────────────────────────────────────────────────┤ │ 1. Pide a ChatGPT datos sobre turismo en Cusco │ │ 2. Responde: &quot;En 2024, Cusco recibió 4.5 millones&quot; │</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Ejemplo: Uso Responsable en Estudiantes</h3>
+    <p>Tarea · Uso Correcto · Uso Incorrecto Investigar para tesis · Ideas, luego verificar en fuentes académicas · Copiar texto sin verificar Redactar ensayo · Estructurar ideas, luego escribir con estilo propio · Pedir que escriba todo el ensayo Preparar examen · Crear preguntas de práctica · Usar IA durante el examen Presentación · Diseñar slides, luego revisar contenido · Presentar contenido sin entenderlo</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Otros casos de clase</h3>
+    <p>Caso Visual Capitalist / Grok 94%: Ranking de tasas citado en clase para dimensionar riesgo. Deepfakes — 10 imágenes: Ejercicio práctico verdadero/falso demostró desinformación creíble con imágenes generativas.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5. Sesgos y Entrenamiento de Modelos</h3>
+    <p>¿Qué son los sesgos? Distorsiones sistemáticas en outputs que reflejan, amplifican o introducen prejuicios, estereotipos o preferencias injustas. Tipos de Sesgos Tipo · Descripción Representación · Grupos subrepresentados en datos</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Ejemplo: Reclutamiento Inclusivo en BCP</h3>
+    <p>Auditoría reveló que sistema favorecía candidatos de determinadas universidades de Lima y penalizaba nombres asociados a provincias o comunidades indígenas.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Ejemplo: Exclusión Financiera Digital</h3>
+    <p>Fintech con datos de usuarios urbanos de gama alta rechazó sistemáticamente solicitudes rurales/periurbanas.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Estrategias de Mitigación</h3>
+    <p>Auditoría de equidad: revisa resultados por grupo para detectar trato desigual. Ejemplo: auditoría que detectó preferencia por ciertas universidades en reclutamiento. Diversidad en datos: incluye grupos y contextos variados en entrenamiento y prueba. Revisión humana crítica: una persona valida la salida antes de decidir. Transparencia: documenta datos, criterios y límites del sistema. Iteración y mejora: corrige…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>El Equilibrio Apropiado</h3>
+    <p>PRIMERO DOMINA FUNDAMENTOS: Aprende a estructurar argumentos / algoritmos antes de usar IA. USA IA PARA AMPLIFICAR, NO REEMPLAZAR: Genera opciones que evalúas; acelera tareas repetitivas. MANTÉN PRÁCTICA REGULAR: Tareas sin IA y resolución &quot;desde cero&quot; regularmente.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>7. Seguridad Digital y Privacidad</h3>
+    <p>Implicancia Riesgos por manejo de datos personales, información sensible y propiedad intelectual con IA. Características Principales Característica · Descripción Persistencia de datos · Almacenamiento según políticas y configuración</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Implicancia</h3>
+    <p>Riesgos por manejo de datos personales, información sensible y propiedad intelectual con IA.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Características Principales</h3>
+    <p>Característica · Descripción Persistencia de datos · Almacenamiento según políticas y configuración Uso para entrenamiento · Algunos servicios usan conversaciones para mejorar modelos Falta de contexto de confidencialidad · La IA no entiende &quot;confidencial&quot; Vulnerabilidad a prompt injection · Prompts maliciosos manipulan comportamiento</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Mejores Prácticas</h3>
+    <p>Individual: 1. No compartir nada que no pondrías en red social pública, 2. Anonimizar, 3. Verificar configuración, 4. Usar instancias privadas. Organizaciones: 1. Políticas claras, 2. Capacitación regular, 3. Deployments privados, 4. Protocolos de incidentes.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Marco Legal en Perú</h3>
+    <p>Ley · Descripción Ley N.° 29733 · Protección de Datos Personales Ley N.° 31814 · Promueve el Uso de la IA Código Protección Consumidor · Protección al consumidor</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Caso de Confidencialidad Profesional</h3>
+    <p>Compartir con IA información de caso legal real puede vulnerar confidencialidad abogado-cliente aunque sin nombre: combinación de hechos/fechas/lugares permite identificar caso y datos pueden almacenarse fuera de control. Anonimizar no basta si detalles permiten reconstruir identidad.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>8. Conectando con Clase 1: De Turing a los Riesgos</h3>
+    <p>En la Clase 1 se analizó cómo Turing concibió una máquina capaz de realizar tareas consideradas exclusivamente humanas. En la actualidad, dicha visión se ha materializado con una limitación relevante: las máquinas procesan información, pero no comprenden lo que procesan. La ironía de Turing Bombbe no &quot;pensaba&quot; — ejecutaba algoritmo fijo Modelos actuales tampoco &quot;piensan&quot; — generan probabilidades basadas en…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>La ironía de Turing</h3>
+    <p>Bombbe no &quot;pensaba&quot; — ejecutaba algoritmo fijo Modelos actuales tampoco &quot;piensan&quot; — generan probabilidades basadas en patrones Lección aplicada: Si la máquina de Turing no &quot;comprendía&quot; Enigma, no resulta razonable esperar que ChatGPT &quot;comprenda&quot; lo que genera. La alucinación no constituye un error aislado, sino una consecuencia natural del funcionamiento de la IA. Su análisis conecta historia, arquitectura y uso…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Conexión entre conceptos — Ciclo completo</h3>
+    <p>La aspiración de crear máquinas autónomas (Turing, McCarthy, Samuel) llevó a prototipos lógicos. Hinton formalizó redes neuronales. El flujo de capital cayó (Invierno), superado por hitos como Deep Blue (1997). Hoy, con supercomputadoras disponibles, operamos por navegación vectorial en capas ocultas, generando alucinaciones cuando faltan datos verídicos. Entender este ciclo conecta historia, arquitectura y uso…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Resumen Final — 15 Puntos</h3>
+    <p>La IA es temporal y cambia drásticamente en 3-10 años. Nació inspirada por ciencia ficción; hitos como máquina de Turing fueron fundamentales. John McCarthy acuñó el término IA y planteó lenguajes unificados. Arthur Samuel enseñó damas a una máquina. Eliza (1966) fue el primer chatterbot.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Glosario</h3>
+    <p>Término · Definición · Ejemplo Alucinación · Info falsa presentada con confianza · Estadísticas inventadas atribuidas a Mincetur Red Neuronal (Hinton) · Capas entrada/oculta/salida con nodos y vectores · Tahuantinsuyo X1 X2 X3 Invierno de la IA · Estancamiento por falta de inversión · Guerra Fría Deep Blue · IBM vence a Kasparov (1997) con búsqueda minimax · No usaba prompts</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de Repaso</h3>
+    <p>Preguntas de Reflexión (originales) Si tuvieras que usar IA para investigar un tema de tesis, ¿cómo mitigarías el riesgo de alucinaciones? ¿Cuál de los riesgos de dependencia tecnológica crees más peligroso para profesionales peruanos? ¿Por qué? ¿Cómo equilibrar beneficios de IA con riesgos de privacidad donde la regulación es incipiente? Preguntas de Repaso — Clase 2 (con respuestas)</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de Reflexión (originales)</h3>
+    <p>Si tuvieras que usar IA para investigar un tema de tesis, ¿cómo mitigarías el riesgo de alucinaciones? ¿Cuál de los riesgos de dependencia tecnológica crees más peligroso para profesionales peruanos? ¿Por qué? ¿Cómo equilibrar beneficios de IA con riesgos de privacidad donde la regulación es incipiente?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de Repaso — Clase 2 (con respuestas)</h3>
+    <p>¿Por qué sostiene el profesor que el conocimiento sobre IA es &quot;temporal&quot;? ¿Quién acuñó &quot;Inteligencia Artificial&quot; y qué propuso sobre lenguajes? ¿Cuál fue la aportación de Arthur Samuel? ¿Qué era Eliza y en qué año? Describe las tres capas de una red neuronal según Hinton.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Conexión con la sesión</h3>
+    <p>Mapify es un ejemplo concreto de IA aplicada a la organización visual de información: convierte entradas dispersas (texto, video, audio) en un mapa estructurado que facilita el estudio y la presentación, alineado con el objetivo de manejar información con criterio y no acumularla sin sentido.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Alucinaciones y Errores</h3>
+    <p># · Fuente · Tipo · URL 1 · Columbia Journalism Review. (2025). AI Hallucination Rates · Tercero 2 · Akhtar, M. A. K., et al. (2024). Towards Ethical and Socially Responsible Explainable AI · Académica 3 · Visual Capitalist (2025). AI Hallucination Rates — ranking Grok 94%, ChatGPT 67% citado en clase · Tercero</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Sesgos y Entrenamiento</h3>
+    <p># · Fuente · Tipo · URL 4 · Bai, X., et al. (2025). Explicitly unbiased large language models still form biased associations · Académica 5 · Eubanks, V. (2018). Automating Inequality · Libro</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Regulación en Perú</h3>
+    <p># · Fuente · Tipo · URL 6 · Nemko Digital. (2025). AI regulation in Peru · Tercero 7 · El Peruano. Ley N.° 31814: Ley que Promueve el Uso de la Inteligencia Artificial · Oficial</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";

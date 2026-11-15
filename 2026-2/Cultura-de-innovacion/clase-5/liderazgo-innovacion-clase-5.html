@@ -326,6 +326,42 @@
   .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
   .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
   .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
+
+  /* ---------- Extensiones: cobertura completa de la clase ---------- */
+  .rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;}
+  .rejilla-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;}
+  .lista{margin:0;padding-left:18px;}
+  ol.lista{padding-left:24px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .destacado{
+    background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .destacado strong{color:var(--teal);}
+  .sub-titulo{margin:0 0 8px;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--amber);}
+  .preguntas details{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:460px;}
+  .tabla th,.tabla td{
+    text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .tabla thead th{
+    color:var(--ink);font-weight:700;background:var(--card-2);
+    letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;
+  }
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -551,6 +587,67 @@ flowchart TD
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 13 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Resumen de la clase</h3>
+    <p>1. Objetivo de la clase La sesión se centró en responder cómo una organización convierte la innovación en una práctica cotidiana y cómo el liderazgo puede crear ese entorno. El enfoque principal estuvo en la relación entre innovación, liderazgo y gestión del cambio. Los objetivos principales fueron: comprender qué es un líder innovador; identificar las características del liderazgo transformacional;</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1. Objetivo de la clase</h3>
+    <p>La sesión se centró en responder cómo una organización convierte la innovación en una práctica cotidiana y cómo el liderazgo puede crear ese entorno. El enfoque principal estuvo en la relación entre innovación, liderazgo y gestión del cambio. Los objetivos principales fueron: comprender qué es un líder innovador; identificar las características del liderazgo transformacional; reconocer cómo la innovación requiere…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2. Conceptos fundamentales</h3>
+    <p>Innovación: crear resultados positivos haciendo cosas nuevas o diferentes. Líder innovador: persona que ayuda a su equipo a innovar cambiando el ambiente en el que trabajan. Liderazgo transformacional: estilo de liderazgo orientado a inspirar, motivar y generar cambios profundos en la visión y la cultura. Gestión del cambio: proceso de preparar, comunicar, acompañar y sostener una transición organizacional.…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3. Desarrollo de la clase</h3>
+    <p>3.1 Liderazgo en la innovación Concepto: La innovación no surge solo de “buenas ideas”. Surge cuando el líder crea un entorno que haga posible pensar distinto, probar, aprender y mejorar. El profesor subrayó que un líder innovador no necesariamente es un gerente senior. Puede ser cualquier persona que transforme el entorno de trabajo y favorezca la creatividad como parte de la rutina. ¿Por qué es importante?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4. Ejemplos y casos prácticos</h3>
+    <p>flowchart LR A[Visión clara] --&gt; B[Liderazgo transformacional] B --&gt; C[Confianza y motivación] C --&gt; D[Experimentación] D --&gt; E[Aprendizaje continuo]</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5. Comparaciones importantes</h3>
+    <p>Concepto · Diferencia principal · Cuándo se usa Líder innovador · Ayuda a otros a innovar · En equipos y proyectos Líder transformacional · Inspira un cambio profundo en personas y cultura · Cuando la organización requiere transformación Innovación · Crear valor nuevo o mejorado · En producto, servicio, proceso y organización Cambio · Traslado de un estado a otro · En procesos, estructuras y comportamientos</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>6. Procesos o procedimientos</h3>
+    <p>6.1 Proceso de gestión del cambio según Kotter Ver la tabla de la sección 3.7 (Fase / Qué hacer / Error que evita). La secuencia es: urgencia → coalición → visión → comunicación → empoderar → éxitos corto plazo → consolidar → institucionalizar. Ejemplo ilustrativo: una clínica que incorpora recordatorios de citas comienza mostrando cuántas citas se pierden, forma un equipo de atención y TI, prueba mensajes en una…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>7. Errores comunes y advertencias</h3>
+    <p>No confundir innovación con creatividad individual. No creer que pedir ideas basta para innovar. No asumir que la cultura actual no condiciona la innovación. No ignorar la resistencia al cambio. No pensar que el cambio será rápido o sencillo.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>9. Conexión entre los conceptos</h3>
+    <p>La clase presenta una visión unificada: la innovación necesita liderazgo; el liderazgo necesita visión, motivación y sensibilidad a la cultura; la cultura necesita ser cambiada para permitir la innovación; el cambio solo funciona si se gestiona bien;</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>10. Preguntas de repaso</h3>
+    <p>¿Qué diferencia hay entre ser innovador y liderar la innovación? ¿Por qué la innovación no depende solo de buenas ideas? ¿Qué es un líder innovador según la clase? ¿Qué caracteriza al liderazgo transformacional? ¿Qué relación existe entre innovación, cultura y cambio?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>11. Resumen final</h3>
+    <p>La innovación es una capacidad organizacional y no solo una idea individual. El líder innovador crea condiciones para que el equipo innove en la práctica. La innovación exige un entorno de confianza, experimentación y aprendizaje. El liderazgo transformacional inspira, conecta y transforma la cultura. La resistencia al cambio es una de las mayores barreras para la innovación.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Notas del profesor</h3>
+    <p>“La innovación es una capacidad organizacional, no solo una idea genial.” “La creatividad es una elección.” “No hay nada más difícil de manejar, más peligroso de conducir y más incierto de su éxito, que liderar la introducción de un nuevo orden de cosas.” “La resistencia al cambio es el problema más grave al reinventarse.” “Las ideas no nacen perfectas; se corrigen con retroalimentación y prueba.”</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Aclaración adicional</h3>
+    <p>La clase presenta conceptos de liderazgo y cambio con un enfoque práctico y organizacional. No se introdujo una fórmula matemática ni una metodología técnica específica de innovación; la base estuvo en la comprensión de liderazgo, cultura, cambio y organización como factores de innovación.</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";

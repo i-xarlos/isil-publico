@@ -662,6 +662,59 @@ flowchart LR
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 11 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5. BPM — Business Process Management</h3>
+    <p>Disciplina que identifica, diseña, documenta, implementa, monitorea y controla procesos para mejora continua y consistente. Parte de que los procesos son activos que deben entenderse, gestionarse y evolucionar para generar valor. 8 principios BPM Enfoque en el cliente — el proceso existe para entregar valor. Orientación a procesos — pensar en flujos, no en silos. Mejora continua — iterar, no &quot;proyecto único&quot;.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>6. Modelado BPM — el puente entre estrategia y ejecución</h3>
+    <p>Representación visual del proceso de inicio a fin: cómo fluye el trabajo, quién hace qué y con qué información/documentos. Funciones Representación visual — mapa compartido. Identificación de mejoras — cuellos de botella, redundancias. Análisis y optimización — simular y ajustar.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Funciones</h3>
+    <p>Representación visual — mapa compartido. Identificación de mejoras — cuellos de botella, redundancias. Análisis y optimización — simular y ajustar. Control y seguimiento — trazabilidad. Facilitación del cambio — comunicar el &quot;antes vs. después&quot;.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Elementos comunes de un modelo</h3>
+    <p>Elemento · Qué representa · Ejemplo Actividades · Tareas específicas · &quot;Validar pago&quot; Roles · Responsables · Cajero, Sistema, Cliente Flujos de trabajo · Secuencia y traspaso · Orden de actividades Decisiones · Puntos de bifurcación · &quot;¿Stock disponible?&quot;</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Herramientas</h3>
+    <p>Herramienta · Cuándo usarla BPMN · Estándar gráfico OMG (Object Management Group), de simple a complejo, interoperable Flujogramas · Procesos poco complejos, vista rápida Software (Bizagi, Signavio) · Modelado colaborativo, simulación y automatización</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Importancia</h3>
+    <p>Comprensión clara del detalle antes de mejorar. Comunicación entre stakeholders. Detección de problemas. Base para automatización y transformación digital.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>8. Caso práctico — de proceso a BPMN</h3>
+    <p>Proceso core e-commerce: &quot;Comprar en la web&quot; flowchart TB S([○ InicioCliente entra]) --&gt; A1[Seleccionar productos] A1 --&gt; A2[Ver carrito] A2 --&gt; G1{◇ ¿Stock?}</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>9. Errores comunes</h3>
+    <p>Error · Consecuencia Modelar sin distinguir core/soporte/gestión · Priorización equivocada, sistema no aporta valor Usar flujograma para proceso con múltiples actores y mensajes · Ambigüedad, falta de roles y eventos BPMN sin gateways explícitos · Flujo no ejecutable ni auditable No medir el proceso modelado · Mejora a ciegas, sin KPI (tiempo, costo, calidad)</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Glosario</h3>
+    <p>Término · Definición · Ejemplo Proceso de negocio · Actividades coordinadas para lograr objetivo · &quot;Atender pedido delivery&quot; Core · Agrega valor directo, misión · Ensamblar auto Soporte · Facilita a los core · Compras, RRHH Gestión · Dirige estrategia y recursos · Planificación anual</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de reflexión</h3>
+    <p>En tu universidad o trabajo, identifica un proceso core, uno de soporte y uno de gestión. ¿Dónde pondrías el primer esfuerzo de automatización? Dado el proceso &quot;Reserva de habitación&quot; de la clase 3, dibuja un BPMN simple con inicio, 3 tareas, un gateway exclusivo y un fin. ¿Qué roles y datos necesitas? ¿En qué caso usarías un flujograma simple en lugar de BPMN y por qué?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Fuentes</h3>
+    <p>Bennett, McRobb y Farmer (2007). Análisis y Diseño de Sistemas orientado a objetos con UML. McGraw-Hill. OMG. Business Process Model and Notation (BPMN) — www.omg.org Material de la asignatura 30630, sesión 04 (2026-2). Última verificación: 24/09/2026 — añadidos 4 gráficos PNG + dio 3 págs con Mermaid y mapa BPMN.</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";

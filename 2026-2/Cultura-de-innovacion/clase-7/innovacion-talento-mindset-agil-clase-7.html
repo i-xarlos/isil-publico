@@ -311,6 +311,42 @@
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Extensiones: cobertura completa de la clase ---------- */
+  .rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;}
+  .rejilla-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;}
+  .lista{margin:0;padding-left:18px;}
+  ol.lista{padding-left:24px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .destacado{
+    background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .destacado strong{color:var(--teal);}
+  .sub-titulo{margin:0 0 8px;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--amber);}
+  .preguntas details{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:460px;}
+  .tabla th,.tabla td{
+    text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .tabla thead th{
+    color:var(--ink);font-weight:700;background:var(--card-2);
+    letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;
+  }
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -494,6 +530,47 @@
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 8 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.2 Qué significa tener un mindset ágil</h3>
+    <p>El mindset ágil es una forma de pensar y actuar. Prioriza el valor al cliente, la colaboración y la mejora continua. No es una metodología. Es la base cultural que hace útiles a Scrum o Kanban. La clase presenta tres rasgos centrales: Ve los contratiempos como aprendizaje. Un error de prototipo no es fracaso. Es información para la siguiente iteración. Abraza la iteración, la colaboración y el cambio. Prefiere…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.4 Técnicas ágiles aplicadas al reclutamiento</h3>
+    <p>La clase propone aplicar Scrum y Kanban al propio proceso de selección. El área de talento trabaja como un equipo ágil. Reduce tiempos y mejora la experiencia del candidato. ┌──────────────────────────────────────────────┐ │ RECLUTAMIENTO ÁGIL EN 6 PASOS │ ├──────────────────────────────────────────────┤ │ 1. Backlog de vacantes │</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Imagen: 7 rasgos de la persona innovadora</h3>
+    <p>Perseverancia (9.2) y curiosidad (9.0) lideran la competencia, seguidas de respeto por ideas ajenas (8.7). Liderazgo (7.8) es el rasgo más bajo, lo que confirma que convocar equipos se entrena con práctica y no basta con el talento individual. Siete rasgos de la competencia de innovación Ejemplo real: Google. Su programa &quot;20% time&quot; permitió a ingenieros dedicar parte de su jornada a proyectos propios. De ahí…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3. Errores Comunes a Evitar</h3>
+    <p>Qué es: fallas frecuentes al contratar o formar talento innovador. Para qué sirve: conocerlas evita repetir costos que otras empresas ya pagaron. Error · Ejemplo real · Consecuencia Contratar solo por títulos y años de experiencia · Empresa que filtra por universidad top e ignora portafolio de experimentos · Equipo brillante en papel, lento para prototipar Entrevistas sin casos reales · Proceso de 5 rondas de…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Glosario</h3>
+    <p>Término · Definición · Ejemplo Mindset ágil · Mentalidad orientada a valor, iteración y colaboración · Ajustar un prototipo tras feedback de usuarios Scrum · Marco de trabajo por ciclos cortos con equipo autónomo · Sprint semanal para cubrir 5 vacantes críticas Kanban · Tablero visual del flujo de trabajo por estados · Columnas: contactado, entrevistado, finalista Sprint · Iteración corta de trabajo con objetivo…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de Reflexión</h3>
+    <p>Pregunta aplicada — Si lideras un equipo en tu trabajo o universidad, ¿qué prueba de 30 minutos usarías para detectar mindset ágil antes de elegir integrantes? Pregunta comparativa — Entre Netflix (autonomía alta) y una empresa tradicional con control estricto, ¿en cuál se innova más rápido y qué costo paga cada modelo? Pregunta crítica — ¿Tu última capacitación incluyó seguimiento real? ¿Qué indicador simple…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Recursos</h3>
+    <p>PDF de la presentación: innovacion-talento-mindset-agil-clase-7.pdf</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Fuentes</h3>
+    <p>Las afirmaciones del resumen provienen del PPT de clase y de la bibliografía citada en él. Los casos de Netflix, Amazon, Spotify y Google ilustran los conceptos del PPT. Los ejemplos peruanos son ilustrativos del contexto local. # · Fuente · Tipo · URL 1 · Martínez, L. (2013). Cómo hacer un proceso de reclutamiento y de selección de personal efectivo. EOI · Tercero 2 · McIntosh, S. (2016). What Exactly is the…</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
 </body>
 </html>

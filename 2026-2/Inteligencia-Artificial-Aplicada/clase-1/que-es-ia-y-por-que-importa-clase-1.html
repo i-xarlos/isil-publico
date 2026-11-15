@@ -311,6 +311,37 @@
     section{margin-top:14px;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Extensiones de contenido (clase 1) ---------- */
+  .lista{margin:0;padding-left:18px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .panel h3{margin:0 0 8px;font-size:.95rem;color:var(--ink);}
+  .panel h4{margin:14px 0 6px;font-size:.84rem;letter-spacing:.09em;text-transform:uppercase;color:var(--blue);}
+  .panel p{margin:0 0 8px;font-size:.89rem;color:var(--ink-soft);}
+  .panel p strong{color:var(--ink);}
+  .tabla-wrap{overflow-x:auto;}
+  .nota-mini{
+    margin:12px 0 0;padding:10px 14px;border-left:4px solid var(--amber);
+    background:var(--amber-bg);border-radius:10px;font-size:.87rem;color:var(--ink);
+  }
+  .preguntas details{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .fuentes a{color:var(--blue);}
+  .mermaid{
+    text-align:center;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:14px 12px;margin:16px 0 0;overflow-x:auto;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -357,7 +388,49 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">3</span> Relación: evolución en el tiempo</p>
+    <p class="rotulo"><span class="num n-purple">3</span> Estructura curricular y presentación del curso</p>
+    <div class="panel">
+      <h3>Concepto</h3>
+      <p>El curso de Inteligencia Artificial Aplicada es <strong>transversal</strong>: sin examen de admisión, para estudiantes de múltiples carreras y ciclos (desde ciclo 2 hasta 5-6). Se compone de <strong>15 sesiones</strong> organizadas en <strong>4 bloques temáticos</strong> aprobados por coordinación académica.</p>
+      <div class="tabla-wrap">
+        <table class="mini-tabla">
+          <tr><th>Bloque</th><th>Tema</th><th>Sesiones</th><th>Contenido clave</th></tr>
+          <tr><td><strong>I</strong></td><td>Fundamentos de IA</td><td>4</td><td>Qué es IA, paradigmas, historia, modelos de lenguaje</td></tr>
+          <tr><td><strong>II</strong></td><td>Lineamientos e Ingeniería de Prompts</td><td>3</td><td>Buenas prácticas, diseño y desarrollo de prompts</td></tr>
+          <tr><td><strong>III</strong></td><td>Producción y Automatización</td><td>4</td><td>Flujos, herramientas generativas, automatización</td></tr>
+          <tr><td><strong>IV</strong></td><td>IA como Herramienta Estratégica</td><td>3-4</td><td>Estrategia, ética, normativa, proyectos aplicados</td></tr>
+        </table>
+      </div>
+      <h4>Diversidad del aula</h4>
+      <p>Conviven Negocios (más de 54% según encuesta), Marketing, Tecnología, Diseño, Servicios y Comunicaciones (Periodismo Deportivo). La mezcla multidisciplinaria es valor del curso.</p>
+      <h4>¿Por qué es importante?</h4>
+      <p>Garantiza progresión estructurada desde comprensión teórica hasta ejecución de proyectos estratégicos y automatización, adaptada a distintos niveles de conocimiento previo.</p>
+      <h4>Evaluación y participación</h4>
+      <ol class="lista">
+        <li><strong>Ingreso a plataforma:</strong> sección "Complementaria" para descargar materiales de la sesión 1.</li>
+        <li><strong>Actividades iniciales:</strong> completar encuestas diagnósticas para medir nivel de partida.</li>
+        <li><strong>Entregables en equipo:</strong> grupos multidisciplinarios respetando criterios del sílabo.</li>
+        <li><strong>Calificación estricta (potencialmente evaluable):</strong> si una actividad no se entrega, la nota es <strong>00</strong> — no hay notas de favorabilidad 05 u 11.</li>
+      </ol>
+      <p class="nota-mini"><strong>Materiales cubiertos:</strong> presentación principal "¿Qué es la IA y por qué importa?", material complementario "Evolución de la IA" y encuesta diagnóstica de la sesión 1.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">4</span> Diagrama: tres paradigmas de IA</p>
+    <div class="panel">
+      <p>La evolución cambia el mecanismo principal: reglas explícitas, aprendizaje de patrones y generación de contenido. Los paradigmas anteriores no desaparecen: se acumulan.</p>
+      <div class="mermaid">
+flowchart LR
+    S["IA simbólica<br/>reglas escritas"] --&gt; E["IA estadística<br/>patrones en datos"]
+    E --&gt; G["IA generativa<br/>crea contenido"]
+      </div>
+      <p class="nota-relacion">IA simbólica → IA estadística → IA generativa: cada paradigma cambia la fuente de la respuesta.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">5</span> Relación: evolución en el tiempo</p>
     <div class="panel">
       <div class="flujo" role="img" aria-label="Evolución de la IA: de la IA simbólica basada en reglas a la IA estadística basada en patrones y a la IA generativa que crea contenido, cerrando con la verificación humana.">
         <div class="paso c-blue">
@@ -384,56 +457,100 @@
     </div>
   </section>
 
+  <section>
+    <p class="rotulo"><span class="num n-teal">6</span> Historia y evolución de la IA</p>
+    <div class="panel">
+      <p>La IA no surgió de manera súbita. Sus antecedentes se remontan a los autómatas de la antigüedad.</p>
+      <h4>Antecedentes históricos</h4>
+      <div class="tabla-wrap">
+        <table class="mini-tabla">
+          <tr><th>Año</th><th>Antecedente</th><th>Descripción</th></tr>
+          <tr><td><strong>400 a.C.</strong></td><td>Paloma mecánica de Arquitas</td><td>Amigo de Platón creó un autómata que simulaba movimientos de un ave</td></tr>
+          <tr><td><strong>1495</strong></td><td>Máquina voladora de Leonardo Da Vinci</td><td>Construcción autómata que simulaba vuelo de ave</td></tr>
+          <tr><td><strong>1921</strong></td><td>Término "Robot"</td><td>Karel Čapek acuña la palabra en obra checa</td></tr>
+          <tr><td><strong>1938</strong></td><td>Primera serie de ciencia ficción</td><td>BBC emite "R.U.R." de Čapek</td></tr>
+        </table>
+      </div>
+      <p class="nota-mini"><strong>Dato clave:</strong> "Autómata" viene del griego "actuar por voluntad propia".</p>
+      <h4>Pioneros</h4>
+      <div class="tabla-wrap">
+        <table class="mini-tabla">
+          <tr><th>Pionero</th><th>Contribución</th><th>Año</th></tr>
+          <tr><td><strong>Alan Turing</strong></td><td>Test de Turing; descifrado de ENIGMA; padre de computación teórica</td><td>1950</td></tr>
+          <tr><td><strong>John McCarthy</strong></td><td>Acuñó "inteligencia artificial"; creó LISP</td><td>1956</td></tr>
+          <tr><td><strong>Arthur Samuel</strong></td><td>Acuñó "Machine Learning"; ajedrez autodidacta</td><td>1959</td></tr>
+          <tr><td><strong>Joseph Weizenbaum</strong></td><td>ELIZA, primer chatbot</td><td>1966</td></tr>
+          <tr><td><strong>Geoffrey Hinton</strong></td><td>Backpropagation; padre del deep learning</td><td>1986</td></tr>
+          <tr><td><strong>Marvin Minsky</strong></td><td>SNARC, primer ordenador con red neuronal</td><td>1951</td></tr>
+        </table>
+      </div>
+      <h4>Etapas de la evolución</h4>
+      <div class="tabla-wrap">
+        <table class="mini-tabla">
+          <tr><th>Etapa</th><th>Período</th><th>Hitos</th></tr>
+          <tr><td><strong>1. Nacimiento</strong></td><td>1950-1956</td><td>Turing (1950); McCarthy acuña IA en Dartmouth (1956)</td></tr>
+          <tr><td><strong>2. Maduración</strong></td><td>1957-1979</td><td>LISP (1958); Machine Learning (1959); ELIZA (1966)</td></tr>
+          <tr><td><strong>3. Auge</strong></td><td>1980-1987</td><td>Auto sin conductor Dickmann (1986); backpropagation (1986)</td></tr>
+          <tr><td><strong>4. Invierno</strong></td><td>1988-1993</td><td>Escaso interés y financiación reducida</td></tr>
+          <tr><td><strong>5. IA Moderna</strong></td><td>1993-2011</td><td>Deep Blue vence a Kasparov (1997); Siri (2011)</td></tr>
+          <tr><td><strong>6. IA General</strong></td><td>2012-hoy</td><td>Red neuronal reconoce gatos (2012); DALL-E (2021); GPT-3 100M usuarios en 2 meses (2022)</td></tr>
+        </table>
+      </div>
+      <h4>Línea de tiempo detallada</h4>
+      <div class="tabla-wrap">
+        <table class="mini-tabla">
+          <tr><th>Década</th><th>Hitos</th></tr>
+          <tr><td><strong>1940</strong></td><td>ENIGMA de Turing; primera computadora programable de Zuse; McCulloch y Pitts</td></tr>
+          <tr><td><strong>1950</strong></td><td>Dartmouth; SNARC de Minsky; Asimov "Yo, robot"</td></tr>
+          <tr><td><strong>1960</strong></td><td>Ajedrez autodidacta de Samuel; PROLOG; Newell y Simon</td></tr>
+          <tr><td><strong>1970</strong></td><td>SAINT; R1 primer sistema experto comercial</td></tr>
+          <tr><td><strong>1980-90</strong></td><td>Razonamiento probabilístico; Deep Blue vence a Kasparov</td></tr>
+          <tr><td><strong>2000-2005</strong></td><td>Robomascotas; ASIMO; Blue Brain</td></tr>
+          <tr><td><strong>2005-2010</strong></td><td>Reconocimiento de voz en iPhone; auto autónomo Google</td></tr>
+          <tr><td><strong>2010-2020</strong></td><td>Alexa, Siri; AlphaGo vence a Lee Sedol; Watson $1M</td></tr>
+          <tr><td><strong>2020-2025</strong></td><td>GPT-3, DALL-E, ChatGPT; IA generativa masiva</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <section class="ampliado">
-    <p class="rotulo"><span class="num n-teal">4</span> Lo esencial de la clase</p>
+    <p class="rotulo"><span class="num n-purple">7</span> Los tres paradigmas en detalle</p>
     <div class="grid">
       <article class="bloque">
-        <h3>¿Cómo genera texto un modelo?</h3>
+        <h3>IA Simbólica (1950-1980) — GOFAI</h3>
+        <p>Reglas "SI... ENTONCES..." codificadas manualmente por expertos.</p>
         <ul>
-          <li><strong>Tokenización:</strong> divide el texto en tokens.</li>
-          <li><strong>Representación vectorial:</strong> convierte tokens en números con significado.</li>
-          <li><strong>Predicción:</strong> elige la continuación más probable y repite el ciclo.</li>
+          <li><strong>Ventajas:</strong> transparente y explicable; no requiere grandes datos; bien para reglas claras.</li>
+          <li><strong>Limitaciones:</strong> requiere codificación manual; no aprende automáticamente; frágil ante situaciones no contempladas.</li>
         </ul>
-        <p>No consulta fuentes: genera una continuación probable que debe verificarse.</p>
+        <p>Ejemplo: sistema experto para diagnóstico de enfermedades tropicales en la selva peruana.</p>
       </article>
 
       <article class="bloque b-teal">
-        <h3>Cómo se entrena una IA (6 fases)</h3>
+        <h3>IA Estadística (1990-2010)</h3>
+        <p>Aprende patrones estadísticos de datos etiquetados.</p>
         <ul>
-          <li>Recolección de datos</li>
-          <li>Preparación y etiquetado</li>
-          <li>Selección del modelo</li>
-          <li>Entrenamiento (error y backpropagation)</li>
-          <li>Validación y ajuste</li>
-          <li>Despliegue y monitoreo</li>
+          <li><strong>Ventajas:</strong> maneja problemas complejos; mejora con más datos; descubre patrones ocultos.</li>
+          <li><strong>Limitaciones:</strong> requiere muchos datos de calidad; caja negra; vulnerable a sesgos.</li>
         </ul>
-        <p>Requiere millones de ejemplos, meses y alta inversión.</p>
+        <p>Ejemplo: BCP detecta fraudes en tarjetas de crédito.</p>
       </article>
 
       <article class="bloque b-purple">
-        <h3>¿Por qué no "piensa" como un humano?</h3>
+        <h3>IA Generativa (2020-presente)</h3>
+        <p>Crea contenido nuevo (texto, imagen, código, video) con redes neuronales multicapa.</p>
         <ul>
-          <li>Opera por <strong>correlaciones estadísticas</strong>, no comprensión.</li>
-          <li>No tiene experiencia sensorial ni conciencia.</li>
-          <li>No razona causalmente ni tiene sentido común.</li>
-          <li>Aprende de millones de ejemplos; el humano, de pocos.</li>
+          <li><strong>Ventajas:</strong> creatividad y versatilidad; multitarea sin reentrenamiento; lenguaje humano natural.</li>
+          <li><strong>Limitaciones:</strong> alucinaciones (información falsa con confianza); recursos computacionales masivos; desafíos éticos y de derechos de autor.</li>
         </ul>
-      </article>
-
-      <article class="bloque b-amber">
-        <h3>Marco legal: Ley N.° 31814</h3>
-        <p>Promueve y regula la IA en el Perú (2023-2024), con participación de más de 300 profesionales.</p>
-        <table class="mini-tabla">
-          <tr><th>Art. 14</th><td>Solo instituciones formales avaladas certifican con valor oficial.</td></tr>
-          <tr><th>Formación ISIL</th><td>Respaldo Minedu/Sunedu.</td></tr>
-          <tr><th>Cursos informales</th><td>"Pseudo-diplomas" sin peso laboral.</td></tr>
-        </table>
+        <p>Ejemplo: estudiante de Marketing en ISIL genera campaña para turismo en Cusco con ChatGPT.</p>
       </article>
     </div>
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: cómo genera texto un modelo</p>
+    <p class="rotulo"><span class="num n-amber">8</span> Flujo del concepto: cómo genera texto un modelo</p>
     <div class="panel">
       <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo: el texto de entrada se tokeniza, se convierte en representación numérica, el modelo predice el siguiente token más probable y repite el ciclo hasta producir el texto generado.">
         <defs>
@@ -509,6 +626,115 @@
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 25 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Funcionamiento</h3>
+    <p>Tokenización: Divide texto en &quot;tokens&quot;. Representación vectorial: Convierte tokens en números con significado. Los vectores cercanos comparten contexto. Ejemplo clásico: vector(rey) − vector(hombre) + vector(mujer) se acerca a vector(reina). Predicción: Predice la continuación más probable (ej. &quot;La capital del Perú es...&quot; → &quot;Lima&quot;). flowchart LR T[Texto de entrada] --&gt; K[Tokenizacion]</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Tipos</h3>
+    <p>Tipo · Características Modelos pequeños especializados · Una tarea, eficientes, pocos recursos LLM · Billones de palabras, multitarea sin reentrenamiento, versátiles pero costosos</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Capacidades</h3>
+    <p>Tipo · Uso · Ejemplo en el curso Comprensión en contexto · Entender la instrucción según el contexto · Solicitud de préstamo según ingresos Generación coherente · Redactar texto fluido y legible · Explicación de requisitos de crédito Traducción · Pasar texto entre idiomas · Material complementario Evolución de la IA Resumen · Condensar información larga · Síntesis de la sesión en ideas clave</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Las 6 Fases del Entrenamiento</h3>
+    <p>Fase · Descripción 1. Recolección de datos · Reunir datos masivos relevantes 2. Preparación y etiquetado · Limpiar y etiquetar (crucial y laborioso) 3. Selección del modelo · Elegir arquitectura de red neuronal 4. Entrenamiento · Inicialización, forward pass, cálculo error, backpropagation, iteración</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5. Marco Legal y Regulatorio: Ley N° 31814 en el Perú</h3>
+    <p>Concepto La Ley N° 31814 promueve y regula el uso de la IA para el desarrollo económico y social del país, estableciendo seguridad jurídica, privacidad de datos y marco ético. Fue redactada tras proceso participativo con más de 300 profesionales articulados con PCM y Congreso, sin costo para el Estado. Promulgada en 2023 y reglamentada progresivamente hasta enero de 2024. Participación docente: El profesor Mg.…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>¿Cómo funciona? — Artículo 14</h3>
+    <p>Autoriza formalmente a universidades, institutos y centros de educación superior avalados a incluir contenidos y certificaciones con valor oficial en IA. Criterio · Formación Formal Institucional (ej. ISIL) · Cursos Informales / Redes Sociales Respaldo Legal · Amparado por Ley N° 31814 (Art. 14) · Sin respaldo legal oficial Reconocimiento · Registro Minedu / Sunedu en historial académico · &quot;Pseudo-diplomas&quot; sin…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>6. Diagnóstico sobre la Adopción y Frecuencia de Uso de la IA</h3>
+    <p>Concepto Análisis en tiempo real de la penetración de IA generativa (ChatGPT, Claude, Gemini, Copilot) mediante encuesta anónima en la plataforma de clase. Hallazgos de clase &gt;85% usa IA diariamente o varias veces por semana — no parten de cero, son usuarios activos. ChatGPT dominante por liderar adopción masiva en Perú desde finales de 2022.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Hallazgos de clase</h3>
+    <p>&gt;85% usa IA diariamente o varias veces por semana — no parten de cero, son usuarios activos. ChatGPT dominante por liderar adopción masiva en Perú desde finales de 2022. Distribución por facultad: Negocios &gt;54%, seguido por Marketing y Tecnología.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Herramientas reconocidas</h3>
+    <p>ChatGPT, Claude, Gemini y Copilot en ámbito académico y profesional. Uso como insumo: Sirve para adaptar ritmo de aprendizaje y actividades colaborativas. El material y grabaciones quedan centralizados en la plataforma del curso.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>7. Evolución de la Percepción Docente e Institucional de la IA</h3>
+    <p>Del rechazo inicial / temor por plagio (2023) hacia la adopción estratégica como co-piloto para optimizar tiempo, potenciar creatividad y personalizar educación. Ejemplo de clase: Docentes que en 2023 se oponían al uso de IA, hoy en 2026 emplean ChatGPT para diseñar ejercicios y casuísticas adaptadas a sus materias. La IA no sustituye el esfuerzo intelectual; lo potencia.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Asistentes Virtuales y Chatbots</h3>
+    <p>BCP e Interbank (consultas 24/7), Claro/Movistar/Entel (soporte), Alexa internacional. Año · Asistente · Empresa · Característica 1966 · ELIZA · MIT · Primer chatbot 2011 · Siri · Apple · Primer asistente popular 2014 · Alexa · Amazon · Voz</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Algoritmos de Recomendación y Personalización</h3>
+    <p>Netflix, Spotify &quot;Descubrimiento semanal&quot;, Amazon &quot;también compraron...&quot;. Banca: app muestra servicios más usados; Salud: fitness ajusta planes; Educación: Khan Academy adapta ritmo.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Predicción y Anticipación</h3>
+    <p>Mantenimiento predictivo (Southern Copper, Antamina), riesgo crediticio, predicción de demanda en supermercados.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Reconocimiento de Voz e Imagen y Vehículos Autónomos</h3>
+    <p>1997 Windows Dragon, 2011 Siri, 2012 Google gatos. 1986 Dickmann 55 mph, 2005 Google auto autónomo.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>9. Diferencias entre IA Generativa y Otras Formas de Automatización</h3>
+    <p>Tipo · Características Automatización tradicional · Tareas repetitivas con reglas fijas; confiable pero inflexible IA tradicional · Clasifica, predice o decide; eficiente pero sin creatividad IA generativa · Crea contenido nuevo; versátil pero puede alucinar</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Estrategia Nacional de IA (2019)</h3>
+    <p>Promover desarrollo responsable, cerrar brecha digital, generar oportunidades económicas y sociales.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Sectores Clave</h3>
+    <p>Sector · Aplicación · Ejemplo Banca · Fraudes, scoring · BCP, Interbank Retail · Recomendación, demanda · Ripley, Falabella Logística · Rutas, mantenimiento · DHL Salud · Diagnóstico asistido · Clínicas privadas</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Brecha Digital</h3>
+    <p>Desafíos: acceso rural limitado, brecha de habilidades, costo infraestructura. Oportunidades: capacitación en IA, alianzas público-privadas, inversión digital.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>11. Conexión entre los Conceptos</h3>
+    <p>Encuesta: muestra la práctica real del alumno con IA generativa. Ley: la Ley 31814 da marco para pasar del uso informal a la aplicación estratégica. Bloques: la base de Fundamentos y Prompts sostiene Producción/Automatización y Herramienta Estratégica (Bloques III y IV).</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Resumen Final — 13 Puntos</h3>
+    <p>El curso aborda IA desde perspectiva aplicada y multidisciplinaria. Consta de 15 sesiones en 4 bloques definidos. Bloque 1: Fundamentos de la IA. Bloque 2: Ingeniería de Prompts. Bloque 3: Producción y Automatización.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Sobre el Docente</h3>
+    <p>Mg. Christian Cancharez Aguirre Miembro de la Red Nacional de Innovadores Digitales de la PCM Miembro de la mesa técnica de creación de la Ley N° 31814 Doctorando en Ciencias, mención en Ingeniería y Soluciones Inteligentes MBA, Becario &quot;Impact Harvard Business&quot; - Harvard University</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Glosario</h3>
+    <p>Término · Definición · Ejemplo IA Simbólica · Reglas lógicas explícitas · Sistemas expertos médicos IA Estadística · Aprende patrones de datos · Detección fraudes bancarios IA Generativa · Crea contenido nuevo · ChatGPT, DALL-E Modelo de Lenguaje · Sistema para entender/generar lenguaje humano · GPT-4, BERT</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de Repaso</h3>
+    <p>Preguntas de Reflexión Si tuvieras que usar IA generativa para mejorar un proceso en tu trabajo o estudio actual, ¿cuál sería y cómo lo harías? ¿Cuál de los tres paradigmas de IA crees que tiene más potencial para resolver problemas en el Perú? ¿Por qué? ¿Cómo crees que la brecha digital en el Perú afecta el acceso a los beneficios de la IA? Preguntas de Repaso — Clase 1 (con respuestas)</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de Reflexión</h3>
+    <p>Si tuvieras que usar IA generativa para mejorar un proceso en tu trabajo o estudio actual, ¿cuál sería y cómo lo harías? ¿Cuál de los tres paradigmas de IA crees que tiene más potencial para resolver problemas en el Perú? ¿Por qué? ¿Cómo crees que la brecha digital en el Perú afecta el acceso a los beneficios de la IA?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de Repaso — Clase 1 (con respuestas)</h3>
+    <p>¿Cuántos bloques temáticos integran el sílabo de Inteligencia Artificial Aplicada? ¿Qué norma regula la IA en el Perú y cuándo se promulgó su reglamento clave? ¿Qué establece el Artículo 14 de la Ley N° 31814 sobre instituciones educativas? ¿Por qué un certificado de IA en redes sociales carece de peso oficial vs. un título instituido? ¿Cuáles son los temas del Bloque 2 del sílabo?</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
 </body>
 </html>

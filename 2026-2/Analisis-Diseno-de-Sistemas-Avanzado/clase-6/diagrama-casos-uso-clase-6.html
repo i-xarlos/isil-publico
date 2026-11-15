@@ -553,6 +553,67 @@ flowchart TD
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 13 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2. Caso de uso — qué es y para qué sirve</h3>
+    <p>Un caso de uso es una herramienta para capturar los requisitos funcionales. Describe qué hará el sistema desde el punto de vista del usuario externo. No detalla cómo está construido por dentro. Para qué sirve: Capturar requisitos funcionales. Entender el contexto y las interacciones del sistema. Facilitar la comunicación entre stakeholders.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Imagen: trazabilidad de requisitos a casos de uso</h3>
+    <p>Los casos de uso no salen de la nada: se derivan de los requisitos funcionales. La matriz de trazabilidad conecta requerimiento (REQ), requisito funcional (RF) y caso de uso (CU); las flechas muestran qué RF alimenta cada CU y qué actor lo ejecuta. Matriz de trazabilidad entre requerimientos, requisitos funcionales y casos de uso con sus actores</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Nomenclatura</h3>
+    <p>Elemento · Cómo se dibuja · Ejemplo Elipse · El nombre del caso de uso va dentro · Añadir al Carrito Actor · Monigote o solo el nombre · Cliente, Administrador Asociación · Línea que une actor con caso de uso (sin flecha, salvo que se quiera indicar flujo) · Cliente —— Añadir al Carrito Sistema · Rectángulo que encierra los casos de uso · Contorno del e-commerce</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Los tres casos de uso del curso</h3>
+    <p>Caso de uso · Actor · Precondición · Postcondición Añadir al Carrito · Cliente · Registrado e iniciado sesión · El producto queda en su carrito Realizar Pago · Cliente · Al menos un producto en el carrito · Compra completada con confirmación Gestionar Inventario · Administrador · Iniciado sesión · Inventario actualizado según la acción Flujo principal — &quot;Añadir al Carrito&quot;:</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Ficha resuelta — Bodega El Vecino Fiel (clases 2–4)</h3>
+    <p>Campo · Contenido Nombre · Registrar venta Actor principal · Operario Precondición · Sesión iniciada Postcondición · Venta registrada en BD</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Nomenclatura</h3>
+    <p>Flecha de punta hueca que va del caso hijo → padre. Ejemplo: padre Realizar Transacción ← hijos Comprar Producto y Devolver Producto.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Cuándo usarlo</h3>
+    <p>Situación · Ejemplo Comportamiento común · Cliente y Administrador necesitan &quot;Iniciar Sesión&quot; → padre &quot;Iniciar Sesión&quot;, hijos &quot;como Cliente&quot; y &quot;como Administrador&quot; Reducción de complejidad · &quot;Añadir&quot;, &quot;Editar&quot; y &quot;Eliminar Producto&quot; → padre &quot;Gestionar Producto&quot; Mantenibilidad · Cambias una regla de pago solo en el padre &quot;Realizar Pago&quot; y se propaga a todos los hijos Abstracción y especialización · &quot;Realizar Pago&quot;…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5. Inclusiones y extensiones — «include» vs «extend»</h3>
+    <p>Esta distinción suele generar confusión. La diferencia es la siguiente: «include» es obligatorio, «extend» es opcional. Aspecto · «include» (inclusión) · «extend» (extensión) Qué hace · Reutiliza el comportamiento de otro caso de uso: lo inserta · Añade comportamiento adicional bajo ciertas condiciones ¿Cuándo corre? · Siempre, es parte del flujo · Solo si se cumple la condición Flecha · Punteada hacia el caso…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>¿Para qué sirven los DCU?</h3>
+    <p>Uso · Aporte Captura de requisitos · Documenta qué funcionalidades debe tener y cómo interactúan los actores Comunicación con stakeholders · Representación gráfica que todos entienden Planificación y estimación · Estima complejidad y alcance al inicio, para asignar recursos Diseño del sistema · Punto de partida para diagramas de clases y secuencia</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Glosario</h3>
+    <p>Término · Definición · Ejemplo Caso de uso · Funcionalidad vista desde el usuario externo · &quot;Añadir al Carrito&quot; Actor · Entidad externa que interactúa con el sistema · Cliente, Sistema de Pago Precondición · Qué debe ser verdad antes de empezar · Estar logueado Postcondición · Qué queda verdad al terminar · Producto en el carrito</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de reflexión</h3>
+    <p>Para el caso Bodega El Vecino Fiel (clases 2–4), escribe la ficha completa de un caso de uso: ¿cuál eliges y qué flujos alternativos se te ocurren? ¿Dónde usarías «include» y dónde «extend» en la bodega? Piensa en &quot;Registrar venta&quot; y &quot;Aplicar descuento&quot;. Un stakeholder te dice &quot;para qué tantos diagramas, con una lista de funciones basta&quot;. ¿Qué le respondes citando los 8 usos del DCU?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Recursos</h3>
+    <p>PDF de la sesión: diagrama-casos-uso-clase-6.pdf</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Fuentes</h3>
+    <p>Material de la asignatura 30630, sesión 06 (2026-2). Dennis, A., Wixom, B. H., &amp; Tegarden, D. (2015). Systems Analysis and Design: An Object-Oriented Approach with UML. Wiley. Fowler, M. (2003). UML Distilled (3rd ed.). Addison-Wesley. Microsoft. UML Use Case Diagrams: Guidelines. Creately. Use Case Diagram Tutorial.</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";

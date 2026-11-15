@@ -326,6 +326,42 @@
   .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
   .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
   .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
+
+  /* ---------- Extensiones: cobertura completa de la clase ---------- */
+  .rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;}
+  .rejilla-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;}
+  .lista{margin:0;padding-left:18px;}
+  ol.lista{padding-left:24px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .destacado{
+    background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .destacado strong{color:var(--teal);}
+  .sub-titulo{margin:0 0 8px;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--amber);}
+  .preguntas details{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:460px;}
+  .tabla th,.tabla td{
+    text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .tabla thead th{
+    color:var(--ink);font-weight:700;background:var(--card-2);
+    letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;
+  }
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -502,6 +538,282 @@ flowchart TD
       <div class="stat"><div class="valor">3</div><div class="etiqueta">pasos: quick wins, escalar, liderar</div></div>
       <div class="stat"><div class="valor">4</div><div class="etiqueta">valores del Manifiesto Ágil</div></div>
       <div class="stat"><div class="valor">USD 500 k</div><div class="etiqueta">costaba una mainframe de 2 pisos (años 60-70)</div></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">7</span> 1. Tendencias tecnológicas para la innovación: las 4 etapas</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Revolución</th><th>Período</th><th>Hito / tecnología clave</th><th>Descripción</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1era</strong></td><td>1760-1870</td><td><strong>Máquina de vapor</strong></td><td>Mecanización hidráulica y a vapor; primer telar mecánico 1784. Imperio Británico: capitales coloniales + materias primas (cobre, hierro, madera) + mano de obra urbana migrante.</td></tr>
+            <tr><td><strong>2da</strong></td><td>1870-1969</td><td><strong>Electricidad y tren</strong></td><td>Producción en masa, línea de ensamblaje, cinta transportadora 1870; el tren transporta toneladas a cientos de km frente a la tracción animal, expande el comercio y funda ciudades.</td></tr>
+            <tr><td><strong>3era</strong></td><td>1970-2012</td><td><strong>PC e Internet</strong></td><td>Electrónica e informática, automatización, PLC Modicon 1969; era de la información y del conocimiento.</td></tr>
+            <tr><td><strong>4ta</strong></td><td>Hoy</td><td><strong>Sistemas ciberfísicos (CPS), IoT, IA, Big Data, Cloud</strong></td><td>Fábricas inteligentes: convergencia de tecnologías emergentes hiperconectadas.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <article class="bloque b-teal" style="margin-top:14px;">
+        <h3>Diagrama: evolución de las revoluciones industriales</h3>
+        <div class="mermaid">
+flowchart LR
+    R1[Industria 1.0<br/>Vapor y mecanizacion] --> R2[Industria 2.0<br/>Electricidad y produccion en masa]
+    R2 --> R3[Industria 3.0<br/>Electronica e informatica]
+    R3 --> R4[Industria 4.0<br/>IoT, IA y sistemas conectados]
+        </div>
+        <p>La secuencia muestra cómo se pasa de mecanizar tareas a conectar sistemas físicos y digitales. Las etapas pueden coexistir en distintas empresas.</p>
+      </article>
+      <p class="destacado" style="margin-top:14px;"><strong>Ejemplo sencillo — producir una camiseta:</strong> una máquina de vapor mecaniza el tejido (1.0); la electricidad permite producir en serie (2.0); sensores y controladores automatizan la línea (3.0); sensores conectados informan en tiempo real sobre fallas y demanda para ajustar la producción (4.0).</p>
+      <p class="destacado" style="margin-top:12px;"><strong>Ejemplo de clase — Mainframes vs PC:</strong> en los años 60-70 una empresa adinerada compraba <strong>una sola mainframe IBM System/360-370 por ~USD 500.000</strong> que ocupaba <strong>2 pisos con aire acondicionado</strong>; en los 70-80 la tecnología se miniaturiza a PC y se democratiza el acceso.</p>
+      <p class="destacado" style="margin-top:12px;"><strong>Advertencia de clase:</strong> la Industria 4.0 no es automática por cronología, es una <strong>tendencia</strong>. Muchas empresas hoy siguen en 2ª o 3ª etapa aunque estemos en la era digital; por eso hace falta un diagnóstico de madurez. <strong>Smart Cities:</strong> ciudades que aplican <strong>IoT</strong> para ser sostenibles, participativas, atraer inversión y ofrecer hogares saludables; las economías que no migran quedan como “segunda fila”. Las tecnologías que habilitan la segunda vida de la red son <strong>Big Data + Cloud Computing</strong>.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">8</span> El mundo digital facilita la innovación</p>
+    <div class="panel">
+      <p>La era digital ha creado ventajas que antes no se tenían:</p>
+      <ol class="lista">
+        <li><strong>Velocidad y bajo costo de experimentación:</strong> un negocio digital es más fácil de hacer y más rápido.</li>
+        <li><strong>Disponibilidad y calidad de análisis:</strong> los datos llegan de muchas fuentes (Big Data).</li>
+        <li><strong>Escalabilidad:</strong> el crecimiento es intangible y exponencial en digital.</li>
+        <li><strong>La relación con el cliente:</strong> medios de comunicación innumerables y crecientes canales.</li>
+        <li><strong>La facilidad de colaborar con otros:</strong> la colaboración entre rivales es cada vez más necesaria.</li>
+      </ol>
+      <p class="destacado" style="margin-top:12px;"><strong>Big Data:</strong> la información proviene de sensores climáticos, publicaciones en redes sociales, fotografías, videos, transacciones y señales GPS. Su disponibilidad permite experimentar, analizar y diseñar productos con mayor rapidez.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">9</span> Diferencias entre transformación y evolución digital</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Criterio</th><th>Transformación digital</th><th>Evolución digital</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Ritmo</strong></td><td>Disruptivo, acelerado, reestructuración profunda.</td><td>Gradual, continuo y por etapas, al ritmo de la empresa.</td></tr>
+            <tr><td><strong>Enfoque</strong></td><td>Reinventar modelo de negocio y cultura radicalmente.</td><td>Optimizar progresivamente la operación existente.</td></tr>
+            <tr><td><strong>Cambio cultural</strong></td><td>Requiere cambio profundo y rápido.</td><td>Cambio gradual.</td></tr>
+            <tr><td><strong>Riesgo / resistencia</strong></td><td>Mayor riesgo y resistencia al cambio.</td><td>Menor fricción, pero riesgo de avance lento frente a competidores.</td></tr>
+            <tr><td><strong>Complejidad</strong></td><td>Alto nivel de complejidad.</td><td>Menor complejidad.</td></tr>
+            <tr><td><strong>Impacto en innovación</strong></td><td>Puede impulsar la innovación fuertemente.</td><td>Impacto más gradual.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="destacado" style="margin-top:12px;"><strong>Idea fuerza de clase:</strong> comprar equipos sin cambiar mentalidad es “<strong>la peor forma de intentar entrar en la era digital</strong>”. Primero cultura, luego herramientas. Sin cultura innovadora, la tecnología fracasa.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">10</span> ¿Qué se necesita para digitalizarse y cómo salir adelante en la era digital?</p>
+    <div class="rejilla">
+      <article class="bloque">
+        <h3>¿Qué se necesita para digitalizarse?</h3>
+        <ol class="lista">
+          <li><strong>Evaluar el estado actual</strong> de la empresa en términos de tecnología y procesos.</li>
+          <li><strong>Generar una cultura abierta</strong> a la investigación y experimentación.</li>
+          <li><strong>Entender a nuestra audiencia en digital:</strong> ¿dónde están? ¿dónde esperan que estemos?</li>
+        </ol>
+      </article>
+      <article class="bloque b-teal">
+        <h3>¿Cómo salir adelante en la era digital?</h3>
+        <ol class="lista">
+          <li><strong>Adoptar la experimentación:</strong> procesos de desarrollo iterativos que parten de la experimentación.</li>
+          <li><strong>Innovación abierta:</strong> usar ideas tanto internas como externas para desarrollar nuevos productos.</li>
+          <li><strong>Diseño de productos basado en datos:</strong> convertir datos en conocimiento para diseñar mejores experiencias.</li>
+          <li><strong>Integración de canales u omnicanalidad:</strong> experiencia consistente, integrada y fluida a través de canales.</li>
+        </ol>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">11</span> Ejemplo: predicción de comportamiento y transformación digital en Perú</p>
+    <div class="rejilla">
+      <article class="bloque b-purple">
+        <h3>Ejemplo: predicción de comportamiento</h3>
+        <p>Una cadena de distribución pudo predecir cuándo sus clientes esperaban un bebé. El proceso fue:</p>
+        <ol class="lista">
+          <li><strong>Asignar un ID único</strong> a cada cliente, asociado a su tarjeta de crédito.</li>
+          <li><strong>Analizar el historial de compra</strong> de cada ID.</li>
+          <li><strong>Generar cupones de descuento</strong> según los patrones detectados.</li>
+          <li><strong>Construir un algoritmo</strong> capaz de predecir el comportamiento de compra.</li>
+        </ol>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Ejemplo práctico: transformación digital en Perú (Ripley)</h3>
+        <div class="tabla-wrap">
+          <table class="tabla">
+            <thead><tr><th>Antes</th><th>Ahora</th></tr></thead>
+            <tbody>
+              <tr><td>Solo tiendas físicas</td><td>App móvil + web + tiendas.</td></tr>
+              <tr><td>Pago solo en caja</td><td>Yape, Plin, tarjetas y cuotas.</td></tr>
+              <tr><td>Inventario por tienda</td><td>Inventario centralizado y visible.</td></tr>
+              <tr><td>Promociones genéricas</td><td>Ofertas personalizadas por cliente.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="sub-titulo" style="margin-top:12px;">Pasos que siguió Ripley</p>
+        <ol class="lista">
+          <li><strong>Quick win:</strong> lanzó la app móvil en 3 meses.</li>
+          <li><strong>Escaló:</strong> integró pagos con todas las billeteras digitales.</li>
+          <li><strong>Lideró el cambio:</strong> los vendedores ahora usan tablets para mostrar el catálogo completo.</li>
+        </ol>
+      </article>
+    </div>
+    <p class="destacado" style="margin-top:12px;"><strong>Resultado:</strong> durante la pandemia, contar con canales digitales permitió a Ripley mantener parte de sus operaciones y atender a sus clientes pese a las restricciones. La continuidad del negocio también dependió de factores financieros, logísticos y operativos.</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">12</span> Ejemplo: metodologías en acción</p>
+    <div class="rejilla">
+      <article class="bloque">
+        <h3>Design Thinking en Rappi</h3>
+        <ol class="lista">
+          <li><strong>Empatizar:</strong> ¿qué necesita el usuario limeño? Pedir comida rápido y barato.</li>
+          <li><strong>Definir:</strong> el problema es la demora en el delivery.</li>
+          <li><strong>Idear:</strong> moto repartidores + restaurantes cercanos.</li>
+          <li><strong>Prototipo:</strong> app con mapa en tiempo real.</li>
+          <li><strong>Testear:</strong> usuarios de Barranco probaron primero.</li>
+        </ol>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Lean Startup en Crehana</h3>
+        <ol class="lista">
+          <li><strong>MVP:</strong> primer curso online de diseño (solo 10 alumnos).</li>
+          <li><strong>Medir:</strong> ¿pagan los alumnos? Sí.</li>
+          <li><strong>Aprender:</strong> los peruanos quieren aprender habilidades digitales.</li>
+          <li><strong>Escalar:</strong> hoy tienen más de 500 cursos y operan en Latinoamérica.</li>
+        </ol>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">13</span> Madurez digital: pasos para transformarse y errores comunes</p>
+    <div class="panel">
+      <p class="sub-titulo">Pasos para transformarse a la era digital</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Paso</th><th>Descripción</th><th>Enfoque</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1. Asegurar “quick wins”</strong></td><td>Iniciativas que pueden aplicarse rápidamente.</td><td>Llevar productos rápido al mercado; evolución en base a feedback.</td></tr>
+            <tr><td><strong>2. Escalar las iniciativas exitosas</strong></td><td>Que más áreas trabajen de esta manera.</td><td>Adquirir talento digital y formar un centro de excelencia.</td></tr>
+            <tr><td><strong>3. Mantener y liderar el cambio</strong></td><td>Llevar la nueva mentalidad a toda la organización.</td><td>Estrategia de largo plazo y colaboración entre departamentos.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sub-titulo" style="margin-top:16px;">Diagnóstico de madurez industrial (procedimiento de clase)</p>
+      <ol class="lista">
+        <li><strong>Analizar la infraestructura actual:</strong> ¿métodos mecánicos/manuales (1ª/2ª), sistemas aislados (3ª) o sistemas integrados en tiempo real (4ª)?</li>
+        <li><strong>Evaluar la cultura organizacional:</strong> ¿rígida o innovadora?</li>
+        <li><strong>Identificar brechas</strong> de tecnología y talento.</li>
+        <li><strong>Definir la vía:</strong> <strong>transformación</strong> (disruptiva) o <strong>evolución</strong> (gradual).</li>
+        <li><strong>Ejecutar el plan:</strong> capacitar primero en mentalidad y luego desplegar herramientas.</li>
+      </ol>
+      <p class="sub-titulo" style="margin-top:16px;">¿Cómo saber si una empresa está “madura” para la era digital?</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Dimensión</th><th>Características</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Cultura organizacional</strong></td><td>Enfoque hacia la innovación y empoderamiento de empleados.</td></tr>
+            <tr><td><strong>Estructura organizacional</strong></td><td>Alineada a la estrategia digital.</td></tr>
+            <tr><td><strong>Tecnología</strong></td><td>Uso y adopción de nuevas tecnologías por toda la organización.</td></tr>
+            <tr><td><strong>Datos e información</strong></td><td>Uso adecuado de los datos de clientes y del negocio.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="destacado" style="margin-top:12px;"><strong>Errores comunes (clase):</strong> comprar hardware o software sin cambio cultural (probablemente la peor forma de entrar en la era digital) y asumir que por el año actual todos están en Industria 4.0 (es tendencia, no época; muchas siguen en 3ª o 2ª etapa).</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">14</span> Criterio para elegir una metodología</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Pregunta</th><th>Decisión orientadora</th></tr></thead>
+          <tbody>
+            <tr><td>¿Ya conocemos el problema del cliente?</td><td>Si no, comenzar con investigación y Design Thinking.</td></tr>
+            <tr><td>¿Tenemos una idea que debemos probar?</td><td>Usar prototipos, Lean UX o Lean Startup.</td></tr>
+            <tr><td>¿El producto debe desarrollarse iterativamente?</td><td>Organizar el trabajo con Desarrollo Ágil.</td></tr>
+            <tr><td>¿Necesitamos optimizar adquisición y conversión?</td><td>Aplicar Growth Hacking.</td></tr>
+            <tr><td>¿Ya sabemos qué funciona y debemos crecer?</td><td>Escalar con procesos, datos y capacidades digitales.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sub-titulo" style="margin-top:16px;">¿Cómo elegir la metodología?</p>
+      <ul class="lista">
+        <li>¿Ya se conoce el problema del cliente? ¿Vale la pena resolverlo?</li>
+        <li>¿Qué ideas se plantean para solucionarlo? ¿Cómo se probarían de manera rápida, barata y sencilla?</li>
+        <li>¿Ya es momento de escalar? ¿Cómo ampliar la solución de forma gradual e inteligente?</li>
+      </ul>
+      <p class="destacado" style="margin-top:12px;"><strong>Ejemplo aplicado — reducir el desperdicio de alimentos en un comedor:</strong> primero se entrevista a cocineros y comensales para encontrar la causa; después se prueba una pantalla simple de reservas o porciones; se mide durante una semana qué sobra y qué se solicita; se corrige la solución y, si funciona en un local, se desarrolla en ciclos y se extiende a otros. Growth Hacking solo tendría sentido si también se busca mejorar la captación de usuarios.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">15</span> Glosario</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Término</th><th>Definición</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Industria 4.0</strong></td><td>4ª Revolución (CPS, IoT, Big Data, Cloud, IA, Smart Cities); tendencia, no estado automático.</td><td>Fábricas inteligentes con IoT / Smart Cities.</td></tr>
+            <tr><td><strong>Transformación digital</strong></td><td>Cambio disruptivo y acelerado de modelo y cultura.</td><td>Reinventar el negocio radicalmente.</td></tr>
+            <tr><td><strong>Evolución digital</strong></td><td>Adopción gradual y por etapas al ritmo de la empresa.</td><td>Optimizar la operación existente paso a paso.</td></tr>
+            <tr><td><strong>Era digital</strong></td><td>Acceso ilimitado a información, colaboración y ultraconectividad.</td><td>Trabajo colaborativo en la nube, Big Data.</td></tr>
+            <tr><td><strong>Cultura organizacional para era digital</strong></td><td>Mentalidad renovada que precede a la herramienta; sin ella la tecnología fracasa.</td><td>Capacitar primero, luego instalar.</td></tr>
+            <tr><td><strong>Smart Cities</strong></td><td>Ciudades sostenibles basadas en IoT.</td><td>Gestión urbana inteligente.</td></tr>
+            <tr><td><strong>Design Thinking</strong></td><td>Metodología de solución de problemas centrada en personas.</td><td>Investigación con usuarios reales.</td></tr>
+            <tr><td><strong>Lean Startup</strong></td><td>Forma de pensar que busca validación temprana con MVP.</td><td>Producto mínimo viable.</td></tr>
+            <tr><td><strong>Growth Hacking</strong></td><td>Optimización del embudo de marketing mediante experimentación.</td><td>Pruebas A/B de campañas.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">16</span> Preguntas de repaso y de reflexión</p>
+    <div class="panel">
+      <p class="sub-titulo">Preguntas de repaso — Clase 2 (con respuestas breves)</p>
+      <div class="preguntas">
+        <details><summary>1. ¿Cuáles son las 4 etapas industriales?</summary><p>1ª vapor/mecanización; 2ª electricidad/tren; 3ª PC/Internet; 4ª Industria 4.0 (IoT/IA/Big Data).</p></details>
+        <details><summary>2. ¿Cuál es el pilar de la 1ª revolución?</summary><p>Máquina de vapor.</p></details>
+        <details><summary>3. ¿Qué factor expandió el comercio en la 2ª?</summary><p>El tren o ferrocarril.</p></details>
+        <details><summary>4. ¿Por qué la 3ª es la “era de la información”?</summary><p>PC e Internet democratizan el acceso al conocimiento.</p></details>
+        <details><summary>5. ¿Qué diferencia a la Industria 4.0?</summary><p>Convergencia de tecnologías interconectadas (IoT, Cloud, Big Data, IA) con monitoreo en tiempo real.</p></details>
+        <details><summary>6. ¿Por qué estar hoy no es ser 4.0?</summary><p>Es tendencia; depende de la madurez real de la empresa.</p></details>
+        <details><summary>7. ¿Cuál es el error más grave al entrar en la era digital?</summary><p>Comprar tecnología sin cambiar la cultura o la mentalidad.</p></details>
+        <details><summary>8. ¿Diferencia entre transformación y evolución?</summary><p>Transformación disruptiva y acelerada; evolución gradual y por etapas.</p></details>
+        <details><summary>9. ¿Qué tecnologías dan segunda vida a la red?</summary><p>Big Data y Cloud Computing.</p></details>
+        <details><summary>10. ¿Qué papel tiene la cultura organizacional?</summary><p>Determina si la tecnología se aprovecha o fracasa.</p></details>
+        <details><summary>11. ¿Qué factores permitieron la máquina de vapor?</summary><p>Capital colonial, materias primas y mano de obra urbana.</p></details>
+        <details><summary>12. ¿Cómo se gestionaba el conocimiento antes del PC?</summary><p>Con bibliotecas físicas y libros manuales.</p></details>
+        <details><summary>13. ¿Qué son las Smart Cities?</summary><p>Ciudades inteligentes y sostenibles basadas en IoT.</p></details>
+      </div>
+      <p class="sub-titulo" style="margin-top:16px;">Preguntas de reflexión</p>
+      <ol class="lista">
+        <li><strong>Pregunta aplicada:</strong> si tuvieras que transformar digitalmente una tienda de ropa tradicional, ¿qué primeros pasos darías?</li>
+        <li><strong>Pregunta comparativa:</strong> ¿cuál de las metodologías de desarrollo de producto crees que es más adecuada para una startup peruana? ¿Por qué?</li>
+        <li><strong>Pregunta crítica:</strong> ¿cómo crees que la Industria 4.0 impactará en el mercado laboral peruano en los próximos 5 años?</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">17</span> Fuentes de la clase</p>
+    <div class="panel">
+      <ul class="fuentes">
+        <li><strong>Artículo:</strong> La Industria 4.0 — Evaluando Software (2019).</li>
+        <li><strong>Artículo:</strong> ¿Qué es la Industria 4.0? (2019).</li>
+        <li><strong>Artículo:</strong> Fæste, L., et al. (2015). How to Jump-Start a Digital Transformation. <em>BCG</em>.</li>
+        <li><strong>Artículo:</strong> White, H. (2023). From Transformation to Evolution. <em>Inc.</em></li>
+        <li><strong>Artículo:</strong> Roser, C. (2015). A critical look on Industry 4.0. <em>All About Lean</em>.</li>
+      </ul>
     </div>
   </section>
 

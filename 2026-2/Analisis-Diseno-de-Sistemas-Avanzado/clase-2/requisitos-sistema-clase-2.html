@@ -199,6 +199,7 @@
   .bloque li{font-size:.87rem;color:var(--ink-soft);margin-bottom:5px;}
   .bloque li strong{color:var(--ink);}
   .bloque p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);}
+  .bloque p:last-child{margin-bottom:0;}
   .mini-tabla{width:100%;border-collapse:collapse;font-size:.83rem;}
   .mini-tabla th,.mini-tabla td{
     text-align:left;padding:5px 6px;border-bottom:1px solid var(--line);
@@ -325,6 +326,50 @@
   }
   .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
   .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+
+  /* ---------- Extensiones para la clase 2 ---------- */
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:520px;}
+  .tabla th,.tabla td{
+    text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .tabla thead th{
+    color:var(--ink);font-weight:700;background:var(--card-2);
+    letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;
+  }
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
+  .tabla code{color:var(--teal);}
+  .lista{margin:0;padding-left:18px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .destacado{
+    background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .destacado strong{color:var(--teal);}
+  .sintaxis{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.9rem;color:var(--ink);background:var(--card-2);
+    border:1px solid var(--line);border-radius:10px;padding:10px 14px;
+    display:inline-block;margin:0 0 8px;
+  }
+  .preguntas details{
+    background:var(--card-2);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .fuentes a{color:var(--blue);}
+  code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.86em;color:var(--teal);
+  }
 </style>
 </head>
 <body>
@@ -371,7 +416,68 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">3</span> Relación: del requerimiento al documento aprobado</p>
+    <p class="rotulo"><span class="num n-purple">3</span> Resumen de la sesión</p>
+    <div class="panel">
+      <ul class="lista">
+        <li>Repaso integrador de la arquitectura de software: capas, separación de responsabilidades y escalabilidad horizontal.</li>
+        <li>Luego se profundiza en <strong>ingeniería de requisitos</strong>: cómo transformar requerimientos de usuario en <strong>requisitos del sistema</strong>.</li>
+        <li>Todo se plasma en el <strong>Documento de Visión</strong> con estándares IEEE 830/29148 y plantilla RUP.</li>
+        <li><strong>Pregunta guía:</strong> ¿cómo asegurarnos de que el sistema que construimos es el que realmente necesitan los usuarios — y que quede registrado sin ambigüedad?</li>
+      </ul>
+      <div class="destacado" style="margin-top:14px;">
+        <strong>Idea del docente (César Ruiz):</strong> las fases iniciales de análisis y diseño deciden el éxito del SDLC. Un requisito ambiguo hoy es un retrabajo costoso mañana. Primero aprender a hacer los artefactos manualmente, luego automatizar.
+      </div>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">4</span> Repaso integrador — arquitectura, capas y escalabilidad</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Arquitectura en 3 capas</h3>
+        <table class="mini-tabla">
+          <tr><th>Capa</th><th>Rol</th><th>Ejemplo</th></tr>
+          <tr><td><strong>Frontend</strong></td><td>Interfaz visual del usuario.</td><td>App / web de la bodega.</td></tr>
+          <tr><td><strong>Backend</strong></td><td>Lógica de negocio, reglas e interconexiones.</td><td>Validar stock, calcular vuelto, generar comprobante.</td></tr>
+          <tr><td><strong>Datos / BD</strong></td><td>Persistencia.</td><td>Tablas de productos, ventas, clientes.</td></tr>
+        </table>
+        <p><strong>Principio clave:</strong> <em>Separation of Concerns</em> — cada capa o módulo con responsabilidad única (ej. módulo Usuarios independiente de Pagos o Votaciones). Se conecta con <strong>SOLID</strong> y <strong>resiliencia</strong> (backups, recuperación, integración con externos).</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Escalabilidad horizontal</h3>
+        <p>Ante picos de tráfico que degradan el rendimiento, se crean <strong>múltiples instancias paralelas</strong> de la misma capa en lugar de hiperdimensionar un único servidor.</p>
+        <table class="mini-tabla">
+          <tr><th>Estrategia</th><th>Cómo escala</th><th>Límite</th></tr>
+          <tr><td><strong>Vertical</strong></td><td>Más CPU/RAM en el mismo servidor.</td><td>Techo físico y costo exponencial.</td></tr>
+          <tr><td><strong>Horizontal</strong></td><td>Más instancias o servidores repartiendo carga.</td><td>Requiere balanceador y diseño modular.</td></tr>
+        </table>
+        <p><strong>Caso real del docente:</strong> el servidor central colapsó por picos masivos de usuarios → se aplicó crecimiento horizontal duplicando instancias. Lección: diseñar para horizontal desde el inicio si se esperan picos.</p>
+      </article>
+      <article class="bloque b-purple">
+        <h3>Monolito por capas vs. microservicios</h3>
+        <table class="mini-tabla">
+          <tr><th>Criterio</th><th>Monolítica / por capas</th><th>Microservicios</th></tr>
+          <tr><td><strong>Estructura</strong></td><td>Módulos integrados en una misma app y servidor.</td><td>Servicios independientes, cada uno con su propia estructura.</td></tr>
+          <tr><td><strong>BD</strong></td><td>Centralizada.</td><td>Cada servicio puede tener su BD propia.</td></tr>
+          <tr><td><strong>Interconexión</strong></td><td>Llamadas directas internas.</td><td>Vía Frontend / APIs de red independientes.</td></tr>
+          <tr><td><strong>Cuándo conviene</strong></td><td>Inicio simple, equipo pequeño.</td><td>Alta escala, dominios desacoplados.</td></tr>
+        </table>
+        <p><strong>Repaso sesión 1 completo:</strong> arquitectura en capas, separación de responsabilidades, interconexión y flujo de datos, escalabilidad horizontal, seguridad (autenticación/autorización), resiliencia, integración y documentación.</p>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Herramientas de diagramación</h3>
+        <table class="mini-tabla">
+          <tr><th>Herramienta</th><th>Tipo</th><th>Ventaja</th><th>Limitación</th></tr>
+          <tr><td><strong>Herramienta en línea (Draw.io / diagrams.net)</strong> — principal del curso</td><td>Web, sin instalación.</td><td>Multiplataforma, estándar único para todo el equipo, todos los diagramas UML.</td><td>Requiere navegador.</td></tr>
+          <tr><td><strong>StarUML</strong></td><td>Escritorio.</td><td>Muy completo y formal.</td><td>El trial vence rápido en el ciclo académico.</td></tr>
+        </table>
+        <p><strong>Proyección:</strong> será la base para evaluación y prototipado en una sesión futura.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">5</span> Relación: del requerimiento al documento aprobado</p>
     <div class="panel">
       <div class="flujo" role="img" aria-label="Recorrido del Documento de Visión: identificar actores y fuentes, investigar los procesos reales, definir objetivos y alcance con el Sponsor, y validar el borrador con los interesados hasta la aprobación.">
         <div class="paso c-blue">
@@ -399,60 +505,268 @@
   </section>
 
   <section class="ampliado">
-    <p class="rotulo"><span class="num n-teal">4</span> Lo esencial de la clase</p>
+    <p class="rotulo"><span class="num n-blue">6</span> Visión del sistema y Documento de Visión</p>
     <div class="grid">
       <article class="bloque">
-        <h3>Repaso: arquitectura en 3 capas</h3>
-        <ul>
-          <li><strong>Frontend:</strong> interfaz visual del usuario.</li>
-          <li><strong>Backend:</strong> lógica de negocio, reglas e integraciones.</li>
-          <li><strong>Datos/BD:</strong> persistencia (productos, ventas, clientes).</li>
-          <li><strong>Separation of Concerns:</strong> responsabilidad única por capa o módulo; conecta con SOLID.</li>
-        </ul>
-        <table class="mini-tabla">
-          <tr><th>Vertical</th><td>Más CPU/RAM: techo físico y costo exponencial.</td></tr>
-          <tr><th>Horizontal</th><td>Más instancias repartiendo carga; requiere balanceador.</td></tr>
-        </table>
+        <h3>¿En qué consiste?</h3>
+        <p>Documento que articula <strong>objetivos generales, funcionalidades clave, restricciones, límites y criterios de éxito</strong>.</p>
+        <p>Es el <strong>punto de referencia común</strong> para devs, stakeholders, sponsor y gerencia.</p>
       </article>
-
       <article class="bloque b-teal">
-        <h3>Documento de Visión: estándares y pasos</h3>
+        <h3>Estándar ISO/IEC/IEEE 29148:2018</h3>
+        <p>Amplía y reemplaza a IEEE 830-1998. Exige describir:</p>
         <ul>
-          <li>Articula <strong>objetivos, alcance, restricciones, funciones y criterios de éxito</strong>.</li>
-          <li><strong>ISO/IEC/IEEE 29148:2018</strong> amplía y reemplaza a IEEE 830-1998.</li>
-          <li><strong>RUP:</strong> plantilla estandarizada del curso.</li>
-          <li>Flujo completo de <strong>12 pasos</strong>; esta sesión, los 5 de preparación inicial.</li>
+          <li>Propósito, alcance y objetivos del sistema.</li>
+          <li>Cómo interactúan los usuarios con el sistema.</li>
+          <li>Funciones que debe realizar.</li>
+          <li>Requisitos de rendimiento, seguridad, confiabilidad, etc.</li>
         </ul>
-        <p>Preparación inicial: stakeholders → sponsor → fuentes → investigación → objetivos y alcance.</p>
       </article>
-
       <article class="bloque b-purple">
-        <h3>Especificación de requisitos</h3>
-        <ul>
-          <li><strong>Buena especificación:</strong> claridad, completitud, verificabilidad, priorización y trazabilidad.</li>
-          <li><strong>Estándares:</strong> IEEE 830, ISO/IEC/IEEE 29148 y CMMI.</li>
-          <li><strong>Normalización:</strong> unificar términos, reescribir sin ambigüedad y numerar (REQ-001, REQ-002…).</li>
-          <li><strong>Herramientas:</strong> IBM DOORS y Jama Connect; versiones en Git o SVN.</li>
-        </ul>
-        <p>Documentar bien evita <em>scope creep</em> y mejora la estimación de tiempos y recursos.</p>
-        <p class="nota-relacion">Glosa: <strong>scope creep</strong> = crecimiento no controlado del alcance · <strong>UAT</strong> = pruebas de aceptación con usuarios reales.</p>
-      </article>
-
-      <article class="bloque b-amber">
-        <h3>Verificación, validación y trazabilidad</h3>
+        <h3>Marcos y plantillas</h3>
         <table class="mini-tabla">
-          <tr><th>Verificar</th><td>¿Construimos bien? Revisiones, inspecciones y pruebas.</td></tr>
-          <tr><th>Validar</th><td>¿Construimos lo correcto? UAT, prototipos y entrevistas.</td></tr>
-          <tr><th>Trazabilidad</th><td>Seguir cada requisito de origen a mantenimiento.</td></tr>
-          <tr><th>Matriz</th><td>ID, fuente, verificación, validación e implementación.</td></tr>
+          <tr><th>Metodología / Estándar</th><th>Qué aporta</th></tr>
+          <tr><td><strong>RUP</strong></td><td>Plantilla estandarizada del curso para el Documento de Visión.</td></tr>
+          <tr><td><strong>IEEE 830 / 29148</strong></td><td>Guía para redactar requisitos funcionales y no funcionales.</td></tr>
+          <tr><td><strong>Scrum / SAFe / PMBoK</strong></td><td>Concepto de <em>Product Vision</em> para orientar objetivos y entregables.</td></tr>
         </table>
-        <p>La matriz evita requisitos huérfanos durante todo el SDLC.</p>
+        <p><strong>Relación con evaluación:</strong> es el insumo primordial para la <strong>Evaluación 1 (PE1)</strong>.</p>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Conceptos clave (definiciones del docente)</h3>
+        <ul>
+          <li><strong>Requerimientos vs. requisitos:</strong> necesidades expresadas por el usuario (lenguaje de negocio) vs. lo que el sistema debe hacer concretamente (lenguaje técnico verificable).</li>
+          <li><strong>Requisitos funcionales vs. no funcionales:</strong> comportamiento vs. atributos de calidad y rendimiento.</li>
+          <li><strong>Stakeholder:</strong> cualquier persona o entidad beneficiada, perjudicada o afectada directa o indirectamente por el proyecto.</li>
+          <li><strong>Sponsor (Patrocinador):</strong> stakeholder clave que provee presupuesto, personal, tiempo y autoriza cambios de alcance o recursos.</li>
+        </ul>
+        <table class="mini-tabla">
+          <tr><th>Concepto</th><th>Stakeholder</th><th>Sponsor</th></tr>
+          <tr><td><strong>Definición</strong></td><td>Cualquier persona, área o entidad afectada por el proyecto.</td><td>Persona o rol estratégico que financia y respalda el proyecto.</td></tr>
+          <tr><td><strong>Función principal</strong></td><td>Proporcionar requerimientos e interactuar con el sistema.</td><td>Proveer recursos económicos, de personal y tiempo, y aprobar cambios de alcance.</td></tr>
+          <tr><td><strong>Relación</strong></td><td>Concepto general: todo Sponsor es Stakeholder.</td><td>Rol específico de decisión dentro de los Stakeholders.</td></tr>
+        </table>
       </article>
     </div>
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: captura y validación de requisitos</p>
+    <p class="rotulo"><span class="num n-purple">7</span> Pasos para elaborar el Documento de Visión</p>
+    <div class="panel">
+      <h3>Foco de esta sesión: preparación inicial (pasos 1-5)</h3>
+      <ol class="lista">
+        <li><strong>Identificación de Stakeholders:</strong> registrar a todos los involucrados afectados (positiva, negativa o indirectamente).</li>
+        <li><strong>Identificación del Sponsor:</strong> designar formalmente quién administra y provee los recursos indispensables.</li>
+        <li><strong>Identificación de Fuentes de Información:</strong> mapear documentación existente — libros contables, cuadernos a mano, Excels, manuales de organización, sistemas heredados.</li>
+        <li><strong>Investigación y Recopilación:</strong> entrevistas, lectura de manuales y análisis de la operativa real.</li>
+        <li><strong>Definición de Objetivos y Alcance:</strong> trazar qué incluye y qué se excluye deliberadamente, en conjunto con el Sponsor.</li>
+      </ol>
+      <h3 style="margin-top:18px;">Flujo completo — 12 pasos (según clase)</h3>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>#</th><th>Paso</th><th>#</th><th>Paso</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Preparación Inicial (pasos 1-5 arriba).</td><td>7</td><td>Verificación y Validación (confirmar que cubren necesidades reales).</td></tr>
+            <tr><td>2</td><td>Investigación y Recopilación detallada.</td><td>8</td><td>Documentación Formal (plantilla RUP / IEEE).</td></tr>
+            <tr><td>3</td><td>Definición de Objetivos y Alcance.</td><td>9</td><td>Revisión con Interesados (borrador a stakeholders y sponsor).</td></tr>
+            <tr><td>4</td><td>Análisis de Stakeholders y Roles.</td><td>10</td><td>Ajustes y Trazabilidad.</td></tr>
+            <tr><td>5</td><td>Visión y Funcionalidades Clave + criterios de éxito.</td><td>11</td><td>Finalización (documento definitivo).</td></tr>
+            <tr><td>6</td><td>Requisitos y Restricciones (técnicas, operativas, legales).</td><td>12</td><td>Gestión de Firmas (aprobación formal).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-amber">8</span> Ejemplos de la clase</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Ejemplo: Documento de Visión para un e-commerce</h3>
+        <p><strong>Meta:</strong> +20% ventas en línea año 1 y -10% abandono de carrito. <strong>Alcance:</strong> web + móvil integrado con pagos y logística.</p>
+        <table class="mini-tabla">
+          <tr><th>Elemento</th><th>Contenido del ejemplo</th></tr>
+          <tr><td><strong>Stakeholders</strong></td><td>Inversores, directivos, compradores, vendedores, equipo de dev, proveedores logísticos.</td></tr>
+          <tr><td><strong>Funcionalidades</strong></td><td>Búsqueda avanzada, pagos seguros, gestión de inventario, recomendaciones personalizadas.</td></tr>
+          <tr><td><strong>Restricciones</strong></td><td>Escalabilidad, compatibilidad de dispositivos, protección de datos, integración con servicios existentes.</td></tr>
+          <tr><td><strong>Criterios de éxito</strong></td><td>Conversión ≥ 3% y calificación ≥ 4 estrellas.</td></tr>
+          <tr><td><strong>Escenarios de uso</strong></td><td>Buscar producto y añadir al carrito; actualizar inventario de tienda.</td></tr>
+          <tr><td><strong>Arquitectura inicial</strong></td><td>Frontend React, backend Node.js, BD MongoDB.</td></tr>
+        </table>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Caso en desarrollo: sistema para bodega / empresa</h3>
+        <p>Caso usado en clase para estructurar el Documento de Visión paso a paso.</p>
+        <p>Fuentes tradicionales: <strong>cuadernos a mano, Excels y libros contables</strong> → se convierten en módulos automatizados (productos, stock, ventas, reportes).</p>
+        <p>Permite practicar la identificación de stakeholders y sponsor, y el mapeo de fuentes antes de escribir los requisitos.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">9</span> Especificación de requisitos del sistema</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>¿Por qué es importante?</h3>
+        <p>Los proyectos fracasan porque los requisitos no estaban claros o completos desde el inicio.</p>
+        <p>Invertir tiempo aquí evita <em>scope creep</em> y retrabajo.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Características de una buena especificación</h3>
+        <table class="mini-tabla">
+          <tr><th>Característica</th><th>Descripción</th></tr>
+          <tr><td><strong>Claridad y Precisión</strong></td><td>Una única interpretación, sin jerga innecesaria.</td></tr>
+          <tr><td><strong>Completitud y Coherencia</strong></td><td>Todos los requisitos incluidos y sin contradicciones.</td></tr>
+          <tr><td><strong>Validación y Verificabilidad</strong></td><td>Cada requisito puede probarse.</td></tr>
+          <tr><td><strong>Priorización y Negociabilidad</strong></td><td>Críticos para negocio identificados.</td></tr>
+          <tr><td><strong>Involucramiento de Stakeholders</strong></td><td>Reflejan necesidades reales.</td></tr>
+          <tr><td><strong>Trazabilidad y Modularidad</strong></td><td>Rastreo a lo largo del SDLC.</td></tr>
+          <tr><td><strong>Documentación</strong></td><td>Plantilla IEEE SRS / RUP.</td></tr>
+        </table>
+      </article>
+      <article class="bloque b-purple">
+        <h3>Estándares y herramientas de gestión</h3>
+        <table class="mini-tabla">
+          <tr><th>Estándar</th><th>Descripción</th></tr>
+          <tr><td><strong>IEEE 830-1998</strong></td><td>Clásico para especificación de requisitos.</td></tr>
+          <tr><td><strong>ISO/IEC/IEEE 29148:2018</strong></td><td>Vigente, cubre el proceso completo de ingeniería de requisitos.</td></tr>
+          <tr><td><strong>CMMI</strong></td><td>Directrices para gestión de requisitos.</td></tr>
+        </table>
+        <ul>
+          <li><strong>Gestión de requisitos:</strong> IBM DOORS, Jama Connect.</li>
+          <li><strong>Control de versiones:</strong> Git, SVN (historial de cambios).</li>
+        </ul>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Ventajas de documentar bien</h3>
+        <table class="mini-tabla">
+          <tr><th>Área</th><th>Aporte</th></tr>
+          <tr><td><strong>Claridad</strong></td><td>Define qué está incluido, evita <em>scope creep</em>.</td></tr>
+          <tr><td><strong>Planificación</strong></td><td>Mejor estimación de tiempos y recursos.</td></tr>
+          <tr><td><strong>Calidad</strong></td><td>Criterio contra el que se evalúa el producto.</td></tr>
+          <tr><td><strong>Mantenimiento</strong></td><td>Facilita cambios y reutilización.</td></tr>
+        </table>
+      </article>
+      <article class="bloque">
+        <h3>Normalización de requisitos</h3>
+        <p>Proceso de uniformizar la redacción para que sea clara y sin ambigüedad:</p>
+        <ol class="lista">
+          <li>Revisar todos los requisitos recopilados.</li>
+          <li>Detectar términos inconsistentes.</li>
+          <li>Reescribir de forma consistente.</li>
+          <li>Asegurar claridad y eliminar ambigüedad.</li>
+          <li>Agrupar y numerar (REQ-001, REQ-002…).</li>
+          <li>Compartir con stakeholders.</li>
+          <li>Incorporar al documento formal.</li>
+        </ol>
+      </article>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-purple">10</span> Verificación y validación de requisitos</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Verificación — ¿construimos correctamente el producto?</h3>
+        <p>Asegura que el producto se construye según especificaciones.</p>
+        <p><strong>Técnicas:</strong> revisión por pares, inspecciones formales, análisis estático, modelado o simulación, pruebas unitarias y de integración.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Validación — ¿construimos el producto correcto?</h3>
+        <p>Asegura que satisface necesidades reales de usuarios y stakeholders.</p>
+        <p><strong>Ejemplo sencillo (app de citas):</strong> verificar es comprobar que al elegir una hora el sistema la guarda correctamente. Validar es preguntar a pacientes y personal si encontrar y reservar una hora les resulta fácil.</p>
+        <p><strong>Técnicas:</strong> UAT, prototipado, entrevistas o cuestionarios, análisis de caso de uso, revisiones de campo.</p>
+      </article>
+      <article class="bloque b-purple">
+        <h3>Ejemplo: sistema de gestión de pensiones</h3>
+        <table class="mini-tabla">
+          <tr><th>Requisitos funcionales</th><th>Requisitos no funcionales</th></tr>
+          <tr><td>Registro de nuevos beneficiarios.</td><td>Manejar ≥ 100.000 usuarios concurrentes.</td></tr>
+          <tr><td>Cálculo automático de pensión.</td><td>Seguridad proporcional al riesgo y sensibilidad.</td></tr>
+          <tr><td>Consulta en línea del estado.</td><td>Multiplataforma.</td></tr>
+        </table>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Caso Perú: gestión de citas médicas (Clínica San Isidro)</h3>
+        <table class="mini-tabla">
+          <tr><th>Requisitos funcionales</th><th>Requisitos no funcionales</th></tr>
+          <tr><td>Registro de pacientes con datos y seguro.</td><td>≥ 500 usuarios concurrentes.</td></tr>
+          <tr><td>Agendamiento por especialidad o médico.</td><td>Respuesta &lt; 2 s.</td></tr>
+          <tr><td>Recordatorios SMS o email automáticos.</td><td>Disponibilidad 99.9%.</td></tr>
+          <tr><td>Historial clínico digital.</td><td>Ley 29733 + cifrado cuando corresponda.</td></tr>
+          <tr><td>Facturación integrada.</td><td>Compatible iOS y Android.</td></tr>
+          <tr><td>Portal del paciente.</td><td>Backup diario automático.</td></tr>
+        </table>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">11</span> Verificación vs. validación en la práctica</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Acción</th><th>¿Verificación o validación?</th></tr></thead>
+          <tbody>
+            <tr><td>Probar que el SMS se envía correctamente.</td><td>Verificación.</td></tr>
+            <tr><td>Confirmar que el paciente recibe y entiende el recordatorio.</td><td>Validación.</td></tr>
+            <tr><td>Revisar que el código cumple el estándar.</td><td>Verificación.</td></tr>
+            <tr><td>Preguntar al médico si el sistema le facilita el trabajo.</td><td>Validación.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-amber">12</span> Trazabilidad de requisitos</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Qué es</h3>
+        <p>Capacidad de seguir la vida de un requisito desde su origen hasta su validación.</p>
+        <p>Permite manejar cambios controlados y asegurar la implementación completa. También facilita auditar y entender el estado actual.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Matriz de trazabilidad — campos</h3>
+        <ul>
+          <li><strong>ID, Descripción, Fuente, Verificación, Validación, Elemento de Implementación.</strong></li>
+          <li>Además: nombre corto, descripción completa, prioridad, tipo (funcional / no funcional / interfaz) y estado (no iniciado / en desarrollo / completado / verificado).</li>
+        </ul>
+        <p class="sintaxis">REQ-001 → fuente → verificación → validación → implementación</p>
+      </article>
+      <article class="bloque b-purple">
+        <h3>Ejemplo: sistema de pensiones</h3>
+        <table class="mini-tabla">
+          <tr><th>ID</th><th>Fuente</th><th>Verificación</th><th>Validación</th><th>Implementación</th></tr>
+          <tr><td><strong>R1</strong> Registro beneficiarios</td><td>Dpto. Beneficios</td><td>Inspección + unitarias</td><td>Aceptación + entrevistas</td><td>Módulo Registro</td></tr>
+          <tr><td><strong>R2</strong> Cálculo automático</td><td>Actuarios y usuarios</td><td>Análisis estático + unitarias</td><td>Prototipado + caso de uso</td><td>Módulo Cálculo</td></tr>
+        </table>
+        <p><strong>Matriz de trazabilidad (ejemplo de citas):</strong> REQ-001 agendamiento (Dra. García) · REQ-002 recordatorios SMS (pacientes) · REQ-003 historial clínico accesible (Dr. López).</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">13</span> Errores comunes y advertencias — punto evaluable PE1</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Error</th><th>Consecuencia</th><th>Cómo evitarlo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Uso desmedido de IA generativa sin metodología</strong></td><td>La IA desconoce la secuencia académica del instituto, inventa secciones e invalida el entregable.</td><td>Aprender primero a elaborar artefactos manualmente; usar IA solo como apoyo con supervisión.</td></tr>
+            <tr><td><strong>Omitir pasos y normas del Documento de Visión</strong></td><td>Penalizaciones severas en PE1.</td><td>Seguir rigurosamente los 12 pasos y la plantilla RUP + IEEE 830/29148.</td></tr>
+            <tr><td><strong>No identificar adecuadamente al Sponsor</strong></td><td>Desacuerdos de alcance y recursos a mitad del proyecto.</td><td>Formalizar Sponsor en el paso 2 y validar alcance con él.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="destacado" style="margin-top:14px;">
+        <strong>Advertencia explícita del docente:</strong> generar el Documento de Visión directamente con IA sin seguir la metodología solicitada está contraindicado. La IA suele desconocer los pasos académicos específicos y genera contenido no solicitado.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">14</span> Flujo del concepto: captura y validación de requisitos</p>
     <div class="panel">
       <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo: los requerimientos del usuario se convierten en requisitos técnicos, se plasman en el Documento de Visión con plantilla RUP y estándares IEEE, y terminan verificados y validados con los stakeholders.">
         <defs>
@@ -490,18 +804,14 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-blue">6</span> Cifras de la clase</p>
+    <p class="rotulo"><span class="num n-blue">15</span> Cifras y diagramas de la clase</p>
     <div class="stats">
       <div class="stat"><div class="valor">12</div><div class="etiqueta">pasos del Documento de Visión</div></div>
       <div class="stat"><div class="valor">5</div><div class="etiqueta">pasos de la preparación inicial</div></div>
       <div class="stat"><div class="valor">3</div><div class="etiqueta">capas: frontend, backend y datos</div></div>
       <div class="stat"><div class="valor">830 / 29148</div><div class="etiqueta">estándares IEEE de requisitos</div></div>
     </div>
-  </section>
-
-  <section>
-    <p class="rotulo"><span class="num n-teal">7</span> Arquitectura en 3 capas e integraciones</p>
-    <div class="mermaid">
+    <div class="mermaid" style="margin-top:16px;">
 flowchart TD
     UI[Frontend] --> BE[Backend: Logica + APIs]
     BE --> DB[(Base de Datos)]
@@ -515,6 +825,100 @@ flowchart TD
     class DB,BK db
     </div>
     <p class="nota-relacion">Frontend → Backend → BD, con integraciones externas (SUNAT/Pagos) y respaldo para resiliencia.</p>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-amber">16</span> Conclusiones</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Lo que deja la clase</h3>
+        <ul>
+          <li><strong>SDLC:</strong> el análisis y diseño iniciales determinan la tasa de éxito posterior.</li>
+          <li><strong>Arquitectura:</strong> 3 capas + separation of concerns + escalabilidad horizontal son la base técnica.</li>
+          <li><strong>Documento de Visión:</strong> articula objetivos, alcance, restricciones y funciones; sigue IEEE 830/29148 y plantilla RUP.</li>
+          <li><strong>Stakeholder vs. Sponsor:</strong> todo Sponsor es Stakeholder, pero solo el Sponsor decide recursos y alcance.</li>
+        </ul>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Lo que deja la clase (continuación)</h3>
+        <ul>
+          <li><strong>Verificación vs. validación:</strong> "¿construimos correctamente?" vs. "¿construimos lo correcto?" — ambas necesarias.</li>
+          <li><strong>Trazabilidad:</strong> GPS del proyecto; la matriz evita requisitos huérfanos.</li>
+          <li><strong>PE1:</strong> respetar los pasos académicos es evaluable; la IA no sustituye el aprendizaje manual.</li>
+        </ul>
+        <p class="frase"><strong>Frase clave:</strong> "Los requisitos no son solo un documento, son el contrato entre lo que el negocio necesita y lo que la tecnología entregará."</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">17</span> Glosario</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Término</th><th>Definición</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>SDLC</strong></td><td>Marco metodológico del desarrollo, con fases iniciales decisivas.</td><td>Análisis → Diseño → Código → Pruebas.</td></tr>
+            <tr><td><strong>Separation of Concerns</strong></td><td>Modularizar con responsabilidad única por capa o módulo.</td><td>Usuarios separado de Pagos.</td></tr>
+            <tr><td><strong>SOLID — S</strong></td><td>Cada clase tiene una sola responsabilidad.</td><td>Módulo Usuarios separado de Pagos.</td></tr>
+            <tr><td><strong>SOLID — O</strong></td><td>Abierto a extender, cerrado a modificar.</td><td>Añadir regla sin romper lo existente.</td></tr>
+            <tr><td><strong>SOLID — L</strong></td><td>La subclase puede reemplazar a la padre.</td><td>Subtipo usable donde se espera el padre.</td></tr>
+            <tr><td><strong>SOLID — I</strong></td><td>Interfaces pequeñas y específicas.</td><td>Contratos solo con lo necesario.</td></tr>
+            <tr><td><strong>SOLID — D</strong></td><td>Depender de abstracciones, no de detalles.</td><td>Lógica que usa interfaces.</td></tr>
+            <tr><td><strong>Escalabilidad horizontal</strong></td><td>Añadir instancias paralelas para afrontar alta demanda.</td><td>Duplicar la capa Backend.</td></tr>
+            <tr><td><strong>Documento de Visión</strong></td><td>Artefacto RUP que define objetivos, alcance y criterios de éxito.</td><td>Visión e-commerce +20% ventas.</td></tr>
+            <tr><td><strong>Stakeholder</strong></td><td>Afectado positiva, negativa o indirectamente por el proyecto.</td><td>Cajero, proveedor, cliente.</td></tr>
+            <tr><td><strong>Sponsor</strong></td><td>Quien provee presupuesto, tiempo y personal y autoriza cambios.</td><td>Gerente que financia el proyecto bodega.</td></tr>
+            <tr><td><strong>IEEE 830 / 29148</strong></td><td>Estándares para especificación de requisitos.</td><td>Requisitos funcionales y no funcionales.</td></tr>
+            <tr><td><strong>RUP</strong></td><td>Metodología con plantillas de artefactos del curso.</td><td>Plantilla del Documento de Visión.</td></tr>
+            <tr><td><strong>Verificación</strong></td><td>¿Construimos correctamente?</td><td>Pruebas unitarias.</td></tr>
+            <tr><td><strong>Validación</strong></td><td>¿Construimos lo correcto?</td><td>UAT con usuarios reales.</td></tr>
+            <tr><td><strong>Trazabilidad</strong></td><td>Seguimiento del origen al estado del requisito.</td><td>Matriz REQ-001 → REQ-00N.</td></tr>
+            <tr><td><strong>StarUML / Draw.io</strong></td><td>Herramientas de modelado UML.</td><td>Diagramas de arquitectura.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">18</span> Preguntas de repaso y respuestas sintéticas</p>
+    <div class="panel">
+      <div class="preguntas">
+        <details><summary>1. ¿Cuáles son las tres capas principales de la arquitectura vista al inicio y qué hace cada una?</summary><p>Frontend (UI), Backend (lógica) y Datos/BD (persistencia).</p></details>
+        <details><summary>2. ¿Qué significa separation of concerns y da un ejemplo de modularización?</summary><p>Cada componente con tarea única — ej. gestión de usuarios independiente de pagos.</p></details>
+        <details><summary>3. ¿En qué consiste el escalamiento horizontal y qué problema resuelve?</summary><p>Múltiples instancias paralelas para alta demanda; resolvió el colapso por picos masivo del servidor central.</p></details>
+        <details><summary>4. ¿Qué diferencia hay entre arquitectura por capas/monolítica y microservicios?</summary><p>Monolito centralizado vs. microservicios independientes con BD propia e interconexión por APIs.</p></details>
+        <details><summary>5. ¿Qué rol juegan los principios SOLID?</summary><p>Garantizan código y arquitectura robusta, legible y mantenible.</p></details>
+        <details><summary>6. ¿Qué es un Stakeholder? ¿Puede la afectación ser negativa o indirecta?</summary><p>Todo afectado por el proyecto, positiva, negativa o indirectamente.</p></details>
+        <details><summary>7. ¿Cuál es el rol específico del Sponsor y por qué formalizarlo temprano?</summary><p>Provee recursos y valida cambios de alcance; evita desacuerdos a mitad del proyecto.</p></details>
+        <details><summary>8. ¿Qué norma estandariza la especificación de requisitos?</summary><p>IEEE 830 y su evolución ISO/IEC/IEEE 29148:2018.</p></details>
+        <details><summary>9. ¿De qué metodología provienen las plantillas del curso?</summary><p>RUP (Rational Unified Process).</p></details>
+        <details><summary>10. ¿Por qué el profesor desaconseja basar el Documento de Visión directamente en IA generativa?</summary><p>La IA ignora la secuencia académica del instituto e inventa secciones no pedidas.</p></details>
+        <details><summary>11. ¿Cuáles son las 5 primeras acciones de preparación inicial?</summary><p>Identificar stakeholders, designar sponsor, mapear fuentes, investigar/recopilar y definir objetivos y alcance con el sponsor.</p></details>
+        <details><summary>12. En el caso bodega/empresa, ¿qué constituyen las "fuentes de información"?</summary><p>Cuadernos a mano, Excels, libros contables, manuales y sistemas heredados.</p></details>
+      </div>
+      <div class="destacado" style="margin-top:14px;">
+        <strong>Regla práctica:</strong> si no puedes responderlas sin mirar apuntes, repasa las secciones 0 y 1.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">19</span> Recursos del curso (Clase 2) y fuentes</p>
+    <div class="panel">
+      <ul class="fuentes">
+        <li><strong>Recursos:</strong> caso 1 — Bodega El Vecino Fiel (<code>caso-bodega-vecino-fiel-clase-2.md</code>).</li>
+        <li><strong>Recursos:</strong> visión borrador NRC 3702 (<code>vision-sistema-bodega-borrador-nrc3702-clase-2.md</code>).</li>
+        <li><strong>Recursos:</strong> visión curada (Actividad 1) (<code>vision-sistema-bodega-vecino-fiel-actividad-1.md</code>).</li>
+        <li><strong>Recursos:</strong> Especificación de Requisitos — Clase 3 (<code>especificacion-requisitos-bodega-clase-3.md</code>).</li>
+        <li><strong>Fuentes:</strong> Sommerville, I. (2015). <em>Software Engineering</em>. Libro.</li>
+        <li><strong>Fuentes:</strong> Wiegers, K. E., &amp; Beatty, J. (2013). <em>Software Requirements</em>. Libro.</li>
+        <li><strong>Fuentes:</strong> IEEE Std 830-1998. Estándar.</li>
+        <li><strong>Fuentes:</strong> ISO/IEC/IEEE 29148. Estándar.</li>
+        <li><strong>Fuentes:</strong> Atlassian — Traceability Matrix. Guía.</li>
+      </ul>
+    </div>
   </section>
 
   <section>

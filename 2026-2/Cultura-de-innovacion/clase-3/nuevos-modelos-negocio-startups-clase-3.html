@@ -326,6 +326,42 @@
   .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
   .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
   .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
+
+  /* ---------- Extensiones: cobertura completa de la clase ---------- */
+  .rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;}
+  .rejilla-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;}
+  .lista{margin:0;padding-left:18px;}
+  ol.lista{padding-left:24px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .destacado{
+    background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .destacado strong{color:var(--teal);}
+  .sub-titulo{margin:0 0 8px;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--amber);}
+  .preguntas details{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:460px;}
+  .tabla th,.tabla td{
+    text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .tabla thead th{
+    color:var(--ink);font-weight:700;background:var(--card-2);
+    letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;
+  }
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -555,6 +591,63 @@ flowchart LR
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 12 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Cómo crear modelos innovadores</h3>
+    <p>Encontrar ventaja competitiva identificando necesidades insatisfechas Diseñar un modelo rentable que redirija la demanda con una propuesta de valor eficaz, sencilla, accesible y asequible Ajustar el modelo conforme se requiera</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Los 9 bloques (según el video)</h3>
+    <p>El lienzo cubre 4 áreas: oferta, clientes, infraestructura y viabilidad financiera. La propuesta de valor va en el centro. No es solo el producto: es la necesidad o problema que resuelve y los diferenciales frente a la competencia. # · Bloque · Qué define 1 · Propuesta de valor · Necesidad o problema específico que resuelve para el cliente + elementos diferenciales frente a la competencia 2 · Segmento de mercado…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Metodología para aterrizar teoría en casos (punto evaluable)</h3>
+    <p>Si el caso es de aerolínea/turismo/retail, respuestas teóricas genéricas no bastan: Identificar teoría aplicable Identificar industria del caso Investigar procesos específicos de esa industria (ej. si es aerolínea, investigar operaciones de aerolínea) Adaptar la solución al lenguaje y métricas del sector</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Qué necesitas para empezar (adaptado de Codeglia, 2019)</h3>
+    <p>Detectar un problema real: las startups resuelven problemas. Uber nació de la frustración de pedir un taxi en San Francisco. Se recomienda investigar el mercado y observar el entorno Solución creativa pero simple: se prioriza lo esencial sobre lo estrafalario; resultan más efectivas las estrategias simples que aún no se han aplicado bien Potencial de crecimiento: los beneficios deben poder crecer sin reinvertir…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4. Características de las Startups</h3>
+    <p>A diferencia de una corporación, una startup no es una empresa pequeña: es un modelo que busca capitalizar ideas disruptivas para un crecimiento exponencial. Característica · Qué significa · Por qué importa Innovación desde el problema · Resolver problemas de forma novedosa (producto, servicio o enfoque) · Destaca en mercados competitivos y atiende necesidades insatisfechas Escalabilidad · Crecer rápido sin…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Por qué se otorgan</h3>
+    <p>Las startups no acceden a crédito (sin historial ni activos): el fondo les da capital inicial Fomentan la innovación y creatividad sin obligación de reembolso Son motores económicos: crean empleo, competencia y oportunidades</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Concursos disponibles (ProInnóvate y otros)</h3>
+    <p>Concurso · Para qué MiPymes Digitales · Implementación de tecnologías digitales MiPymes de Calidad · Certificaciones para acceder a nuevos mercados Innovación Empresarial · Desarrollo de soluciones innovadoras Validación de la Innovación · Validar prototipos de productos, servicios o procesos</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Montos aproximados</h3>
+    <p>Fondo · Rango ProInnóvate · S/ 45,000 – S/ 1,350,000 Agroideas · Hasta S/ 1,185,000 Procompite · Hasta S/ 1,000,000 Concytec (Cienciactiva) · Hasta S/ 900,000</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Glosario</h3>
+    <p>Modelo de negocio: cómo una empresa crea, entrega y captura valor Canvas: lienzo de Osterwalder para diseñar el modelo en una vista Patrones: Cola Larga (nicho), Cebo y Anzuelo (base barata + consumible), Suscripción (pago recurrente), P2P (intermediación entre iguales), Freemium, Franquicias, etc. Startup: empresa temporal que busca modelo sostenible y escalable bajo alta incertidumbre (Ries/Blank &amp; Dorf)…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de Repaso — Clase 3 (con respuestas breves)</h3>
+    <p>¿Qué es un modelo de negocio? Cómo la empresa crea, entrega y captura valor. ¿Qué es Cola Larga? Oferta de productos de nicho poco demandados individualmente, rentables en conjunto. ¿Cómo funciona Cebo y Anzuelo? Producto base barato/gratis + venta recurrente de consumible de alto margen. ¿Definición de startup? Organización temporal que busca modelo sostenible y escalable bajo alta incertidumbre. ¿Qué son fondos…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de reflexión</h3>
+    <p>¿Qué problema de la sociedad estás listo para transformar con tu próxima startup? ¿Tu idea es escalable o solo replicable con más personal e infraestructura? ¿Qué bloque de tu Canvas es más débil hoy y cómo lo validarías esta semana?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Bibliografía de la clase</h3>
+    <p>Blank, S. y Dorf, B. (2013). El manual del emprendedor. Gestión 2000 Osterwalder, A. y Pigneur, Y. (2010). Business Model Generation Ries, E. (2011). The Lean Startup Última actualización: 22/09/2026 — Contenido alineado con PPT Tema 03 + transcript Patrones (Long Tail, Cebo y Anzuelo, Suscripción, P2P), startup y fondos no reembolsables.</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";

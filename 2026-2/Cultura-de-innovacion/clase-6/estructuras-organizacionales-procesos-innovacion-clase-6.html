@@ -326,6 +326,42 @@
   .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
   .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
   .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
+
+  /* ---------- Extensiones: cobertura completa de la clase ---------- */
+  .rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;}
+  .rejilla-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;}
+  .lista{margin:0;padding-left:18px;}
+  ol.lista{padding-left:24px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .destacado{
+    background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .destacado strong{color:var(--teal);}
+  .sub-titulo{margin:0 0 8px;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--amber);}
+  .preguntas details{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:460px;}
+  .tabla th,.tabla td{
+    text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .tabla thead th{
+    color:var(--ink);font-weight:700;background:var(--card-2);
+    letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;
+  }
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -542,6 +578,55 @@ flowchart TD
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 10 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Resumen de la clase</h3>
+    <p>1. Objetivo de la clase La clase analizó cómo la estructura organizacional influye en la capacidad de innovación de una empresa y cómo la innovación se desarrolla como un proceso que va desde la idea hasta la implementación. Los objetivos principales fueron: comprender qué es una estructura organizacional; distinguir los principales tipos de estructuras organizacionales;</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2. Conceptos fundamentales</h3>
+    <p>Estructura organizacional: forma en que la empresa divide, coordina y controla el trabajo. Organigrama: representación gráfica de las relaciones y responsabilidades dentro de la organización. Estructura funcional: organización por áreas o funciones. Estructura divisional: organización por producto, mercado o geografía. Estructura basada en procesos: enfoque en el flujo de trabajo y la creación de valor.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3. Desarrollo de la clase</h3>
+    <p>3.1 ¿Qué es una estructura organizacional? Concepto: La estructura organizacional no es solo un organigrama. Es la forma en que la organización distribuye autoridad, responsabilidad y coordinación. El profesor explicó que la estructura es como el “ADN” de la organización, porque se refleja en cada área, nivel y proceso. ¿Por qué es importante?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4. Ejemplos y casos prácticos</h3>
+    <p>flowchart LR A[Estructura organizacional] --&gt; B[Autoridad y responsabilidades] B --&gt; C[Procesos y flujo de trabajo] C --&gt; D[Coordinación entre áreas] D --&gt; E[Decisiones rápidas]</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5. Comparaciones importantes</h3>
+    <p>Concepto · Diferencia principal · Se usa cuando Estructura funcional · Organización por áreas · Cuando se prioriza especialización Estructura divisional · Organización por producto/mercado/región · Cuando la empresa tiene varias líneas o mercados Estructura por procesos · Organización por flujo de trabajo · Cuando se desea velocidad y eficiencia Estructura matricial · Doble línea de reporte · Cuando se trabaja en…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>6. Procesos o procedimientos</h3>
+    <p>6.1 Proceso de innovación Generar ideas. Seleccionar las mejores ideas. Probarlas mediante experimentación. Preparar su comercialización.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>8. Cierre</h3>
+    <p>La estructura organizacional es clave para la innovación. La innovación no es un acto aislado; es un proceso. Las empresas innovadoras suelen tener equipos multidisciplinarios y mayor flexibilidad. La estructura funcional aporta orden, pero puede limitar la agilidad. Las nuevas formas de organización, como Scrum o tribus, favorecen la colaboración y la innovación.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>10. Preguntas de repaso</h3>
+    <p>¿Qué es una estructura organizacional y por qué importa para la innovación? ¿Qué diferencia hay entre una estructura funcional y una estructura divisional? ¿Cuándo es útil una estructura basada en procesos? ¿Qué ventajas y desventajas tiene una estructura matricial? ¿Qué tipo de organización favorece más la innovación?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>10. Resumen final</h3>
+    <p>Ver el cierre de la sección 8. La síntesis: la innovación no es solo una idea; es un proceso organizacional que requiere estructura, coordinación, experimentación y ejecución.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Aclaración adicional</h3>
+    <p>La clase presentó ejemplos de estructuras y herramientas de innovación con un enfoque práctico. No se trató de una comparación técnica profunda entre sistemas de gestión o plataformas específicas; el contenido estuvo orientado a la lógica organizacional y a los principios que favorecen la innovación dentro de la empresa.</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";

@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infografía Clase 11 — Automatización y presentaciones con IA · Inteligencia Artificial Aplicada</title>
+<meta name="description" content="Infografía de estudio de la Clase 11 de Inteligencia Artificial Aplicada (ISIL, 2026-2): automatización sin código, Zapier, Copilot y Make, validación de automatizaciones, Prompt Maestro de 9 bloques, identidad visual, validador y la integración de Canva con @Canva.">
+<style>
+  :root{
+    --bg:#0d1526;
+    --panel-head:#0a1120;
+    --card:#152238;
+    --card-2:#182742;
+    --ink:#e9eff8;
+    --ink-soft:#a9bad2;
+    --line:#27395a;
+    --blue:#6aa7ff;
+    --blue-bg:#16294a;
+    --teal:#3ed2b2;
+    --teal-bg:#113a36;
+    --purple:#b39af7;
+    --purple-bg:#241d47;
+    --amber:#f7b955;
+    --amber-bg:#3a2c12;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5;
+  }
+  .hoja{max-width:1180px;margin:0 auto;padding:22px 18px 34px;}
+
+  /* ---------- Franja superior ---------- */
+  .franja{
+    background:var(--panel-head);
+    border:1px solid var(--line);
+    color:#fff;
+    border-radius:16px;
+    padding:22px 26px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:12px;
+    position:relative;
+    overflow:hidden;
+  }
+  .franja::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:0;
+    height:4px;
+    background:linear-gradient(90deg,var(--blue) 0 25%,var(--teal) 25% 50%,var(--purple) 50% 75%,var(--amber) 75% 100%);
+    opacity:.9;
+  }
+  .franja h1{margin:0;font-size:1.72rem;letter-spacing:-.01em;}
+  .franja .sub{
+    margin:6px 0 0;
+    font-size:.82rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#9db8dc;
+  }
+  .franja .meta{
+    font-size:.8rem;
+    color:#c3d4ea;
+    text-align:right;
+    max-width:340px;
+  }
+
+  /* ---------- Secciones y títulos (siempre fuera del bloque) ---------- */
+  section{margin-top:24px;}
+  .rotulo{
+    display:flex;align-items:center;gap:10px;
+    margin:0 0 12px;
+    font-size:.82rem;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+  .rotulo .num{
+    width:26px;height:26px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:#0d1526;font-size:.82rem;flex:none;font-weight:800;
+  }
+  .n-blue{background:var(--blue);}
+  .n-teal{background:var(--teal);}
+  .n-purple{background:var(--purple);}
+  .n-amber{background:var(--amber);}
+
+  /* ---------- Fila superior ---------- */
+  .fila{display:grid;grid-template-columns:minmax(240px,1fr) 2.1fr;gap:16px;align-items:start;}
+  .tarjeta{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+  }
+  .idea p.texto{margin:0;font-size:1.04rem;font-weight:700;}
+
+  .conceptos .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:12px;
+  }
+  .chip{
+    border:1px solid;
+    border-radius:12px;
+    padding:12px 14px;
+    background:var(--card-2);
+  }
+  .chip .top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+  .chip .dot{
+    width:22px;height:22px;border-radius:50%;
+    color:#0d1526;font-size:.72rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .chip h3{margin:0;font-size:.98rem;}
+  .chip p{margin:0;font-size:.86rem;color:var(--ink-soft);}
+  .c-blue{border-color:#31548c;} .c-blue h3{color:var(--blue);} .c-blue .dot{background:var(--blue);}
+  .c-teal{border-color:#1f6b5e;} .c-teal h3{color:var(--teal);} .c-teal .dot{background:var(--teal);}
+  .c-purple{border-color:#4d3f86;} .c-purple h3{color:var(--purple);} .c-purple .dot{background:var(--purple);}
+  .c-amber{border-color:#8a6a2a;} .c-amber h3{color:var(--amber);} .c-amber .dot{background:var(--amber);}
+
+  /* ---------- Relación dominante ---------- */
+  .panel{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px 20px 18px;
+  }
+  .flujo{
+    display:flex;
+    align-items:stretch;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .paso{
+    flex:1 1 180px;
+    border:1px solid;
+    border-radius:12px;
+    padding:14px 16px;
+    min-height:104px;
+    background:var(--card-2);
+  }
+  .paso .cab{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .paso .cab .dot{
+    width:24px;height:24px;border-radius:50%;color:#0d1526;
+    font-size:.75rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .paso h3{margin:0;font-size:1rem;}
+  .paso p{margin:0;font-size:.88rem;color:var(--ink-soft);}
+  .flecha{
+    align-self:center;
+    flex:0 0 auto;
+    color:#6f85a3;
+    font-size:1.3rem;
+    line-height:1;
+  }
+  .nota-relacion{
+    margin:16px auto 0;
+    text-align:center;
+    font-size:.88rem;
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Diagrama de flujo SVG ---------- */
+  .svg-flujo{display:block;width:100%;height:auto;}
+  .svg-flujo .nodo{fill:var(--card-2);stroke-width:2;}
+  .svg-flujo .nodo-titulo{fill:var(--ink);font-size:17px;font-weight:700;font-family:inherit;}
+  .svg-flujo .nodo-texto{fill:var(--ink-soft);font-size:13.5px;font-family:inherit;}
+  .svg-flujo .flecha-linea{stroke:#54688a;stroke-width:2.5;fill:none;}
+  .svg-flujo .pie-diagrama{fill:var(--ink-soft);font-size:14px;font-weight:600;font-family:inherit;}
+
+  /* ---------- Contenido ampliado ---------- */
+  .ampliado .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    gap:14px;
+  }
+  .bloque{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:5px solid var(--blue);
+    border-radius:12px;
+    padding:14px 16px;
+  }
+  .bloque.b-teal{border-left-color:var(--teal);}
+  .bloque.b-purple{border-left-color:var(--purple);}
+  .bloque.b-amber{border-left-color:var(--amber);}
+  .bloque h3{margin:0 0 8px;font-size:.95rem;color:var(--ink);}
+  .bloque ul{margin:0;padding-left:18px;}
+  .bloque li{font-size:.87rem;color:var(--ink-soft);margin-bottom:5px;}
+  .bloque li strong{color:var(--ink);}
+  .bloque p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);}
+  .mini-tabla{width:100%;border-collapse:collapse;font-size:.83rem;}
+  .mini-tabla th,.mini-tabla td{
+    text-align:left;padding:5px 6px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .mini-tabla th{color:var(--ink);font-weight:700;}
+  .mini-tabla tr:last-child th,.mini-tabla tr:last-child td{border-bottom:none;}
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:12px;
+  }
+  .stat{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px 14px;
+    text-align:center;
+  }
+  .stat .valor{font-size:1.5rem;font-weight:800;color:var(--blue);}
+  .stat .etiqueta{font-size:.8rem;color:var(--ink-soft);}
+
+  /* ---------- Ejemplo ---------- */
+  .ejemplo{
+    background:var(--amber-bg);
+    border:1px solid #6d5426;
+    border-radius:14px;
+    padding:16px 20px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .ejemplo .marca{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--amber);color:#0d1526;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .ejemplo h3{margin:2px 0 6px;font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);}
+  .ejemplo p{margin:0;font-size:.95rem;color:var(--ink);}
+
+  /* ---------- Qué recordar ---------- */
+  .recuerda{
+    background:var(--panel-head);
+    border:1px solid var(--line);
+    border-top:4px solid var(--teal);
+    color:var(--ink);
+    border-radius:16px;
+    padding:20px 24px;
+  }
+  .recuerda .cab{
+    display:flex;align-items:center;gap:10px;
+    font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;
+    font-weight:700;color:var(--teal);margin-bottom:14px;
+  }
+  .recuerda .cab .tick{
+    width:26px;height:26px;border-radius:50%;
+    background:var(--teal);color:#0d1526;
+    display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;
+  }
+  .recuerda ul{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px 26px;
+  }
+  .recuerda li{
+    font-size:.93rem;font-weight:600;
+    padding-left:18px;position:relative;color:var(--ink);
+  }
+  .recuerda li::before{
+    content:"";position:absolute;left:0;top:.5em;
+    width:7px;height:7px;border-radius:50%;background:var(--teal);
+  }
+  .frase{
+    margin:16px 0 0;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+    font-size:.9rem;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .frase strong{color:var(--ink);font-style:normal;}
+
+  /* ---------- Pie ---------- */
+  .pie{
+    margin-top:18px;
+    font-size:.78rem;
+    color:#7f93b0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    justify-content:space-between;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:820px){
+    .fila{grid-template-columns:1fr;}
+    .franja h1{font-size:1.4rem;}
+    .franja .meta{text-align:left;}
+    .flecha{transform:rotate(90deg);}
+  }
+
+  /* ---------- Impresión ---------- */
+  @media print{
+    body{background:#fff;}
+    .hoja{max-width:none;padding:0;}
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+      break-inside:avoid;page-break-inside:avoid;
+    }
+    section{margin-top:14px;}
+    @page{margin:10mm;}
+  }
+  /* ---------- Guia de la herramienta ---------- */
+  .bloque ol{margin:0;padding-left:20px;}
+  .bloque ol li{font-size:.87rem;color:var(--ink-soft);margin-bottom:5px;}
+  .bloque ol li strong{color:var(--ink);}
+
+  /* ---------- Listas ordenadas ---------- */
+  .bloque ol{margin:0;padding-left:20px;}
+  .bloque ol li{font-size:.87rem;color:var(--ink-soft);margin-bottom:5px;}
+  .bloque ol li strong{color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="hoja">
+
+  <header class="franja">
+    <div>
+      <h1>Automatización y presentaciones con IA</h1>
+      <p class="sub">Clase 11 · Inteligencia Artificial Aplicada</p>
+    </div>
+    <p class="meta">ISIL · 2026-2 · [pendiente]<br>Mg. Christian Martin Cancharez Aguirre</p>
+  </header>
+
+  <section class="fila">
+    <div>
+      <p class="rotulo"><span class="num n-blue">1</span> Idea central</p>
+      <article class="tarjeta idea">
+        <p class="texto">La IA no expone ni decide el contenido: diseña y automatiza. Automatizar es delegar una tarea repetitiva a un flujo que dispara, procesa y entrega. Presentar es delegar el diseño a un contrato: un Prompt Maestro que termina con la aprobación de una persona.</p>
+      </article>
+    </div>
+    <div>
+      <p class="rotulo"><span class="num n-teal">2</span> 4 conceptos clave</p>
+      <article class="tarjeta conceptos">
+        <div class="grid">
+          <div class="chip c-blue">
+            <div class="top"><span class="dot">1</span><h3>Sin código</h3></div>
+            <p>Flujos visuales con disparador y acciones, sin programar.</p>
+          </div>
+          <div class="chip c-teal">
+            <div class="top"><span class="dot">2</span><h3>Con IA</h3></div>
+            <p>Zapier, Microsoft Copilot y Make, cada uno con su foco.</p>
+          </div>
+          <div class="chip c-purple">
+            <div class="top"><span class="dot">3</span><h3>Casos reales</h3></div>
+            <p>Revisión documental y follow-up de leads en educación.</p>
+          </div>
+          <div class="chip c-amber">
+            <div class="top"><span class="dot">4</span><h3>Validación</h3></div>
+            <p>Datos, privacidad, errores, monitoreo y ética.</p>
+          </div>
+          <div class="chip c-blue">
+            <div class="top"><span class="dot">5</span><h3>Prompt Maestro</h3></div>
+            <p>Plantilla de 9 bloques que fija roles, reglas y narrativa.</p>
+          </div>
+          <div class="chip c-teal">
+            <div class="top"><span class="dot">6</span><h3>Identidad visual</h3></div>
+            <p>Se clona desde una URL, un PDF, un PPTX o una captura.</p>
+          </div>
+          <div class="chip c-purple">
+            <div class="top"><span class="dot">7</span><h3>Validador</h3></div>
+            <p>ChatGPT detiene la generación y pide tu aprobación.</p>
+          </div>
+          <div class="chip c-amber">
+            <div class="top"><span class="dot">8</span><h3>3 factores</h3></div>
+            <p>Contenido, diseño y exposición. La IA solo aporta en el diseño.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">3</span> Relación: la anatomía de un flujo automatizado</p>
+    <div class="panel">
+      <div class="flujo" role="img" aria-label="Anatomía de una automatización: un disparador inicia el flujo, una acción con IA procesa el contenido, la validación revisa la salida y una persona aprueba antes de publicar.">
+        <div class="paso c-blue">
+          <div class="cab"><span class="dot">1</span><h3>Disparador</h3></div>
+          <p>Un evento concreto: un archivo subido, un correo recibido, un formulario.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-teal">
+          <div class="cab"><span class="dot">2</span><h3>Acción con IA</h3></div>
+          <p>Clasificar, extraer, resumir o redactar según una rúbrica definida.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-purple">
+          <div class="cab"><span class="dot">3</span><h3>Validación</h3></div>
+          <p>Entrada, punto intermedio y salida. Un circuit breaker corta el flujo.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-amber">
+          <div class="cab"><span class="dot">4</span><h3>Persona</h3></div>
+          <p>Alguien revisa y aprueba. Sin este paso, el flujo no se publica.</p>
+        </div>
+      </div>
+      <p class="nota-relacion">Disparador → IA → validación → aprobación: quitar el último paso rompe la cadena</p>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">4</span> Lo esencial: automatizar tareas</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Código vs. no-code</h3>
+        <table class="mini-tabla">
+          <tr><th>Con código</th><td>Flexibilidad total, costo alto, requiere perfil técnico.</td></tr>
+          <tr><th>Sin código</th><td>Accesible, rápido y barato; limitado por bloques y conectores.</td></tr>
+          <tr><th>Riesgo</th><td>Vendor lock-in: quedar atado a un solo proveedor.</td></tr>
+        </table>
+      </article>
+
+      <article class="bloque b-teal">
+        <h3>Zapier · Copilot · Make</h3>
+        <ul>
+          <li><strong>Zapier:</strong> conecta más de 7,000 apps; zaps con pasos condicionales.</li>
+          <li><strong>Copilot:</strong> IA generativa dentro de Word, Excel, Outlook y Teams.</li>
+          <li><strong>Make:</strong> editor visual de flujo, datos complejos y ejecución en paralelo.</li>
+        </ul>
+        <p>Elige por la forma del proceso, no por la lista de funciones.</p>
+      </article>
+
+      <article class="bloque b-purple">
+        <h3>Las 5 capas de seguridad</h3>
+        <ul>
+          <li>Validación de datos y resultados.</li>
+          <li>Privacidad y seguridad (Ley N.° 29733).</li>
+          <li>Gestión de errores y contingencias.</li>
+          <li>Monitoreo continuo con KPI y alertas.</li>
+          <li>Ética: transparencia, equidad y agencia humana.</li>
+        </ul>
+      </article>
+
+      <article class="bloque b-amber">
+        <h3>Errores que se multiplican</h3>
+        <table class="mini-tabla">
+          <tr><th>Sin validar</th><td>Un error se replica cientos o miles de veces.</td></tr>
+          <tr><th>Sin circuit breaker</th><td>El fallo se propaga en cascada a otras apps.</td></tr>
+          <tr><th>Sin auditoría</th><td>Nadie puede reconstruir qué hizo el flujo.</td></tr>
+          <tr><th>Sin monitorear</th><td>El proyecto se instala y se olvida.</td></tr>
+        </table>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: el circuito de validación</p>
+    <div class="panel">
+      <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama del circuito de validación: se validan los datos de entrada, luego la integridad a mitad del flujo, luego la salida; si el resultado no cumple el criterio, un circuit breaker detiene el proceso y avisa.">
+        <defs>
+          <marker id="punta1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#54688a"></path>
+          </marker>
+        </defs>
+
+        <rect class="nodo" x="6" y="34" width="220" height="88" rx="12" stroke="#6aa7ff"></rect>
+        <text class="nodo-titulo" x="116" y="72" text-anchor="middle" style="fill:#6aa7ff">Entrada</text>
+        <text class="nodo-texto" x="116" y="98" text-anchor="middle">Cumple el criterio inicial</text>
+
+        <line class="flecha-linea" x1="232" y1="78" x2="282" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="288" y="34" width="220" height="88" rx="12" stroke="#3ed2b2"></rect>
+        <text class="nodo-titulo" x="398" y="72" text-anchor="middle" style="fill:#3ed2b2">Intermedio</text>
+        <text class="nodo-texto" x="398" y="98" text-anchor="middle">Integridad y consistencia</text>
+
+        <line class="flecha-linea" x1="514" y1="78" x2="564" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="570" y="34" width="220" height="88" rx="12" stroke="#b39af7"></rect>
+        <text class="nodo-titulo" x="680" y="72" text-anchor="middle" style="fill:#b39af7">Salida</text>
+        <text class="nodo-texto" x="680" y="98" text-anchor="middle">Listo para publicar</text>
+
+        <line class="flecha-linea" x1="796" y1="78" x2="846" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="852" y="34" width="220" height="88" rx="12" stroke="#f7b955"></rect>
+        <text class="nodo-titulo" x="962" y="72" text-anchor="middle" style="fill:#f7b955">Aprobación</text>
+        <text class="nodo-texto" x="962" y="98" text-anchor="middle">Decide una persona</text>
+
+        <path class="flecha-linea" d="M962 126 L962 158 L116 158 L116 130" marker-end="url(#punta1)"></path>
+        <text class="pie-diagrama" x="540" y="186" text-anchor="middle">Si un punto falla, el circuit breaker detiene el flujo y avisa en lugar de propagar el error</text>
+      </svg>
+      <p class="nota-relacion">Entrada → intermedio → salida → aprobación: tres validaciones y un freno de emergencia</p>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-blue">6</span> Guía de la herramienta: ChatGPT paso a paso</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Quién decide cada factor</h3>
+        <table class="mini-tabla">
+          <tr><th>Contenido</th><td>Humano: qué necesita saber la audiencia.</td></tr>
+          <tr><th>Diseño</th><td>La IA: reglas y referencias son medibles.</td></tr>
+          <tr><th>Exposición</th><td>Humano: sostener y defender el tema.</td></tr>
+        </table>
+        <p>La IA aporta exactamente en la capa que se puede delegar.</p>
+      </article>
+
+      <article class="bloque b-teal">
+        <h3>Prompt Maestro: 9 bloques</h3>
+        <ol>
+          <li><strong>Rol y perfil</strong> (se adapta al tema).</li>
+          <li><strong>Información general</strong> (siempre se edita).</li>
+          <li><strong>Estilo visual de referencia</strong>.</li>
+          <li><strong>Reglas de contenido y rigor</strong> (anti-alucinaciones).</li>
+          <li><strong>Storytelling</strong>.</li>
+          <li><strong>Diseño por diapositiva</strong>.</li>
+          <li><strong>Recursos gráficos</strong> (se borran los que no apliquen).</li>
+          <li><strong>Metodología y validación previa</strong>.</li>
+          <li><strong>Criterios de calidad e instrucción final</strong>.</li>
+        </ol>
+      </article>
+
+      <article class="bloque b-purple">
+        <h3>La plantilla de la guía: 10 bloques</h3>
+        <ol>
+          <li><strong>Rol y perfil:</strong> un equipo multidisciplinario (creativo, diseño, storytelling, investigación, diseño instruccional).</li>
+          <li><strong>Proyecto:</strong> tema, objetivo, público, nivel, número de diapositivas, duración y formato.</li>
+          <li><strong>Estilo visual:</strong> la referencia pegada o adjunta y los atributos a analizar.</li>
+          <li><strong>Contenido:</strong> información precisa y verificable, con fuentes y sin inventar datos.</li>
+          <li><strong>Storytelling:</strong> apertura, contexto, desarrollo, aplicación, reflexión y cierre.</li>
+          <li><strong>Diseño:</strong> una idea por diapositiva, formato 16:9 y composiciones alternadas.</li>
+          <li><strong>Recursos gráficos:</strong> cada recurso con función explicativa, nunca decorativa.</li>
+          <li><strong>Calidad:</strong> legibilidad, exactitud, coherencia visual y fuentes.</li>
+          <li><strong>Metodología:</strong> seis fases, con validación antes de producir.</li>
+          <li><strong>Instrucción final:</strong> calidad de agencia, sin diapositivas llenas de texto.</li>
+        </ol>
+      </article>
+
+      <article class="bloque b-amber">
+        <h3>Gemini · ChatGPT · ChatGPT + Canva</h3>
+        <table class="mini-tabla">
+          <tr><th>Gemini</th><td>Plantilla "enlatada"; hasta unas 13 láminas.</td></tr>
+          <tr><th>ChatGPT</th><td>15 a 50 láminas; extrae el estilo de una URL o PDF.</td></tr>
+          <tr><th>Con Canva</th><td>Diseño avanzado y editable en la nube.</td></tr>
+          <tr><th>Regla</th><td>Pedir Google Slides a Gemini, no PowerPoint.</td></tr>
+        </table>
+      </article>
+
+      <article class="bloque">
+        <h3>Cuatro estilos visuales</h3>
+        <table class="mini-tabla">
+          <tr><th>Corporativo</th><td>Azul, blanco, gris, minimalismo. Empresas.</td></tr>
+          <tr><th>Académico</th><td>Limpio, didáctico, infografías. Universidades.</td></tr>
+          <tr><th>Tecnológico</th><td>Fondos oscuros, hologramas, contrastes. IA.</td></tr>
+          <tr><th>Editorial</th><td>Fotografía, tipografía y composición. Marketing.</td></tr>
+        </table>
+        <p>El estándar se fija con tres decisiones: estilo visual preferido, tipo de presentación y formato de entrega.</p>
+      </article>
+
+      <article class="bloque b-teal">
+        <h3>Generar y corregir en Canva</h3>
+        <ul>
+          <li>El contenido se desarrolla <strong>antes</strong> que el diseño.</li>
+          <li>Ocho pasos: abrir Canva desde ChatGPT, adjuntar contenido, definir diapositivas y estilo, generar, revisar y ajustar.</li>
+          <li>La primera versión no es la final: alterna composiciones, unifica la paleta y prioriza ideas clave.</li>
+          <li>Un prompt de <strong>auditoría</strong> revisa jerarquía, legibilidad, storytelling y coherencia.</li>
+        </ul>
+      </article>
+
+      <article class="bloque b-purple">
+        <h3>Errores que cuestan tokens</h3>
+        <ul>
+          <li><strong>Copiar a ciegas:</strong> si "iconografía" pesa más que "fotografías reales", la IA dibuja.</li>
+          <li><strong>Saltarse el validador:</strong> se generan 20 láminas que se descartan.</li>
+          <li><strong>Cuenta institucional:</strong> los filtros bloquean complementos como Canva.</li>
+          <li><strong>Generar de más:</strong> el límite diario puede bloquear 24 horas.</li>
+          <li><strong>Correo directo:</strong> el docente solo recibe por la plataforma del curso.</li>
+        </ul>
+      </article>
+
+      <article class="bloque">
+        <h3>La plantilla: qué editar antes de enviar</h3>
+        <table class="mini-tabla">
+          <tr><th>Bloque 2</th><td>Completa tema, objetivo, público, nivel, cantidad, duración y formato.</td></tr>
+          <tr><th>Bloque 3</th><td>Pega la referencia visual: URL, PDF, PPTX o captura.</td></tr>
+          <tr><th>Bloque 7</th><td>Borra los recursos gráficos que no necesitas.</td></tr>
+          <tr><th>Bloque 9</th><td>Deja activo el punto de detención para aprobar el índice.</td></tr>
+          <tr><th>Bloque 1</th><td>Ajusta el rol al tema ("especialista en pastelería").</td></tr>
+          <tr><th>Variante B</th><td>Escribe @Canva solo si delegas el diseño.</td></tr>
+        </table>
+        <p>La plantilla completa, lista para copiar y pegar, está en el apunte de la clase.</p>
+      </article>
+
+      <article class="bloque b-amber">
+        <h3>Errores de la primera versión</h3>
+        <table class="mini-tabla">
+          <tr><th>Exceso de texto</th><td>Resumir y priorizar ideas clave.</td></tr>
+          <tr><th>Imágenes genéricas</th><td>Sustituir por imágenes del concepto.</td></tr>
+          <tr><th>Diseño repetitivo</th><td>Alternar composiciones visuales.</td></tr>
+          <tr><th>Colores inconsistentes</th><td>Aplicar una paleta uniforme.</td></tr>
+          <tr><th>Falta de narrativa</th><td>Reorganizar la secuencia.</td></tr>
+          <tr><th>Edición</th><td>Verificar que cada elemento sea un objeto independiente.</td></tr>
+        </table>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">7</span> Flujo del concepto: el Prompt Maestro y el validador</p>
+    <div class="panel">
+      <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo: el prompt maestro depurado se envia a ChatGPT, que propone el indice y se detiene en el validador; tras la aprobacion, Canva genera la presentacion editable.">
+        <defs>
+          <marker id="punta2" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#54688a"></path>
+          </marker>
+        </defs>
+
+        <rect class="nodo" x="6" y="34" width="220" height="88" rx="12" stroke="#6aa7ff"></rect>
+        <text class="nodo-titulo" x="116" y="72" text-anchor="middle" style="fill:#6aa7ff">Prompt depurado</text>
+        <text class="nodo-texto" x="116" y="98" text-anchor="middle">9 bloques ajustados</text>
+
+        <line class="flecha-linea" x1="232" y1="78" x2="282" y2="78" marker-end="url(#punta2)"></line>
+
+        <rect class="nodo" x="288" y="34" width="220" height="88" rx="12" stroke="#3ed2b2"></rect>
+        <text class="nodo-titulo" x="398" y="72" text-anchor="middle" style="fill:#3ed2b2">ChatGPT propone</text>
+        <text class="nodo-texto" x="398" y="98" text-anchor="middle">Índice y enfoque visual</text>
+
+        <line class="flecha-linea" x1="514" y1="78" x2="564" y2="78" marker-end="url(#punta2)"></line>
+
+        <rect class="nodo" x="570" y="34" width="220" height="88" rx="12" stroke="#b39af7"></rect>
+        <text class="nodo-titulo" x="680" y="72" text-anchor="middle" style="fill:#b39af7">Validador</text>
+        <text class="nodo-texto" x="680" y="98" text-anchor="middle">Se detiene y te pregunta</text>
+
+        <line class="flecha-linea" x1="796" y1="78" x2="846" y2="78" marker-end="url(#punta2)"></line>
+
+        <rect class="nodo" x="852" y="34" width="220" height="88" rx="12" stroke="#f7b955"></rect>
+        <text class="nodo-titulo" x="962" y="72" text-anchor="middle" style="fill:#f7b955">Canva diseña</text>
+        <text class="nodo-texto" x="962" y="98" text-anchor="middle">Enlace Editar en Canva</text>
+
+        <path class="flecha-linea" d="M680 126 L680 158 L116 158 L116 130" marker-end="url(#punta2)"></path>
+        <text class="pie-diagrama" x="540" y="186" text-anchor="middle">Si pides cambios, el flujo vuelve al prompt: ahí es donde se corrige el encargo, no la presentación</text>
+      </svg>
+      <p class="nota-relacion">El validador no es un trámite: es el punto donde se detectan los errores de encargo</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">8</span> La regla de oro y el flujo con @Canva</p>
+    <div class="panel">
+      <div class="flujo" role="img" aria-label="Flujo de trabajo con Canva: se depura el prompt maestro, ChatGPT propone el indice, el validador pide aprobacion y, al validarlo, Canva disena con un enlace editable.">
+        <div class="paso c-blue">
+          <div class="cab"><span class="dot">1</span><h3>Depurar</h3></div>
+          <p>Adaptas el bloque 1 al tema y borras las reglas y recursos gráficos que no apliquen.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-teal">
+          <div class="cab"><span class="dot">2</span><h3>Proponer</h3></div>
+          <p>ChatGPT analiza el encargo y devuelve índice, enfoque visual y estructura.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-purple">
+          <div class="cab"><span class="dot">3</span><h3>Validar</h3></div>
+          <p>Revisas y respondes "Validado / Proceda" o pides observaciones de diseño.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-amber">
+          <div class="cab"><span class="dot">4</span><h3>Diseñar</h3></div>
+          <p>Canva ejecuta la diagramación y devuelve el enlace "Editar en Canva".</p>
+        </div>
+      </div>
+      <p class="nota-relacion">Depurar → proponer → validar → diseñar: si editas la lámina, el error estaba en el encargo</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">9</span> Cifras de la sesión</p>
+    <div class="stats">
+      <div class="stat"><div class="valor">7,000+</div><div class="etiqueta">aplicaciones conectables en Zapier</div></div>
+      <div class="stat"><div class="valor">80 %</div><div class="etiqueta">menos tiempo de revisión preliminar (caso de los redactores)</div></div>
+      <div class="stat"><div class="valor">45 %</div><div class="etiqueta">más conversión de leads a matriculados (caso ISIL)</div></div>
+      <div class="stat"><div class="valor">60 %</div><div class="etiqueta">menos tiempo administrativo de asesores (caso ISIL)</div></div>
+      <div class="stat"><div class="valor">9</div><div class="etiqueta">bloques del Prompt Maestro</div></div>
+      <div class="stat"><div class="valor">1</div><div class="etiqueta">bloque que se edita siempre: información general</div></div>
+      <div class="stat"><div class="valor">13</div><div class="etiqueta">láminas aproximadas que entrega Gemini Canvas</div></div>
+      <div class="stat"><div class="valor">15–50</div><div class="etiqueta">láminas que admite ChatGPT con el prompt maestro</div></div>
+      <div class="stat"><div class="valor">3</div><div class="etiqueta">factores de una presentación: contenido, diseño y exposición</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="ejemplo">
+      <span class="marca" aria-hidden="true">E</span>
+      <div>
+        <h3>Ejemplo de la clase</h3>
+        <p><strong>Follow-up de leads de posgrado (ISIL):</strong> el prospecto descarga un brochure y el flujo registra el lead en el CRM con etiqueta del programa, envía un WhatsApp de bienvenida con video del director, programa correos el día 2 (testimonios del sector) y el día 5 (webinar), y si no hay respuesta, Copilot arma un correo personalizado a partir del LinkedIn. Al día 7, el asesor llama con todo el contexto ya preparado. La automatización prepara; el asesor decide.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="ejemplo">
+      <span class="marca" aria-hidden="true">E</span>
+      <div>
+        <h3>Ejemplo de la clase</h3>
+        <p><strong>Gastronomía peruana:</strong> el docente copió el Prompt Maestro sin depurarlo y dejó activadas "imágenes minimalistas" e "iconografía" por encima de "fotografías reales". ChatGPT obedeció literalmente la prioridad y generó dibujos e íconos en lugar de fotos de los platos típicos. La lección: el error estaba en el encargo, no en la herramienta.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="recuerda">
+      <p class="cab"><span class="tick" aria-hidden="true">✓</span> Qué recordar</p>
+      <ul>
+        <li>Disparador, acción, validación y aprobación: ese es el flujo.</li>
+        <li>Zapier conecta, Copilot asiste, Make procesa datos complejos.</li>
+        <li>Valida entrada, punto intermedio y salida; agrega un circuit breaker.</li>
+        <li>Datos personales en Perú: Ley N.° 29733, minimización y trazabilidad.</li>
+        <li>La IA diseña; el contenido y la exposición siguen siendo tuyos.</li>
+        <li>Regla de oro: si editas lo que hizo la IA, tu prompt estuvo mal.</li>
+        <li>Bloque 2 siempre; bloque 7 siempre se depura.</li>
+        <li>Valida el índice antes de que se generen las diapositivas.</li>
+        <li>Usa cuenta personal: las institucionales bloquean complementos.</li>
+        <li>La mejor automatización es invisible: funciona tan bien que olvidas que alguna vez hiciste esa tarea manualmente.</li>
+      </ul>
+      <p class="frase"><strong>Idea clave:</strong> automatiza la ejecución, nunca la responsabilidad. ChatGPT es el orquestador y Canva el brazo ejecutor del diseño; el Prompt Maestro es el contrato entre ambos: si el contrato es claro, no hay retrabajo.</p>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <span>Fuente: apuntes de la Clase 11 — Inteligencia Artificial Aplicada (ISIL, 2026-2). Presentación del Tema 11, guía de la herramienta ChatGPT y demostración práctica de la sesión.</span>
+    <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
+  </footer>
+
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 33 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.1 ¿Qué es y para qué sirve?</h3>
+    <p>Qué es: la creación de flujos de trabajo automatizados mediante interfaces visuales intuitivas que no requieren conocimientos de programación. Para qué sirve: para conectar dos o más aplicaciones y dejar que una tarea repetitiva se ejecute sola, sin que nadie escriba código. Analogía simple: es una línea de ensamblaje digital. Una pieza entra (el disparador), se procesa (las acciones) y sale un resultado (la…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.2 Características</h3>
+    <p>Estas plataformas usan construcciones lógicas basadas en disparadores (triggers) y acciones (actions), configuradas arrastrando y soltando elementos, completando formularios y seleccionando opciones predefinidas. Característica · Qué significa en la práctica Interfaces visuales basadas en bloques · El flujo se ve, no se escribe en código Lógica de disparadores y acciones · &quot;Cuando pase X, haz Y&quot; Conectores…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.3 Beneficios</h3>
+    <p>Beneficio · Detalle Democratización de la automatización · La automatización se vuelve accesible para más personas y empresas Reducción significativa de costos · Puede disminuir los gastos operativos y de mano de obra Rapidez en la implementación · Se implementa rápido, con resultados más veloces Flexibilidad y adaptabilidad · Se adapta a los cambios en las necesidades del negocio</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.4 Limitaciones</h3>
+    <p>Limitación · Consecuencia práctica Personalización · Restricciones en personalización profunda Conectores · Dependencia de los conectores disponibles Costos · Costos escalables por volumen Procesamiento · Limitaciones en procesamiento complejo</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2.4 Otras plataformas relevantes</h3>
+    <p>Plataforma · Enfoque Power Automate · Automatización de Microsoft Tray.io · Integración y automatización N8N · Automatización de código abierto</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2.5 Comparativa: elige el flujo, no la marca</h3>
+    <p>Criterio · Zapier · Microsoft Copilot · Make Núcleo de la propuesta · Conectar apps con disparadores y acciones · IA generativa dentro de las herramientas de Microsoft 365 · Flujos visuales con procesamiento avanzado de datos Punto de entrada típico · Evento en una aplicación (correo, formulario, hoja) · Instrucción en lenguaje natural dentro de Word, Excel, Outlook o Teams · Módulo disparador dentro de un…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3. Casos de uso en contextos reales</h3>
+    <p>3.1 Caso 1: revisión de documentos y retroalimentación Situación: un redactor jefe debe revisar 120 textos producidos por cuatro equipos de redactores distintos. Paso · Acción Trigger · Los redactores envían textos vía Google Classroom Acción 1 · Zapier detecta el nuevo envío y descarga el archivo a una carpeta organizada por categoría y redactor en Google Drive</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3.1 Caso 1: revisión de documentos y retroalimentación</h3>
+    <p>Situación: un redactor jefe debe revisar 120 textos producidos por cuatro equipos de redactores distintos. Paso · Acción Trigger · Los redactores envían textos vía Google Classroom Acción 1 · Zapier detecta el nuevo envío y descarga el archivo a una carpeta organizada por categoría y redactor en Google Drive Acción 2 · Envía el documento a Claude (Anthropic) o GPT-4 para análisis preliminar con rúbrica predefinida</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3.3 Qué tienen en común los dos casos</h3>
+    <p>Elemento · Caso 1 (revisión de textos) · Caso 2 (follow-up de leads) Disparador · Envío de un texto en Classroom · Descarga de un brochure Cuerpo de IA · Análisis con rúbrica predefinida · Redacción y personalización de mensajes Dónde vive el resultado · Documento en Google Docs · Correos, WhatsApp y CRM Aprobación humana · Redactor jefe (paso 6) · Asesor en la llamada del día 7</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4. Precauciones y validación de automatizaciones</h3>
+    <p>4.1 Las cinco capas de una automatización segura Qué es: el conjunto de controles que convierte una automatización en un proceso confiable y auditable. Para qué sirve: para que un error no se replique cientos o miles de veces en silencio, y para poder demostrar quién hizo qué. Capa · Qué cubre Validación de datos · Asegura la precisión y confiabilidad de los datos automatizados</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4.1 Las cinco capas de una automatización segura</h3>
+    <p>Qué es: el conjunto de controles que convierte una automatización en un proceso confiable y auditable. Para qué sirve: para que un error no se replique cientos o miles de veces en silencio, y para poder demostrar quién hizo qué. Capa · Qué cubre Validación de datos · Asegura la precisión y confiabilidad de los datos automatizados Privacidad y seguridad · Protege la información sensible y cumple con regulaciones</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4.5 Monitoreo continuo y mejora iterativa</h3>
+    <p>Las automatizaciones no son proyectos de &quot;implementar y olvidar&quot;. Requieren monitoreo activo. Elemento · Para qué sirve KPI específicos por automatización · Métricas personalizadas para cada automatización Alertas proactivas · Notificaciones inmediatas de problemas potenciales Revisiones periódicas programadas · Evaluaciones regulares para garantizar el rendimiento</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4.6 Consideraciones éticas</h3>
+    <p>Principio · Qué exige Transparencia · Que los usuarios finales comprendan cómo funciona la IA y cómo se usan sus datos Equidad · Evitar que la IA perpetúe o amplifique los sesgos y garantizar resultados justos Agencia humana · Mantener el control humano sobre las decisiones críticas y evitar la dependencia excesiva de la IA Resumen: la validación no es un trámite final, es parte del diseño. Una automatización sin…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5. Ficha técnica de ChatGPT</h3>
+    <p>Dato · Detalle Nombre oficial · OpenAI ChatGPT Enlace · chatgpt.com Empresa · OpenAI Fundadores · Sam Altman, Greg Brockman, Ilya Sutskever, Wojciech Zaremba, John Schulman y Elon Musk (en 2015)</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>6.1 Qué es y para qué sirve</h3>
+    <p>Qué es: una instrucción extensa, detallada y preconfigurada —de unas dos páginas y media— que establece roles, reglas de contenido, estructura narrativa y criterios de diseño para obtener resultados precisos sin retrabajo. Para qué sirve: para delegar el trabajo completo a la IA bajo parámetros exactos y recibir una presentación que no tengas que editar. Regla de oro de la clase: &quot;Si estás editando algo que le…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>6.4 Los 8 elementos que debes definir</h3>
+    <p>Crear una presentación de alto impacto con ChatGPT exige definir mucho más que el contenido: # · Elemento · Qué se indica 1 · Contexto y objetivo · ¿De qué trata? ¿Qué quieres comunicar, enseñar o conseguir? 2 · Público objetivo · Estudiantes, docentes, empresarios, directivos, clientes o especialistas 3 · Estilo visual de referencia · Una página web, presentación, imagen, PDF o enlace que represente el diseño…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>6.6 El bloque 2 es la única sección obligatoria</h3>
+    <p>El resto del prompt puede copiarse tal cual. El bloque 2 es el que cambia en cada proyecto, y sus campos tienen efectos concretos: Campo · Qué controla Tema y subtema · El alcance del contenido Objetivo · Qué debe conseguir la presentación Público objetivo · El lenguaje y la profundidad (por ejemplo, empresarios o niños)</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>7.1 ¿Qué es y para qué sirve?</h3>
+    <p>Qué es: la personalidad estética y la distribución estratégica de una presentación. Para qué sirve: para que la IA aplique el mismo sistema gráfico en todas las láminas sin que tengas que describir colores y márgenes en cada una.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>12. Cómo mejorar una presentación después de generarla</h3>
+    <p>Un error frecuente es considerar que la primera versión generada por IA ya está terminada. La calidad profesional se consigue revisando y mejorando: Problema identificado · Instrucción para corregirlo Exceso de texto · Resume el contenido y prioriza ideas clave. Imágenes genéricas · Sustituye por imágenes relacionadas directamente con el concepto. Diseño repetitivo · Alterna composiciones visuales.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>13. Exportación y entrega</h3>
+    <p>Formato · Utilidad PPTX · Continuar editando en PowerPoint PDF · Distribución y lectura MP4 · Presentaciones audiovisuales Enlace de Canva · Compartir y colaborar</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>14. Técnicas de fotografía: lecturas de la guía</h3>
+    <p>La guía incluye un bloque de fotografía porque una presentación profesional no se sostiene solo con texto y diagramas: Tipo · Lectura recomendada · Aporta libro · Ang, T. (2025). How to photograph absolutely everything · Encuadre y técnica para cualquier objeto libro · Freeman, M. (2013). The photographer&#x27;s eye · Composición y diseño para fotos digitales libro · Hunter, F., Biver, S. y Fuqua, P. (2021).…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>15.1 ¿Qué son y para qué sirven?</h3>
+    <p>Qué es: toda presentación —en educación básica, superior o en el ámbito laboral— se sustenta en tres pilares: contenido, diseño (identidad visual) y exposición. Para qué sirve: para delimitar hasta dónde llega la utilidad de la IA. En dos de los tres factores, la IA no aporta; en el tercero, aporta una diferencia enorme. Factor · Qué implica · ¿La IA puede decidirlo? Contenido · Selección del tema e información…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>15.2 La demostración del inicio de clase</h3>
+    <p>Con un simulador de diseño, el docente mostró cómo decisiones básicas —alineación a izquierda, derecha o centro, una o dos columnas, contraste de color, tamaño de letra e iconografía— pueden arruinar o potenciar una lámina cuando no se alinean a estándares corporativos o estéticos. flowchart LR A[&quot;Contenidolo que la audiencia debe saber&quot;] --&gt; C{&quot;¿Sustentoen la exposición?&quot;} B[&quot;Diseñoidentidad visual&quot;] --&gt; D{&quot;¿La…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>16.1 Comparación</h3>
+    <p>Característica · Gemini (extensión Canvas) · ChatGPT (solo con Prompt Maestro) · ChatGPT + complemento Canva Nivel de diseño · Básico / rígido (&quot;enlatado&quot;) · Intermedio / estructurado · Avanzado / profesional y dinámico Capacidad de láminas · Limitada (hasta unas 13) · Alta (15, 20, 30, 40 o 50) · Alta (unas 20 a 50) Personalización visual · Muy baja; ignora cambios complejos de diagramación · Media; extrae…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>16.4 La &quot;tropicalización&quot; con @Canva</h3>
+    <p>ChatGPT actúa como orquestador (define reglas, textos, estructura e iniciativas) y delega la parte creativa y de diagramación a Canva. Al finalizar, genera un enlace directo con el botón &quot;Editar en Canva&quot;, donde el diseño se abre en la cuenta del usuario. Ejemplos de la clase: una presentación de 20 diapositivas sobre &quot;Videojuegos&quot; dirigida a niños y adolescentes (nivel básico, contexto educativo), con @Canva…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>17. Procedimiento A: conectar Canva con ChatGPT</h3>
+    <p>Ingresar a una cuenta personal de ChatGPT. Ir al menú lateral y seleccionar la sección Complementos (o Explorar GPTs / Aplicaciones). Buscar Canva en el buscador de complementos y hacer clic sobre el resultado. Presionar Instalar complemento (o Conectar). En la ventana emergente, esperar y hacer clic en Conectar con Canva. El docente advierte no presionar &quot;Continuar con ChatGPT&quot; antes de tiempo.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>19. Errores comunes y advertencias</h3>
+    <p>Error · Situación · Efecto o riesgo Copiar y pegar a ciegas · No depurar el Prompt Maestro: dejar &quot;iconografía&quot; o &quot;imágenes minimalistas&quot; por encima de &quot;fotografías reales&quot; · La IA obedece literalmente la prioridad y genera dibujos en lugar de fotos Pedir PowerPoint a Gemini · Solicitar formato PowerPoint en Canvas · El docente recomienda pedir Google Slides, para estar en sintonía con su ecosistema, y descargar…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>21. Ejemplo práctico integrado: automatizar la preparación de una evaluación grupal</h3>
+    <p>Ejemplo ilustrativo, construido con los elementos de la sesión (disparador, IA, entrega y aprobación humana). 21.1 Situación Un grupo de cuatro estudiantes de ISIL debe entregar un trabajo grupal de arquitectura empresarial en cinco días. Cada avance se sube a una carpeta compartida y el docente pide comentarios sobre estructura, fuentes y coherencia argumentativa. 21.2 Flujo de automatización propuesto…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>21.1 Situación</h3>
+    <p>Un grupo de cuatro estudiantes de ISIL debe entregar un trabajo grupal de arquitectura empresarial en cinco días. Cada avance se sube a una carpeta compartida y el docente pide comentarios sobre estructura, fuentes y coherencia argumentativa.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>22. Preguntas de repaso con respuestas</h3>
+    <p>22.1 Sobre automatización (Conceptual) ¿Cuál es la diferencia fundamental entre automatización tradicional con código y automatización no-code? Respuesta: la automatización con código la construye un desarrollador y ofrece flexibilidad total, con alto costo inicial y mantenimiento técnico. La no-code se arma con interfaces visuales de disparadores y acciones: es accesible, rápida y barata, pero está limitada por…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>24. Glosario</h3>
+    <p>Término · Definición · Ejemplo Automatización no-code · Flujo armado con interfaces visuales, sin programación · Conectar Gmail con Sheets Trigger / disparador · Evento que inicia el flujo · Un archivo nuevo en Drive Zap · Flujo de Zapier: un trigger y sus acciones · Trigger &quot;nuevo correo&quot; + acción &quot;crear fila&quot; Multi-step Zap · Flujo con pasos condicionales, bucles y filtros · Si es alta prioridad, escala al jefe</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Bibliografía citada en la presentación del Tema 11</h3>
+    <p>Aprender 21. (2026, 3 de enero). Automatización con IA: n8n vs Make vs Zapier (Guía 2026). Microsoft. (s. f.). Adoptar automatización con Copilot en Power Automate. Microsoft Learn. Oyarzún, R. (2025, 8 de mayo). Tutorial Zapier en español 2025: Cómo automatiza tu negocio sin programar paso a paso [Video]. YouTube.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Bibliografía citada en la guía de ChatGPT</h3>
+    <p>Ang, T. (2025). How to photograph absolutely everything. DK. Freeman, M. (2013). The photographer&#x27;s eye: Graphic guide: Composition and design for better digital photos. Focal Press. Hunter, F., Biver, S., &amp; Fuqua, P. (2021). Light—Science &amp; magic: An introduction to photographic lighting. Routledge. Langford, M., Bruce, A., Fox, A., &amp; Sawdon Smith, R. (2025). Langford&#x27;s basic photography: The guide for serious…</p>
+  </article>
+    </div>
+  </details>
+</section>
+</div>
+</body>
+</html>

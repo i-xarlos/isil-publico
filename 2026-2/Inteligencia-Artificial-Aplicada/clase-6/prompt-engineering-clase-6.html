@@ -635,6 +635,67 @@
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 13 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>¿Cómo funciona por dentro? (4 pasos)</h3>
+    <p>TOKENIZACIÓN → tu texto se parte en pedacitos (tokens) ANÁLISIS SEMÁNTICO → el modelo interpreta significado y contexto. Ejemplo: en banca, distingue &quot;banco&quot; como entidad financiera frente a &quot;banco&quot; como asiento. GENERACIÓN PREDICTIVA → predice el siguiente token según patrones aprendidos SÍNTESIS → arma todo en texto coherente Desde esta perspectiva, la IA no &quot;conoce&quot; la respuesta: predice las palabras…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Básico vs. mejorado</h3>
+    <p>Prompt · Output que obtienes Básico · &quot;Háblame sobre Lima&quot; · Texto genérico: historia, geografía, población, sin foco Mejorado · &quot;Escribe un párrafo de 100 palabras sobre Lima enfocado en gastronomía contemporánea, menciona 3 restaurantes reconocidos, tono informativo pero entusiasta como revista de turismo&quot; · Párrafo acotado, con ejemplos y tono correcto Otro par de la clase: Poco efectivo: &quot;Háblame de la historia&quot;.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Beneficios medidos *(interno de la clase, no generalizar)*</h3>
+    <p>Beneficio · Cifra de clase (interno de la clase, no generalizar) Reducción de tiempo de primer borrador · 60-80% Aumento de precisión y relevancia · 40-50% Menos iteraciones para buen resultado · 70% menos Más consistencia entre sesiones · 35% mejor</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Limitaciones (con incidencia particular en el Perú)</h3>
+    <p>Corte temporal: no sabe lo que pasó después de su entrenamiento. Sensibilidad al contexto: cambias una coma y el resultado cambia mucho. Barrera idiomática: entrenado en inglés, sufre con modismos (&quot;chévere&quot;, &quot;bacán&quot;, jerga local). Sesgo cultural: si no se especifica el &quot;contexto peruano&quot;, el modelo tiende a responder con referencias de otros contextos. Dependencia del modelo: un prompt bueno en ChatGPT puede…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2. Estructura de Prompts Efectivos: Modelo COFRE</h3>
+    <p>Qué es: La organización lógica de la instrucción. Una estructura adecuada orienta al modelo en lugar de dejar la interpretación librada al azar. En clase se presenta como COFRE: Contexto, Objetivo, Formato, Restricciones, Ejemplos (más Audiencia como complemento). Resulta útil emplearlo como lista de verificación previa al envío. Los 5 (+1) componentes Letra · Componente · Pregunta que responde · Ejemplo C ·…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Ejemplo armado</h3>
+    <p>Prompt pobre: &quot;Escribe sobre turismo en Perú&quot;. Prompt COFRE mejorado: Contexto: Blog de viajes para jóvenes latinoamericanos. Objetivo: Redacta una intro de 120 palabras sobre turismo en Cusco. Audiencia: viajeros de 20-30 años, presupuesto medio. Formato: 2 párrafos + lista de 3 imperdibles. Restricciones: tono entusiasta pero no exagerado, menciona Inti Raymi, evita clichés. Ejemplo: con estilo como [pega…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3. Personalización y Tono</h3>
+    <p>¿Qué es personalización? Adaptar la instrucción para que el output resulte adecuado a la audiencia, la marca o la cultura. El mismo contenido dirigido a un directorio requiere un tratamiento distinto que el dirigido a un cliente de Gamarra. 4 ejes de la clase: Eje · Qué ajustas · Ejemplo peruano Por audiencia · Vocabulario y complejidad · Universitarios limeños: &quot;chévere&quot;; corporativo: tono ejecutivo; rural:…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>¿Qué es personalización?</h3>
+    <p>Adaptar la instrucción para que el output resulte adecuado a la audiencia, la marca o la cultura. El mismo contenido dirigido a un directorio requiere un tratamiento distinto que el dirigido a un cliente de Gamarra. 4 ejes de la clase: Eje · Qué ajustas · Ejemplo peruano Por audiencia · Vocabulario y complejidad · Universitarios limeños: &quot;chévere&quot;; corporativo: tono ejecutivo; rural: claro y sin tecnicismos Por…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Tonos: cuándo usar cada uno</h3>
+    <p>Tono · Cuándo · Ejemplo de instrucción Técnico · Docs, papers, manuales · &quot;Usa terminología de ingeniería civil para profesionales de infraestructura en Perú&quot; Educativo · Tutoriales, guías · &quot;Tono didáctico, como profesor universitario peruano explicando a pregrado&quot; Empático · Soporte, salud, servicio · &quot;Tono comprensivo, reconoce las dificultades de emprendedores peruanos en incertidumbre&quot; Motivacional ·…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Glosario</h3>
+    <p>Término · Definición · Ejemplo Prompt · Instrucción que le das a la IA · &quot;Resume este texto en 5 bullets&quot; Input / Output · Lo que entra / lo que sale · Input: pregunta + contexto; Output: respuesta Tokenización · Partir texto en unidades mínimas · &quot;Inteligencia&quot; → [&quot;Intel&quot;, &quot;igencia&quot;, ...] COFRE · Contexto, Objetivo, Formato, Restricciones, Ejemplos · Checklist para armar prompts</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de Reflexión</h3>
+    <p>Aplicada — Toma el prompt &quot;escribe sobre turismo en Perú&quot; y reescríbelo con COFRE completo para tu carrera. ¿Qué cambió en el output? Comparativa — Prueba el mismo prompt en ChatGPT y Gemini. ¿Qué diferencias ves y por qué crees que pasan? Crítica — Si personalizas tanto que la IA solo te confirma lo que quieres oír (sesgo cultural), ¿sigues aprendiendo? ¿Cómo lo evitas?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Conexión con la sesión</h3>
+    <p>Gemini ejemplifica la ingeniería de prompts aplicada: un buen resultado depende de estructurar la instrucción con rol, contexto, tarea, restricciones y formato. Al igual que el modelo COFRE visto en clase, Gemini muestra que la calidad del input determina la calidad del output.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Fuentes</h3>
+    <p># · Fuente · Tipo · URL 1 · Brown, T. et al. (2020). Language models are few-shot learners · Académica 2 · IBM (2025). La guía de 2025 para el prompt engineering · Oficial 3 · Unitec (2024). 200+1 prompts para educación: guía para docentes innovadores · Oficial Material Complementario</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";

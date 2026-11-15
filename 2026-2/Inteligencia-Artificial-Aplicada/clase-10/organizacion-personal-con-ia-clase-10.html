@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infografía Clase 10 — Cómo usar IA para organizarme mejor · Inteligencia Artificial Aplicada</title>
+<meta name="description" content="Infografía de estudio de la Clase 10 de Inteligencia Artificial Aplicada (ISIL, 2026-2): planificación automatizada, integración de calendarios, herramientas de productividad, visualización de prioridades y NotebookLM como cuaderno anclado.">
+<style>
+  :root{
+    --bg:#0d1526;
+    --panel-head:#0a1120;
+    --card:#152238;
+    --card-2:#182742;
+    --ink:#e9eff8;
+    --ink-soft:#a9bad2;
+    --line:#27395a;
+    --blue:#6aa7ff;
+    --blue-bg:#16294a;
+    --teal:#3ed2b2;
+    --teal-bg:#113a36;
+    --purple:#b39af7;
+    --purple-bg:#241d47;
+    --amber:#f7b955;
+    --amber-bg:#3a2c12;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height:1.5;
+  }
+  .hoja{max-width:1180px;margin:0 auto;padding:22px 18px 34px;}
+
+  /* ---------- Franja superior ---------- */
+  .franja{
+    background:var(--panel-head);
+    border:1px solid var(--line);
+    color:#fff;
+    border-radius:16px;
+    padding:22px 26px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:12px;
+    position:relative;
+    overflow:hidden;
+  }
+  .franja::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:0;
+    height:4px;
+    background:linear-gradient(90deg,var(--blue) 0 25%,var(--teal) 25% 50%,var(--purple) 50% 75%,var(--amber) 75% 100%);
+    opacity:.9;
+  }
+  .franja h1{margin:0;font-size:1.72rem;letter-spacing:-.01em;}
+  .franja .sub{
+    margin:6px 0 0;
+    font-size:.82rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#9db8dc;
+  }
+  .franja .meta{
+    font-size:.8rem;
+    color:#c3d4ea;
+    text-align:right;
+    max-width:340px;
+  }
+
+  /* ---------- Secciones y títulos (siempre fuera del bloque) ---------- */
+  section{margin-top:24px;}
+  .rotulo{
+    display:flex;align-items:center;gap:10px;
+    margin:0 0 12px;
+    font-size:.82rem;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+  .rotulo .num{
+    width:26px;height:26px;border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:#0d1526;font-size:.82rem;flex:none;font-weight:800;
+  }
+  .n-blue{background:var(--blue);}
+  .n-teal{background:var(--teal);}
+  .n-purple{background:var(--purple);}
+  .n-amber{background:var(--amber);}
+
+  /* ---------- Fila superior ---------- */
+  .fila{display:grid;grid-template-columns:minmax(240px,1fr) 2.1fr;gap:16px;align-items:start;}
+  .tarjeta{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+  }
+  .idea p.texto{margin:0;font-size:1.04rem;font-weight:700;}
+
+  .conceptos .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:12px;
+  }
+  .chip{
+    border:1px solid;
+    border-radius:12px;
+    padding:12px 14px;
+    background:var(--card-2);
+  }
+  .chip .top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+  .chip .dot{
+    width:22px;height:22px;border-radius:50%;
+    color:#0d1526;font-size:.72rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .chip h3{margin:0;font-size:.98rem;}
+  .chip p{margin:0;font-size:.86rem;color:var(--ink-soft);}
+  .c-blue{border-color:#31548c;} .c-blue h3{color:var(--blue);} .c-blue .dot{background:var(--blue);}
+  .c-teal{border-color:#1f6b5e;} .c-teal h3{color:var(--teal);} .c-teal .dot{background:var(--teal);}
+  .c-purple{border-color:#4d3f86;} .c-purple h3{color:var(--purple);} .c-purple .dot{background:var(--purple);}
+  .c-amber{border-color:#8a6a2a;} .c-amber h3{color:var(--amber);} .c-amber .dot{background:var(--amber);}
+
+  /* ---------- Relación dominante ---------- */
+  .panel{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:24px 20px 18px;
+  }
+  .flujo{
+    display:flex;
+    align-items:stretch;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .paso{
+    flex:1 1 180px;
+    border:1px solid;
+    border-radius:12px;
+    padding:14px 16px;
+    min-height:104px;
+    background:var(--card-2);
+  }
+  .paso .cab{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .paso .cab .dot{
+    width:24px;height:24px;border-radius:50%;color:#0d1526;
+    font-size:.75rem;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .paso h3{margin:0;font-size:1rem;}
+  .paso p{margin:0;font-size:.88rem;color:var(--ink-soft);}
+  .flecha{
+    align-self:center;
+    flex:0 0 auto;
+    color:#6f85a3;
+    font-size:1.3rem;
+    line-height:1;
+  }
+  .nota-relacion{
+    margin:16px auto 0;
+    text-align:center;
+    font-size:.88rem;
+    font-weight:700;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Diagrama de flujo SVG ---------- */
+  .svg-flujo{display:block;width:100%;height:auto;}
+  .svg-flujo .nodo{fill:var(--card-2);stroke-width:2;}
+  .svg-flujo .nodo-titulo{fill:var(--ink);font-size:17px;font-weight:700;font-family:inherit;}
+  .svg-flujo .nodo-texto{fill:var(--ink-soft);font-size:13.5px;font-family:inherit;}
+  .svg-flujo .flecha-linea{stroke:#54688a;stroke-width:2.5;fill:none;}
+  .svg-flujo .pie-diagrama{fill:var(--ink-soft);font-size:14px;font-weight:600;font-family:inherit;}
+
+  /* ---------- Contenido ampliado ---------- */
+  .ampliado .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(255px,1fr));
+    gap:14px;
+  }
+  .bloque{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:5px solid var(--blue);
+    border-radius:12px;
+    padding:14px 16px;
+  }
+  .bloque.b-teal{border-left-color:var(--teal);}
+  .bloque.b-purple{border-left-color:var(--purple);}
+  .bloque.b-amber{border-left-color:var(--amber);}
+  .bloque h3{margin:0 0 8px;font-size:.95rem;color:var(--ink);}
+  .bloque ul{margin:0;padding-left:18px;}
+  .bloque li{font-size:.87rem;color:var(--ink-soft);margin-bottom:5px;}
+  .bloque li strong{color:var(--ink);}
+  .bloque p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);}
+  .mini-tabla{width:100%;border-collapse:collapse;font-size:.83rem;}
+  .mini-tabla th,.mini-tabla td{
+    text-align:left;padding:5px 6px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .mini-tabla th{color:var(--ink);font-weight:700;}
+  .mini-tabla tr:last-child th,.mini-tabla tr:last-child td{border-bottom:none;}
+
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:12px;
+  }
+  .stat{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:12px 14px;
+    text-align:center;
+  }
+  .stat .valor{font-size:1.5rem;font-weight:800;color:var(--blue);}
+  .stat .etiqueta{font-size:.8rem;color:var(--ink-soft);}
+
+  /* ---------- Ejemplo ---------- */
+  .ejemplo{
+    background:var(--amber-bg);
+    border:1px solid #6d5426;
+    border-radius:14px;
+    padding:16px 20px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .ejemplo .marca{
+    width:30px;height:30px;border-radius:50%;
+    background:var(--amber);color:#0d1526;font-weight:800;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .ejemplo h3{margin:2px 0 6px;font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;color:var(--amber);}
+  .ejemplo p{margin:0;font-size:.95rem;color:var(--ink);}
+
+  /* ---------- Qué recordar ---------- */
+  .recuerda{
+    background:var(--panel-head);
+    border:1px solid var(--line);
+    border-top:4px solid var(--teal);
+    color:var(--ink);
+    border-radius:16px;
+    padding:20px 24px;
+  }
+  .recuerda .cab{
+    display:flex;align-items:center;gap:10px;
+    font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;
+    font-weight:700;color:var(--teal);margin-bottom:14px;
+  }
+  .recuerda .cab .tick{
+    width:26px;height:26px;border-radius:50%;
+    background:var(--teal);color:#0d1526;
+    display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800;
+  }
+  .recuerda ul{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px 26px;
+  }
+  .recuerda li{
+    font-size:.93rem;font-weight:600;
+    padding-left:18px;position:relative;color:var(--ink);
+  }
+  .recuerda li::before{
+    content:"";position:absolute;left:0;top:.5em;
+    width:7px;height:7px;border-radius:50%;background:var(--teal);
+  }
+  .frase{
+    margin:16px 0 0;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+    font-size:.9rem;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .frase strong{color:var(--ink);font-style:normal;}
+
+  /* ---------- Pie ---------- */
+  .pie{
+    margin-top:18px;
+    font-size:.78rem;
+    color:#7f93b0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 18px;
+    justify-content:space-between;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:820px){
+    .fila{grid-template-columns:1fr;}
+    .franja h1{font-size:1.4rem;}
+    .franja .meta{text-align:left;}
+    .flecha{transform:rotate(90deg);}
+  }
+
+  /* ---------- Impresión ---------- */
+  @media print{
+    body{background:#fff;}
+    .hoja{max-width:none;padding:0;}
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+      break-inside:avoid;page-break-inside:avoid;
+    }
+    section{margin-top:14px;}
+    @page{margin:10mm;}
+  }
+  /* ---------- Recorrido de la herramienta ---------- */
+  .bloque ol{margin:0;padding-left:20px;}
+  .bloque ol li{font-size:.87rem;color:var(--ink-soft);margin-bottom:5px;}
+  .bloque ol li strong{color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="hoja">
+
+  <header class="franja">
+    <div>
+      <h1>¿Cómo usar IA para organizarme mejor?</h1>
+      <p class="sub">Clase 10 · Inteligencia Artificial Aplicada</p>
+    </div>
+    <p class="meta">ISIL · 2026-2 · [pendiente]<br>Mg. Christian Martin Cancharez Aguirre</p>
+  </header>
+
+  <section class="fila">
+    <div>
+      <p class="rotulo"><span class="num n-blue">1</span> Idea central</p>
+      <article class="tarjeta idea">
+        <p class="texto">La IA no te organiza: arma un sistema con tus tareas, tus calendarios, tus notas y tus prioridades. El ahorro real aparece cuando ese sistema se apoya en tus propias fuentes, no en Internet.</p>
+      </article>
+    </div>
+    <div>
+      <p class="rotulo"><span class="num n-teal">2</span> 4 conceptos clave</p>
+      <article class="tarjeta conceptos">
+        <div class="grid">
+          <div class="chip c-blue">
+            <div class="top"><span class="dot">1</span><h3>Planificación</h3></div>
+            <p>La IA prioriza, programa y reprograma tareas y eventos.</p>
+          </div>
+          <div class="chip c-teal">
+            <div class="top"><span class="dot">2</span><h3>Calendarios</h3></div>
+            <p>Conecta Google, Outlook y Apple Calendar; detecta conflictos.</p>
+          </div>
+          <div class="chip c-purple">
+            <div class="top"><span class="dot">3</span><h3>Herramientas</h3></div>
+            <p>Obsidian (Markdown local), Craft (editorial) y Notion (bases de datos).</p>
+          </div>
+          <div class="chip c-amber">
+            <div class="top"><span class="dot">4</span><h3>Prioridades</h3></div>
+            <p>Urgencia, importancia y esfuerzo convertidos en vista visual.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">3</span> Relación: el sistema de organización</p>
+    <div class="panel">
+      <div class="flujo" role="img" aria-label="Sistema de organización en cuatro pasos: capturar, planificar, visualizar y ejecutar, con revisión continua al final.">
+        <div class="paso c-blue">
+          <div class="cab"><span class="dot">1</span><h3>Capturar</h3></div>
+          <p>Todo entra al mismo lugar: notas, tareas, lecturas y compromisos.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-teal">
+          <div class="cab"><span class="dot">2</span><h3>Planificar</h3></div>
+          <p>La IA prioriza y programa; el calendario detecta conflictos y duplicados.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-purple">
+          <div class="cab"><span class="dot">3</span><h3>Visualizar</h3></div>
+          <p>La matriz de Eisenhower y la vista de carga muestran qué pesa más.</p>
+        </div>
+        <span class="flecha" aria-hidden="true">→</span>
+        <div class="paso c-amber">
+          <div class="cab"><span class="dot">4</span><h3>Ejecutar</h3></div>
+          <p>Trabajas sobre el plan y proteges el tiempo en blanco.</p>
+        </div>
+      </div>
+      <p class="nota-relacion">Capturar → planificar → visualizar → ejecutar: si falta un paso, el sistema se rompe</p>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">4</span> Lo esencial de la clase</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Eisenhower aplicado por IA</h3>
+        <ul>
+          <li>La IA ubica cada tarea nueva en el cuadrante correcto.</li>
+          <li>Reparte el día en bloques por tipo de actividad.</li>
+          <li>El día se planifica con principios de psicología cognitiva.</li>
+        </ul>
+        <p>Sin corrección manual, el algoritmo hereda sus propios sesgos de estimación.</p>
+      </article>
+
+      <article class="bloque b-teal">
+        <h3>Tarea ≠ evento de calendario</h3>
+        <table class="mini-tabla">
+          <tr><th>Evento</th><td>Bloque con fecha y hora fija (exposición, reunión).</td></tr>
+          <tr><th>Tarea</th><td>Acción pendiente que se puede mover (informe, lectura).</td></tr>
+          <tr><th>Error típico</th><td>Agendar como reunión lo que era una tarea movible.</td></tr>
+        </table>
+      </article>
+
+      <article class="bloque b-purple">
+        <h3>Obsidian, Craft, Notion</h3>
+        <ul>
+          <li><strong>Obsidian:</strong> archivos Markdown en tu equipo y red de backlinks.</li>
+          <li><strong>Craft:</strong> bloques editables, diseño editorial y modo presentación.</li>
+          <li><strong>Notion:</strong> bases de datos con vistas de tabla, kanban y calendario.</li>
+        </ul>
+        <p>No compiten por funciones: compiten por dónde vive la información.</p>
+      </article>
+
+      <article class="bloque b-amber">
+        <h3>Lo que la automatización no debe invadir</h3>
+        <ul>
+          <li>El <strong>tiempo blanco</strong>: espacio sin compromisos.</li>
+          <li>La <strong>sobreconfianza</strong> en las estimaciones automáticas.</li>
+          <li>La <strong>privacidad</strong> de tus datos y documentos.</li>
+          <li>El <strong>contexto cultural</strong> que el modelo no conoce.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: NotebookLM, la IA anclada</p>
+    <div class="panel">
+      <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de flujo de NotebookLM: se crea un cuaderno, se cargan las fuentes, se formula una pregunta y la respuesta llega con citas numeradas que apuntan a las páginas de origen.">
+        <defs>
+          <marker id="punta1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 z" fill="#54688a"></path>
+          </marker>
+        </defs>
+
+        <rect class="nodo" x="6" y="34" width="220" height="88" rx="12" stroke="#6aa7ff"></rect>
+        <text class="nodo-titulo" x="116" y="72" text-anchor="middle" style="fill:#6aa7ff">Crear cuaderno</text>
+        <text class="nodo-texto" x="116" y="98" text-anchor="middle">Tu fuente de verdad</text>
+
+        <line class="flecha-linea" x1="232" y1="78" x2="282" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="288" y="34" width="220" height="88" rx="12" stroke="#3ed2b2"></rect>
+        <text class="nodo-titulo" x="398" y="72" text-anchor="middle" style="fill:#3ed2b2">Cargar fuentes</text>
+        <text class="nodo-texto" x="398" y="98" text-anchor="middle">PDF, Docs y enlaces</text>
+
+        <line class="flecha-linea" x1="514" y1="78" x2="564" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="570" y="34" width="220" height="88" rx="12" stroke="#b39af7"></rect>
+        <text class="nodo-titulo" x="680" y="72" text-anchor="middle" style="fill:#b39af7">Preguntar</text>
+        <text class="nodo-texto" x="680" y="98" text-anchor="middle">Chat sobre tus archivos</text>
+
+        <line class="flecha-linea" x1="796" y1="78" x2="846" y2="78" marker-end="url(#punta1)"></line>
+
+        <rect class="nodo" x="852" y="34" width="220" height="88" rx="12" stroke="#f7b955"></rect>
+        <text class="nodo-titulo" x="962" y="72" text-anchor="middle" style="fill:#f7b955">Citas visibles</text>
+        <text class="nodo-texto" x="962" y="98" text-anchor="middle">Respuesta anclada al texto</text>
+
+        <text class="pie-diagrama" x="540" y="186" text-anchor="middle">La IA responde solo con lo que dice tu material: de ahí salen informes, mapas mentales, infografías y presentaciones</text>
+      </svg>
+      <p class="nota-relacion">Anclar la IA a tus fuentes reduce las alucinaciones y permite verificar cada respuesta</p>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-blue">6</span> Guía de la herramienta: NotebookLM paso a paso</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Del cuaderno a la respuesta</h3>
+        <ol>
+          <li>Entrar con la cuenta de Google y crear un <strong>nuevo cuaderno</strong>.</li>
+          <li><strong>Personalizarlo</strong>: nombre y propósito son la primera guía de la IA.</li>
+          <li>Revisar las <strong>secciones</strong> que alimentan el chat y el Studio.</li>
+          <li><strong>Incluir fuentes</strong>: buscar por palabra clave, seleccionar, importar y esperar "Cargando conocimiento".</li>
+          <li><strong>Buscar por enlaces</strong> y comprobar el resultado antes de incorporarlo.</li>
+          <li><strong>Ver detalle</strong> de cada fuente y añadir o actualizar documentos en cualquier momento.</li>
+          <li><strong>Preguntar en el chat</strong>: la respuesta llega con citas numeradas.</li>
+          <li><strong>Ir a la fuente</strong> para saltar al punto exacto del documento.</li>
+        </ol>
+      </article>
+
+      <article class="bloque b-teal">
+        <h3>Studio: de las fuentes a los entregables</h3>
+        <table class="mini-tabla">
+          <tr><th>Presentación</th><td>Descarga en PPT; demora mínima de 5 minutos.</td></tr>
+          <tr><th>Informes</th><td>Síntesis estructurada por tema.</td></tr>
+          <tr><th>Valoración</th><td>Evaluación de las fuentes cargadas.</td></tr>
+          <tr><th>Mapa mental</th><td>Imagen descargable del contenido.</td></tr>
+          <tr><th>Infografía</th><td>Representación visual descargable.</td></tr>
+          <tr><th>Tabla de datos</th><td>Extracción estructurada y exportación.</td></tr>
+          <tr><th>Resumen en video</th><td>Versión audiovisual del material.</td></tr>
+          <tr><th>Publicar</th><td>Compartir el resultado generado.</td></tr>
+          <tr><th>Histórico</th><td>Trazabilidad de todo lo producido.</td></tr>
+        </table>
+        <p>Advertencia de la fuente: entrega imágenes, no presentaciones editables (versión BETA).</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">7</span> Cifras de la sesión</p>
+    <div class="stats">
+      <div class="stat"><div class="valor">50</div><div class="etiqueta">fuentes por cuaderno en NotebookLM</div></div>
+      <div class="stat"><div class="valor">25 M</div><div class="etiqueta">palabras de contexto en NotebookLM</div></div>
+      <div class="stat"><div class="valor">1000+</div><div class="etiqueta">plugins de comunidad para Obsidian</div></div>
+      <div class="stat"><div class="valor">15 / 80 %</div><div class="etiqueta">artículos A: porcentaje de productos y del valor del inventario</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="ejemplo">
+      <span class="marca" aria-hidden="true">E</span>
+      <div>
+        <h3>Ejemplo de la clase</h3>
+        <p><strong>Shalux Lighting, Ventanilla (Callao):</strong> el dueño consulta a NotebookLM sobre control de stock. La respuesta llega anclada a sus fuentes —clasificación ABC, modelo de cantidad fija, inventario de seguridad y conteo de ciclo— y se aplica a 400 unidades del pastoral LED Polux en un local de 60 m² del Centro de Lima: si se venden 20 por día, el stock cubre 20 días; el punto de reorden se dispara con una alerta automática en vez de depender de la memoria del personal.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="recuerda">
+      <p class="cab"><span class="tick" aria-hidden="true">✓</span> Qué recordar</p>
+      <ul>
+        <li>Cuatro capas: planificación, calendarios, herramientas y prioridades.</li>
+        <li>Distingue siempre tarea de evento de calendario.</li>
+        <li>Eisenhower y la tridimensional solo funcionan con criterio propio.</li>
+        <li>NotebookLM ancla la IA a tus fuentes y muestra la cita.</li>
+      </ul>
+      <p class="frase"><strong>Idea clave:</strong> automatiza la organización, pero protege el tiempo en blanco. "La organización no se trata de perfección, se trata de eficiencia y calidad de vida." — Christina Scalise</p>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <span>Fuente: apuntes de la Clase 10 — Inteligencia Artificial Aplicada (ISIL, 2026-2). Presentación del Tema 10 y ficha de la herramienta NotebookLM.</span>
+    <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
+  </footer>
+
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 33 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1. Planificación automatizada con IA</h3>
+    <p>1.1 ¿Qué es y para qué sirve? Qué es: el uso de algoritmos de IA y aprendizaje automático para organizar, priorizar y programar actividades, tareas y eventos de forma autónoma o semiautónoma. Para qué sirve: para convertir una lista desordenada de pendientes en un cronograma que respete tus plazos, tus preferencias y tu energía disponible, sin que tengas que reorganizar todo a mano cada semana. Analogía simple:…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.1 ¿Qué es y para qué sirve?</h3>
+    <p>Qué es: el uso de algoritmos de IA y aprendizaje automático para organizar, priorizar y programar actividades, tareas y eventos de forma autónoma o semiautónoma. Para qué sirve: para convertir una lista desordenada de pendientes en un cronograma que respete tus plazos, tus preferencias y tu energía disponible, sin que tengas que reorganizar todo a mano cada semana. Analogía simple: es como un asistente que mira…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.2 Características</h3>
+    <p>Los sistemas analizan patrones de comportamiento, preferencias del usuario, plazos de entrega y contextos específicos para generar cronogramas optimizados que maximizan la productividad y minimizan conflictos de horarios. Característica · Qué hace en la práctica Análisis predictivo de patrones · Detecta a qué horas rinde más y qué tareas se repiten Priorización inteligente · Ordena las tareas según urgencia,…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.3 Beneficios</h3>
+    <p>Beneficio · Qué aporta Reducción del estrés · Disminuye la ansiedad relacionada con los estudios Optimización del tiempo · Mejora la gestión del tiempo para estudios eficientes Balance vida personal y académica · Integra armoniously la vida personal y la académica Trabajo colaborativo · Mejora las habilidades de trabajo en equipo y comunicación</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1.4 Limitaciones</h3>
+    <p>Limitación · Qué implica en el uso diario Dependencia de internet · Requiere una conexión estable para funcionar Rigidez · No es flexible ante imprevistos complejos Costos premium · Algunas herramientas premium pueden ser costosas Falta de contexto cultural · Desconexión con el entorno cultural local</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2. Integración con calendarios</h3>
+    <p>2.1 ¿Qué es y para qué sirve? Qué es: la capacidad de conectar, sincronizar y gestionar automáticamente múltiples sistemas de calendario (Google Calendar, Outlook, Apple Calendar) mediante algoritmos inteligentes. Para qué sirve: para unificar información dispersa, eliminar duplicados, detectar conflictos y optimizar la visualización de compromisos en una interfaz centralizada. 2.2 Características La integración…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2.1 ¿Qué es y para qué sirve?</h3>
+    <p>Qué es: la capacidad de conectar, sincronizar y gestionar automáticamente múltiples sistemas de calendario (Google Calendar, Outlook, Apple Calendar) mediante algoritmos inteligentes. Para qué sirve: para unificar información dispersa, eliminar duplicados, detectar conflictos y optimizar la visualización de compromisos en una interfaz centralizada.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2.2 Características</h3>
+    <p>La integración inteligente elimina la fragmentación informativa y previene errores de programación. Sincronización bidireccional multiplataforma. Detección y resolución de conflictos automática. Categorización inteligente por contexto. Gestión inteligente de zonas horarias.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2.3 Beneficios</h3>
+    <p>Beneficio · Detalle Eliminación de compromisos duplicados · Evita programar tareas o eventos superpuestos Optimización de desplazamientos · Reduce el tiempo y el estrés de viajar en Lima Coordinación automática de trabajos grupales · Simplifica la colaboración y la asignación de tareas Respeto de períodos de descanso · Asegura un equilibrio saludable entre trabajo y descanso</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2.4 Limitaciones</h3>
+    <p>Limitación · Riesgo Problemas de interoperabilidad · Dificultad para integrarse con sistemas institucionales peruanos Sincronización imperfecta · Puede ser poco fiable en áreas con baja conectividad Privacidad y exposición · Riesgo de exponer información sensible Falsos positivos · Detección incorrecta de conflictos</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>2.5 Dos cosas que la IA moderna distingue bien</h3>
+    <p>Calendarios superpuestos. Técnica en la que múltiples calendarios se visualizan simultáneamente en capas superpuestas, cada uno con un código de color diferente. Sirve para ver de un vistazo el calendario académico, el laboral y el personal sin abrirlos uno por uno. Lista de tareas y evento de calendario. Son objetos distintos con consecuencias distintas: Objeto · Qué representa · Ejemplo Evento de calendario ·…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3.1 ¿Qué es y para qué sirve?</h3>
+    <p>Qué es: aplicaciones especializadas que, mediante interfaces intuitivas y algoritmos inteligentes, combinan gestión de conocimiento, toma de notas, organización de información y planificación de tareas. Para qué sirve: para centralizar la información propia en un solo lugar, de modo que la IA trabaje sobre material real y no sobre datos genéricos.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3.5 Comparativa de las tres herramientas</h3>
+    <p>Criterio · Obsidian · Craft · Notion Base de conocimiento · Red de notas enlazadas en Markdown · Documentos blocs editables · Bases de datos y wikis Dónde vive el dato · Archivos locales en tu equipo · En la nube de Craft · En la nube de Notion Fortaleza · Control total del archivo y nexos · Diseño editorial y presentación · Vistas múltiples y automatización IA incluida · Complementos de la comunidad · Asistente…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4. Visualización de prioridades</h3>
+    <p>4.1 ¿Qué es y para qué sirve? Qué es: el uso de machine learning y análisis de datos para convertir listas complejas de tareas, proyectos y objetivos en representaciones visuales intuitivas. Para qué sirve: para responder tres preguntas que una lista de pendientes no responde: ¿qué hacer?, ¿cuándo hacerlo? y ¿cuánto esfuerzo dedicarle?, con el fin de tomar decisiones. 4.2 Características Característica · Qué aporta</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4.1 ¿Qué es y para qué sirve?</h3>
+    <p>Qué es: el uso de machine learning y análisis de datos para convertir listas complejas de tareas, proyectos y objetivos en representaciones visuales intuitivas. Para qué sirve: para responder tres preguntas que una lista de pendientes no responde: ¿qué hacer?, ¿cuándo hacerlo? y ¿cuánto esfuerzo dedicarle?, con el fin de tomar decisiones.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4.2 Características</h3>
+    <p>Característica · Qué aporta Analizan múltiples variables simultáneas · Combinan plazo, dependencia, esfuerzo e impacto Generan representaciones dinámicas · La vista se recalcula al mover una tarea Aprenden de patrones históricos · El sistema aprende de cómo se cumplieron los plazos Contextualizan automáticamente · Ajustan la propuesta al momento y la carga actual</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4.3 Beneficios</h3>
+    <p>Beneficio · Detalle Coordinación automática de trabajo grupal · Organiza tareas grupales sin intervención manual Prevención de burnout · Evita el agotamiento académico con gestión proactiva Alineación de tareas · Alinea las tareas diarias con los objetivos de largo plazo Reducción de decisiones diarias · Simplifica la toma de decisiones y reduce el estrés</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4.4 Limitaciones</h3>
+    <p>Limitación · Riesgo Sobreconfianza · Excesiva confianza en predicciones algorítmicas Sesgo cuantificable · Sesgo hacia tareas cuantificables Contexto cultural · Dificultad para contextualizar factores culturales peruanos Importancia no académica · Dificultad para medir la &quot;importancia&quot; de tareas no académicas</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4.5 Herramientas específicas y modelo de decisión</h3>
+    <p>Herramienta · Enfoque principal Sunsama · Planificador diario por bloques de trabajo Akiflow · Bandeja de entrada única para tareas de varias fuentes Motion · Programación automática con reordenamiento por IA Structured · Planificador visual diario</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5.1 ¿Qué es y para qué sirve?</h3>
+    <p>Qué es: un cuaderno de notas inteligente que utiliza IA para sintetizar, organizar y responder preguntas basadas exclusivamente en los documentos cargados por el usuario. Para qué sirve: para trabajar sobre fuentes propias y verificables, sin depender del conocimiento general del modelo. Analogía simple: en lugar de preguntarle a alguien que lo sabe de memoria, le das tus documentos y le pides que responda con…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5.2 Ficha técnica</h3>
+    <p>Dato · Detalle Nombre oficial · NotebookLM Enlace Empresa · Google Origen · Estados Unidos (Mountain View, California). Inició como &quot;Project Tailwind&quot; en mayo de 2023</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5.4 Diferencias con un chatbot común</h3>
+    <p>Característica · Chatbot tradicional (ChatGPT/Gemini) · NotebookLM Base de conocimiento · Todo internet (entrenamiento general) · Tus documentos específicos (fuentes) Veracidad · Puede inventar datos si no los conoce · Minimiza errores al citar la fuente directa Privacidad · Los datos suelen usarse para entrenamiento · Tus documentos son privados y no entrenan el modelo Capacidad de contexto · Limitada por la…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5.5 Casos de uso ideales</h3>
+    <p>Investigación académica: analizar varios artículos científicos y encontrar conexiones entre ellos. Gestión de proyectos: subir manuales técnicos, especificaciones de productos y minutas de reuniones. Aprendizaje personal: estudiar un tema complejo subiendo libros y apuntes propios.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5.7 Consultar el cuaderno: chat, citas y continuidad</h3>
+    <p>Función · Para qué sirve Chat con contexto · Preguntar sobre el contenido de los archivos cargados Ir a la fuente · Saltar desde una cita hasta el punto exacto del documento donde está la respuesta Referencias de conocimiento · Ver los fragmentos que el sistema usa como respaldo para fundamentar la respuesta Preguntas técnicas · Formular consultas dirigidas al material cargado</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>5.8 Studio: las salidas que la guía recorre</h3>
+    <p>La sección Studio convierte las fuentes cargadas en entregables. El recorrido que documenta la guía: Orden · Salida · Qué ocurre · Resultado esperado 1 · Presentación · Se escribe la instrucción &quot;en base a las fuentes genera la presentación&quot; y el sistema procesa · Demora mínima de 5 minutos; aviso de descarga en formato PPT; se abre el archivo generado 2 · Informes · Se eligen las opciones de creación (por…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>6. Ejemplo práctico integrado: Shalux Lighting</h3>
+    <p>Caso tomado del material de la sesión (guía complementaria de NotebookLM). Los datos del negocio son los del docente; las cifras de inventario provienen de las fuentes cargadas en el cuaderno. 6.1 Contexto El propietario de una empresa de luminarias y reflectores en Ventanilla, Callao consulta a NotebookLM con el prompt: &quot;Estoy liderando una empresa de luminarias y reflectores. brindame información sobre buenas…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>6.4 Lectura organizacional del caso</h3>
+    <p>Este caso muestra las cuatro piezas de la clase trabajando juntas: Pieza de la clase · Cómo aparece en el caso Planificación automatizada · Alertas automáticas en el punto de reorden, sin depender de la memoria del personal Integración con calendarios · Revisión de inventario cada dos semanas (modelo P) o según la entrega del proveedor Herramientas de productividad · El cuaderno de NotebookLM como fuente única:…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>7. Errores comunes a evitar</h3>
+    <p>Error · Situación · Efecto o riesgo Confundir tarea con evento · Agendar como reunión bloqueada algo que era una tarea movible · Agenda rígida, sin margen de reacción Dejar que el algoritmo ocupe todo · Aceptar la propuesta automática sin podar bloques · Invasión del &quot;tiempo blanco&quot; y agotamiento Confiar en la estimación automática · Tomar el tiempo estimado por IA como dato duro · Sesgo en la estimación de…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>9. Glosario</h3>
+    <p>Término · Definición · Ejemplo Planificación automatizada · IA que organiza, prioriza y programa tareas y eventos por sí sola · El sistema arma el cronograma semanal del lunes Trigger / disparador · Evento que inicia una automatización · Un correo recibido activa el flujo Sincronización bidireccional · Dos sistemas se actualizan en ambos sentidos · Google Calendar ↔ Outlook Tiempo blanco · Espacio sin commitments…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>10. Preguntas de reflexión</h3>
+    <p>¿Qué tarea repetitiva de tu semana actual podría pasar de la lista de pendientes a una automatización con trigger y acciones? ¿Qué parte de tu carga académica no se puede medir en horas y por eso quedaría fuera de una matriz tridimensional? Si tuvieras que elegir entre Obsidian, Craft y Notion para organizar el material de dos cursos, ¿cuál usarías y por qué? ¿Qué fuentes cargarías en un cuaderno de NotebookLM…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>11. Recursos de la clase</h3>
+    <p>Presentación: organizacion-personal-con-ia-clase-10.pdf — diapositivas del Tema 10 sobre planificación automatizada, integración de calendarios, herramientas de productividad y visualización de prioridades. Guía complementaria: notebooklm-cuaderno-anclado-clase-10.pdf — ficha de NotebookLM, recorrido paso a paso de la interfaz (crear cuaderno, personalizar, incluir fuentes, buscar por enlaces, ver detalle),…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Bibliografía citada en la presentación del Tema 10</h3>
+    <p>Pavitra, M. (2024, 13 de junio). Cómo utilizar la IA para planificar las clases (casos prácticos y herramientas). ClickUp. Pearson Latam. (2024, 14 de noviembre). 5 ejemplos de inteligencia artificial en la educación universitaria. Pearson Latam Blog. R&amp;M Portátiles. (2025, 7 de abril). Mejores herramientas IA para estudiantes. RYM Portátiles Perú. Yanez, P. (2025, 25 de febrero). 5 soluciones IA para ahorrar…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Bibliografía citada en la guía de NotebookLM</h3>
+    <p>Alisoy, H. (2024). Can NotebookLM support English language learners? A theoretical perspective on AI tools in education. Porta Universorum. Maniulit, J. (2026). Learning with AI, not from AI: A post-exposure evaluation of NotebookLM. Zenodo. Miranda, S. (2025). Artificial intelligence from Google environment for effective learning assessment. Information, 16(6), 462. Moorhouse, B. L., Wan, Y., &amp; Yeo, M. (2025).…</p>
+  </article>
+    </div>
+  </details>
+</section>
+</div>
+</body>
+</html>

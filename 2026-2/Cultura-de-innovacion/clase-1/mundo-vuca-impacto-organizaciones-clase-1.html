@@ -326,6 +326,42 @@
   .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
   .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
   .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
+
+  /* ---------- Extensiones: cobertura completa de la clase ---------- */
+  .rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;}
+  .rejilla-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;}
+  .lista{margin:0;padding-left:18px;}
+  ol.lista{padding-left:24px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .destacado{
+    background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .destacado strong{color:var(--teal);}
+  .sub-titulo{margin:0 0 8px;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--amber);}
+  .preguntas details{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:460px;}
+  .tabla th,.tabla td{
+    text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .tabla thead th{
+    color:var(--ink);font-weight:700;background:var(--card-2);
+    letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;
+  }
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -505,12 +541,382 @@ flowchart LR
   </section>
 
   <section>
+    <p class="rotulo"><span class="num n-purple">7</span> Qué significa cada término de VUCA</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Término</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Volatilidad</strong></td><td>Dinámica de los cambios y velocidad.</td><td>Movimientos amplios e imprevistos de los mercados.</td></tr>
+            <tr><td><strong>Incertidumbre</strong></td><td>Falta de predictibilidad sobre qué ocurrirá.</td><td>Dificultad para anticiparse a cambios repentinos.</td></tr>
+            <tr><td><strong>Complejidad</strong></td><td>Ausencia de una conexión clara entre causas y efectos.</td><td>Múltiples factores interactuando simultáneamente.</td></tr>
+            <tr><td><strong>Ambigüedad</strong></td><td>Dificultad para conceptualizar posibles amenazas o interpretar una situación.</td><td>Situaciones nuevas con varias explicaciones plausibles.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">8</span> Conocimiento del entorno: globalización, hiperpersonalización e individualización</p>
+    <div class="rejilla">
+      <article class="bloque">
+        <h3>¿Qué origina el mundo VUCA?</h3>
+        <ul class="lista">
+          <li>Usualmente la <strong>internacionalización</strong> y la incorporación de <strong>nuevas tecnologías</strong>.</li>
+          <li>Exige abordar la <strong>gestión del talento</strong> y la <strong>transformación digital</strong> en el contexto tecnológico actual.</li>
+        </ul>
+      </article>
+      <article class="bloque b-teal">
+        <h3>¿Qué consecuencias tiene el mundo VUCA?</h3>
+        <ul class="lista">
+          <li>Surgimiento de <strong>profesiones novedosas</strong>.</li>
+          <li><strong>Autoempleabilidad</strong>.</li>
+          <li>Detección de <strong>nuevos talentos</strong>.</li>
+          <li>Diferenciación y <strong>especialización</strong> de las empresas.</li>
+        </ul>
+      </article>
+      <article class="bloque b-purple">
+        <h3>¿Cómo reaccionar ante el mundo VUCA?</h3>
+        <p>Más importante que la gestión tradicional de planificación es la <strong>capacidad de reacción</strong> de las empresas ante nuevos acontecimientos.</p>
+        <p class="destacado"><strong>Regla de adaptación:</strong> cuando la velocidad del cambio del entorno es mayor que la velocidad de cambio de la organización, la continuidad del negocio queda amenazada.</p>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Relación con la globalización</h3>
+        <table class="mini-tabla">
+          <tr><th>Volatilidad y globalización</th><td>La globalización ha aumentado la volatilidad en los mercados financieros y en las relaciones geopolíticas.</td></tr>
+          <tr><th>Incertidumbre e hiperpersonalización</th><td>La hiperpersonalización puede mitigar la incertidumbre, pero también introduce incertidumbre en preferencias individuales.</td></tr>
+          <tr><th>Complejidad y globalización</th><td>La globalización ha aumentado la complejidad de las cadenas de suministro y las interacciones entre partes del mundo.</td></tr>
+          <tr><th>Ambigüedad e individualización</th><td>La individualización puede generar ambigüedad para identificar tendencias y preferencias de mercado claras.</td></tr>
+        </table>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">9</span> ¿Qué deben hacer las organizaciones y qué demanda este entorno?</p>
+    <div class="panel">
+      <ol class="lista">
+        <li><strong>Focalizarse en lo posible</strong> en vez de en lo probable, pues cualquier cosa puede ocurrir.</li>
+        <li>Mostrar grandes dosis de <strong>flexibilidad, adaptación a los cambios y preparación</strong> para abordar nuevas situaciones.</li>
+        <li>Contar con una <strong>buena estrategia de comunicación</strong> interna y externa y con el compromiso de todos los <strong>grupos de interés</strong>.</li>
+      </ol>
+      <p class="destacado" style="margin-top:12px;"><strong>Competencia colectiva y asociatividad (ejemplo de clase):</strong> si una empresa sola no tiene escala operativa o financiera, se une a asociaciones de exportadores, importadores o productores para ganar <strong>poder de negociación</strong> ante clientes y proveedores y <strong>resiliencia grupal</strong>. Ejemplo: gremios que compiten en bloque en licitaciones o compras conjuntas.</p>
+      <div class="rejilla" style="margin-top:14px;">
+        <article class="bloque">
+          <h3>Qué demanda el entorno a las personas</h3>
+          <ul class="lista">
+            <li><strong>Gestión del conocimiento</strong> y formación o aprendizaje constante.</li>
+            <li><strong>Compromiso y perseverancia</strong> para afrontar situaciones complejas.</li>
+            <li><strong>Flexibilidad</strong> y gestión de la frustración ante las adversidades.</li>
+          </ul>
+        </article>
+        <article class="bloque b-teal">
+          <h3>Qué demanda el entorno a los líderes</h3>
+          <ul class="lista">
+            <li><strong>Innovadores</strong> y con visión.</li>
+            <li>Capacidad de <strong>adaptación</strong> y habilidad para actuar.</li>
+            <li><strong>Ágiles</strong> en la toma de decisiones.</li>
+            <li><strong>Empáticos</strong> y resilientes.</li>
+            <li>Capaces de <strong>comunicar, generar compromiso e inspirar</strong>.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">10</span> Ejemplos prácticos en el contexto peruano</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Ejemplo</th><th>Descripción</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Retail peruano</strong></td><td>Empresa tradicional que reorganiza de emergencia su logística y pasarela digital para adaptarse a cambios inesperados en las demandas del mercado.</td></tr>
+            <tr><td><strong>Hiperpersonalización</strong></td><td>Aplicaciones de delivery o streaming que ajustan catálogo y recomendaciones en tiempo real según los hábitos de cada usuario.</td></tr>
+            <tr><td><strong>Adopción de tecnología</strong></td><td>Rápida integración de billeteras digitales (Yape, Plin) por parte de PyMEs y pequeños comercios para responder al cambio de hábitos de pago.</td></tr>
+            <tr><td><strong>Asociatividad gremial (clase)</strong></td><td>Productores que solos no compiten; en asociación negocian mejor fletes y precios frente a supermercados.</td></tr>
+            <tr><td><strong>Coordinación por WhatsApp (clase)</strong></td><td>Frente a imprevistos, un grupo de WhatsApp resuelve más rápido que un canal burocrático: ejemplo de agilidad y flexibilidad real.</td></tr>
+            <tr><td><strong>Startup e-commerce (ejemplo adicional de clase)</strong></td><td>Ante volatilidad de la tarifa de envío por combustible mantiene la <strong>visión</strong> intacta, investiga proveedores alternativos (<strong>entendimiento</strong>) y ajusta el menú de entregas con decisión <strong>ágil</strong>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">11</span> Material complementario: management disruptivo</p>
+    <div class="panel">
+      <p class="destacado"><strong>Fuente del material:</strong> Serradell-López, E. (2018). “Management disruptivo. En búsqueda de ‘The Next Big Thing’”. Artículo académico presentado en el ICR &amp; BM, Arequipa, Perú. (PDF complementario en la carpeta de la clase.)</p>
+      <p class="sub-titulo" style="margin-top:16px;">Ideas principales del artículo</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Concepto</th><th>Resumen</th><th>Conexión con VUCA</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Disrupción</strong></td><td>“Rotura o interrupción brusca”. Dejar de hacer las cosas de la manera habitual para hacerlas de forma diferente.</td><td>Responder a la incertidumbre con innovación.</td></tr>
+            <tr><td><strong>Prosumidor</strong></td><td>El consumidor combina roles de proveedor y consumidor: exige, analiza, evalúa y publica en redes sociales.</td><td>La volatilidad de los mercados se acelera.</td></tr>
+            <tr><td><strong>Certeza relativa vs. incertidumbre</strong></td><td>Continuum donde los directivos toman decisiones con información limitada.</td><td>La planificación tradicional ya no funciona.</td></tr>
+            <tr><td><strong>Innovación disruptiva</strong></td><td>Crea nuevos mercados y desplaza a líderes; usualmente viene de pequeñas empresas o startups.</td><td>Respuesta a la complejidad del entorno.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sub-titulo" style="margin-top:16px;">Tecnologías clave para la disrupción (McKinsey, 2018)</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Tecnología</th><th>Impacto esperado (2025)</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Internet de las Cosas (IoT)</strong></td><td>Alto</td><td>Sensores en ciudades inteligentes, fábricas conectadas.</td></tr>
+            <tr><td><strong>Automatización del trabajo</strong></td><td>Alto</td><td>Robots en manufacturing, procesos automatizados.</td></tr>
+            <tr><td><strong>Smart Cities</strong></td><td>Medio-Alto</td><td>Gestión inteligente de tráfico, energía y seguridad.</td></tr>
+            <tr><td><strong>Internet</strong></td><td>Base</td><td>Plataforma para todas las demás tecnologías disruptivas.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sub-titulo" style="margin-top:16px;">El artículo resumido en 5 puntos</p>
+      <ol class="lista">
+        <li><strong>El entorno VUCA es inevitable:</strong> movimientos impredecibles de mercados, nuevos competidores y ciclos de vida más cortos.</li>
+        <li><strong>La disrupción es un proceso:</strong> pequeñas empresas compiten con establecidas ofreciendo soluciones más simples y baratas.</li>
+        <li><strong>Dos tipos de disrupción:</strong> new market (nuevos mercados) y low-end (coste inferior).</li>
+        <li><strong>El directivo debe cambiar:</strong> de gestor a innovador; de reactivo a proactivo.</li>
+        <li><strong>La tecnología es estratégica:</strong> no es soporte, es parte del ADN de la empresa.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">12</span> Innovación disruptiva y management disruptivo</p>
+    <div class="panel">
+      <p class="sub-titulo">¿Qué es la innovación disruptiva?</p>
+      <p>Término acuñado por <strong>Clayton Christensen y Josep Bower (1995)</strong>. Crea nuevos mercados y transforma los existentes mediante <strong>simplicidad, conveniencia, asequibilidad o accesibilidad</strong>.</p>
+      <p class="destacado"><strong>Dato clave:</strong> las innovaciones disruptivas suelen ser producidas por pequeñas empresas, emprendedores o start-ups, no por empresas establecidas que lideran un mercado.</p>
+      <p class="sub-titulo" style="margin-top:16px;">Tipos de innovación disruptiva</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Tipo</th><th>Descripción</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>New Market Disruption</strong></td><td>Dirigida a clientes con necesidades insatisfechas (que ni ellos mismos conocían).</td><td>Productos o servicios completamente nuevos.</td></tr>
+            <tr><td><strong>Low-End Disruption</strong></td><td>Empresas existentes proveen funcionalidades que exceden las necesidades; la innovación ofrece productos a coste muy inferior.</td><td>Smartphones de gama baja con funcionalidades básicas a precio mucho menor.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sub-titulo" style="margin-top:16px;">El continuum de decisiones</p>
+      <p>Las condiciones para tomar decisiones se clasifican en tres tipos, sobre un continuum que va de la <strong>certeza relativa</strong> (predecible) a la <strong>gran incertidumbre</strong> (turbulento).</p>
+      <p class="destacado"><strong>Metáfora de Sala y Martín:</strong> “Tomar decisiones usando datos del pasado es como conducir con el parabrisas tapado y usando solo los espejos retrovisores. Cuando la carretera es recta no hay problema, pero cuando aparecen curvas, los problemas aparecen de golpe.”</p>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">13</span> El perfil del directivo disruptivo</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>5 comportamientos del líder innovador (Dyer, Gregersen y Christensen)</h3>
+        <table class="mini-tabla">
+          <tr><th>1. Pensamiento asociativo</th><td>Conectar ideas de diferentes ámbitos para generar soluciones nuevas.</td></tr>
+          <tr><th>2. Cuestionar</th><td>Desafiar el statu quo y hacer preguntas incómodas.</td></tr>
+          <tr><th>3. Observar</th><td>Analizar el comportamiento de clientes y competidores.</td></tr>
+          <tr><th>4. Networking</th><td>Buscar perspectivas diversas fuera del círculo habitual.</td></tr>
+          <tr><th>5. Experimentación</th><td>Probar, fallar y aprender rápidamente.</td></tr>
+        </table>
+      </article>
+      <article class="bloque b-teal">
+        <h3>6 elementos del perfil del directivo disruptivo (Nitin Seth)</h3>
+        <table class="mini-tabla">
+          <tr><th>1. Llevar las riendas del propio futuro</th><td>Estar abierto a nuevas ideas, asumir riesgos, no temer canibalizar los propios productos.</td></tr>
+          <tr><th>2. Tecnología como elemento estratégico</th><td>No verla como soporte, sino como parte del ADN de la empresa.</td></tr>
+          <tr><th>3. Foco en la ejecución</th><td>Ejecución y evaluación en tiempo real.</td></tr>
+          <tr><th>4. Colaboración con clientes</th><td>Considerar clientes como socios, relación iterativa con múltiples puntos de interacción.</td></tr>
+          <tr><th>5. Simplicidad organizacional</th><td>Rediseñar la organización fomentando la simplicidad sobre el control.</td></tr>
+          <tr><th>6. Espíritu emprendedor</th><td>Fomentar nuevos líderes más que gestores, con objetivos a corto y largo plazo.</td></tr>
+        </table>
+      </article>
+      <article class="bloque b-purple">
+        <h3>6 preguntas clave para directivos disruptivos</h3>
+        <ol class="lista">
+          <li>¿Qué tipo de disrupción (cambio no lineal) afectará a nuestro sector en los próximos años?</li>
+          <li>¿Cuáles serán los cambios en clientes o tecnologías?</li>
+          <li>¿Qué productos o servicios esperan nuestros clientes? ¿Cuáles no se esperan?</li>
+          <li>¿Podemos ser creativos segmentando clientes con criterios distintos a los tradicionales?</li>
+          <li>¿Podemos ofrecer el producto o servicio que realmente necesitarán nuestros clientes del futuro?</li>
+          <li>¿Podemos ofrecer nuestro producto al coste más bajo posible?</li>
+        </ol>
+        <p class="destacado"><strong>Lectura:</strong> si la mayoría de las respuestas es afirmativa, existe perfil de directivo disruptivo. En caso contrario, conviene conformar un equipo multidisciplinar y creativo.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">14</span> Modelo VUCA Prime en la práctica</p>
+    <div class="panel">
+      <p><strong>¿Qué es?</strong> Desarrollado por <strong>Bob Johansen</strong>, considera que los mejores líderes para este mundo VUCA se caracterizan por su <strong>visión</strong>, <strong>comprensión/entendimiento</strong>, <strong>claridad</strong> y <strong>agilidad</strong>. <strong>Punto evaluable.</strong></p>
+      <p class="sub-titulo" style="margin-top:14px;">¿Cómo contrarrestar cada elemento?</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Factor VUCA</th><th>Respuesta VUCA Prime</th><th>Acción clave del líder (clase)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Volatilidad</strong> (cambios súbitos, semanas/meses)</td><td><strong>Visión</strong></td><td>Mantener estrategia a <strong>3–5 años</strong> sin desviarse por eventos temporales de corto plazo.</td></tr>
+            <tr><td><strong>Incertidumbre</strong> (falta de predictibilidad)</td><td><strong>Entendimiento (Understanding)</strong></td><td>Investigar profundo en <strong>múltiples fuentes serias y confiables</strong>; investigar más que los competidores es ventaja.</td></tr>
+            <tr><td><strong>Complejidad</strong> (múltiples interconexiones)</td><td><strong>Claridad</strong></td><td>Trazar camino sencillo, procesos transparentes e información clara.</td></tr>
+            <tr><td><strong>Ambigüedad</strong> (causa-efecto confuso)</td><td><strong>Agilidad</strong></td><td>Decidir rápido, probar hipótesis e iterar con flexibilidad operacional.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="destacado" style="margin-top:12px;"><strong>Detalle de clase:</strong> volatilidad no es falla de visión. Reaccionar desmedido a una variación de semanas y cambiar el rumbo estratégico es el error típico. La incertidumbre no se combate con intuición ni una sola fuente: se combate investigando mejor que el entorno.</p>
+      <p class="sub-titulo" style="margin-top:16px;">Procedimiento para decidir en entorno VUCA (clase)</p>
+      <ol class="lista">
+        <li><strong>Identificar la naturaleza del evento:</strong> ¿volatilidad temporal o transformación profunda?</li>
+        <li><strong>Investigar exhaustivo:</strong> múltiples fuentes serias, evitar la primera impresión.</li>
+        <li><strong>Contrastar con la visión 3–5 años:</strong> no sacrificar el largo plazo por pánico de corto plazo.</li>
+        <li><strong>Comunicar ágil:</strong> canal directo (ej. WhatsApp) para coordinar con el equipo.</li>
+        <li><strong>Ajustar con agilidad:</strong> implementar flexible y gestionar los nuevos conflictos que trae innovar.</li>
+      </ol>
+      <p class="sub-titulo" style="margin-top:16px;">¿Qué deben hacer los líderes?</p>
+      <ol class="lista">
+        <li>Tener previsión para ver a dónde van, pero permanecer flexibles sobre cómo llegan allí.</li>
+        <li>Ser conscientes de sus fortalezas y debilidades, adaptables y abiertos a cambiar.</li>
+        <li>Trabajar en colaboración y ser excelentes comunicadores.</li>
+        <li><strong>Sobre todo, ser capaces de aprender rápido</strong>, porque el cambio es constante.</li>
+        <li><strong>Cultura flexible:</strong> aceptar que innovar es meterse en nuevos problemas; manejar conflictos es parte del rol.</li>
+      </ol>
+      <p class="sub-titulo" style="margin-top:16px;">Casos de éxito del PDF</p>
+      <p>El PDF presenta como referencias de respuesta empresarial al mundo VUCA a <strong>Unilever, McDonald's y Procter &amp; Gamble</strong>. Son casos para observar cómo organizaciones grandes combinan adaptación, innovación, conocimiento del cliente y ejecución para responder a los cambios del entorno.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">15</span> Glosario</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Término</th><th>Definición</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>VUCA / BUCA</strong></td><td>Mundo caracterizado por Volatilidad, Incertidumbre, Complejidad y Ambigüedad.</td><td>Crisis financiera 2008-09.</td></tr>
+            <tr><td><strong>VUCA Prime</strong></td><td>Modelo de Bob Johansen: Volatilidad→Visión (3-5 años), Incertidumbre→Entendimiento, Complejidad→Claridad, Ambigüedad→Agilidad.</td><td>Líderes de Unilever, McDonald's y P&amp;G.</td></tr>
+            <tr><td><strong>Competencia colectiva / Asociatividad</strong></td><td>Cooperación entre empresas para ganar poder de negociación y resiliencia grupal.</td><td>Asociación de exportadores o productores.</td></tr>
+            <tr><td><strong>Cultura organizacional flexible</strong></td><td>Adaptación continua, manejo de conflictos de la innovación y comunicación ágil (ej. WhatsApp).</td><td>Coordinación rápida ante imprevisto.</td></tr>
+            <tr><td><strong>Globalización</strong></td><td>Internacionalización e incorporación de nuevas tecnologías.</td><td>Mercados financieros globales.</td></tr>
+            <tr><td><strong>Hiperpersonalización</strong></td><td>Enfoque en necesidades individuales de los clientes.</td><td>Recomendaciones personalizadas de Netflix.</td></tr>
+            <tr><td><strong>Individualización</strong></td><td>Preferencias y necesidades únicas por individuo.</td><td>Mercados cada vez más segmentados.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">16</span> Preguntas de repaso y de reflexión</p>
+    <div class="panel">
+      <p class="sub-titulo">Preguntas de repaso — Sesión 01 VUCA (con respuestas breves)</p>
+      <div class="preguntas">
+        <details><summary>1. ¿Qué significan VUCA/BUCA?</summary><p>Volatilidad, Incertidumbre, Complejidad y Ambigüedad.</p></details>
+        <details><summary>2. ¿Respuesta VUCA Prime a la volatilidad?</summary><p>Visión a 3-5 años, sin desviarse por variaciones temporales.</p></details>
+        <details><summary>3. ¿Cómo se combate la incertidumbre?</summary><p>Con entendimiento, mediante investigación profunda en múltiples fuentes serias.</p></details>
+        <details><summary>4. ¿Por qué asociarse da resiliencia?</summary><p>Mayor poder de negociación y escala grupal.</p></details>
+        <details><summary>5. ¿Qué tres capacidades se esperan en una empresa adaptable?</summary><p>Flexibilidad, adaptación al cambio y manejo de nuevos conflictos.</p></details>
+        <details><summary>6. ¿Por qué innovar genera nuevos problemas?</summary><p>Porque es una incursión en lo desconocido.</p></details>
+        <details><summary>7. ¿Investigación y ventaja?</summary><p>Quien investiga más comprende mejor y decide mejor.</p></details>
+        <details><summary>8. ¿Canal informal para coordinar rápido?</summary><p>WhatsApp.</p></details>
+        <details><summary>9. ¿Función de la visión a 3-5 años?</summary><p>Evitar decisiones reactivas por eventos de semanas o meses.</p></details>
+        <details><summary>10. ¿Comunicación en equipos?</summary><p>Genera compromiso e inspira, y coordina respuestas dinámicas.</p></details>
+      </div>
+      <p class="sub-titulo" style="margin-top:16px;">Preguntas de reflexión</p>
+      <ol class="lista">
+        <li><strong>Pregunta aplicada:</strong> si tuvieras que liderar una empresa en un entorno VUCA, ¿qué estrategia adoptarías para manejar la incertidumbre?</li>
+        <li><strong>Pregunta comparativa:</strong> ¿cuál de los elementos de VUCA (volatilidad, incertidumbre, complejidad o ambigüedad) crees que es el más desafiante para las organizaciones peruanas? ¿Por qué?</li>
+        <li><strong>Pregunta crítica:</strong> ¿cómo crees que el mundo VUCA afecta la forma en que las empresas peruanas planifican su estrategia a largo plazo?</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">17</span> Soluciones a las preguntas de reflexión</p>
+    <div class="panel">
+      <p class="sub-titulo">Solución 1: estrategias para liderar en entorno VUCA</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Estrategia</th><th>Acción concreta</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Agilidad organizacional</strong></td><td>Implementar metodologías ágiles (Scrum, Kanban) para iterar rápidamente y adaptar productos y servicios.</td></tr>
+            <tr><td><strong>Escaneo continuo del entorno</strong></td><td>Crear un equipo de análisis de tendencias que monitoree competidores, tecnología y cambios regulatorios.</td></tr>
+            <tr><td><strong>Cultura de experimentación</strong></td><td>Fomentar pruebas piloto antes de lanzamientos masivos, aceptando el fracaso como aprendizaje.</td></tr>
+            <tr><td><strong>Diversificación de ingresos</strong></td><td>No depender de un solo producto o mercado; crear múltiples fuentes de valor.</td></tr>
+            <tr><td><strong>Talento adaptable</strong></td><td>Invertir en capacitación continua y contratar personas con perfil versátil.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="destacado" style="margin-top:12px;"><strong>Ejemplo práctico:</strong> una empresa peruana de retail podría crear un equipo de “innovación rápida” que lance una tienda online en 3 meses (en lugar de 12), probarla con un segmento pequeño y escalar lo que funcione.</p>
+      <p class="sub-titulo" style="margin-top:16px;">Solución 2: elemento VUCA más desafiante para el Perú</p>
+      <p>El elemento más desafiante para las organizaciones peruanas es la <strong>complejidad</strong>, por tres razones:</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Razón</th><th>Explicación</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Diversidad regional</strong></td><td>El Perú tiene 24 departamentos y la Provincia Constitucional del Callao, con realidades económicas, culturales y geográficas muy diferentes. Una estrategia única no funciona en Lima, Cusco y Loreto.</td></tr>
+            <tr><td><strong>Informalidad empresarial</strong></td><td>Según INEI, más del 70 % de la economía es informal. Esto genera complejidad en cadenas de suministro, competencia desleal y dificultad para implementar procesos estandarizados.</td></tr>
+            <tr><td><strong>Marco regulatorio cambiante</strong></td><td>Las normas tributarias, laborales y comerciales cambian con frecuencia, creando incertidumbre adicional.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tabla-wrap" style="margin-top:14px;">
+        <table class="tabla">
+          <thead><tr><th>Elemento</th><th>Nivel de impacto en el Perú</th><th>Justificación</th></tr></thead>
+          <tbody>
+            <tr><td>Volatilidad</td><td>Alto</td><td>Tipo de cambio, dólar, materias primas.</td></tr>
+            <tr><td>Incertidumbre</td><td>Medio-Alto</td><td>Elecciones, pandemias, geopolítica.</td></tr>
+            <tr><td><strong>Complejidad</strong></td><td><strong>Muy alto</strong></td><td>Diversidad regional + informalidad + regulación.</td></tr>
+            <tr><td>Ambigüedad</td><td>Medio</td><td>Información disponible, pero interpretación compleja.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sub-titulo" style="margin-top:16px;">Solución 3: impacto del VUCA en la planificación estratégica peruana</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Antes (era pre-VUCA)</th><th>Ahora (era VUCA)</th></tr></thead>
+          <tbody>
+            <tr><td>Planes estratégicos a 5-10 años</td><td>Planes a 1-2 años con revisiones trimestrales.</td></tr>
+            <tr><td>Análisis estático de competidores</td><td>Monitoreo continuo de amenazas disruptivas.</td></tr>
+            <tr><td>Decisiones basadas en datos históricos</td><td>Decisiones basadas en escenarios y tendencias.</td></tr>
+            <tr><td>Jerarquía rígida de aprobación</td><td>Equipos ágiles con autonomía para decidir.</td></tr>
+            <tr><td>Inversión en infraestructura fija</td><td>Inversión en tecnología flexible y escalable.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tabla-wrap" style="margin-top:14px;">
+        <table class="tabla">
+          <thead><tr><th>Empresa / sector peruano</th><th>Adaptación VUCA</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Bancos (BCP, Interbank)</strong></td><td>Migraron a servicios digitales en meses durante la pandemia, no en años.</td></tr>
+            <tr><td><strong>Retail (Ripley, Saga)</strong></td><td>Implementaron omicanalidad (online + offline) para reducir volatilidad.</td></tr>
+            <tr><td><strong>Agricultura (agroexportadores)</strong></td><td>Usan sensores IoT y datos climáticos para reducir incertidumbre.</td></tr>
+            <tr><td><strong>Minería</strong></td><td>Implementan automatización e IA para gestionar la complejidad operativa.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="destacado" style="margin-top:12px;"><strong>Conclusión:</strong> las empresas peruanas que sobrevivirán serán las que pasen de la planificación rígida a la <strong>adaptación continua</strong>, con análisis de escenarios, indicadores adelantados, equipos multidisciplinarios para decisiones rápidas e inversión en tecnología como recurso estratégico.</p>
+    </div>
+  </section>
+
+  <section>
     <div class="ejemplo">
       <span class="marca" aria-hidden="true">E</span>
       <div>
         <h3>Ejemplo de la clase</h3>
         <p><strong>Bodega ante un cambio de precio:</strong> si el proveedor sube el aceite, la <strong>visión</strong> mantiene la meta de atender al barrio; el <strong>entendimiento</strong> compara proveedores; la <strong>claridad</strong> define qué productos proteger; y la <strong>agilidad</strong> prueba una compra conjunta por una semana y revisa el resultado. Es un ejemplo hipotético del modelo. También: productores que solos no compiten se <strong>asocian</strong> para negociar fletes y precios con más poder.</p>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">18</span> Fuentes de la clase</p>
+    <div class="panel">
+      <ul class="fuentes">
+        <li><strong>Artículo:</strong> Lopez, J. A. (2018). Los entornos VUCA y el nuevo paradigma empresarial. <em>Corporate Yachting</em>.</li>
+        <li><strong>Blog:</strong> Serradell López, E. (2019). Management disruptivo. <em>Blog EADA</em>.</li>
+        <li><strong>Libro:</strong> Johansen, R. (2012). <em>Leaders Make the Future</em>.</li>
+        <li><strong>Material complementario:</strong> Serradell-López, E. (2018). “Management disruptivo. En búsqueda de ‘The Next Big Thing’”. Artículo académico, ICR &amp; BM, Arequipa, Perú.</li>
+        <li><strong>Artículo académico:</strong> Christensen, C. M. y Bower, J. L. (1995). Disruptive technologies: Catching the wave. <em>Harvard Business Review</em>.</li>
+        <li><strong>Libro:</strong> Dyer, J., Gregersen, H. y Christensen, C. M. (2012). <em>El ADN del innovador</em>. Grupo Planeta.</li>
+        <li><strong>Reporte:</strong> McKinsey (2018). Forecast economic impact of disruptive technologies. Statista.</li>
+      </ul>
     </div>
   </section>
 

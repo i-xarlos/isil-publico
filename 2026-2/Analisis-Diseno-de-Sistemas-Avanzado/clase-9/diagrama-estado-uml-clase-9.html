@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Infografía Clase 9 — Diagrama de Estado UML · Análisis y Diseño de Sistemas Avanzado</title>
-<meta name="description" content="Infografía de estudio de la Clase 9 de Análisis y Diseño de Sistemas Avanzado (ISIL, 2026-2): diagrama de estado UML, elementos, pasos de elaboración y casos de uso.">
+<title>Diagrama de Estado UML — Clase 9 · Análisis y Diseño de Sistemas Avanzado</title>
+<meta name="description" content="Infografía de estudio de la Clase 9 de Análisis y Diseño de Sistemas Avanzado (ISIL, 2026-2): elementos del diagrama de estado UML, ciclo de vida de una venta, método de elaboración en 10 pasos y aplicaciones por dominio.">
 <style>
   :root{
     --bg:#0d1526;
@@ -93,7 +93,7 @@
   .n-amber{background:var(--amber);}
 
   /* ---------- Fila superior ---------- */
-  .fila{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;}
+  .fila{display:grid;grid-template-columns:minmax(240px,1fr) 2.1fr;gap:16px;align-items:start;}
   .tarjeta{
     background:var(--card);
     border:1px solid var(--line);
@@ -199,6 +199,7 @@
   .bloque li{font-size:.87rem;color:var(--ink-soft);margin-bottom:5px;}
   .bloque li strong{color:var(--ink);}
   .bloque p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);}
+  .bloque p:last-child{margin-bottom:0;}
   .mini-tabla{width:100%;border-collapse:collapse;font-size:.83rem;}
   .mini-tabla th,.mini-tabla td{
     text-align:left;padding:5px 6px;border-bottom:1px solid var(--line);
@@ -305,12 +306,99 @@
   @media print{
     body{background:#fff;}
     .hoja{max-width:none;padding:0;}
-    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat{
+    .franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo,.stat,.figura{
       break-inside:avoid;page-break-inside:avoid;
     }
     section{margin-top:14px;}
+    .modal{display:none !important;}
     @page{margin:10mm;}
   }
+
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 12px;
+    margin:16px 0 0;
+    overflow-x:auto;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+
+  /* ---------- Extensiones para la clase 9 ---------- */
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:520px;}
+  .tabla th,.tabla td{
+    text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .tabla thead th{
+    color:var(--ink);font-weight:700;background:var(--card-2);
+    letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;
+  }
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
+  .lista{margin:0;padding-left:18px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .destacado{
+    background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .destacado strong{color:var(--teal);}
+  .sintaxis{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.9rem;color:var(--ink);background:var(--card-2);
+    border:1px solid var(--line);border-radius:10px;padding:10px 14px;
+    display:inline-block;margin:0 0 8px;
+  }
+  .figuras{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;}
+  .figura{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;}
+  .figura img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);cursor:zoom-in;}
+  .figura img:focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+  .figura h3{margin:0 0 8px;font-size:.9rem;color:var(--blue);}
+  .figura p{margin:8px 0 0;font-size:.84rem;color:var(--ink-soft);}
+
+  /* ---------- Modal de imágenes ---------- */
+  .modal{
+    position:fixed;inset:0;z-index:60;display:none;
+    background:rgba(8,13,24,.95);
+    padding:20px 18px;
+    flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  }
+  .modal.abierta{display:flex;}
+  .modal-barra{
+    width:min(1400px,100%);
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+  }
+  .modal-titulo{margin:0;font-size:.95rem;font-weight:700;color:var(--ink);}
+  .modal-cerrar{
+    background:var(--card);border:1px solid var(--line);color:var(--ink);
+    border-radius:999px;padding:8px 16px;font-size:.85rem;font-weight:600;cursor:pointer;
+    font-family:inherit;
+  }
+  .modal-cerrar:hover,.modal-cerrar:focus-visible{border-color:var(--blue);color:var(--blue);}
+  .modal-escena{
+    max-width:min(1400px,100%);max-height:76vh;
+    display:flex;align-items:center;justify-content:center;
+    overflow:auto;border-radius:12px;border:1px solid var(--line);background:var(--panel-head);
+  }
+  .modal-escena img{display:block;max-width:100%;max-height:76vh;width:auto;height:auto;border-radius:12px;}
+  .modal-pie{margin:0;font-size:.84rem;color:var(--ink-soft);text-align:center;}
+  .preguntas details{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .fuentes a{color:var(--blue);}
 </style>
 </head>
 <body>
@@ -326,18 +414,18 @@
 
   <section class="fila">
     <div>
-      <p class="rotulo"><span class="num n-blue">1</span> Idea central</p>
+      <p class="rotulo"><span class="num n-blue">1</span>Idea central</p>
       <article class="tarjeta idea">
         <p class="texto">El diagrama de estado UML modela los estados de un objeto durante su ciclo de vida y las transiciones entre ellos ante eventos externos o internos.</p>
       </article>
     </div>
     <div>
-      <p class="rotulo"><span class="num n-teal">2</span> 4 conceptos clave</p>
+      <p class="rotulo"><span class="num n-teal">2</span>4 conceptos clave</p>
       <article class="tarjeta conceptos">
         <div class="grid">
           <div class="chip c-blue">
             <div class="top"><span class="dot">1</span><h3>Estado</h3></div>
-            <p>Condición o fase en el ciclo de vida de un objeto.</p>
+            <p>Condición o fase del ciclo de vida de un objeto.</p>
           </div>
           <div class="chip c-teal">
             <div class="top"><span class="dot">2</span><h3>Transición</h3></div>
@@ -345,11 +433,11 @@
           </div>
           <div class="chip c-purple">
             <div class="top"><span class="dot">3</span><h3>Máquina de Estado</h3></div>
-            <p>Modelo matemático de sistemas con estados finitos y transiciones.</p>
+            <p>Modelo de sistemas con estados finitos y transiciones.</p>
           </div>
           <div class="chip c-amber">
-            <div class="top"><span class="dot">4</span><h3>Condición Guarda</h3></div>
-            <p>Expresión booleana [ ] que debe cumplirse para que ocurra la transición.</p>
+            <div class="top"><span class="dot">4</span><h3>Condición guarda</h3></div>
+            <p>Expresión booleana [ ] que habilita la transición.</p>
           </div>
         </div>
       </article>
@@ -357,81 +445,123 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">3</span> Relación: elementos del diagrama</p>
+    <p class="rotulo"><span class="num n-purple">3</span>Objetivos de la sesión</p>
     <div class="panel">
-      <div class="flujo" role="img" aria-label="Elementos del diagrama de estado: estado inicial, estados como rectángulos redondeados, transiciones como flechas con eventos, acciones y condiciones guarda, estados compuestos y estado final.">
-        <div class="paso c-blue">
-          <div class="cab"><span class="dot">1</span><h3>Estado</h3></div>
-          <p>Rectángulo redondeado con el nombre del estado.</p>
-        </div>
-        <span class="flecha" aria-hidden="true">→</span>
-        <div class="paso c-teal">
-          <div class="cab"><span class="dot">2</span><h3>Transición</h3></div>
-          <p>Flecha de un estado a otro con evento y acción.</p>
-        </div>
-        <span class="flecha" aria-hidden="true">→</span>
-        <div class="paso c-purple">
-          <div class="cab"><span class="dot">3</span><h3>Evento / Acción</h3></div>
-          <p>Evento dispara la transición; acción se ejecuta durante ella.</p>
-        </div>
-        <span class="flecha" aria-hidden="true">→</span>
-        <div class="paso c-amber">
-          <div class="cab"><span class="dot">4</span><h3>Guarda</h3></div>
-          <p>Condición [ ] que debe cumplirse para la transición.</p>
-        </div>
+      <ul class="lista">
+        <li>Conocer los <strong>conceptos y definiciones clave</strong> de los diagramas de estado.</li>
+        <li>Aprender a <strong>identificar los elementos</strong> del diagrama de estado.</li>
+        <li>Comprender <strong>cuándo es pertinente</strong> el uso del diagrama de estado.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">4</span>Definiciones clave</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Concepto</th><th>Definición</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Clase</strong></td><td>Plantilla para crear objetos en programación orientada a objetos.</td></tr>
+            <tr><td><strong>Objeto</strong></td><td>Instancia de una clase; el diagrama modela el comportamiento de una instancia a lo largo del tiempo.</td></tr>
+            <tr><td><strong>Máquina de Estado Finito</strong></td><td>Modelo matemático para sistemas que están en un número finito de estados con transiciones definidas.</td></tr>
+            <tr><td><strong>Encapsulamiento</strong></td><td>Ocultar los detalles internos de un objeto y exponer solo lo necesario.</td></tr>
+            <tr><td><strong>Cohesión</strong></td><td>Grado en que las responsabilidades de un módulo se relacionan entre sí; alta cohesión es deseable.</td></tr>
+            <tr><td><strong>Acoplamiento</strong></td><td>Grado de interdependencia entre partes del sistema; bajo acoplamiento es deseable.</td></tr>
+            <tr><td><strong>Patrón de Diseño</strong></td><td>Solución reutilizable a un problema común de diseño: Singleton, Factory, Observer.</td></tr>
+          </tbody>
+        </table>
       </div>
-      <p class="nota-relacion">Estado → Transición → Evento/Acción → Guarda</p>
+      <p class="nota-relacion">Ejemplo: en un carrito de compras, el producto puede estar Disponible, Reservado o Agotado.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">5</span>Herramientas de modelado</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Tipo</th><th>Herramientas</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Comerciales</strong></td><td>Visual Paradigm, Enterprise Architect, IBM Rational Rose, SysML.</td></tr>
+            <tr><td><strong>Gratuitas</strong></td><td>PlantUML, Diagrams.net, Lucidchart, draw.io.</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
   <section class="ampliado">
-    <p class="rotulo"><span class="num n-teal">4</span> Lo esencial de la clase</p>
+    <p class="rotulo"><span class="num n-teal">6</span>Elementos del diagrama de estado</p>
     <div class="grid">
       <article class="bloque">
-        <h3>Elementos fundamentales</h3>
-        <ul>
-          <li>Estado inicial y estado final.</li>
-          <li>Estados simples y compuestos.</li>
-          <li>Transiciones con evento, acción y guarda.</li>
-          <li>Regiones concurrentes.</li>
-        </ul>
+        <h3>Estado</h3>
+        <p>Condición específica o fase del ciclo de vida de un objeto. Se dibuja como <strong>rectángulo redondeado</strong> con el nombre del estado.</p>
+        <p>Ejemplo: “Disponible”, “Reservado”, “Agotado”.</p>
       </article>
-
       <article class="bloque b-teal">
-        <h3>Pasos para elaborar el diagrama</h3>
-        <ul>
-          <li>Identificar el objeto o clase.</li>
-          <li>Definir los estados posibles.</li>
-          <li>Identificar eventos y transiciones.</li>
-          <li>Añadir acciones y condiciones guarda.</li>
-          <li>Dibujar, revisar, validar y documentar.</li>
-        </ul>
+        <h3>Transición</h3>
+        <p>Cambio de un estado a otro, representado con una <strong>flecha</strong> del estado de origen al de destino.</p>
+        <p>Ejemplo: “añadirAlCarrito” lleva de Disponible a Reservado.</p>
       </article>
-
       <article class="bloque b-purple">
-        <h3>Ejemplo: ciclo de vida de un producto</h3>
-        <ul>
-          <li>Disponible → Reservado (añadir al carrito).</li>
-          <li>Reservado → Agotado (comprar última unidad).</li>
-          <li>Agotado → Disponible (reabastecer).</li>
-          <li>Disponible → Descatalogado (retirar).</li>
-        </ul>
+        <h3>Evento</h3>
+        <p>Algo que ocurre en el sistema y puede desencadenar una transición. Se escribe cerca de la flecha.</p>
+        <p>Ejemplo: “añadirAlCarrito”, “comprar”.</p>
       </article>
-
       <article class="bloque b-amber">
-        <h3>Herramientas de modelado</h3>
-        <ul>
-          <li><strong>Comerciales:</strong> Visual Paradigm, Enterprise Architect, IBM Rational Rose, SysML.</li>
-          <li><strong>Gratuitas:</strong> PlantUML, Diagrams.net, Lucidchart, draw.io.</li>
-        </ul>
+        <h3>Acción</h3>
+        <p>Actividad que se ejecuta durante una transición, separada de la guarda por una barra <strong>/</strong>.</p>
+        <p>Ejemplo: al pasar de Reservado a Agotado, la acción “/actualizarInventario”.</p>
+      </article>
+      <article class="bloque">
+        <h3>Condición guarda</h3>
+        <p>Expresión booleana que debe ser verdadera para que ocurra la transición, entre <strong>corchetes</strong> cerca de la flecha.</p>
+        <p>Ejemplo: “[pagoAprobado]”.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Estado inicial y final</h3>
+        <p>El <strong>inicial</strong> es un círculo relleno; el <strong>final</strong> es un círculo relleno rodeado por otro.</p>
+        <p>Ejemplo: el producto inicia “En Inventario” y termina “Descatalogado”.</p>
+      </article>
+      <article class="bloque b-purple">
+        <h3>Estados compuestos</h3>
+        <p>Contienen otros estados y transiciones internas; simplifican diagramas complejos.</p>
+        <p>Ejemplo: “En Carrito” incluye “Reservado” y “Listo para Compra”.</p>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Regiones concurrentes</h3>
+        <p>Áreas separadas que muestran un objeto en más de un estado al mismo tiempo.</p>
+        <p>Ejemplo: un producto puede estar a la vez “En Oferta” y “Disponible”.</p>
       </article>
     </div>
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: estados de un producto</p>
+    <p class="rotulo"><span class="num n-purple">7</span>Cómo se lee una transición</p>
     <div class="panel">
-      <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Flujo de estados de un producto: En Inventario → Disponible → Reservado → Agotado → Disponible (reabastecimiento) → Descatalogado → estado final.">
+      <p class="sintaxis">evento [condición guarda] / acción</p>
+      <ul class="lista">
+        <li>El <strong>evento</strong> inicia el cambio de estado.</li>
+        <li>La <strong>guarda</strong> decide si la transición puede ocurrir.</li>
+        <li>La <strong>acción</strong> describe el trabajo ejecutado durante el cambio.</li>
+      </ul>
+      <div class="mermaid">
+stateDiagram-v2
+    [*] --&gt; Iniciada
+    Iniciada --&gt; PendienteDePago: calcularTotalVenta
+    PendienteDePago --&gt; Pagada: pagarVenta [aprobada]
+    PendienteDePago --&gt; PendienteDePago: pagarVenta [rechazada]
+    Pagada --&gt; [*]: entregarProductos
+      </div>
+      <p class="nota-relacion">Un pago rechazado no cambia el estado: la venta permanece pendiente. Solo la aprobación permite pasar a Pagada.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">8</span>Flujo del concepto: ciclo de vida de un producto</p>
+    <div class="panel">
+      <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Ciclo de vida de un producto: Disponible, Reservado, Agotado y Descatalogado, con reposición al inventario.">
         <defs>
           <marker id="punta1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
             <path d="M0,0 L8,4 L0,8 z" fill="#54688a"></path>
@@ -463,119 +593,192 @@
         <path class="flecha-linea" d="M962 126 L962 160 L116 160 L116 130" marker-end="url(#punta1)"></path>
         <text class="pie-diagrama" x="540" y="186" text-anchor="middle">Ciclo de vida del producto: Disponible → Reservado → Agotado → Descatalogado</text>
       </svg>
-      <p class="nota-relacion">Disponible → Reservado → Agotado → Descatalogado (con reabastecimiento posible)</p>
+      <p class="nota-relacion">Una máquina de estado finito modela estos estados y las transiciones definidas entre ellos.</p>
     </div>
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-amber">6</span> Transición con guarda y acción</p>
+    <p class="rotulo"><span class="num n-blue">9</span>Caso práctico: ciclo de vida de una venta</p>
     <div class="panel">
-      <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Una transición de estado con evento, condición guarda y acción: de Reservado a Agotado, se dispara con el evento comprar, se ejecuta la acción actualizarInventario y requiere la guarda últimaUnidad.">
-        <defs>
-          <marker id="punta1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
-            <path d="M0,0 L8,4 L0,8 z" fill="#54688a"></path>
-          </marker>
-        </defs>
-
-        <rect class="nodo" x="6" y="34" width="220" height="88" rx="12" stroke="#6aa7ff"></rect>
-        <text class="nodo-titulo" x="116" y="72" text-anchor="middle" style="fill:#6aa7ff">Reservado</text>
-        <text class="nodo-texto" x="116" y="98" text-anchor="middle">Producto en carrito</text>
-
-        <line class="flecha-linea" x1="232" y1="78" x2="564" y2="78" marker-end="url(#punta1)"></line>
-
-        <rect class="nodo" x="570" y="34" width="220" height="88" rx="12" stroke="#3ed2b2"></rect>
-        <text class="nodo-titulo" x="680" y="72" text-anchor="middle" style="fill:#3ed2b2">Agotado</text>
-        <text class="nodo-texto" x="680" y="98" text-anchor="middle">Sin unidades disponibles</text>
-
-        <text x="398" y="112" text-anchor="middle" fill="#a9bad2" font-size="13px" font-weight="600">Evento: comprar()</text>
-        <text x="398" y="128" text-anchor="middle" fill="#a9bad2" font-size="13px">Guarda: [últimaUnidad]</text>
-        <text x="398" y="144" text-anchor="middle" fill="#a9bad2" font-size="13px">Acción: /actualizarInventario</text>
-
-        <text class="pie-diagrama" x="540" y="186" text-anchor="middle">Una transición tiene evento, guarda y acción asociados</text>
-      </svg>
-      <p class="nota-relacion">Reservado → Agotado · evento: comprar() · guarda: [últimaUnidad] · acción: /actualizarInventario</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="ejemplo">
-      <span class="marca" aria-hidden="true">E</span>
-      <div>
-        <h3>Ejemplo de la clase</h3>
-        <p><strong>Comercio electrónico:</strong> un producto pasa de "Disponible" a "Reservado" cuando un cliente lo añade al carrito, a "Agotado" al comprarse la última unidad, vuelve a "Disponible" al reabastecerse y llega a "Descatalogado" al retirarse del catálogo.</p>
+      <p>El objeto modelado es una <strong>Venta</strong>. El diagrama muestra las etapas desde su inicio hasta el pago, la entrega, la cancelación o la modificación.</p>
+      <div class="tabla-wrap" style="margin-top:12px;">
+        <table class="tabla">
+          <thead><tr><th>Estado</th><th>Significado en el modelo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Iniciada</strong></td><td>Se empieza a gestionar la venta.</td></tr>
+            <tr><td><strong>Pendiente de pago</strong></td><td>Se calculó el total y se espera el resultado del pago.</td></tr>
+            <tr><td><strong>Pagada</strong></td><td>El pago fue aprobado.</td></tr>
+            <tr><td><strong>Entregada</strong></td><td>Se entregaron los productos.</td></tr>
+            <tr><td><strong>Cancelada</strong></td><td>La venta se canceló antes de completarse.</td></tr>
+            <tr><td><strong>Anulada</strong></td><td>Se anuló una venta entregada y se ejecutó el reembolso.</td></tr>
+            <tr><td><strong>Modificada</strong></td><td>Se cambió el producto después de la entrega.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tabla-wrap" style="margin-top:14px;">
+        <table class="tabla">
+          <thead><tr><th>Origen</th><th>Evento y condición</th><th>Destino</th><th>Acción o resultado</th></tr></thead>
+          <tbody>
+            <tr><td>Inicial</td><td><code>gestionarVenta</code></td><td>Iniciada</td><td>Comienza el ciclo de la venta.</td></tr>
+            <tr><td>Iniciada</td><td><code>calcularTotalVenta</code></td><td>Pendiente de pago</td><td>Se calcula el monto a pagar.</td></tr>
+            <tr><td>Pendiente de pago</td><td><code>pagarVenta [aprobada]</code></td><td>Pagada</td><td>El pago es aceptado.</td></tr>
+            <tr><td>Pendiente de pago</td><td><code>pagarVenta [rechazada]</code></td><td>Pendiente de pago</td><td>La venta sigue esperando un pago válido.</td></tr>
+            <tr><td>Iniciada</td><td><code>cancelarVenta</code></td><td>Cancelada</td><td>Se termina antes del pago.</td></tr>
+            <tr><td>Pendiente de pago</td><td><code>cancelarVenta</code></td><td>Cancelada</td><td>Se termina mientras espera el pago.</td></tr>
+            <tr><td>Pagada</td><td><code>entregarProductos</code></td><td>Entregada</td><td>Se completa la entrega.</td></tr>
+            <tr><td>Entregada</td><td><code>anularVenta</code></td><td>Anulada</td><td>Se ejecuta <code>ejecutarReembolso</code>.</td></tr>
+            <tr><td>Entregada</td><td><code>cambiarProducto</code></td><td>Modificada</td><td>Se registra el cambio de producto.</td></tr>
+            <tr><td>Modificada</td><td><code>cambiarProducto</code></td><td>Modificada</td><td>El modelo permite registrar otro cambio.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="destacado" style="margin-top:14px;">
+        <strong>Lectura clave:</strong> <code>pagarVenta [rechazada]</code> es un bucle sobre <strong>Pendiente de pago</strong>. La guarda <code>[aprobada]</code> permite avanzar a <strong>Pagada</strong>. La anulación incluye una acción explícita de reembolso.
+      </div>
+      <div class="mermaid">
+stateDiagram-v2
+    [*] --&gt; Iniciada: gestionarVenta
+    Iniciada --&gt; PendienteDePago: calcularTotalVenta
+    PendienteDePago --&gt; Pagada: pagarVenta [aprobada]
+    PendienteDePago --&gt; PendienteDePago: pagarVenta [rechazada]
+    Iniciada --&gt; Cancelada: cancelarVenta
+    PendienteDePago --&gt; Cancelada: cancelarVenta
+    Pagada --&gt; Entregada: entregarProductos
+    Entregada --&gt; Anulada: anularVenta / ejecutarReembolso
+    Entregada --&gt; Modificada: cambiarProducto
+    Modificada --&gt; Modificada: cambiarProducto
+    Cancelada --&gt; [*]
+    Anulada --&gt; [*]
+    Entregada --&gt; [*]
+    Modificada --&gt; [*]
       </div>
     </div>
   </section>
 
   <section>
-    <div class="ejemplo">
-      <span class="marca" aria-hidden="true">E</span>
-      <div>
-        <h3>Ejemplo adicional</h3>
-        <p><strong>Videojuego:</strong> un personaje tiene estados "Vivo", "Herido" y "Muerto". Al recibir daño pasa de Vivo a Herido; si se cura vuelve a Vivo; si su vida llega a cero pasa a Muerto. El evento "recibirDaño" dispara la transición y la acción "/reducirVida" se ejecuta durante el cambio de estado.</p>
-      </div>
+    <p class="rotulo"><span class="num n-teal">10</span>Evolución visual del modelo</p>
+    <div class="figuras">
+      <figure class="figura">
+        <h3>Notas iniciales de eventos y estados</h3>
+        <img src="./imagenes/venta-transiciones-notas-clase-9.png" alt="Enumeración inicial de eventos de la venta y de los estados asociados a cada evento.">
+        <p>Primer paso: listar los eventos previstos y los estados que cada uno habilita.</p>
+      </figure>
+      <figure class="figura">
+        <h3>Boceto inicial del flujo</h3>
+        <img src="./imagenes/venta-estados-flujo-inicial-clase-9.png" alt="Primer boceto de la venta con inicio, pendiente de pago, pago y entrega, con cajas de estado aún sin nombrar.">
+        <p>Boceto temprano: las cajas que dicen “State” son marcadores pendientes de nombrar.</p>
+      </figure>
+      <figure class="figura">
+        <h3>Diagrama ampliado</h3>
+        <img src="./imagenes/venta-estados-flujo-ampliado-clase-9.png" alt="Diagrama ampliado con pago aprobado o rechazado, cancelación y cambio de producto.">
+        <p>Se incorporan cancelación, rechazo de pago y modificación de producto.</p>
+      </figure>
+      <figure class="figura">
+        <h3>Versión final</h3>
+        <img src="./imagenes/venta-estados-anulacion-reembolso-clase-9.png" alt="Ciclo de vida de la venta con estados de cancelación, modificación y anulación con reembolso.">
+        <p>Versión completa: anulación de una venta entregada con reembolso asociado.</p>
+      </figure>
     </div>
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-amber">7</span> Objetivos y estados inicial/final</p>
+    <p class="rotulo"><span class="num n-purple">11</span>Método de elaboración en 10 pasos</p>
     <div class="panel">
-      <div class="flujo" role="img" aria-label="Objetivos de la sesión: conocer conceptos clave, identificar elementos del diagrama, comprender cuándo usar diagrama de estado. Estados inicial y final: círculo relleno inicia, doble círculo marca fin del ciclo de vida.">
-        <div class="paso c-blue">
-          <div class="cab"><span class="dot">1</span><h3>Objetivos</h3></div>
-          <p>Conceptos clave, elementos del diagrama, cuándo usarlo.</p>
-        </div>
-        <span class="flecha" aria-hidden="true">→</span>
-        <div class="paso c-teal">
-          <div class="cab"><span class="dot">2</span><h3>Estados inicial/final</h3></div>
-          <p>Círculo relleno = inicio; doble círculo = fin del ciclo de vida.</p>
-        </div>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>#</th><th>Qué hacer</th><th>Ejemplo (producto)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Identificar el objeto o clase de interés.</td><td>Modelar el ciclo de vida de un objeto Producto.</td></tr>
+            <tr><td>2</td><td>Definir los estados.</td><td>Disponible, Reservado, Agotado.</td></tr>
+            <tr><td>3</td><td>Identificar eventos y transiciones.</td><td>“añadirAlCarrito” lleva de Disponible a Reservado.</td></tr>
+            <tr><td>4</td><td>Añadir acciones y condiciones guarda.</td><td>De Reservado a Agotado con acción “actualizarInventario” y guarda “[últimaUnidad]”.</td></tr>
+            <tr><td>5</td><td>Dibujar el diagrama.</td><td>Estado inicial → estados → flechas de transición con etiquetas.</td></tr>
+            <tr><td>6</td><td>Revisar y refinar.</td><td>Verificar que los estados y transiciones sean correctos y completos.</td></tr>
+            <tr><td>7</td><td>Validar el diagrama.</td><td>Compartirlo con el equipo o stakeholders para validar el modelo.</td></tr>
+            <tr><td>8</td><td>Documentar.</td><td>Añadir descripciones de estados, eventos, acciones y condiciones.</td></tr>
+            <tr><td>9</td><td>Integrar con otros diagramas UML.</td><td>Asegurar la integración con diagramas de clases y de secuencia.</td></tr>
+            <tr><td>10</td><td>Mantener actualizado.</td><td>Actualizarlo a medida que avanzan los requisitos.</td></tr>
+          </tbody>
+        </table>
       </div>
-      <p class="nota-relacion">Objetivos → Estados inicial y final</p>
     </div>
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-amber">8</span> Estados compuestos, regiones y pasos</p>
-    <div class="ampliado">
-      <div class="grid">
-        <article class="bloque">
-          <h3>Estados compuestos</h3>
-          <ul>
-            <li>Contienen otros estados y transiciones internas.</li>
-            <li>Simplifican diagramas complejos.</li>
-            <li>Ejemplo: "En Carrito" incluye "Reservado" y "Listo para Compra".</li>
-          </ul>
-        </article>
-        <article class="bloque b-teal">
-          <h3>Regiones concurrentes</h3>
-          <ul>
-            <li>Objeto en más de un estado al mismo tiempo.</li>
-            <li>Áreas separadas dentro de un estado compuesto.</li>
-            <li>Ejemplo: "En Oferta" y "Disponible" simultáneas.</li>
-          </ul>
-        </article>
-        <article class="bloque b-purple">
-          <h3>Pasos 1 a 5 para elaborar el diagrama</h3>
-          <ul>
-            <li>1. Identificar objeto o clase de interés.</li>
-            <li>2. Definir los estados posibles.</li>
-            <li>3. Identificar eventos y transiciones.</li>
-            <li>4. Añadir acciones y condiciones guarda.</li>
-            <li>5. Dibujar el diagrama.</li>
-          </ul>
-        </article>
-        <article class="bloque b-amber">
-          <h3>Pasos 6 a 10 para elaborar el diagrama</h3>
-          <ul>
-            <li>6. Revisar y refinar el diagrama.</li>
-            <li>7. Validar con el equipo y stakeholders.</li>
-            <li>8. Documentar estados, eventos, acciones.</li>
-            <li>9. Integrar con otros diagramas UML.</li>
-            <li>10. Mantener actualizado ante cambios.</li>
-          </ul>
-        </article>
+    <p class="rotulo"><span class="num n-amber">12</span>¿Cuándo son útiles?</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Dominio</th><th>Aplicación del diagrama de estado</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Comercio electrónico</strong></td><td>Ciclo de vida de un producto o una orden: “Disponible”, “Reservado”, “Agotado”, “Enviado”.</td></tr>
+            <tr><td><strong>BPM</strong></td><td>Etapas de un proceso: “Inicio”, “Aprobación”, “Ejecución”, “Cierre”.</td></tr>
+            <tr><td><strong>Videojuegos</strong></td><td>Estados de un personaje: “Vivo”, “Herido”, “Muerto”.</td></tr>
+            <tr><td><strong>Control automatizado</strong></td><td>Control de tráfico aéreo o fabricación automatizada: estados y transiciones críticos para la seguridad.</td></tr>
+            <tr><td><strong>Aplicaciones de usuario</strong></td><td>Software de edición de video o plataformas de aprendizaje: estados de la interfaz.</td></tr>
+            <tr><td><strong>Telecomunicaciones</strong></td><td>Estados de una llamada: “Iniciada”, “En curso”, “Terminada”.</td></tr>
+            <tr><td><strong>Firmware / software embebido</strong></td><td>Microcontroladores en dispositivos IoT: optimización de recursos mediante estados y transiciones.</td></tr>
+          </tbody>
+        </table>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">13</span>Ejemplos de la clase</p>
+    <div class="panel">
+      <article class="ejemplo">
+        <span class="marca" aria-hidden="true">E</span>
+        <div>
+          <h3>Comercio electrónico</h3>
+          <p>Un producto pasa de “Disponible” a “Reservado” cuando un cliente lo añade al carrito, a “Agotado” al comprarse la última unidad, vuelve a “Disponible” al reabastecerse y llega a “Descatalogado” al retirarse del catálogo.</p>
+        </div>
+      </article>
+      <article class="ejemplo" style="margin-top:14px;">
+        <span class="marca" aria-hidden="true">E</span>
+        <div>
+          <h3>Videojuego</h3>
+          <p>Un personaje tiene estados “Vivo”, “Herido” y “Muerto”. Al recibir daño pasa de Vivo a Herido; si se cura vuelve a Vivo; si su vida llega a cero pasa a Muerto. El evento “recibirDaño” dispara la transición y la acción “/reducirVida” se ejecuta durante el cambio de estado.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">14</span>Conclusiones</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Qué aporta</h3>
+        <ul>
+          <li>Permite entender y representar los cambios de estado en objetos o sistemas a lo largo del tiempo.</li>
+          <li>Conceptos como ciclo de vida, objetos y clases, y máquinas de estado finito amplían la utilidad del diagrama.</li>
+          <li>Es versátil y aplicable a comercio, BPM, videojuegos, control automatizado y telecomunicaciones.</li>
+          <li>Es útil para desarrolladores, gerentes de producto y analistas de negocio.</li>
+        </ul>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Preguntas de reflexión</h3>
+        <div class="preguntas">
+          <details><summary>¿Cuándo conviene un diagrama de estado en lugar de uno de clases o de secuencia?</summary><p>Cuando el comportamiento de un objeto cambia de forma relevante a lo largo del tiempo y esas etapas deben quedar explícitas.</p></details>
+          <details><summary>¿Qué diferencia hay entre un estado simple y uno compuesto?</summary><p>El simple modela una fase única; el compuesto agrupa estados y transiciones internas para simplificar diagramas complejos.</p></details>
+          <details><summary>¿Por qué son importantes las condiciones guarda?</summary><p>Controlan qué transición se permite: sin guardas explícitas, el modelo no muestra por qué un cambio de estado ocurre o no.</p></details>
+          <details><summary>¿Cómo se integra con otros diagramas UML?</summary><p>El diagrama de estado detalla el ciclo de vida de un objeto, y se relaciona con el diagrama de clases (la clase modelada) y con el de secuencia (las interacciones que disparan eventos).</p></details>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">15</span>Recursos y referencias</p>
+    <div class="panel">
+      <ul class="fuentes">
+        <li><strong>Presentación de la clase:</strong> <code>30630-S09-PRESENTACION.pdf</code> (carpeta de la clase).</li>
+        <li><strong>Bibliografía:</strong> Dennis, A., Wixom, B. H., &amp; Tegarden, D. (2015). <em>Systems Analysis and Design: An Object-Oriented Approach with UML</em>. Wiley.</li>
+        <li><strong>Bibliografía:</strong> Martin, R. C. (2002). <em>UML for Java Programmers</em>. Prentice Hall.</li>
+        <li><strong>Bibliografía:</strong> Fowler, M. (2003). <em>UML Distilled: A Brief Guide to the Standard Object Modeling Language</em> (3rd ed.). Addison-Wesley.</li>
+        <li><strong>Referencia web:</strong> <a href="https://www.uml-diagrams.org/state-machine-diagrams.html">UML State Machine Diagrams</a>.</li>
+        <li><strong>Clases relacionadas:</strong> modelamiento UML (Clase 5), casos de uso (Clase 6), especificación de casos de uso (Clase 7) y diagrama de actividad (Clase 10).</li>
+      </ul>
     </div>
   </section>
 
@@ -584,8 +787,9 @@
       <p class="cab"><span class="tick" aria-hidden="true">✓</span> Qué recordar</p>
       <ul>
         <li>Modela estados y transiciones de un objeto en su ciclo de vida.</li>
-        <li>Elementos: estado, transición, evento, acción, condición guarda.</li>
-        <li>Estados inicial y final marcan el inicio y fin del ciclo.</li>
+        <li>Elementos: estado, transición, evento, acción y condición guarda.</li>
+        <li>Una transición se lee como evento [guarda] / acción.</li>
+        <li>Estados inicial y final marcan el inicio y el fin del ciclo.</li>
         <li>Útil en comercio, BPM, videojuegos, control automatizado, telecomunicaciones e IoT.</li>
       </ul>
       <p class="frase"><strong>Clave:</strong> un diagrama de estado bien definido ayuda a desarrolladores, gerentes de producto y analistas a comprender el comportamiento del sistema de forma visual.</p>
@@ -593,10 +797,108 @@
   </section>
 
   <footer class="pie">
-    <span>Fuente: apuntes de la Clase 9 — Análisis y Diseño de Sistemas Avanzado (ISIL, 2026-2).</span>
+    <span>Fuente: apuntes y presentación de la Clase 9 — Análisis y Diseño de Sistemas Avanzado (ISIL, 2026-2).</span>
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
 </div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-titulo">
+  <div class="modal-barra">
+    <p class="modal-titulo" id="modal-titulo">Imagen de la clase</p>
+    <button class="modal-cerrar" type="button" id="modal-cerrar">Cerrar (Esc)</button>
+  </div>
+  <div class="modal-escena">
+    <img id="modal-img" alt="">
+  </div>
+  <p class="modal-pie" id="modal-pie">Pulsa Escape o haz clic fuera de la imagen para cerrar.</p>
+</div>
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+
+  /* ---------- Modal de imágenes: vista ampliada ---------- */
+  const modal = document.getElementById("modal");
+  const modalImg = document.getElementById("modal-img");
+  const modalTitulo = document.getElementById("modal-titulo");
+  const modalPie = document.getElementById("modal-pie");
+  const modalCerrar = document.getElementById("modal-cerrar");
+  const imagenes = Array.from(document.querySelectorAll(".figura img"));
+  let focoPrevio = null;
+
+  function abrirModal(imagen) {
+    const figura = imagen.closest(".figura");
+    const titulo = figura && figura.querySelector("h3") ? figura.querySelector("h3").textContent : "Imagen de la clase";
+    const descripcion = imagen.getAttribute("alt") || "";
+    modalImg.setAttribute("src", imagen.getAttribute("src"));
+    modalImg.setAttribute("alt", descripcion);
+    modalTitulo.textContent = titulo;
+    modalPie.textContent = descripcion + " · Pulsa Escape o haz clic fuera de la imagen para cerrar.";
+    modal.classList.add("abierta");
+    modal.setAttribute("aria-hidden", "false");
+    focoPrevio = document.activeElement;
+    modalCerrar.focus();
+  }
+
+  function cerrarModal() {
+    if (!modal.classList.contains("abierta")) return;
+    modal.classList.remove("abierta");
+    modal.setAttribute("aria-hidden", "true");
+    modalImg.removeAttribute("src");
+    if (focoPrevio && typeof focoPrevio.focus === "function") focoPrevio.focus();
+    focoPrevio = null;
+  }
+
+  imagenes.forEach((imagen) => {
+    imagen.setAttribute("tabindex", "0");
+    imagen.setAttribute("role", "button");
+    imagen.addEventListener("click", () => abrirModal(imagen));
+    imagen.addEventListener("keydown", (evento) => {
+      if (evento.key === "Enter" || evento.key === " ") {
+        evento.preventDefault();
+        abrirModal(imagen);
+      }
+    });
+  });
+
+  modalCerrar.addEventListener("click", cerrarModal);
+  modal.addEventListener("click", (evento) => {
+    if (evento.target === modal || evento.target.classList.contains("modal-escena")) cerrarModal();
+  });
+  document.addEventListener("keydown", (evento) => {
+    if (evento.key === "Escape") cerrarModal();
+  });
+</script>
 </body>
 </html>

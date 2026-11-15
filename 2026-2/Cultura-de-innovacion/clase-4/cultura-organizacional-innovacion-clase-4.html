@@ -326,6 +326,42 @@
   .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
   .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
   .bloque .mermaid{background:transparent;border:none;padding:8px 0 0;margin-top:6px;overflow:visible;}
+
+  /* ---------- Extensiones: cobertura completa de la clase ---------- */
+  .rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px;}
+  .rejilla-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;}
+  .lista{margin:0;padding-left:18px;}
+  ol.lista{padding-left:24px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .destacado{
+    background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .destacado strong{color:var(--teal);}
+  .sub-titulo{margin:0 0 8px;font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--amber);}
+  .preguntas details{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:460px;}
+  .tabla th,.tabla td{
+    text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .tabla thead th{
+    color:var(--ink);font-weight:700;background:var(--card-2);
+    letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;
+  }
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
 </style>
 </head>
 <body>
@@ -566,6 +602,51 @@ flowchart LR
     <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
   </footer>
 
+
+<section aria-label="Apartados complementarios del apunte">
+  <p class="rotulo"><span class="num n-purple">+</span>Temas complementarios del apunte</p>
+  <details style="background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;">
+    <summary style="cursor:pointer;color:var(--ink);font-weight:700;">Desplegar los 9 apartados que amplían la síntesis visual</summary>
+    <div class="grid" style="margin-top:14px;">
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Resumen de la clase</h3>
+    <p>1. Objetivo de la sesión La clase busca comprender que la innovación no se da solo en productos, sino también en procesos, modelos de organización, estrategias de comercialización y formas de trabajo. El punto central es que la innovación solo se sostiene si existe una cultura organizacional que la apoye, la entienda y la convierta en parte del comportamiento diario de la empresa. 2. Conceptos clave Innovación:…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1. Objetivo de la sesión</h3>
+    <p>La clase busca comprender que la innovación no se da solo en productos, sino también en procesos, modelos de organización, estrategias de comercialización y formas de trabajo. El punto central es que la innovación solo se sostiene si existe una cultura organizacional que la apoye, la entienda y la convierta en parte del comportamiento diario de la empresa.</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>3. Desarrollo en detalle</h3>
+    <p>El desarrollo completo (tipos de innovación, modelos de cultura, dimensiones y niveles) está en las secciones 1, 2 y 3 de este documento. Esta sección solo conserva los ejemplos y la idea final. Howard Hughes (ejemplo ilustrativo, sin cifra verificada): pequeñas mejoras en procesos generan ahorros cuando la escala de producción multiplica el impacto. American Airlines (ejemplo ilustrativo, sin cifra verificada):…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>4. Idea final de la clase</h3>
+    <p>La innovación es una capacidad organizacional, no solo una cualidad individual. Para transformarla en ventaja competitiva, la empresa necesita: liderazgo que dé ejemplo; un clima donde se pueda proponer ideas; tolerancia al aprendizaje a partir del error; estructuras que permitan experimentar;</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>1. Innovación: Definición e Importancia</h3>
+    <p>Hoy la innovación es clave para ventajas competitivas sostenibles: las empresas innovadoras son más flexibles, se adaptan y responden mejor a los cambios, y explotan oportunidades más que la competencia (Damanpour y Gopalakrishnan, 2001). Definición OCDE–Eurostat (2005): innovación es la introducción de un producto, servicio, proceso, método de comercialización o método organizativo nuevo o mejorado, en las…</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Visualización rápida</h3>
+    <p>flowchart LR A[Cultura organizacional] --&gt; B[Valores compartidos] B --&gt; C[Liderazgo y comportamiento] C --&gt; D[Confianza y autonomía] D --&gt; E[Experimentación]</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Glosario</h3>
+    <p>Innovación: introducción de algo nuevo o mejorado que genera valor Cultura organizacional: presunciones y valores compartidos que guían cómo pensar y actuar Cultura adhocrática: flexible y externa; creatividad y riesgo para liderar el mercado Cultura de clan: flexible e interna; familia, equipo y compromiso Tolerancia al fracaso: tratar el error como aprendizaje, no como condena</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Preguntas de reflexión</h3>
+    <p>¿Tu equipo castiga el error o lo convierte en aprendizaje documentado? ¿En qué nivel está tu organización: cerrada, eficiente, en aprendizaje o creativa-innovadora? ¿Qué dimensión (tiempo, recursos, autonomía) es hoy tu cuello de botella para innovar?</p>
+  </article>
+  <article class="bloque" style="margin-bottom:10px;">
+    <h3>Bibliografía de la clase</h3>
+    <p>Ayala, P. (2014). Cultura organizacional e innovación. Gestión de las Personas y Tecnología, 7(19) Cameron, K. y Quinn, R. (1999). Diagnosing and Changing Organizational Culture Schein, E. (1988). La cultura empresarial y el liderazgo Naranjo-Valencia et al. (2015). Construyendo una cultura de innovación. Estudios Gerenciales, 31(135) Última actualización: 15/09/2026.</p>
+  </article>
+    </div>
+  </details>
+</section>
 </div>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";

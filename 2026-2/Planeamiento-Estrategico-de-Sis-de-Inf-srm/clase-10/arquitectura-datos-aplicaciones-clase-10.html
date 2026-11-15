@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infografía Clase 10 — Arquitectura de Datos y Sistemas de Información</title>
+<meta name="description" content="Guía visual de la Clase 10: relación entre estrategia, procesos, datos y aplicaciones, con ejemplos de una tienda.">
+<style>
+:root{--bg:#0d1526;--panel-head:#0a1120;--card:#152238;--card-2:#182742;--ink:#e9eff8;--ink-soft:#a9bad2;--line:#27395a;--blue:#6aa7ff;--blue-bg:#16294a;--teal:#3ed2b2;--teal-bg:#113a36;--purple:#b39af7;--purple-bg:#241d47;--amber:#f7b955;--amber-bg:#3a2c12;}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5}.hoja{max-width:1180px;margin:0 auto;padding:22px 18px 34px}.franja{background:var(--panel-head);border:1px solid var(--line);border-radius:16px;padding:22px 26px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;position:relative;overflow:hidden}.franja:after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--blue) 0 25%,var(--teal) 25% 50%,var(--purple) 50% 75%,var(--amber) 75% 100%)}.franja h1{margin:0;font-size:1.72rem}.sub{margin:6px 0 0;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:#9db8dc}.meta{font-size:.8rem;color:#c3d4ea;text-align:right}.fila{display:grid;grid-template-columns:minmax(240px,1fr) 2.1fr;gap:16px;align-items:start}section{margin-top:24px}.rotulo{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--ink-soft)}.num{width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:#0d1526;font-weight:800;flex:none}.n-blue{background:var(--blue)}.n-teal{background:var(--teal)}.n-purple{background:var(--purple)}.n-amber{background:var(--amber)}.tarjeta,.panel,.bloque,.ejemplo,.recuerda{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}.idea p{margin:0;font-size:1.04rem;font-weight:700}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.chip{border:1px solid;border-radius:12px;padding:12px 14px;background:var(--card-2)}.chip h3{margin:0 0 5px;font-size:.98rem}.chip p{margin:0;font-size:.86rem;color:var(--ink-soft)}.c-blue{border-color:#31548c}.c-blue h3{color:var(--blue)}.c-teal{border-color:#1f6b5e}.c-teal h3{color:var(--teal)}.c-purple{border-color:#4d3f86}.c-purple h3{color:var(--purple)}.c-amber{border-color:#8a6a2a}.c-amber h3{color:var(--amber)}.flujo{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap}.paso{flex:1 1 180px;border:1px solid;border-radius:12px;padding:14px 16px;min-height:100px;background:var(--card-2)}.paso h3{margin:0 0 7px;font-size:1rem}.paso p{margin:0;font-size:.88rem;color:var(--ink-soft)}.flecha{align-self:center;color:#6f85a3;font-size:1.3rem}.nota{margin:14px auto 0;text-align:center;font-size:.88rem;font-weight:700;color:var(--ink-soft)}.svg-flujo{display:block;width:100%;height:auto}.svg-flujo .nodo{fill:var(--card-2);stroke-width:2}.svg-flujo .nodo-titulo{font-size:17px;font-weight:700;font-family:inherit}.svg-flujo .nodo-texto{fill:var(--ink-soft);font-size:13.5px;font-family:inherit}.svg-flujo .flecha-linea{stroke:#54688a;stroke-width:2.5;fill:none}.svg-flujo .pie-diagrama{fill:var(--ink-soft);font-size:14px;font-weight:600;font-family:inherit}.ampliado .grid{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}.bloque{border-left:5px solid var(--blue);padding:14px 16px}.bloque.b-teal{border-left-color:var(--teal)}.bloque.b-purple{border-left-color:var(--purple)}.bloque.b-amber{border-left-color:var(--amber)}.bloque h3{margin:0 0 7px;font-size:.95rem}.bloque p,.bloque li{font-size:.87rem;color:var(--ink-soft)}.bloque p{margin:0}.bloque ul{margin:0;padding-left:18px}.ejemplo{background:var(--amber-bg);border-color:#6d5426}.ejemplo h3{margin:0 0 6px;font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;color:var(--amber)}.ejemplo p{margin:0;font-size:.95rem}.recuerda{background:var(--panel-head);border-top:4px solid var(--teal)}.recuerda h2{margin:0 0 10px;color:var(--teal);font-size:1rem}.recuerda ul{margin:0;padding-left:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:7px 20px}.pie{margin-top:18px;font-size:.78rem;color:#7f93b0;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}@media(max-width:820px){.fila{grid-template-columns:1fr}.franja h1{font-size:1.4rem}.meta{text-align:left}.flecha{transform:rotate(90deg)}}@media print{body{background:#fff;color:#172033}.hoja{max-width:none;padding:0}.franja,.recuerda,.panel,.bloque,.tarjeta,.ejemplo{break-inside:avoid;page-break-inside:avoid}section{margin-top:14px}@page{margin:10mm}}
+
+/* ---------- Extensiones de contenido ---------- */
+  /* ---------- Extensiones de contenido (tablas, listas, pasos) ---------- */
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:520px;}
+  .tabla th,.tabla td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;}
+  .tabla thead th{color:var(--ink);font-weight:700;background:var(--card-2);letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;}
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
+  .lista{margin:0;padding-left:18px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .pasos{counter-reset:paso;margin:0;padding-left:0;list-style:none;}
+  .pasos li{counter-increment:paso;position:relative;padding-left:34px;font-size:.89rem;color:var(--ink-soft);margin-bottom:8px;}
+  .pasos li::before{content:counter(paso);position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--blue);color:#0d1526;font-size:.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;}
+  .pasos li strong{color:var(--ink);}
+  .destacado{background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);}
+  .destacado strong{color:var(--teal);}
+  .preguntas details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:10px;}
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .fuentes a{color:var(--blue);}
+  .panel p{margin:0 0 9px;font-size:.92rem;color:var(--ink-soft);}
+  .panel p:last-child{margin-bottom:0;}
+  .panel .nota,.panel .nota-relacion{margin:14px auto 0;text-align:center;font-size:.88rem;font-weight:700;color:var(--ink-soft);}
+  .panel .lista li{font-size:.89rem;}
+  .panel .destacado{font-size:.88rem;}
+  .ejemplo{display:flex;gap:14px;align-items:flex-start;}
+  .ejemplo .marca{width:30px;height:30px;border-radius:50%;background:var(--amber);color:#0d1526;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;}
+  .recuerda .frase{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);font-size:.88rem;color:var(--ink-soft);font-style:italic;}
+  .recuerda .frase strong{color:var(--ink);font-style:normal;}
+  /* ---------- Gráfico Mermaid ---------- */
+  .mermaid{text-align:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 12px;margin:16px 0 0;overflow-x:auto;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;}
+  .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
+  .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+</style>
+</head>
+<body
+<body><main class="hoja">
+  <header class="franja">
+    <div>
+      <h1>Arquitectura de Datos y Sistemas de Información</h1>
+      <p class="sub">Clase 10 · Planeamiento Estratégico de Sistemas de Información</p>
+    </div>
+    <p class="meta">ISIL · 2026-2 · Fecha pendiente<br>Marco Antonio Méndez Bendezú</p>
+  </header>
+
+  <section class="fila">
+    <div>
+      <p class="rotulo"><span class="num n-blue">1</span>Idea central</p>
+      <article class="tarjeta idea">
+        <p>La estrategia del negocio guía los procesos; los procesos determinan qué datos y aplicaciones hacen falta.</p>
+      </article>
+    </div>
+    <div>
+      <p class="rotulo"><span class="num n-teal">2</span>Cuatro piezas conectadas</p>
+      <article class="tarjeta">
+        <div class="grid">
+          <div class="chip c-blue"><h3>Negocio</h3><p>Estrategia, organización y procesos que generan valor.</p></div>
+          <div class="chip c-teal"><h3>Datos</h3><p>Información requerida, relacionada, gestionada y protegida.</p></div>
+          <div class="chip c-purple"><h3>Aplicaciones</h3><p>Sistemas, usuarios, datos e integraciones.</p></div>
+          <div class="chip c-amber"><h3>Tecnología</h3><p>Bases de datos, equipos, redes y seguridad.</p></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">3</span>Resumen de la clase</p>
+    <div class="panel">
+      <p>Esta sesión continúa la formulación de la estrategia de SI/TI. Explica cómo traducir los objetivos del negocio en arquitecturas de procesos, datos y aplicaciones. También revisa las decisiones de gobierno de datos y de compra o desarrollo de software.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">4</span>1 · Objetivo de la clase</p>
+    <div class="panel">
+      <p>Definir los componentes de información y aplicaciones que requiere el modelo operativo del negocio. La arquitectura debe responder a las necesidades de los procesos y mantenerse alineada con la estrategia empresarial.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">5</span>2 · Conceptos fundamentales</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Arquitectura empresarial</h3>
+        <p>Vista de alto nivel de las arquitecturas de negocio, información, aplicaciones y tecnología.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Arquitectura de datos</h3>
+        <p>Define qué datos necesita el negocio y cómo se gestionan, protegen y entregan.</p>
+      </article>
+      <article class="bloque b-purple">
+        <h3>Arquitectura de aplicaciones</h3>
+        <p>Describe los sistemas, sus usuarios, procesos soportados, datos e integraciones.</p>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Gobierno de datos</h3>
+        <p>Conjunto de roles, políticas, procedimientos y principios que orienta la gestión de datos.</p>
+      </article>
+      <article class="bloque">
+        <h3>Comprar o desarrollar</h3>
+        <p>Decisión estratégica entre adquirir una solución existente o construir una aplicación propia.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">6</span>3 · Desarrollo de la clase</p>
+    <div class="panel">
+      <p>El desarrollo sigue una cadena: arquitectura empresarial, procesos de negocio, arquitectura de datos, principios para organizar los datos, sistemas de información, decisión de comprar o desarrollar y, por último, las decisiones de la alta dirección.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">7</span>3.1 La arquitectura empresarial conecta negocio, información y tecnología</p>
+    <div class="panel">
+      <p>La arquitectura empresarial representa cómo se relacionan los procesos del negocio con los datos, las aplicaciones y la tecnología. La estrategia de negocio guía estas decisiones. Así se evita diseñar sistemas sin conocer qué procesos deben apoyar.</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Arquitectura</th><th>Elementos que describe</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Procesos de negocio</strong></td><td>Estrategia, procesos principales y organización.</td></tr>
+            <tr><td><strong>Información</strong></td><td>Entidades, modelos de datos y metadatos.</td></tr>
+            <tr><td><strong>Aplicaciones</strong></td><td>Portafolio e integración de sistemas.</td></tr>
+            <tr><td><strong>Tecnología</strong></td><td>Bases de datos, equipos, redes y seguridad.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota">El diseño comienza por entender el negocio. Las demás arquitecturas deben respaldar sus procesos y objetivos.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">8</span>3.2 Arquitectura de procesos de negocio</p>
+    <div class="panel">
+      <p>La arquitectura de negocio muestra cómo se organiza el trabajo para entregar valor al cliente. El mapa de procesos ofrece una vista de primer nivel de esa operación. Conocer los procesos permite identificar qué información circula y qué sistemas podrían procesarla o apoyar su ejecución.</p>
+      <p><strong>Ejemplo de la clase:</strong> un mapa de procesos de una empresa permite reconocer qué datos se generan durante la atención de un pedido y qué aplicaciones intervienen.</p>
+      <p><strong>Ejemplo agregado a los apuntes:</strong> una tienda recibe un pedido web. El proceso revisa inventario, confirma el pago y coordina la entrega. Cada paso necesita datos y puede involucrar una aplicación distinta.</p>
+      <div class="mermaid">
+flowchart TD
+    C[Cliente realiza pedido] --&gt; V[Validar inventario]
+    V --&gt; P[Confirmar pago]
+    P --&gt; E[Preparar entrega]
+    E --&gt; N[Notificar al cliente]
+    V -.- consulta .-&gt; D[(Datos de productos y stock)]
+    P -.- registra .-&gt; D
+    E -.- actualiza .-&gt; D
+      </div>
+      <p class="nota">El diagrama conecta el proceso con la información que se consulta y actualiza. Así se identifica qué datos deben estar disponibles en cada etapa.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">8b</span>Flujo del pedido: de la solicitud al resultado</p>
+    <div class="panel">
+      <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Un pedido de tienda pasa por el proceso, consulta datos, usa aplicaciones y se apoya en infraestructura tecnológica."><defs><marker id="punta1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#54688a"></path></marker></defs><rect class="nodo" x="6" y="34" width="220" height="88" rx="12" stroke="#6aa7ff"></rect><text class="nodo-titulo" x="116" y="72" text-anchor="middle" style="fill:#6aa7ff">Pedido</text><text class="nodo-texto" x="116" y="98" text-anchor="middle">Cliente solicita producto</text><line class="flecha-linea" x1="232" y1="78" x2="282" y2="78" marker-end="url(#punta1)"></line><rect class="nodo" x="288" y="34" width="220" height="88" rx="12" stroke="#3ed2b2"></rect><text class="nodo-titulo" x="398" y="72" text-anchor="middle" style="fill:#3ed2b2">Proceso</text><text class="nodo-texto" x="398" y="98" text-anchor="middle">Validar stock y pago</text><line class="flecha-linea" x1="514" y1="78" x2="564" y2="78" marker-end="url(#punta1)"></line><rect class="nodo" x="570" y="34" width="220" height="88" rx="12" stroke="#b39af7"></rect><text class="nodo-titulo" x="680" y="72" text-anchor="middle" style="fill:#b39af7">Datos y apps</text><text class="nodo-texto" x="680" y="98" text-anchor="middle">Pedido, inventario, pagos</text><line class="flecha-linea" x1="796" y1="78" x2="846" y2="78" marker-end="url(#punta1)"></line><rect class="nodo" x="852" y="34" width="220" height="88" rx="12" stroke="#f7b955"></rect><text class="nodo-titulo" x="962" y="72" text-anchor="middle" style="fill:#f7b955">Resultado</text><text class="nodo-texto" x="962" y="98" text-anchor="middle">Entrega y notificación</text><text class="pie-diagrama" x="540" y="186" text-anchor="middle">Cada paso consulta o actualiza datos compartidos entre aplicaciones</text></svg>
+      <p class="nota">El pedido activa un proceso, ese proceso usa datos y aplicaciones, y el resultado cierra el circuito.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">9</span>3.3 Arquitectura de datos y sus niveles</p>
+    <div class="panel">
+      <p>La arquitectura de datos define el origen y los tipos de datos necesarios para operar. También describe cómo se recolectan, integran, validan, almacenan, entregan y protegen. Requiere además políticas de gobierno y seguridad que establezcan responsabilidades, procedimientos y controles.</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Nivel</th><th>Qué representa</th><th>Pregunta que ayuda a responder</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Conceptual</strong></td><td>Entidades importantes del negocio.</td><td>¿Qué información existe?</td></tr>
+            <tr><td><strong>Lógico</strong></td><td>Relaciones entre entidades.</td><td>¿Cómo se conectan esos datos?</td></tr>
+            <tr><td><strong>Físico</strong></td><td>Implementación en una tecnología concreta.</td><td>¿Dónde y cómo se almacenan?</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Ejemplo agregado a los apuntes:</strong> para una tienda, el modelo conceptual define las entidades <em>Cliente</em>, <em>Pedido</em> y <em>Producto</em>. El modelo lógico indica que un pedido pertenece a un cliente y contiene uno o más productos. El modelo físico decide cómo guardar esos registros en una base de datos concreta.</p>
+      <div class="mermaid">
+flowchart TD
+    C[Conceptual&lt;br/&gt;Cliente, Pedido, Producto] --&gt; L[Lógico&lt;br/&gt;Relaciones y reglas]
+    L --&gt; F[Físico&lt;br/&gt;Tablas, campos y tipos]
+    F --&gt; O[Operación&lt;br/&gt;Validación, acceso y respaldo]
+      </div>
+      <p class="nota">El primer nivel nombra la información del negocio; el segundo aclara sus relaciones; el tercero prepara su implementación.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">10</span>3.4 Principios para organizar los datos</p>
+    <div class="panel">
+      <p>Los principios buscan que los datos sean útiles para toda la organización, sin descuidar el control y la seguridad.</p>
+      <ul class="lista">
+        <li><strong>Activo compartido:</strong> reducir silos departamentales y facilitar una visión integral.</li>
+        <li><strong>Acceso adecuado:</strong> ofrecer interfaces apropiadas para las tareas de cada usuario.</li>
+        <li><strong>Seguridad incorporada:</strong> aplicar políticas y controles de acceso a los datos.</li>
+        <li><strong>Vocabulario común:</strong> acordar definiciones para conceptos compartidos, como productos o indicadores.</li>
+        <li><strong>Calidad cuidada:</strong> invertir en funciones que mantengan los datos confiables.</li>
+        <li><strong>Flujos ágiles:</strong> evitar movimientos innecesarios para reducir costos y mejorar la disponibilidad.</li>
+      </ul>
+      <p class="nota">Compartir datos requiere definiciones consistentes, calidad, acceso controlado y flujos eficientes.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">11</span>3.5 Arquitectura de sistemas de información</p>
+    <div class="panel">
+      <p>La arquitectura de aplicaciones identifica los sistemas de la empresa y las relaciones entre ellos. La elección de la arquitectura afecta la flexibilidad, la interoperabilidad, los costos de operación y la experiencia de usuario.</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Elemento del inventario</th><th>Qué documenta</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Tipo y usuarios</strong></td><td>Plataforma y grupos que utilizan el sistema.</td></tr>
+            <tr><td><strong>Procesos soportados</strong></td><td>Procesos estratégicos, principales o de soporte.</td></tr>
+            <tr><td><strong>Frecuencia e impacto</strong></td><td>Uso habitual y consecuencias de una interrupción.</td></tr>
+            <tr><td><strong>Datos</strong></td><td>Información que consume y produce.</td></tr>
+            <tr><td><strong>Integraciones</strong></td><td>Intercambios con otros sistemas.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Ejemplo agregado a los apuntes:</strong> en el proceso de pedidos, la aplicación web captura la solicitud, el sistema de inventario consulta existencias y el sistema de pagos confirma la transacción. El catálogo debe registrar estos intercambios y qué ocurre si uno falla.</p>
+      <div class="mermaid">
+flowchart LR
+    U[Usuario] --&gt; W[Aplicación web]
+    W --&gt; I[Inventario]
+    W --&gt; P[Pagos]
+    I --&gt; B[(Base de datos)]
+    P --&gt; B
+    I --&gt; W
+    P --&gt; W
+    W --&gt; U
+      </div>
+      <p class="nota">Las flechas representan consultas y respuestas entre componentes. El inventario documenta responsables, datos intercambiados e impacto de una interrupción.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">12</span>3.6 Comprar una aplicación o desarrollarla</p>
+    <div class="panel">
+      <p>Comprar o desarrollar es una decisión estratégica. La presentación propone considerar soluciones existentes para procesos de soporte, como contabilidad, finanzas o recursos humanos. Para capacidades que diferencian el negocio, puede evaluarse el desarrollo a medida.</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Alternativa</th><th>Ventaja posible</th><th>Costo o riesgo a considerar</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Comprar</strong></td><td>Solución disponible y prácticas incorporadas.</td><td>Adaptación a procesos y dependencia del proveedor.</td></tr>
+            <tr><td><strong>Desarrollar</strong></td><td>Ajuste a necesidades particulares y diferenciación.</td><td>Mayor costo y tiempo de construcción.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Ejemplo agregado a los apuntes:</strong> una clínica puede comprar un sistema estándar de nómina y evaluar un desarrollo propio para una función digital que diferencie su atención al paciente.</p>
+      <p><strong>Ejemplo agregado a los apuntes:</strong> una librería pequeña necesita contabilidad y un recomendador propio para su catálogo digital. La elección depende del presupuesto, el ajuste y la diferenciación esperada.</p>
+      <p class="nota">La decisión debe considerar el valor estratégico del proceso, el ajuste requerido, el costo y el tiempo disponible.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">13</span>3.7 Preguntas y decisiones de la alta dirección</p>
+    <div class="panel">
+      <p>Arquitectura y aplicaciones son decisiones de negocio, no solo tareas técnicas. La dirección debe revisar inversiones, activos, riesgos, seguridad y el diálogo entre TI y las áreas usuarias.</p>
+      <ul class="lista">
+        <li>Crear o potenciar <strong>modelos de negocio</strong> con TI.</li>
+        <li><strong>Priorizar inversiones</strong> del portafolio.</li>
+        <li><strong>Gestionar el portafolio</strong> de proyectos.</li>
+        <li><strong>Organizar o tercerizar</strong> la función informática.</li>
+        <li>Definir <strong>niveles de servicio</strong> y seguridad.</li>
+        <li>Evaluar <strong>innovaciones</strong> tecnológicas.</li>
+      </ul>
+      <p class="nota">La arquitectura debe revisarse cuando cambia la estrategia. La alta dirección participa para que inversión, riesgos y capacidades tecnológicas acompañen los objetivos empresariales.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">14</span>4 · Ejemplos y casos prácticos</p>
+    <div class="panel">
+      <p>La sesión incluye un catálogo de sistemas para una entidad de gobierno local y un modelo de arquitectura de una aplicación de educación virtual. Ambos ilustran cómo relacionar aplicaciones con usuarios, procesos y datos.</p>
+      <article class="ejemplo">
+        <span class="marca" aria-hidden="true">E</span>
+        <div>
+          <h3>Entidad de gobierno local</h3>
+          <p>El catálogo organiza servicios generales, sectores y canales de atención. Destaca cobertura amplia en áreas tradicionales y señala oportunidades de mejora en información de gestión y servicios al ciudadano. Advierte que algunos sistemas sectoriales tienen flexibilidad reducida; su renovación debe priorizarse según impacto y necesidad.</p>
+        </div>
+      </article>
+      <article class="ejemplo" style="margin-top:14px;">
+        <span class="marca" aria-hidden="true">E</span>
+        <div>
+          <h3>Educación virtual</h3>
+          <p>La arquitectura separa interfaces web, funciones del negocio y almacenamiento. La capa de almacenamiento combina gestores de archivos y bases como MySQL y PostgreSQL.</p>
+        </div>
+      </article>
+      <div class="tabla-wrap" style="margin-top:14px;">
+        <table class="tabla">
+          <thead><tr><th>Capa del ejemplo educativo</th><th>Componentes que muestra la lámina</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Presentación</strong></td><td>Web UI, MNet y administración web.</td></tr>
+            <tr><td><strong>Funcional o de negocio</strong></td><td>Contenidos, administración, autorización, búsqueda, usuarios y recursos del curso.</td></tr>
+            <tr><td><strong>Almacenamiento</strong></td><td>API de almacenamiento, gestor de archivos, sistema de archivos y bases de datos.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota">Estos ejemplos muestran por qué un catálogo debe describir cobertura, flexibilidad, funciones y datos; el nombre de una aplicación por sí solo no basta.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">15</span>5 · Comparaciones importantes</p>
+    <div class="panel">
+      <p>Esta comparación resume cómo cambian las decisiones según el nivel de arquitectura.</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Nivel</th><th>Enfoque</th><th>Entregable orientativo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Negocio</strong></td><td>Qué valor y procesos debe sostener la empresa.</td><td>Mapa de procesos.</td></tr>
+            <tr><td><strong>Datos</strong></td><td>Qué información se necesita y cómo se relaciona.</td><td>Modelos conceptual, lógico y físico.</td></tr>
+            <tr><td><strong>Aplicaciones</strong></td><td>Qué sistemas apoyan procesos y gestionan información.</td><td>Catálogo de aplicaciones e integraciones.</td></tr>
+            <tr><td><strong>Tecnología</strong></td><td>Sobre qué componentes operan los sistemas.</td><td>Modelo de bases de datos, equipos, redes y seguridad.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">16</span>6 · Proceso para definir las arquitecturas</p>
+    <div class="panel">
+      <p>El orden de trabajo evita seleccionar tecnología sin comprender primero la necesidad empresarial.</p>
+      <ol class="pasos">
+        <li>Revisar la estrategia y el modelo operativo del negocio.</li>
+        <li>Describir los procesos y sus relaciones.</li>
+        <li>Identificar las entidades de información que utilizan.</li>
+        <li>Definir relaciones y modelos de datos.</li>
+        <li>Inventariar aplicaciones, usuarios, datos e integraciones.</li>
+        <li>Establecer principios de gobierno, seguridad y tecnología.</li>
+        <li>Evaluar si conviene comprar o desarrollar cada solución.</li>
+      </ol>
+      <p class="nota">La secuencia conecta la necesidad del negocio con los datos, sistemas y decisiones de implementación.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">17</span>7 · Errores comunes y advertencias</p>
+    <div class="panel">
+      <p>Estos riesgos se desprenden de los principios y decisiones revisados en la presentación.</p>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Riesgo</th><th>Consecuencia posible</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Diseñar aplicaciones sin mapear procesos</strong></td><td>Sistemas que no resuelven necesidades operativas.</td></tr>
+            <tr><td><strong>Mantener definiciones distintas para los mismos datos</strong></td><td>Indicadores y análisis inconsistentes.</td></tr>
+            <tr><td><strong>Tratar seguridad como una etapa posterior</strong></td><td>Accesos no alineados con las políticas de datos.</td></tr>
+            <tr><td><strong>Comprar o desarrollar sin evaluar el valor estratégico</strong></td><td>Costos, demoras o una solución inadecuada.</td></tr>
+            <tr><td><strong>Ignorar integraciones y dependencias</strong></td><td>Duplicidad de datos o interrupciones entre procesos.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">18</span>8 · Ideas clave para recordar</p>
+    <div class="panel">
+      <ul class="lista">
+        <li>La arquitectura de negocio guía las demás arquitecturas.</li>
+        <li>La arquitectura de datos define necesidades y gestión de información.</li>
+        <li>Los modelos conceptual, lógico y físico responden preguntas diferentes.</li>
+        <li>El catálogo de aplicaciones debe mostrar procesos, datos e integraciones.</li>
+        <li>Gobierno, calidad, acceso y seguridad forman parte del diseño de datos.</li>
+        <li>Comprar o desarrollar depende del valor y las necesidades del proceso.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">19</span>9 · Conexión entre los conceptos</p>
+    <div class="panel">
+      <p>La estrategia define los procesos que generan valor. Los procesos determinan qué datos se requieren. Las aplicaciones procesan esos datos y apoyan el trabajo. La tecnología permite operar las aplicaciones con condiciones de seguridad y servicio adecuadas.</p>
+      <div class="mermaid">
+flowchart LR
+    E[Estrategia] --&gt; P[Procesos de negocio]
+    P --&gt; D[Datos requeridos]
+    D --&gt; A[Aplicaciones]
+    A --&gt; T[Infraestructura tecnológica]
+    G[Gobierno y seguridad] --&gt; D
+    G --&gt; A
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">20</span>10 · Preguntas de repaso</p>
+    <div class="panel">
+      <p>Estas preguntas cubren definiciones, relaciones y decisiones tratadas en la sesión. Abre cada una para ver la respuesta.</p>
+      <div class="preguntas">
+        <details><summary>1. ¿Qué describe la arquitectura de datos?</summary><p>Define los datos necesarios para el negocio y cómo se gestionan, almacenan, entregan y protegen.</p></details>
+        <details><summary>2. ¿Qué diferencia hay entre los modelos conceptual, lógico y físico?</summary><p>El conceptual identifica entidades; el lógico establece relaciones; el físico concreta la implementación tecnológica.</p></details>
+        <details><summary>3. ¿Por qué la arquitectura de procesos precede al diseño de aplicaciones?</summary><p>Porque los procesos revelan qué información circula y qué funciones deben apoyar los sistemas.</p></details>
+        <details><summary>4. ¿Qué información conviene registrar para cada sistema?</summary><p>Tipo, usuarios, procesos soportados, frecuencia, impacto, datos consumidos y producidos e integraciones.</p></details>
+        <details><summary>5. ¿Qué significa que los datos sean un activo compartido?</summary><p>Que distintas áreas autorizadas pueden aprovechar información común, reduciendo silos.</p></details>
+        <details><summary>6. ¿Para qué sirve un vocabulario común de datos?</summary><p>Para que las áreas entiendan de la misma manera entidades, productos e indicadores.</p></details>
+        <details><summary>7. ¿Qué aspectos debe incluir el gobierno de datos?</summary><p>Roles, procedimientos, seguridad y principios para construir y operar la arquitectura de datos.</p></details>
+        <details><summary>8. ¿Cómo puede afectar la arquitectura de aplicaciones a la experiencia del usuario?</summary><p>Puede influir en flexibilidad, interoperabilidad, costos y forma de interacción.</p></details>
+        <details><summary>9. ¿Cuándo puede evaluarse comprar una aplicación?</summary><p>Cuando una solución existente cubre adecuadamente un proceso y su adquisición resulta conveniente.</p></details>
+        <details><summary>10. ¿Qué ventaja y qué costo potencial tiene desarrollar a medida?</summary><p>Puede ajustarse a una necesidad diferenciadora, pero suele requerir más tiempo y costo.</p></details>
+        <details><summary>11. ¿Cómo se relacionan datos, procesos y aplicaciones?</summary><p>Los procesos generan y usan datos; las aplicaciones los procesan y soportan esos procesos.</p></details>
+        <details><summary>12. ¿Qué riesgo aparece si no se documentan las integraciones?</summary><p>Dependencias invisibles pueden provocar fallas, duplicidad o interrupciones al modificar sistemas.</p></details>
+        <details><summary>13. ¿Qué decisiones de TI requieren participación de la alta dirección?</summary><p>Priorización de inversiones, portafolio, organización y tercerización, niveles de servicio, seguridad y adopción tecnológica.</p></details>
+        <details><summary>14. ¿Qué capas principales aparecen en el ejemplo de educación virtual?</summary><p>Presentación, funciones del negocio y almacenamiento.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">21</span>11 · Resumen final</p>
+    <div class="panel">
+      <ol class="pasos">
+        <li>La estrategia empresarial orienta la arquitectura.</li>
+        <li>El mapa de procesos ayuda a reconocer necesidades de información.</li>
+        <li>El modelo conceptual representa entidades de negocio.</li>
+        <li>El modelo lógico explica relaciones entre entidades.</li>
+        <li>El modelo físico concreta el almacenamiento en una tecnología.</li>
+        <li>El gobierno asigna reglas y responsabilidades sobre los datos.</li>
+        <li>La seguridad y la calidad deben considerarse desde el diseño.</li>
+        <li>El catálogo de aplicaciones revela usuarios, procesos y dependencias.</li>
+        <li>La integración evita silos y duplicidad de información.</li>
+        <li>Comprar o desarrollar exige evaluar valor estratégico, costo y tiempo.</li>
+        <li>La dirección debe conectar las decisiones de TI con la estrategia y revisar sus riesgos.</li>
+        <li>Los ejemplos de gobierno y educación muestran cómo documentar cobertura, funciones y capas técnicas.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">22</span>Recursos</p>
+    <div class="panel">
+      <ul class="fuentes">
+        <li><strong>Apunte de la clase:</strong> <a href="./arquitectura-datos-aplicaciones-clase-10.md">arquitectura-datos-aplicaciones-clase-10.md</a>.</li>
+        <li><strong>Presentación de la sesión:</strong> <a href="./arquitectura-datos-aplicaciones-clase-10.pdf">arquitectura-datos-aplicaciones-clase-10.pdf</a>.</li>
+        <li><strong>Infografía HTML:</strong> <a href="./arquitectura-datos-aplicaciones-clase-10.html">arquitectura-datos-aplicaciones-clase-10.html</a>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">23</span>Preguntas de reflexión</p>
+    <div class="panel">
+      <ul class="lista">
+        <li>¿Qué datos deberían compartirse entre las áreas de una empresa y con qué controles?</li>
+        <li>¿Qué proceso de una organización justificaría una aplicación desarrollada a medida?</li>
+        <li>¿Cómo cambiaría el diseño si un sistema deja de estar disponible durante un día?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="recuerda">
+      <h2>Qué recordar</h2>
+      <ul>
+        <li>El negocio guía el diseño de datos, aplicaciones y tecnología.</li>
+        <li>Conceptual → lógico → físico: tres preguntas distintas.</li>
+        <li>Gobierno, calidad, acceso y seguridad se diseñan desde el inicio.</li>
+        <li>El catálogo de aplicaciones revela integraciones y dependencias.</li>
+        <li>Comprar o desarrollar según el valor estratégico del proceso, el costo y el tiempo.</li>
+      </ul>
+      <p class="frase"><strong>Clave:</strong> la arquitectura no es un dibujo técnico; es la traducción de los objetivos del negocio en procesos, datos y sistemas que la dirección puede sostener.</p>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <span>Fuente: apuntes y presentación de la Clase 10 — Planeamiento Estratégico de Sistemas de Información (ISIL, 2026-2).</span>
+    <span>Guía visual de estudio · lectura de izquierda a derecha.</span>
+  </footer>
+</main>
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: "base",
+    themeVariables: {
+      background: "#0d1526",
+      primaryColor: "#152238",
+      primaryTextColor: "#e9eff8",
+      primaryBorderColor: "#6aa7ff",
+      lineColor: "#54688a",
+      secondaryColor: "#182742",
+      tertiaryColor: "#241d47",
+      clusterBkg: "#152238",
+      clusterBorder: "#27395a",
+      titleColor: "#e9eff8",
+      edgeLabelBackground: "#0d1526",
+      fontFamily: "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",
+      fontSize: "14px"
+    },
+    flowchart: { htmlLabels: true, curve: "basis" },
+    securityLevel: "loose"
+  });
+
+  const bloques = Array.from(document.querySelectorAll(".mermaid"));
+  (async () => {
+    for (const el of bloques) {
+      if (el.getAttribute("data-processed")) continue;
+      try { await mermaid.run({ nodes: [el] }); }
+      catch (e) { console.error("Mermaid:", e); }
+      await new Promise((r) => setTimeout(r, 25));
+    }
+  })();
+</script>
+</body>
+</html>

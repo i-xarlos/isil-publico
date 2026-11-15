@@ -199,6 +199,7 @@
   .bloque li{font-size:.87rem;color:var(--ink-soft);margin-bottom:5px;}
   .bloque li strong{color:var(--ink);}
   .bloque p{margin:0 0 8px;font-size:.87rem;color:var(--ink-soft);}
+  .bloque p:last-child{margin-bottom:0;}
   .mini-tabla{width:100%;border-collapse:collapse;font-size:.83rem;}
   .mini-tabla th,.mini-tabla td{
     text-align:left;padding:5px 6px;border-bottom:1px solid var(--line);
@@ -325,6 +326,50 @@
   }
   .mermaid svg{display:block;margin:0 auto;max-width:100%;height:auto;}
   .mermaid .label,.mermaid .nodeLabel{color:var(--ink);}
+
+  /* ---------- Extensiones para la clase 1 ---------- */
+  .tabla-wrap{overflow-x:auto;}
+  .tabla{width:100%;border-collapse:collapse;font-size:.85rem;min-width:520px;}
+  .tabla th,.tabla td{
+    text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);
+    color:var(--ink-soft);vertical-align:top;
+  }
+  .tabla thead th{
+    color:var(--ink);font-weight:700;background:var(--card-2);
+    letter-spacing:.04em;text-transform:uppercase;font-size:.75rem;
+  }
+  .tabla tr:last-child td{border-bottom:none;}
+  .tabla strong{color:var(--ink);}
+  .tabla code{color:var(--teal);}
+  .lista{margin:0;padding-left:18px;}
+  .lista li{font-size:.89rem;color:var(--ink-soft);margin-bottom:6px;}
+  .lista li strong{color:var(--ink);}
+  .destacado{
+    background:var(--teal-bg);border:1px solid #1f6b5e;border-left:5px solid var(--teal);
+    border-radius:12px;padding:12px 16px;font-size:.88rem;color:var(--ink-soft);
+  }
+  .destacado strong{color:var(--teal);}
+  .sintaxis{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.9rem;color:var(--ink);background:var(--card-2);
+    border:1px solid var(--line);border-radius:10px;padding:10px 14px;
+    display:inline-block;margin:0 0 8px;
+  }
+  .preguntas details{
+    background:var(--card-2);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin-bottom:10px;
+  }
+  .preguntas summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink);}
+  .preguntas details[open] summary{color:var(--blue);}
+  .preguntas p{margin:8px 0 0;font-size:.87rem;color:var(--ink-soft);}
+  .fuentes{margin:0;padding-left:18px;font-size:.85rem;color:var(--ink-soft);}
+  .fuentes li{margin-bottom:6px;}
+  .fuentes strong{color:var(--ink);}
+  .fuentes a{color:var(--blue);}
+  code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:.86em;color:var(--teal);
+  }
 </style>
 </head>
 <body>
@@ -372,7 +417,50 @@
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">3</span> Relación: de la necesidad a la operación</p>
+    <p class="rotulo"><span class="num n-purple">3</span> Resumen de la sesión</p>
+    <div class="panel">
+      <ul class="lista">
+        <li>La clase introduce los fundamentos del <strong>análisis y diseño de sistemas</strong> dentro del ciclo de vida del software (SDLC).</li>
+        <li>Se analiza cómo <strong>traducir los requerimientos del usuario</strong> en requisitos técnicos verificables.</li>
+        <li>Se comparan arquitecturas: <strong>monolito frente a microservicios</strong>.</li>
+        <li>Se aplican <strong>POO, escalabilidad y seguridad</strong> antes de escribir código.</li>
+        <li><strong>Pregunta guía:</strong> ¿cómo convertimos los requerimientos en una especificación que los desarrolladores puedan implementar sin ambigüedad y que sea escalable y segura?</li>
+      </ul>
+      <div class="destacado" style="margin-top:14px;">
+        <strong>Idea del docente (César Ruiz):</strong> el objetivo del curso es aprender a elaborar la <strong>documentación y diagramas (planos) en UML</strong> para diseñar un sistema completo. Como en un edificio, un error no detectado en los planos es carísimo si ya estás construyendo.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">4</span> Reglas del curso y metodología</p>
+    <div class="panel">
+      <h3>Evaluaciones (César Ruiz)</h3>
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Evaluación</th><th>Modalidad</th><th>Propósito</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Evaluación 1 y 2</strong></td><td>Individual</td><td>Asegurar base teórica y práctica común en modelado de diagramas.</td></tr>
+            <tr><td><strong>Evaluación 3 y 4</strong></td><td>Parejas o grupos de máx. 3 (según avance)</td><td>Trabajo colaborativo intermedio.</td></tr>
+            <tr><td><strong>Evaluación Integral Final</strong></td><td>Grupal — caso práctico grande</td><td>Proyecto integrador (~15 días, inicia al terminar la PA 4).</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3 style="margin-top:18px;">Contenido progresivo</h3>
+      <ol class="lista">
+        <li><strong>Sesiones 1-3:</strong> conceptos iniciales, requisitos y modelo físico — catálogo de requisitos.</li>
+        <li><strong>4 sesiones siguientes:</strong> casos de uso y sus especificaciones.</li>
+        <li><strong>3 sesiones siguientes:</strong> diagramas de clases (estructuración del sistema).</li>
+        <li><strong>Cierre:</strong> diagramas de secuencia y de despliegue (dinámica + infraestructura).</li>
+      </ol>
+      <div class="destacado" style="margin-top:14px;">
+        <strong>Herramienta oficial:</strong> Draw.io (diagrams.net) — gratuita, recomendada para todos los diagramas y bocetos de arquitectura del curso.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-teal">5</span> Relación: de la necesidad a la operación</p>
     <div class="panel">
       <div class="flujo" role="img" aria-label="Flujo del diseño: las necesidades del usuario se analizan, se convierten en requisitos del sistema, se materializan en una arquitectura por capas y módulos, cada módulo aplica POO y patrones como Singleton, y la arquitectura se refina con escalabilidad, seguridad e integración antes de codificar.">
         <div class="paso c-blue">
@@ -405,54 +493,39 @@
   </section>
 
   <section class="ampliado">
-    <p class="rotulo"><span class="num n-teal">4</span> Lo esencial de la clase</p>
+    <p class="rotulo"><span class="num n-purple">6</span> El ciclo de vida del desarrollo de software (SDLC) y el rol del diseño</p>
     <div class="grid">
       <article class="bloque">
-        <h3>Diseñar antes de codificar</h3>
-        <ul>
-          <li><strong>Diseño = planos</strong> del edificio; <strong>codificación = construcción.</strong></li>
-          <li>Error en el plano: cuesta centavos (borrar una línea en Draw.io).</li>
-          <li>Error en código desplegado: refactorizar, migrar la BD y sufrir downtime.</li>
-          <li>Entregables del diseño: el contrato entre negocio y tecnología.</li>
-        </ul>
-        <p>Programar sin diseñar genera software inestable y obliga a reescribir todo: es un punto evaluable.</p>
+        <h3>¿Qué es?</h3>
+        <p>Proceso <strong>cíclico e iterativo</strong> que abarca desde el análisis inicial hasta el mantenimiento continuo.</p>
+        <p>El <strong>diseño de sistemas</strong> es la fase previa a la codificación: allí se crean los "planos de la obra" — diagramas UML, mapas de arquitectura y maquetas.</p>
       </article>
-
       <article class="bloque b-teal">
-        <h3>Requerimiento vs. requisito</h3>
+        <h3>¿Por qué importa?</h3>
+        <p>Detectar fallas en análisis y diseño tiene un <strong>costo mínimo</strong>: corregir una línea del plano.</p>
+        <p>Corregirlas con código ya desplegado tiene un <strong>costo elevado</strong>: equivale a demoler paredes.</p>
         <table class="mini-tabla">
-          <tr><th>Requerimiento</th><td>Necesidad informal del cliente. "Como administrador necesito gestionar mis ventas".</td></tr>
-          <tr><th>Requisito</th><td>Especificación técnica verificable: endpoint, validación de montos &gt;0 y persistencia en &lt;500 ms.</td></tr>
-          <tr><th>Trazabilidad</th><td>Cada requerimiento debe llevar a al menos un requisito (ver Clase 2).</td></tr>
+          <tr><th>Momento del cambio</th><th>Costo</th></tr>
+          <tr><td>En el diagrama / maqueta</td><td>Bajo — lápiz y borrador (mover una columna en Draw.io).</td></tr>
+          <tr><td>En código ya desplegado</td><td>Alto — refactorizar, migrar BD, downtime; reescribir miles de líneas y perder datos.</td></tr>
         </table>
-        <p>Cierra la brecha entre el lenguaje del negocio y el del desarrollo.</p>
       </article>
-
       <article class="bloque b-purple">
-        <h3>Arquitectura: monolito vs. microservicios</h3>
-        <table class="mini-tabla">
-          <tr><th>Monolito</th><td>Frontend, Backend y BD en un solo despliegue; punto único de fallo. Ideal para MVPs y proyectos medianos.</td></tr>
-          <tr><th>Microservicios</th><td>Servicios independientes por dominio, cada uno con su BD; escalan bien, pero suman latencia de red.</td></tr>
-          <tr><th>3 capas</th><td>Presentación (UI) · Lógica (Backend) · Datos (BD): separación de responsabilidades.</td></tr>
-        </table>
-        <p>Si un módulo falla (ej. pagos), los demás siguen operando.</p>
+        <h3>¿Cómo funciona?</h3>
+        <p>Se generan <strong>entregables formales</strong> que el equipo de desarrollo ejecuta sin ambigüedad.</p>
+        <p>Son el <strong>contrato entre negocio y tecnología</strong>.</p>
       </article>
-
       <article class="bloque b-amber">
-        <h3>POO, escalabilidad y seguridad</h3>
-        <ul>
-          <li><strong>Abstracción:</strong> el conductor usa volante y pedales, ignora el motor.</li>
-          <li><strong>Encapsulamiento:</strong> atributos <strong>private</strong> + métodos validados (el saldo nunca se asigna a mano).</li>
-          <li><strong>Singleton:</strong> una única instancia global, típica en pools de conexiones.</li>
-          <li><strong>Escalabilidad:</strong> vertical (más recursos) u horizontal (granja + balanceador).</li>
-          <li><strong>Seguridad:</strong> Autenticación + Autorización + Cifrado + Auditoría, en las 3 capas.</li>
-        </ul>
+        <h3>Caso: analogía de la construcción de un edificio</h3>
+        <p>Un edificio no se construye poniendo ladrillos sin planos. Primero se diseñan planos estructurales, eléctricos e hidráulicos.</p>
+        <p>En software, los diagramas son esos planos y la codificación es la construcción. Construir sin planos hace que la estructura colapse.</p>
+        <p><strong>Ejemplo sencillo:</strong> antes de crear una app para una bodega se dibujan las pantallas para registrar una venta y consultar el stock. Si el bodeguero necesita corregir una cantidad, ese paso se incluye en el diseño antes de programar.</p>
       </article>
     </div>
   </section>
 
   <section>
-    <p class="rotulo"><span class="num n-purple">5</span> Flujo del concepto: el ciclo de vida del software (SDLC)</p>
+    <p class="rotulo"><span class="num n-amber">7</span> Flujo del concepto: el ciclo de vida del software (SDLC)</p>
     <div class="panel">
       <svg class="svg-flujo" viewBox="0 0 1080 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama del ciclo de vida del software: el análisis de requerimientos pasa al diseño con planos UML y arquitectura, luego a la codificación y a la operación con pruebas, despliegue y mantenimiento, y el ciclo vuelve a empezar de forma iterativa.">
         <defs>
@@ -491,19 +564,292 @@
     </div>
   </section>
 
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-blue">8</span> Requerimiento del usuario vs. requisito del sistema</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>¿Qué es cada uno?</h3>
+        <table class="mini-tabla">
+          <tr><th>Concepto</th><th>Qué es</th></tr>
+          <tr><td><strong>Requerimiento del usuario</strong></td><td>Lo que el cliente necesita lograr: el "qué" desde el negocio. Lenguaje informal, historia de usuario: <em>Como [rol], quiero [acción] para [beneficio]</em>. Ejemplo: "Como administrador necesito gestionar mis ventas".</td></tr>
+          <tr><td><strong>Requisito del sistema</strong></td><td>Especificación técnica de lo que el software debe ejecutar para cumplirlo. Lenguaje formal y verificable. Ejemplo: exponer <code>POST /ventas</code>, validar montos &gt; 0 y persistir en tabla <code>ventas</code> con tiempo &lt; 500 ms.</td></tr>
+        </table>
+        <p><strong>Idea clave:</strong> el requerimiento expresa la necesidad; el requisito describe qué debe hacer el sistema y cómo comprobarlo.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>¿Por qué importa?</h3>
+        <p>Cierra la brecha entre el lenguaje del negocio y el del desarrollo.</p>
+        <p>Sin esta traducción, el sistema hace algo distinto a lo que el usuario esperaba.</p>
+      </article>
+      <article class="bloque b-purple">
+        <h3>¿Cómo se levanta?</h3>
+        <p>Con <strong>entrevistas</strong>, <strong>análisis de documentos</strong>, <strong>tablas de requerimientos</strong> e <strong>Historias de Usuario</strong>.</p>
+        <p>Cada requerimiento debe trazarse a al menos un requisito (ver Clase 2).</p>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Conexión práctica</h3>
+        <p class="sintaxis">Requerimiento: "Gestionar mis ventas" → Requisito 1: endpoint REST GET /ventas?periodo=X → Requisito 2: UI con formulario + validación de montos → Requisito 3: persistencia ACID en BD</p>
+        <p><strong>Ejemplo fácil:</strong> "Quiero vender más rápido" es una necesidad del usuario. Un requisito verificable sería: "El sistema debe permitir buscar un producto por nombre y agregarlo a la venta".</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">9</span> Arquitectura del sistema: monolito vs. microservicios</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>¿Qué es?</h3>
+        <p>Esquema de alto nivel que define <strong>componentes, responsabilidades e interacciones</strong>.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Comparación rápida</h3>
+        <table class="mini-tabla">
+          <tr><th>Criterio</th><th>Monolítica</th><th>Microservicios</th></tr>
+          <tr><td><strong>Estructura</strong></td><td>Único servidor/código con Frontend, Backend y BD.</td><td>Servicios distribuidos e independientes por dominio de negocio.</td></tr>
+          <tr><td><strong>Base de Datos</strong></td><td>Centralizada para toda la app.</td><td>Cada servicio puede tener su propia BD.</td></tr>
+          <tr><td><strong>Despliegue y complejidad</strong></td><td>Despliegue inicial simple; mantenimiento complejo si crece.</td><td>Despliegue individual flexible; alta complejidad de orquestación de red.</td></tr>
+          <tr><td><strong>Problemáticas</strong></td><td>Punto único de fallo: si cae, cae todo.</td><td>Latencia de red + datos descentralizados.</td></tr>
+          <tr><td><strong>Uso recomendado</strong></td><td>Proyectos medianos, startups, MVPs rápidos.</td><td>Sistemas masivos, corporativos, altamente escalables.</td></tr>
+        </table>
+        <p><strong>Ejemplo:</strong> una app interna para registrar gastos puede empezar como monolito: acceso, registro y reportes en una sola aplicación. Si pagos y notificaciones crecen con necesidades distintas, podrían separarse más adelante.</p>
+      </article>
+      <article class="bloque b-purple">
+        <h3>¿Cómo se comunican?</h3>
+        <ul>
+          <li><strong>Monolito:</strong> llamadas internas entre funciones del mismo código.</li>
+          <li><strong>Microservicios:</strong> APIs HTTP/REST entre servicios, incluso servicios administrados de terceros (ej. AWS Cognito para roles y usuarios).</li>
+        </ul>
+        <p><strong>Ejemplo de clase:</strong> sistema comercial con microservicio aislado para gestión de usuarios, otro para gestión de pagos y otro para votaciones/participantes. Si el módulo de pagos falla, los otros siguen operando.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-purple">10</span> Descomposición modular y separación de responsabilidades</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>¿Qué es?</h3>
+        <p>Dividir un sistema complejo en <strong>módulos</strong> pequeños, autónomos y manejables.</p>
+        <p>La <strong>Separación de Responsabilidades</strong> (<em>Separation of Concerns</em>) dicta que cada capa o módulo tenga un único propósito.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Las 3 capas clásicas</h3>
+        <table class="mini-tabla">
+          <tr><th>Capa</th><th>Rol</th><th>Ejemplo</th></tr>
+          <tr><td><strong>Presentación (Frontend)</strong></td><td>Interfaz gráfica.</td><td>Catálogo de productos / lista de cursos matriculados.</td></tr>
+          <tr><td><strong>Lógica de Negocio (Backend)</strong></td><td>Reglas, cálculos y validaciones.</td><td>Al hacer clic en un curso, valida disponibilidad y retorna datos.</td></tr>
+          <tr><td><strong>Datos (BD)</strong></td><td>Persistencia.</td><td>Evita perder datos al refrescar o cerrar sesión.</td></tr>
+        </table>
+        <p><strong>Beneficio:</strong> evita código espagueti, permite trabajo en paralelo y facilita mantenibilidad y reutilización.</p>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Módulos típicos del curso</h3>
+        <ul>
+          <li>Autenticación de usuarios.</li>
+          <li>Carrito de compras / Ventas.</li>
+          <li>Gestión de productos.</li>
+          <li>Procesamiento de pagos.</li>
+          <li>Reportes.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-blue">11</span> Abstracción y encapsulamiento (POO)</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Abstracción — quedarse con lo esencial</h3>
+        <p>Ocultar detalles irrelevantes y concentrarse en lo que importa según el rol.</p>
+        <table class="mini-tabla">
+          <tr><th>Quién mira</th><th>Qué le importa</th><th>Qué ignora</th></tr>
+          <tr><td><strong>Conductor de auto</strong></td><td>Volante, pedales, palanca.</td><td>Termodinámica del motor.</td></tr>
+          <tr><td><strong>Dueña de un gato</strong></td><td>Aspecto exterior.</td><td>Órganos internos.</td></tr>
+          <tr><td><strong>Veterinario del gato</strong></td><td>Órganos, análisis.</td><td>Color del pelaje.</td></tr>
+          <tr><td><strong>Usuario de TV</strong></td><td>Botones "Subir volumen / Cambiar canal".</td><td>Señales infrarrojas, circuitos.</td></tr>
+        </table>
+        <p><strong>Ejemplo agregado a los apuntes:</strong> un televisor con control remoto — los botones son la abstracción y la carcasa protege los componentes internos (encapsulamiento).</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Encapsulamiento — poner candado a los datos</h3>
+        <p>Ocultar atributos internos (<code>private</code>) y exponer acceso solo vía métodos públicos con validación.</p>
+        <p class="sintaxis">private double saldo; // privado = candado<br>public void retirar(double monto) { if (monto &lt;= 0 || monto &gt; saldo) throw new IllegalArgumentException("Fondos insuficientes"); }</p>
+        <p><strong>Sin encapsulamiento:</strong> <code>cuenta.saldo = -30</code> dejaría la cuenta en negativo e inconsistente. Con encapsulamiento, <code>retirar()</code> valida antes de modificar.</p>
+        <p><strong>Regla de oro:</strong> los atributos críticos (saldo, montos, stock) nunca públicos.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-amber">12</span> Patrones de diseño — enfoque en Singleton</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>¿Qué es?</h3>
+        <p>Soluciones estandarizadas y probadas a problemas recurrentes. Evitan reinventar la rueda.</p>
+        <p><strong>Singleton:</strong> garantiza que una clase tenga <strong>una única instancia</strong> en toda la app y provee un punto de acceso global.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>¿Para qué sirve?</h3>
+        <p>Evita desperdicio de memoria por crear múltiples instancias pesadas innecesariamente.</p>
+        <p><strong>Ejemplo de clase:</strong> pool de conexiones a base de datos. En lugar de abrir 100 conexiones, Singleton centraliza una única instancia del pool. Todos los módulos piden la misma referencia.</p>
+        <p><strong>Referencia del docente:</strong> catálogo en Refactoring Guru.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">13</span> Escalabilidad y rendimiento</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Conceptos</h3>
+        <table class="mini-tabla">
+          <tr><th>Concepto</th><th>Definición</th><th>Tipos</th></tr>
+          <tr><td><strong>Rendimiento</strong></td><td>Responder dentro de tiempos esperados bajo carga determinada.</td><td>Caché, pools, queries optimizadas.</td></tr>
+          <tr><td><strong>Escalabilidad</strong></td><td>Adaptarse a incrementos sustanciales de carga sin colapsar.</td><td>Vertical y horizontal.</td></tr>
+        </table>
+        <ul>
+          <li><strong>Escalado vertical:</strong> más CPU/RAM/red en el mismo servidor.</li>
+          <li><strong>Escalado horizontal:</strong> más instancias o servidores paralelos + <strong>balanceador de carga</strong>.</li>
+        </ul>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Caso real del docente: sistema de votaciones de reality show</h3>
+        <table class="mini-tabla">
+          <tr><th>Fase</th><th>Qué pasó</th></tr>
+          <tr><td><strong>Versión inicial</strong></td><td>Infra dimensionada para 500 peticiones simultáneas en monolito único. Estimación sin pruebas de carga.</td></tr>
+          <tr><td><strong>El problema</strong></td><td>Primer día en vivo entraron +2.000 peticiones: la tubería se saturó, la BD colapsó y la plataforma cayó.</td></tr>
+          <tr><td><strong>Solución 1 — vertical</strong></td><td>Más RAM/CPU/red en la nube. Mitigó horas, pero semanas después volvió a quedar corto: el vertical tiene techo.</td></tr>
+          <tr><td><strong>Solución 2 — horizontal + balanceador</strong></td><td>Granja de servidores con balanceador, caché y middleware/pool de conexiones.</td></tr>
+        </table>
+        <p><strong>Analogía del banco:</strong> un único servidor es una sola ventanilla con fila infinita; el escalado horizontal abre múltiples ventanillas con más cajeros atendiendo en paralelo.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-purple">14</span> Seguridad en el diseño — los 4 pilares</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>Los 4 pilares</h3>
+        <table class="mini-tabla">
+          <tr><th>Pilar</th><th>Pregunta</th><th>Qué hace</th><th>Mecanismos</th></tr>
+          <tr><td><strong>1. Autenticación</strong></td><td>¿Quién eres?</td><td>Verifica identidad.</td><td>Correo/contraseña, JWT, OTP.</td></tr>
+          <tr><td><strong>2. Autorización</strong></td><td>¿Qué puedes hacer?</td><td>Define permisos.</td><td>Roles (Admin/Usuario), ACL.</td></tr>
+          <tr><td><strong>3. Cifrado</strong></td><td>¿Cómo se protege el dato?</td><td>Vuelve ilegible tránsito y almacenamiento.</td><td>TLS, AES, hashing.</td></tr>
+          <tr><td><strong>4. Auditoría</strong></td><td>¿Qué hizo quién y cuándo?</td><td>Registra historial de acciones.</td><td>Logs, tabla <code>auditoria</code>, SIEM.</td></tr>
+        </table>
+        <p><strong>Regla del curso:</strong> seguridad transversal a las 3 capas (UI, Backend, BD). Sin los 4 pilares, el sistema es vulnerable a filtraciones y ataques.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Autenticación vs. autorización</h3>
+        <table class="mini-tabla">
+          <tr><th>Criterio</th><th>Autenticación</th><th>Autorización</th></tr>
+          <tr><td><strong>Pregunta clave</strong></td><td>¿Quién eres tú?</td><td>¿Qué tienes permitido hacer?</td></tr>
+          <tr><td><strong>Momento</strong></td><td>Al inicio (login).</td><td>Continuamente en cada acción.</td></tr>
+          <tr><td><strong>Ejemplo</strong></td><td>Validar JWT al entrar.</td><td>Verificar si <code>rol=admin</code> puede borrar ventas.</td></tr>
+        </table>
+      </article>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-amber">15</span> Integración de sistemas</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>¿Qué es?</h3>
+        <p>Capacidad de conectarse bidireccionalmente con apps internas o plataformas de terceros para no reinventar funcionalidades.</p>
+      </article>
+      <article class="bloque b-teal">
+        <h3>Tipos de integración</h3>
+        <table class="mini-tabla">
+          <tr><th>Tipo</th><th>Ejemplo de clase</th><th>Cómo se integra</th></tr>
+          <tr><td><strong>Externa — pasarela de pagos</strong></td><td>Visanet / Niubiz para cobro con tarjeta.</td><td>El backend consume una API externa REST (HTTPS).</td></tr>
+          <tr><td><strong>Interna — producción TV</strong></td><td>Sistema masivo de votaciones + sistema administrativo de producción (participantes, sentenciados, reportes).</td><td>Servidores aislados con nodo centralizado en BD compartida para no mezclar cargas.</td></tr>
+        </table>
+        <p><strong>Decisión de diseño del docente:</strong> aislar cargas en 2 sistemas con servidores separados protegió la operación de producción frente a picos del sistema masivo.</p>
+      </article>
+    </div>
+  </section>
+
   <section>
-    <p class="rotulo"><span class="num n-blue">6</span> Cifras de la clase</p>
+    <p class="rotulo"><span class="num n-blue">16</span> Procedimiento para diseñar la arquitectura</p>
+    <div class="panel">
+      <ol class="lista">
+        <li><strong>Identificar componentes y módulos:</strong> analizar historias de usuario y documento de visión para listar Frontend, Backend, BD y submódulos.</li>
+        <li><strong>Definir interconexiones y flujo de datos:</strong> establecer protocolos (HTTPS, REST/API).</li>
+        <li><strong>Estructurar en capas:</strong> garantizar la separación de responsabilidades (Presentación / Lógica / Datos).</li>
+        <li><strong>Incorporar capas operativas:</strong> evaluar peticiones simultáneas; insertar balanceador, instancias paralelas, caché y pool de conexiones.</li>
+        <li><strong>Diseñar integraciones:</strong> definir interfaces para sistemas internos (BD compartida) y externos (APIs de pago).</li>
+        <li><strong>Documentar:</strong> consolidar diagramas de bloques en Draw.io + especificación formal de requisitos.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">17</span> Errores comunes y advertencias</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Error</th><th>Consecuencia</th><th>Cómo evitarlo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Codificación empírica — programar sin diseñar</strong></td><td>Software inestable, costoso, requiere reescritura total.</td><td>Diagramas UML y arquitectura antes de código — <strong>punto evaluable</strong>.</td></tr>
+            <tr><td><strong>Atributos públicos en clases</strong></td><td>Corrupción de datos: saldos negativos, montos inválidos.</td><td><code>private</code> + métodos validados.</td></tr>
+            <tr><td><strong>Diseños sin validación de usuario (sin mockups)</strong></td><td>El usuario rechaza el sistema y vuelve a Excel.</td><td>Prototipos UI/UX testeados con usuarios reales.</td></tr>
+            <tr><td><strong>Subestimar pruebas de carga y escalabilidad</strong></td><td>Caída el primer día de picos (caso Reality Show).</td><td>Pruebas de carga + diseño horizontal desde el inicio — <strong>punto evaluable</strong>.</td></tr>
+            <tr><td><strong>Confundir UI con UX</strong></td><td>Pantalla bonita pero flujo lento.</td><td>Medir pasos, tiempo de respuesta y facilidad, no solo estética.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="ampliado">
+    <p class="rotulo"><span class="num n-teal">18</span> UI/UX y atributos de calidad</p>
+    <div class="grid">
+      <article class="bloque">
+        <h3>UI, UX y calidad</h3>
+        <table class="mini-tabla">
+          <tr><th>Concepto</th><th>Enfoque</th><th>Elementos / métricas</th><th>Ejemplo negativo</th></tr>
+          <tr><td><strong>UI (interfaz)</strong></td><td>Aspecto visual y controles.</td><td>Botones, campos, colores, tipografía.</td><td>Pantalla saturada sin jerarquía.</td></tr>
+          <tr><td><strong>UX (experiencia)</strong></td><td>Percepción, usabilidad, eficiencia del flujo.</td><td>Pasos para completar la tarea, tiempo de respuesta.</td><td>Login en 3 pantallas lentas separadas.</td></tr>
+          <tr><td><strong>Atributos de calidad</strong></td><td>Cómo se comporta el sistema bajo condiciones reales.</td><td>Escalabilidad, rendimiento, seguridad, disponibilidad.</td><td>Sistema que no soporta +500 usuarios.</td></tr>
+        </table>
+      </article>
+      <article class="bloque b-amber">
+        <h3>Conexión entre los conceptos</h3>
+        <p>Todo fluye secuencialmente: las necesidades del <strong>análisis</strong> se traducen en <strong>requisitos</strong>, que se materializan en una <strong>arquitectura</strong> con separación de responsabilidades y descomposición modular.</p>
+        <p>A nivel de detalle, cada módulo usa <strong>abstracción</strong>, <strong>encapsulamiento</strong> y <strong>patrones</strong> como Singleton.</p>
+        <p>Finalmente la arquitectura se refina para operar en el mundo real con <strong>escalabilidad</strong>, <strong>seguridad</strong> e <strong>integración</strong>, quedando lista para codificar.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">19</span> Ideas clave para recordar</p>
+    <div class="panel">
+      <ul class="lista">
+        <li><strong>Análisis y Diseño = planos del edificio; Codificación = construcción.</strong></li>
+        <li><strong>Requerimiento =</strong> lo que quiere el cliente; <strong>Requisito =</strong> lo que debe ejecutar el sistema.</li>
+        <li><strong>Abstracción</strong> enfoca por rol; <strong>Encapsulamiento</strong> protege con <code>private</code> + métodos públicos.</li>
+        <li><strong>Separación de Responsabilidades:</strong> Presentación (UI) | Lógica (Backend) | Datos (BD).</li>
+        <li><strong>Singleton</strong> optimiza recursos en pools de conexiones.</li>
+        <li><strong>Escalado horizontal</strong> = granja de servidores + balanceador.</li>
+        <li><strong>Seguridad =</strong> Autenticación + Autorización + Cifrado + Auditoría.</li>
+        <li><strong>Integración:</strong> APIs externas (Visanet/Niubiz) o BD compartida interna.</li>
+        <li><strong>Draw.io</strong> es la herramienta oficial del curso.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">20</span> Cifras y diagramas de la clase</p>
     <div class="stats">
       <div class="stat"><div class="valor">+2.000</div><div class="etiqueta">peticiones el primer día (la infra estaba para 500)</div></div>
       <div class="stat"><div class="valor">4</div><div class="etiqueta">pilares de seguridad transversales a las 3 capas</div></div>
       <div class="stat"><div class="valor">3</div><div class="etiqueta">capas: Presentación, Lógica y Datos</div></div>
       <div class="stat"><div class="valor">15</div><div class="etiqueta">preguntas de repaso del tema</div></div>
     </div>
-  </section>
-
-  <section>
-    <p class="rotulo"><span class="num n-blue">7</span> Diagramas de la clase: Singleton y arquitecturas</p>
-    <div class="mermaid">
+    <div class="mermaid" style="margin-top:16px;">
 classDiagram
     class ConexionBD {
         -ConexionBD instancia
@@ -514,7 +860,7 @@ classDiagram
     note for ConexionBD "Pool unico de conexiones"
     </div>
     <p class="nota-relacion">Singleton: una única instancia global del pool de conexiones a BD.</p>
-    <div class="mermaid">
+    <div class="mermaid" style="margin-top:16px;">
 flowchart TD
     FE[Frontend] --> BE[Backend] --> DB[(BD Central)]
     BE --> MONO[Monolito: un solo despliegue]
@@ -528,6 +874,104 @@ flowchart TD
     class GW,S1,S2,S3,COG micro
     </div>
     <p class="nota-relacion">Monolito = un solo despliegue con BD central · Microservicios = servicios por dominio con BD propia; si pagos falla, los demás siguen operando.</p>
+    <div class="mermaid" style="margin-top:16px;">
+flowchart TB
+    Users((Usuarios)) --> LB[Balanceador de Carga]
+    LB --> S1[Servidor 1 App]
+    LB --> S2[Servidor 2 App]
+    LB --> S3[Servidor 3 App]
+    S1 --> Cache[(Caché)]
+    S2 --> Cache
+    S3 --> Cache
+    S1 --> Pool[Pool de Conexiones]
+    S2 --> Pool
+    S3 --> Pool
+    Pool --> DB[(BD)]
+    classDef lb fill:#16294a,stroke:#6aa7ff,color:#e9eff8,stroke-width:2px
+    classDef srv fill:#182742,stroke:#3ed2b2,color:#e9eff8
+    classDef dat fill:#241d47,stroke:#b39af7,color:#e9eff8
+    class LB lb
+    class S1,S2,S3 srv
+    class Cache,Pool,DB dat
+    </div>
+    <p class="nota-relacion">Escalado horizontal: el balanceador reparte la carga entre instancias y todas comparten caché y pool de conexiones.</p>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-amber">21</span> Preguntas de repaso y respuestas sintéticas</p>
+    <div class="panel">
+      <div class="preguntas">
+        <details><summary>1. ¿Por qué modificar en análisis/diseño es más barato que en codificación?</summary><p>En el diagrama se corrige con lápiz y borrador; en código desplegado hay que refactorizar miles de líneas, migrar la BD y absorber el downtime.</p></details>
+        <details><summary>2. En la analogía del edificio, ¿a qué corresponden los diagramas y a qué la codificación?</summary><p>Los diagramas son los planos estructurales; la codificación es la construcción física.</p></details>
+        <details><summary>3. Explica la diferencia entre requerimiento del usuario y requisito del sistema con "gestionar mis ventas".</summary><p>Requerimiento = necesidad informal del cliente; requisito = función técnica precisa y verificable.</p></details>
+        <details><summary>4. ¿Qué es una arquitectura monolítica y cuál es su principal limitación ante picos masivos?</summary><p>Frontend, backend y BD centralizados en un despliegue; su límite es el punto único de fallo, que colapsa con picos.</p></details>
+        <details><summary>5. Describe microservicios: una ventaja y una desventaja vistas en clase.</summary><p>Ventaja: escalabilidad por servicio. Desventaja: latencia de red.</p></details>
+        <details><summary>6. ¿Qué es descomposición modular y cuáles son las 3 capas clásicas?</summary><p>Dividir el sistema en módulos manejables; Presentación, Lógica y Datos.</p></details>
+        <details><summary>7. Explica abstracción con el ejemplo del conductor de auto.</summary><p>El conductor usa volante y pedales e ignora el motor.</p></details>
+        <details><summary>8. ¿Por qué encapsular el saldo en CuentaBancaria?</summary><p>Para evitar asignaciones directas inválidas (ej. -30) sin validar los fondos.</p></details>
+        <details><summary>9. ¿Qué garantiza Singleton y dónde se usa típicamente?</summary><p>Una única instancia global; en pools de conexiones a base de datos.</p></details>
+        <details><summary>10. Diferencia entre escalado vertical y horizontal.</summary><p>Vertical = más recursos en un servidor; horizontal = más servidores con balanceador.</p></details>
+        <details><summary>11. En el caso Reality Show, ¿qué causó la caída y cómo se resolvió?</summary><p>2.000 peticiones frente a una capacidad de 500 saturaron la BD; se resolvió con granja de servidores + balanceador + caché + pool.</p></details>
+        <details><summary>12. Diferencia entre autenticación y autorización.</summary><p>La autenticación verifica la identidad; la autorización verifica los permisos.</p></details>
+        <details><summary>13. ¿Cuáles son los 4 pilares de seguridad?</summary><p>Autenticación, autorización, cifrado y auditoría.</p></details>
+        <details><summary>14. ¿Cómo interactuaban el sistema de votaciones masivo y el sistema interno de producción?</summary><p>Servidores aislados integrados vía una BD compartida centralizada.</p></details>
+        <details><summary>15. ¿Qué consecuencia tiene omitir mockups o prototipos UI antes de desarrollar?</summary><p>Rechazo por usabilidad, abandono del software y retorno a Excel o a los manuales.</p></details>
+      </div>
+      <div class="destacado" style="margin-top:14px;">
+        <strong>Regla práctica:</strong> si estas 15 preguntas no pueden responderse sin consultar los apuntes, se recomienda repasar las secciones 1 a 9.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-blue">22</span> Glosario</p>
+    <div class="panel">
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead><tr><th>Término</th><th>Definición</th></tr></thead>
+          <tbody>
+            <tr><td><strong>SDLC</strong></td><td>Ciclo de vida del desarrollo de software: análisis → diseño → código → pruebas → despliegue → mantenimiento.</td></tr>
+            <tr><td><strong>Requerimiento vs. requisito</strong></td><td>Necesidad del usuario vs. especificación técnica verificable del sistema.</td></tr>
+            <tr><td><strong>Arquitectura del sistema</strong></td><td>Esquema de alto nivel de componentes e interacciones.</td></tr>
+            <tr><td><strong>Monolito / Microservicios</strong></td><td>Centralizado en un despliegue vs. servicios distribuidos por dominio.</td></tr>
+            <tr><td><strong>Descomposición modular</strong></td><td>División en módulos autónomos.</td></tr>
+            <tr><td><strong>Separation of Concerns</strong></td><td>Cada capa o módulo con responsabilidad única.</td></tr>
+            <tr><td><strong>Abstracción</strong></td><td>Ocultar detalles irrelevantes según el rol.</td></tr>
+            <tr><td><strong>Encapsulamiento</strong></td><td>Atributos privados + métodos públicos validados.</td></tr>
+            <tr><td><strong>Singleton</strong></td><td>Patrón que garantiza una única instancia global.</td></tr>
+            <tr><td><strong>Escalabilidad vertical / horizontal</strong></td><td>Más recursos en un servidor vs. más servidores con balanceador.</td></tr>
+            <tr><td><strong>Balanceador de carga</strong></td><td>Distribuye peticiones entre múltiples instancias.</td></tr>
+            <tr><td><strong>Autenticación / Autorización / Cifrado / Auditoría</strong></td><td>Los 4 pilares de seguridad.</td></tr>
+            <tr><td><strong>ACID</strong></td><td>Transacción fiable en BD: todo o nada, sin datos a medias.</td></tr>
+            <tr><td><strong>JWT</strong></td><td>Token firmado que verifica identidad al entrar.</td></tr>
+            <tr><td><strong>OTP</strong></td><td>Código de un solo uso para confirmar identidad.</td></tr>
+            <tr><td><strong>ACL</strong></td><td>Lista que define qué puede hacer cada rol.</td></tr>
+            <tr><td><strong>TLS</strong></td><td>Cifra el dato en tránsito (HTTPS).</td></tr>
+            <tr><td><strong>AES</strong></td><td>Cifra el dato guardado para volverlo ilegible.</td></tr>
+            <tr><td><strong>SIEM</strong></td><td>Centraliza y analiza logs de auditoría.</td></tr>
+            <tr><td><strong>Integración de sistemas</strong></td><td>Conexión vía APIs (externa) o BD compartida (interna).</td></tr>
+            <tr><td><strong>UI / UX</strong></td><td>Interfaz visual vs. experiencia y flujo de uso.</td></tr>
+            <tr><td><strong>Draw.io</strong></td><td>Herramienta oficial de diagramado del curso.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="rotulo"><span class="num n-purple">23</span> Recursos y fuentes</p>
+    <div class="panel">
+      <ul class="fuentes">
+        <li><strong>Recursos:</strong> PDF de la sesión <code>introduccion-diseno-sistemas-clase-1.pdf</code> (carpeta de la clase).</li>
+        <li><strong>Recursos:</strong> herramienta de diagramado <a href="https://app.diagrams.net/">Draw.io (diagrams.net)</a>.</li>
+        <li><strong>Recursos:</strong> patrones de diseño en <a href="https://refactoring.guru/design-patterns/singleton">Refactoring Guru — Singleton</a>.</li>
+        <li><strong>Fuentes:</strong> Bass, L., Clements, P., &amp; Kazman, R. (2012). <em>Software Architecture in Practice</em>. Libro.</li>
+        <li><strong>Fuentes:</strong> Martin, R. C. (2002). <em>Agile Software Development, Principles, Patterns, and Practices</em>. Libro.</li>
+        <li><strong>Fuentes:</strong> Fowler, M. (2002). <em>Patterns of Enterprise Application Architecture</em>. Libro.</li>
+        <li><strong>Fuentes:</strong> Sommerville, I. (2015). <em>Software Engineering</em>. Libro.</li>
+        <li><strong>Fuentes:</strong> Refactoring Guru — Singleton. Guía.</li>
+      </ul>
+    </div>
   </section>
 
   <section>

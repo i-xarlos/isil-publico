@@ -1,6 +1,6 @@
 # isil-publico
 
-Contenido público (solo HTML).
+Contenido público: HTML e imágenes locales referenciadas.
 
 **Home de navegación:** [i-xarlos.github.io/isil-publico](https://i-xarlos.github.io/isil-publico/) — página inicial con buscador para abrir cualquier infografía.
 
